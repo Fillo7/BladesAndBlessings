@@ -1,0 +1,31 @@
+Čo treba spraviť:
+- Hráč - ovládanie (pohyb + zbrane + dodge schopnosť), model, textúra, animácie
+- Zbrane - aspoň 2, programovanie schopností, modely, textúry
+- Nepriatelia - zhruba 4-5 druhov (kombinácia melee a ranged), programovanie, AI, modely, textúry, animácie
+- Level - 1 prostredie pre demo - kolízie, spawn pointy, prekážky
+- Game manager - ovládanie spawnov nepriateľov, cleanup mŕtvych nepriateľov, reštart a ukončenie levelu
+- HUD - zdravie hráča, ikony zbraní hráča, počet zostávajúcich vĺn, zdravie len u silnejších typov nepriateľov
+- Ambientná hudba, zvukové efekty (zbrane, smrť nepriateľov)
+- Hlavné menu a pause menu (dá sa prebrať s menšími zmenami z prvého projektu)
+- Kamera (dá sa prebrať s menšími zmenami z prvého projektu)
+
+Treba urobiť do 13.1.2018:
+- návrh zbraní - každý 2 zbrane (názov, typ, schopnosti, ideálne 1 melee + 1 ranged)
+- návrh nepriateľov - každý 3 nepriateľov (názov, schopnosti, správanie, vzhľad, ideálne 1 melee + 1 ranged + 1 voliteľný)
+- návrh levelu do dema - každý 2 návrhy (stručný popis vzhľadu, lokácie, prekážok, miest spawnu nepriateľov)
+
+Plán na 13.1.2018 / 14.1.2018:
+- spoločne vyberieme najlepšie nápady
+- nahranie a sprístupnenie kostry projektu na Githube - Filip
+
+Rozdelenie práce:
+- programovanie: hráč, zbrane, game manager - Filip; nepriatelia - Marek
+- zostavenie hry v editore, hlavné menu, HUD - spoločne
+- modely, textúry, animácie - Simona
+- hudba - Simona
+- zvukové efekty - spoločne nájsť (Internet / asset store)
+- odovzdanie projektu + prezentácia - dohodne sa neskôr
+
+Poznámky:
+- spoločná verzia Unity - 2017.2.1, link: https://unity3d.com/get-unity/download/archive
+- termín prezentácie: 6. 2. 2018 18:00 D3
