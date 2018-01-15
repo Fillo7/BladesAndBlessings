@@ -5,6 +5,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float speed = 5.0f;
     private Vector3 direction;
     private Rigidbody playerRigidbody;
+
     private int floorMask;
     private float cameraRayLength = 100.0f;
 
@@ -14,7 +15,7 @@ public class PlayerMovementController : MonoBehaviour
         floorMask = LayerMask.GetMask("Floor");
     }
 
-	void FixedUpdate()
+    void FixedUpdate()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
