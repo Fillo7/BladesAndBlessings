@@ -289,8 +289,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1846050323}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0.7}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.6}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 1997793986}
   m_RootOrder: 0
@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 1947611941}
   - component: {fileID: 1947611940}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -574,6 +574,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e04447b643784479d7f994443e2bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapons:
+  - {fileID: 1642988704525440, guid: fb0baa9c4af43924180c343d30bbf55e, type: 2}
+  - {fileID: 1520052970523048, guid: 520e18c0bd7208f41b7229c767a47169, type: 2}
 --- !u!1 &2039633492
 GameObject:
   m_ObjectHideFlags: 0

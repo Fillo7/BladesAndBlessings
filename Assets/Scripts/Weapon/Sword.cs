@@ -8,8 +8,7 @@ public class Sword : Weapon
 
     void Awake()
     {
-        playerMovement = GetComponent<PlayerMovementController>();
-        //playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementController>();
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementController>();
     }
 
     public override void DoBasicAttack(Vector3 targetPosition)
@@ -25,5 +24,10 @@ public class Sword : Weapon
     public override void DoSpecialAttack2(Vector3 targetPosition)
     {
         // ...
+    }
+
+    public override float GetOffsetPosition()
+    {
+        return 0.65f;
     }
 }

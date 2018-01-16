@@ -3,21 +3,24 @@ using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
 {
-    private List<Weapon> weapons = new List<Weapon>();
+    [SerializeField] private List<GameObject> weapons = new List<GameObject>();
+    GameObject activeWeapon = null;
+    Weapon activeWeaponScript = null;
     private int activeWeaponIndex = 0;
+
+    private bool freezeAttack = false;
     private float timeBetweenAttacks = 0.3f;
     private float timer = 0.0f;
 
+    private PlayerMovementController playerMovement;
     private int floorMask;
     private float cameraRayLength = 100.0f;
 
     void Awake()
     {
+        playerMovement = GetComponent<PlayerMovementController>();
         floorMask = LayerMask.GetMask("Floor");
-        Sword sword = gameObject.AddComponent<Sword>();
-        Bow bow = gameObject.AddComponent<Bow>();
-        weapons.Add(sword);
-        weapons.Add(bow);
+        ActivateWeapon(activeWeaponIndex);
     }
     
     void Update()
@@ -53,7 +56,7 @@ public class PlayerAttackController : MonoBehaviour
     {
         if (command == AttackCommand.Basic)
         {
-            weapons[activeWeaponIndex].DoBasicAttack(target);
+            activeWeaponScript.DoBasicAttack(target);
 
             // Test code start
             GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -63,17 +66,34 @@ public class PlayerAttackController : MonoBehaviour
         }
         else if (command == AttackCommand.Special1)
         {
-            weapons[activeWeaponIndex].DoSpecialAttack1(target);
+            activeWeaponScript.DoSpecialAttack1(target);
         }
         else if (command == AttackCommand.Special2)
         {
-            weapons[activeWeaponIndex].DoSpecialAttack2(target);
+            activeWeaponScript.DoSpecialAttack2(target);
         }
+    }
+
+    private void ActivateWeapon(int weaponIndex)
+    {
+        freezeAttack = true;
+        if (activeWeapon != null)
+        {
+            Destroy(activeWeapon);
+            activeWeaponScript = null;
+        }
+
+        activeWeaponScript = weapons[activeWeaponIndex].GetComponent<Weapon>();
+        activeWeapon = Instantiate(weapons[weaponIndex], playerMovement.transform.position
+            + playerMovement.transform.right * activeWeaponScript.GetOffsetPosition(), playerMovement.transform.rotation) as GameObject;
+        activeWeapon.transform.parent = playerMovement.transform;
+        freezeAttack = false;
     }
 
     private void SwapWeapon()
     {
         activeWeaponIndex = (activeWeaponIndex + 1) % 2;
+        ActivateWeapon(activeWeaponIndex);
     }
 
     private Vector3 GetCursorWorldPosition()
@@ -90,7 +110,7 @@ public class PlayerAttackController : MonoBehaviour
 
     private bool TimerIsReady()
     {
-        return timer >= timeBetweenAttacks && Time.timeScale != 0;
+        return timer >= timeBetweenAttacks && Time.timeScale != 0 && !freezeAttack;
     }
 
     private void ResetTimer()
