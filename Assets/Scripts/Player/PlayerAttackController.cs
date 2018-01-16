@@ -59,9 +59,9 @@ public class PlayerAttackController : MonoBehaviour
             activeWeaponScript.DoBasicAttack(target);
 
             // Test code start
-            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            /*GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             Vector3 location = GetCursorWorldPosition();
-            cube.transform.position = new Vector3(location.x, 0.55f, location.z);
+            cube.transform.position = new Vector3(location.x, 0.55f, location.z);*/
             // Test code end
         }
         else if (command == AttackCommand.Special1)
@@ -85,7 +85,8 @@ public class PlayerAttackController : MonoBehaviour
 
         activeWeaponScript = weapons[activeWeaponIndex].GetComponent<Weapon>();
         activeWeapon = Instantiate(weapons[weaponIndex], playerMovement.transform.position
-            + playerMovement.transform.right * activeWeaponScript.GetOffsetPosition(), playerMovement.transform.rotation) as GameObject;
+            + playerMovement.transform.right * activeWeaponScript.GetOffsetSide(), playerMovement.transform.rotation) as GameObject;
+        activeWeaponScript = activeWeapon.GetComponent<Weapon>(); // use the script which is attached to newly created weapon
         activeWeapon.transform.parent = playerMovement.transform;
         freezeAttack = false;
     }

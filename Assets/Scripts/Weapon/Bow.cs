@@ -26,7 +26,7 @@ public class Bow : Weapon
         // ...
     }
 
-    public override float GetOffsetPosition()
+    public override float GetOffsetSide()
     {
         return 0.65f;
     }
