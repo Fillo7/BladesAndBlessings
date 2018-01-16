@@ -3,12 +3,12 @@
 public class Bow : Weapon
 {
     private int baseDamage = 15;
-    private WeaponType weaponType = WeaponType.Ranged;
-    private PlayerMovementController playerMovement;
+    /*private WeaponType weaponType = WeaponType.Ranged;
+    private PlayerMovementController playerMovement;*/
 
     void Awake()
     {
-        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementController>();
+        //playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementController>();
     }
 
     public override void DoBasicAttack(Vector3 targetPosition)
