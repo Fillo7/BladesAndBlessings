@@ -34,6 +34,6 @@ public class EnemyHealthController : MonoBehaviour
     {
         dead = true;
         animator.SetTrigger("DummyDeath");
-        Destroy(gameObject, 3.0f);
+        Destroy(transform.parent.gameObject, 3.0f);
     }
 }

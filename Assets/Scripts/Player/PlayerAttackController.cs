@@ -57,12 +57,6 @@ public class PlayerAttackController : MonoBehaviour
         if (command == AttackCommand.Basic)
         {
             activeWeaponScript.DoBasicAttack(target);
-
-            // Test code start
-            /*GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            Vector3 location = GetCursorWorldPosition();
-            cube.transform.position = new Vector3(location.x, 0.55f, location.z);*/
-            // Test code end
         }
         else if (command == AttackCommand.Special1)
         {

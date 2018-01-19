@@ -2,10 +2,10 @@
 
 public class Sword : Weapon
 {
-    private int baseDamage = 20;
-    /*private WeaponType weaponType = WeaponType.Melee;
-    private PlayerMovementController playerMovement;*/
     private Animator animator;
+    // private WeaponType weaponType = WeaponType.Melee;
+    // private PlayerMovementController playerMovement;
+    private int baseDamage = 20;
 
     private int maxHitCount = 0;
     private int damageToDeal = 0;
@@ -13,7 +13,7 @@ public class Sword : Weapon
     void Awake()
     {
         animator = GetComponent<Animator>();
-        //playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementController>();
+        // playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementController>();
     }
 
     void OnTriggerEnter(Collider other)
