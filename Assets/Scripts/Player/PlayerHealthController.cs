@@ -28,7 +28,7 @@ public class PlayerHealthController : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
-        healthSlider.value = currentHealth;
+        // healthSlider.value = currentHealth;
 
         if (currentHealth <= 0 && !dead)
         {

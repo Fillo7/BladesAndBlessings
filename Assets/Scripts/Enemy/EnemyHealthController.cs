@@ -6,13 +6,12 @@ public class EnemyHealthController : MonoBehaviour
     [SerializeField] private int currentHealth;
 
     private Animator animator;
-    private bool dead;
+    private bool dead = false;
 
     void Awake()
     {
-        dead = false;
         currentHealth = baseHealth;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     public bool IsDead()
@@ -33,7 +32,12 @@ public class EnemyHealthController : MonoBehaviour
     private void Die()
     {
         dead = true;
-        animator.SetTrigger("DummyDeath");
-        Destroy(transform.parent.gameObject, 3.0f);
+
+        if (animator != null)
+        {
+            animator.SetTrigger("Death");
+        }
+        
+        Destroy(gameObject, 3.0f);
     }
 }
