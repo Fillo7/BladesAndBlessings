@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 4079629870380794}
   - component: {fileID: 114141732813820076}
   - component: {fileID: 65664991212778652}
+  - component: {fileID: 54539606195851982}
   m_Layer: 0
   m_Name: ArrowThrower
   m_TagString: Enemy
@@ -186,6 +187,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1695695756486308}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54539606195851982
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1628474345739142}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!65 &65664991212778652
 BoxCollider:
   m_ObjectHideFlags: 1

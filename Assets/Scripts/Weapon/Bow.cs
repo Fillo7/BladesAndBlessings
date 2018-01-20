@@ -52,13 +52,18 @@ public class Bow : Weapon
             return;
         }
 
-        SpawnChargedArrow();
+        animator.SetTrigger("SpecialAttack2");
         specialAttack2Timer = specialAttack2Cooldown;
     }
 
     public override float GetOffsetSide()
     {
         return 0.68f;
+    }
+
+    public override float GetOffsetHeight()
+    {
+        return -0.8f;
     }
 
     public void SpawnArrow()

@@ -7,7 +7,7 @@ public class ArrowCharged : MonoBehaviour
     private float chargeCount = 5;
     private float timeToLive = 30.0f;
     Rigidbody body;
-    Vector3 oldVelocity;
+    Vector3 currentVelocity;
     Vector3 velocitySnapshot;
 
     void Awake()
@@ -28,20 +28,20 @@ public class ArrowCharged : MonoBehaviour
 
     void FixedUpdate()
     {
-        oldVelocity = body.velocity;
+        currentVelocity = body.velocity;
     }
 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag.Equals("Projectile") || collision.gameObject.tag.Equals("Player"))
         {
+            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
+            body.velocity = velocitySnapshot;
             return;
         }
 
         if (collision.gameObject.tag.Equals("Enemy"))
         {
-            EnemyHealthController enemyHealth = collision.gameObject.GetComponent<EnemyHealthController>();
-            enemyHealth.TakeDamage(damage);
             Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
             body.velocity = velocitySnapshot;
         }
@@ -49,7 +49,8 @@ public class ArrowCharged : MonoBehaviour
         {
             ContactPoint contact = collision.contacts[0];
 
-            Vector3 reflectedVelocity = Vector3.Reflect(oldVelocity, contact.normal);
+            Vector3 reflectedVelocity = Vector3.Reflect(currentVelocity, contact.normal);
+            reflectedVelocity = Quaternion.Euler(0.0f, Random.Range(0.0f, 5.0f), 0.0f) * reflectedVelocity;
             body.velocity = reflectedVelocity;
             velocitySnapshot = body.velocity;
 
@@ -61,6 +62,15 @@ public class ArrowCharged : MonoBehaviour
         if (chargeCount <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Enemy"))
+        {
+            EnemyHealthController enemyHealth = other.gameObject.GetComponent<EnemyHealthController>();
+            enemyHealth.TakeDamage(damage);
         }
     }
 

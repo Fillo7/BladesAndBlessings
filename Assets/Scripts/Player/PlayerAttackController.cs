@@ -77,11 +77,12 @@ public class PlayerAttackController : MonoBehaviour
             activeWeaponScript = null;
         }
 
-        activeWeaponScript = weapons[activeWeaponIndex].GetComponent<Weapon>();
+        activeWeaponScript = weapons[activeWeaponIndex].GetComponentInChildren<Weapon>();
         activeWeapon = Instantiate(weapons[weaponIndex], playerMovement.transform.position
             + playerMovement.transform.right * activeWeaponScript.GetOffsetSide(), playerMovement.transform.rotation) as GameObject;
-        activeWeaponScript = activeWeapon.GetComponent<Weapon>(); // use the script which is attached to newly created weapon
+        activeWeaponScript = activeWeapon.GetComponentInChildren<Weapon>(); // use the script which is attached to newly created weapon
         activeWeapon.transform.parent = playerMovement.transform;
+        activeWeapon.transform.Translate(0.0f, activeWeaponScript.GetOffsetHeight(), 0.0f);
         freezeAttack = false;
     }
 

@@ -49,4 +49,9 @@ public class Sword : Weapon
     {
         return 0.65f;
     }
+
+    public override float GetOffsetHeight()
+    {
+        return -1.0f;
+    }
 }
