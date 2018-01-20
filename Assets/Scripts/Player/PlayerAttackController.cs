@@ -73,6 +73,7 @@ public class PlayerAttackController : MonoBehaviour
         freezeAttack = true;
         if (activeWeapon != null)
         {
+            // activeWeapon.SetActive(false);
             Destroy(activeWeapon);
             activeWeaponScript = null;
         }
