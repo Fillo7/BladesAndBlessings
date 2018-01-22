@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttackController : MonoBehaviour
+public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private List<GameObject> weaponPrefabs = new List<GameObject>();
     private List<GameObject> weapons = new List<GameObject>();
@@ -13,13 +13,13 @@ public class PlayerAttackController : MonoBehaviour
     private float timeBetweenAttacks = 0.3f;
     private float timer = 0.0f;
 
-    private PlayerMovementController playerMovement;
+    private PlayerMovement playerMovement;
     private int floorMask;
     private float cameraRayLength = 100.0f;
 
     void Awake()
     {
-        playerMovement = GetComponent<PlayerMovementController>();
+        playerMovement = GetComponent<PlayerMovement>();
         floorMask = LayerMask.GetMask("Floor");
 
         InitializeWeapons();

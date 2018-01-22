@@ -6,7 +6,7 @@ public class Bow : Weapon
     [SerializeField] private GameObject chargedArrow;
     private Animator animator;
     // private WeaponType weaponType = WeaponType.Ranged;
-    private PlayerMovementController playerMovement;
+    private PlayerMovement playerMovement;
     private int baseDamage = 15;
 
     private float arrowSpeed = 20.0f;
@@ -20,7 +20,7 @@ public class Bow : Weapon
     void Awake()
     {
         animator = GetComponent<Animator>();
-        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementController>();
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     void Update()

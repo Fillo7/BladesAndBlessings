@@ -59,7 +59,7 @@ public class Sword : Weapon
         }
 
         maxHitCount--;
-        EnemyHealthController enemyHealth = other.GetComponent<EnemyHealthController>();
+        EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
         enemyHealth.TakeDamage(damageToDeal);
 
         if (slashing)

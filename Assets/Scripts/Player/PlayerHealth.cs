@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealthController : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int baseHealth = 200;
     [SerializeField] private int currentHealth;

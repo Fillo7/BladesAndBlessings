@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealthController : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private int baseHealth = 50;
     [SerializeField] private int currentHealth;
@@ -18,27 +18,12 @@ public class EnemyHealthController : MonoBehaviour
 
     void Update()
     {
-        LinkedList<DotEffect> toRemove = new LinkedList<DotEffect>();
+        ProcessDots();
+    }
 
-        foreach (DotEffect effect in dotEffects)
-        {
-            effect.UpdateTimer(Time.deltaTime);
-            
-            if (effect.NextTickReady())
-            {
-                TakeDamage(effect.GetTickDamage());
-            }
-
-            if (effect.IsExpired())
-            {
-                toRemove.AddLast(effect);
-            }
-        }
-
-        foreach (DotEffect effect in toRemove)
-        {
-            dotEffects.Remove(effect);
-        }
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
     }
 
     public bool IsDead()
@@ -71,5 +56,30 @@ public class EnemyHealthController : MonoBehaviour
         }
         
         Destroy(gameObject, 2.0f);
+    }
+
+    private void ProcessDots()
+    {
+        LinkedList<DotEffect> toRemove = new LinkedList<DotEffect>();
+
+        foreach (DotEffect effect in dotEffects)
+        {
+            effect.UpdateTimer(Time.deltaTime);
+
+            if (effect.NextTickReady())
+            {
+                TakeDamage(effect.GetTickDamage());
+            }
+
+            if (effect.IsExpired())
+            {
+                toRemove.AddLast(effect);
+            }
+        }
+
+        foreach (DotEffect effect in toRemove)
+        {
+            dotEffects.Remove(effect);
+        }
     }
 }

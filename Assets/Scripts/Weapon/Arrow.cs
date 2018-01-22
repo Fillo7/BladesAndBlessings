@@ -25,12 +25,12 @@ public class Arrow : MonoBehaviour
 
         if (other.tag.Equals("Enemy"))
         {
-            EnemyHealthController enemyHealth = other.GetComponent<EnemyHealthController>();
+            EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
             enemyHealth.TakeDamage(damage);
         }
         else if (other.tag.Equals("Player"))
         {
-            PlayerHealthController playerHealth = other.GetComponent<PlayerHealthController>();
+            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             playerHealth.TakeDamage(damage);
         }
 

@@ -69,7 +69,7 @@ public class ArrowCharged : MonoBehaviour
     {
         if (other.tag.Equals("Enemy"))
         {
-            EnemyHealthController enemyHealth = other.gameObject.GetComponent<EnemyHealthController>();
+            EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
             enemyHealth.TakeDamage(damage);
         }
     }
