@@ -67,7 +67,7 @@ public class ArrowCharged : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Enemy"))
+        if (other.tag.Equals("Enemy"))
         {
             EnemyHealthController enemyHealth = other.gameObject.GetComponent<EnemyHealthController>();
             enemyHealth.TakeDamage(damage);

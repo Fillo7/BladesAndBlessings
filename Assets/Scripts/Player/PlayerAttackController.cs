@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> weapons = new List<GameObject>();
-    GameObject activeWeapon = null;
-    Weapon activeWeaponScript = null;
+    [SerializeField] private List<GameObject> weaponPrefabs = new List<GameObject>();
+    private List<GameObject> weapons = new List<GameObject>();
+    private GameObject activeWeapon = null;
+    private Weapon activeWeaponScript = null;
     private int activeWeaponIndex = 0;
 
     private bool freezeAttack = false;
@@ -20,6 +21,8 @@ public class PlayerAttackController : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovementController>();
         floorMask = LayerMask.GetMask("Floor");
+
+        InitializeWeapons();
         ActivateWeapon(activeWeaponIndex);
     }
     
@@ -68,22 +71,36 @@ public class PlayerAttackController : MonoBehaviour
         }
     }
 
+    private void InitializeWeapons()
+    {
+        freezeAttack = true;
+
+        for (int i = 0; i < weaponPrefabs.Count; i++)
+        {
+            Weapon weaponScript = weaponPrefabs[i].GetComponentInChildren<Weapon>();
+            GameObject weapon = Instantiate(weaponPrefabs[i], playerMovement.transform.position
+                + playerMovement.transform.right * weaponScript.GetOffsetSide(), playerMovement.transform.rotation) as GameObject;
+            weapon.transform.parent = playerMovement.transform;
+            weapon.transform.Translate(0.0f, weaponScript.GetOffsetHeight(), 0.0f);
+            weapon.SetActive(false);
+            weapons.Add(weapon);
+        }
+
+        freezeAttack = false;
+    }
+
     private void ActivateWeapon(int weaponIndex)
     {
         freezeAttack = true;
         if (activeWeapon != null)
         {
-            // activeWeapon.SetActive(false);
-            Destroy(activeWeapon);
+            activeWeapon.SetActive(false);
             activeWeaponScript = null;
         }
 
-        activeWeaponScript = weapons[activeWeaponIndex].GetComponentInChildren<Weapon>();
-        activeWeapon = Instantiate(weapons[weaponIndex], playerMovement.transform.position
-            + playerMovement.transform.right * activeWeaponScript.GetOffsetSide(), playerMovement.transform.rotation) as GameObject;
-        activeWeaponScript = activeWeapon.GetComponentInChildren<Weapon>(); // use the script which is attached to newly created weapon
-        activeWeapon.transform.parent = playerMovement.transform;
-        activeWeapon.transform.Translate(0.0f, activeWeaponScript.GetOffsetHeight(), 0.0f);
+        activeWeapon = weapons[activeWeaponIndex];
+        activeWeapon.SetActive(true);
+        activeWeaponScript = activeWeapon.GetComponentInChildren<Weapon>();
         freezeAttack = false;
     }
 

@@ -18,7 +18,7 @@ public class Arrow : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Equals("Projectile"))
+        if (other.tag.Equals("Projectile") || other.tag.Equals("Weapon"))
         {
             return;
         }
@@ -50,5 +50,14 @@ public class Arrow : MonoBehaviour
     public void FollowDirection(Vector3 direction)
     {
         GetComponent<Rigidbody>().velocity = direction * speed;
+    }
+
+    public void SwapDirection()
+    {
+        Vector3 newVelocity = GetComponent<Rigidbody>().velocity;
+        newVelocity = Quaternion.Euler(0.0f, 180.0f, 0.0f) * newVelocity;
+        GetComponent<Rigidbody>().velocity = newVelocity;
+
+        transform.rotation = Quaternion.LookRotation(newVelocity, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f);
     }
 }

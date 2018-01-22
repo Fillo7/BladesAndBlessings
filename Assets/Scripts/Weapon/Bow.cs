@@ -11,11 +11,11 @@ public class Bow : Weapon
 
     private float arrowSpeed = 20.0f;
 
-    private float specialAttack1Timer = 0.0f;
-    private float specialAttack1Cooldown = 5.0f;
+    private float arrowFanTimer = 0.0f;
+    private float arrowFanCooldown = 5.0f;
 
-    private float specialAttack2Timer = 0.0f;
-    private float specialAttack2Cooldown = 15.0f;
+    private float chargedArrowTimer = 0.0f;
+    private float chargedArrowCooldown = 15.0f;
 
     void Awake()
     {
@@ -25,8 +25,8 @@ public class Bow : Weapon
 
     void Update()
     {
-        specialAttack1Timer -= Time.deltaTime;
-        specialAttack2Timer -= Time.deltaTime;
+        arrowFanTimer -= Time.deltaTime;
+        chargedArrowTimer -= Time.deltaTime;
     }
 
     public override void DoBasicAttack(Vector3 targetPosition)
@@ -36,24 +36,24 @@ public class Bow : Weapon
 
     public override void DoSpecialAttack1(Vector3 targetPosition)
     {
-        if (specialAttack1Timer > 0.0f)
+        if (arrowFanTimer > 0.0f)
         {
             return;
         }
 
         animator.SetTrigger("SpecialAttack1");
-        specialAttack1Timer = specialAttack1Cooldown;
+        arrowFanTimer = arrowFanCooldown;
     }
 
     public override void DoSpecialAttack2(Vector3 targetPosition)
     {
-        if (specialAttack2Timer > 0.0f)
+        if (chargedArrowTimer > 0.0f)
         {
             return;
         }
 
         animator.SetTrigger("SpecialAttack2");
-        specialAttack2Timer = specialAttack2Cooldown;
+        chargedArrowTimer = chargedArrowCooldown;
     }
 
     public override float GetOffsetSide()

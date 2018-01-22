@@ -10,11 +10,11 @@ public class Sword : Weapon
     private int maxHitCount = 0;
     private int damageToDeal = 0;
 
-    private float maxBlockTime = 5.0f;
-    private float blockTimer = 0.0f;
+    private float activeBlockTimer = 0.0f;
+    private float activeBlockMax = 5.0f;
     private bool blocking = false;
-    private float specialAttack1Timer = 0.0f;
-    private float specialAttack1Cooldown = 10.0f;
+    private float blockTimer = 0.0f;
+    private float blockCooldown = 3.0f;
 
     void Awake()
     {
@@ -24,14 +24,14 @@ public class Sword : Weapon
 
     void Update()
     {
-        specialAttack1Timer -= Time.deltaTime;
+        blockTimer -= Time.deltaTime;
 
         if (blocking)
         {
-            blockTimer -= Time.deltaTime;
-            animator.SetFloat("BlockTimer", blockTimer);
+            activeBlockTimer -= Time.deltaTime;
+            animator.SetFloat("BlockTimer", activeBlockTimer);
 
-            if (blockTimer <= 0.0f)
+            if (activeBlockTimer <= 0.0f)
             {
                 ResetBlocking();
             }
@@ -40,6 +40,12 @@ public class Sword : Weapon
 
     void OnTriggerEnter(Collider other)
     {
+        if (blocking)
+        {
+            HandleBlock(other);
+            return;
+        }
+
         if (!other.tag.Equals("Enemy") || maxHitCount <= 0)
         {
             return;
@@ -64,15 +70,14 @@ public class Sword : Weapon
 
     public override void DoSpecialAttack1(Vector3 targetPosition)
     {
-        if (specialAttack1Timer > 0.0f)
+        if (blockTimer > 0.0f)
         {
             return;
         }
 
-        animator.SetFloat("BlockTimer", maxBlockTime);
-        blockTimer = maxBlockTime;
+        animator.SetFloat("BlockTimer", activeBlockMax);
+        activeBlockTimer = activeBlockMax;
         blocking = true;
-        specialAttack1Timer = specialAttack1Cooldown;
     }
 
     public override void DoSpecialAttack2(Vector3 targetPosition)
@@ -93,7 +98,20 @@ public class Sword : Weapon
     private void ResetBlocking()
     {
         blocking = false;
-        blockTimer = 0.0f;
-        animator.SetFloat("BlockTimer", blockTimer);
+        activeBlockTimer = 0.0f;
+        animator.SetFloat("BlockTimer", activeBlockTimer);
+        blockTimer = blockCooldown;
+    }
+
+    private void HandleBlock(Collider other)
+    {
+        if (other.tag.Equals("Projectile"))
+        {
+            Arrow arrow = other.gameObject.GetComponent<Arrow>();
+            arrow.SwapDirection();
+            ResetBlocking();
+        }
+
+        // to do: handle melee attacks
     }
 }
