@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class EnemyHealthController : MonoBehaviour
 {
@@ -7,11 +8,37 @@ public class EnemyHealthController : MonoBehaviour
 
     private Animator animator;
     private bool dead = false;
+    private LinkedList<DotEffect> dotEffects = new LinkedList<DotEffect>();
 
     void Awake()
     {
         currentHealth = baseHealth;
         animator = GetComponentInChildren<Animator>();
+    }
+
+    void Update()
+    {
+        LinkedList<DotEffect> toRemove = new LinkedList<DotEffect>();
+
+        foreach (DotEffect effect in dotEffects)
+        {
+            effect.UpdateTimer(Time.deltaTime);
+            
+            if (effect.NextTickReady())
+            {
+                TakeDamage(effect.GetTickDamage());
+            }
+
+            if (effect.IsExpired())
+            {
+                toRemove.AddLast(effect);
+            }
+        }
+
+        foreach (DotEffect effect in toRemove)
+        {
+            dotEffects.Remove(effect);
+        }
     }
 
     public bool IsDead()
@@ -29,6 +56,11 @@ public class EnemyHealthController : MonoBehaviour
         }
     }
 
+    public void ApplyDot(float duration, float tickInterval, int tickDamage)
+    {
+        dotEffects.AddLast(new DotEffect(duration, tickInterval, tickDamage));
+    }
+
     private void Die()
     {
         dead = true;
@@ -38,6 +70,6 @@ public class EnemyHealthController : MonoBehaviour
             animator.SetTrigger("Death");
         }
         
-        Destroy(gameObject, 3.0f);
+        Destroy(gameObject, 2.0f);
     }
 }

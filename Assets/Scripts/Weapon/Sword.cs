@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Sword : Weapon
 {
@@ -16,6 +17,11 @@ public class Sword : Weapon
     private float blockTimer = 0.0f;
     private float blockCooldown = 3.0f;
 
+    private List<GameObject> slashedEnemies = new List<GameObject>();
+    private bool slashing = false;
+    private float slashTimer = 0.0f;
+    private float slashCooldown = 1.0f;
+
     void Awake()
     {
         animator = GetComponent<Animator>();
@@ -25,6 +31,7 @@ public class Sword : Weapon
     void Update()
     {
         blockTimer -= Time.deltaTime;
+        slashTimer -= Time.deltaTime;
 
         if (blocking)
         {
@@ -46,7 +53,7 @@ public class Sword : Weapon
             return;
         }
 
-        if (!other.tag.Equals("Enemy") || maxHitCount <= 0)
+        if (!other.tag.Equals("Enemy") || maxHitCount <= 0 || slashedEnemies.Contains(other.gameObject))
         {
             return;
         }
@@ -54,6 +61,12 @@ public class Sword : Weapon
         maxHitCount--;
         EnemyHealthController enemyHealth = other.GetComponent<EnemyHealthController>();
         enemyHealth.TakeDamage(damageToDeal);
+
+        if (slashing)
+        {
+            enemyHealth.ApplyDot(10.1f, 2.0f, 2);
+            slashedEnemies.Add(other.gameObject);
+        }
     }
 
     public override void DoBasicAttack(Vector3 targetPosition)
@@ -82,7 +95,20 @@ public class Sword : Weapon
 
     public override void DoSpecialAttack2(Vector3 targetPosition)
     {
-        // ...
+        if (slashTimer > 0.0f)
+        {
+            return;
+        }
+
+        if (blocking)
+        {
+            ResetBlocking();
+        }
+
+        maxHitCount = 5;
+        damageToDeal = baseDamage * 2;
+        animator.SetTrigger("SwordSlash");
+        slashTimer = slashCooldown;
     }
 
     public override float GetOffsetSide()
@@ -113,5 +139,16 @@ public class Sword : Weapon
         }
 
         // to do: handle melee attacks
+    }
+
+    private void SetSlash()
+    {
+        slashing = true;
+    }
+
+    private void ClearSlash()
+    {
+        slashing = false;
+        slashedEnemies.Clear();
     }
 }
