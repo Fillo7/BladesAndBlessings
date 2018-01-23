@@ -33,7 +33,12 @@ public class WaveManager : MonoBehaviour
 
     public int GetCurrentWaveHealth()
     {
-        return waves[currentWaveIndex].GetWaveHealth();
+        return waves[currentWaveIndex].GetCurrentWaveHealth();
+    }
+
+    public int GetTotalWaveHealth()
+    {
+        return waves[currentWaveIndex].GetTotalWaveHealth();
     }
 
     public bool IsFirstWaveSpawned()

@@ -26,6 +26,11 @@ public class EnemyHealth : MonoBehaviour
         return currentHealth;
     }
 
+    public int GetBaseHealth()
+    {
+        return baseHealth;
+    }
+
     public bool IsDead()
     {
         return dead;

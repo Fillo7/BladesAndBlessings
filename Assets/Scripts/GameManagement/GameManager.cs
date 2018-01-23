@@ -4,12 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // private WaveManager waveManager = null;
+    private WaveManager waveManager = null;
     // private Canvas canvas = null;
 
     void Awake()
     {
-        // waveManager = ...
+        waveManager = GetComponent<WaveManager>();
         // canvas = ...
     }
 
@@ -19,6 +19,24 @@ public class GameManager : MonoBehaviour
         {
             // canvas.enabled = !canvas.enabled;
             TogglePause();
+        }
+
+        if (!waveManager.IsFirstWaveSpawned())
+        {
+            waveManager.SpawnNextWave();
+        }
+
+        if (waveManager.IsCurrentWaveDefeated())
+        {
+            if (waveManager.AreAllWavesDefeated())
+            {
+                // to do: show victory text
+            }
+            else
+            {
+                // to do: show wave defeated text
+                waveManager.SpawnNextWave();
+            }
         }
     }
 

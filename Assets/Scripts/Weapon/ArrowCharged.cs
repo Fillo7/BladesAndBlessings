@@ -51,10 +51,11 @@ public class ArrowCharged : MonoBehaviour
 
             Vector3 reflectedVelocity = Vector3.Reflect(currentVelocity, contact.normal);
             reflectedVelocity = Quaternion.Euler(0.0f, Random.Range(0.0f, 5.0f), 0.0f) * reflectedVelocity;
-            body.velocity = reflectedVelocity;
+            body.velocity = new Vector3(reflectedVelocity.x, body.velocity.y, reflectedVelocity.z);
+            body.velocity = body.velocity.normalized * speed;
             velocitySnapshot = body.velocity;
 
-            transform.rotation = Quaternion.LookRotation(reflectedVelocity, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f);
+            transform.rotation = Quaternion.LookRotation(body.velocity, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f);
         }
 
         chargeCount--;

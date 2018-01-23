@@ -6,7 +6,7 @@ public class EnemyInstance : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float spawnDelay;
 
-    private GameObject enemy;
+    private GameObject enemy = null;
     private bool enemySpawned = false;
 
     public void SpawnEnemy()

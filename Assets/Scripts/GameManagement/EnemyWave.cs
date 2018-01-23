@@ -22,7 +22,7 @@ public class EnemyWave : MonoBehaviour
         return waveSpawned;
     }
 
-    public int GetWaveHealth()
+    public int GetCurrentWaveHealth()
     {
         int waveHealth = 0;
 
@@ -33,6 +33,23 @@ public class EnemyWave : MonoBehaviour
             if (enemy != null)
             {
                 waveHealth += enemy.GetComponent<EnemyHealth>().GetCurrentHealth();
+            }
+        }
+
+        return waveHealth;
+    }
+
+    public int GetTotalWaveHealth()
+    {
+        int waveHealth = 0;
+
+        foreach (EnemyInstance instance in enemies)
+        {
+            GameObject enemy = instance.GetEnemy();
+
+            if (enemy != null)
+            {
+                waveHealth += enemy.GetComponent<EnemyHealth>().GetBaseHealth();
             }
         }
 

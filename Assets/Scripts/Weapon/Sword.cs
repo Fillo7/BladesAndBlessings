@@ -12,15 +12,15 @@ public class Sword : Weapon
     private int damageToDeal = 0;
 
     private float activeBlockTimer = 0.0f;
-    private float activeBlockMax = 5.0f;
+    private float activeBlockMax = 3.0f;
     private bool blocking = false;
     private float blockTimer = 0.0f;
-    private float blockCooldown = 3.0f;
+    private float blockCooldown = 5.0f;
 
     private List<GameObject> slashedEnemies = new List<GameObject>();
     private bool slashing = false;
     private float slashTimer = 0.0f;
-    private float slashCooldown = 1.0f;
+    private float slashCooldown = 10.0f;
 
     void Awake()
     {
@@ -64,8 +64,8 @@ public class Sword : Weapon
 
         if (slashing)
         {
-            enemyHealth.ApplyDot(10.1f, 2.0f, 2);
             slashedEnemies.Add(other.gameObject);
+            enemyHealth.ApplyDot(10.1f, 2.0f, 2);
         }
     }
 
@@ -135,7 +135,6 @@ public class Sword : Weapon
         {
             Arrow arrow = other.gameObject.GetComponent<Arrow>();
             arrow.SwapDirection();
-            ResetBlocking();
         }
 
         // to do: handle melee attacks
