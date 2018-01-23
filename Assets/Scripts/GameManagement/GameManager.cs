@@ -4,20 +4,21 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private WaveManager waveManager = null;
-    // private Canvas canvas = null;
+    private WaveManager waveManager;
+    private Canvas canvas;
 
     void Awake()
     {
         waveManager = GetComponent<WaveManager>();
-        // canvas = ...
+        canvas = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<Canvas>();
+        canvas.enabled = false;
+        // TogglePause();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // canvas.enabled = !canvas.enabled;
             TogglePause();
         }
 
@@ -48,6 +49,8 @@ public class GameManager : MonoBehaviour
 
     public void TogglePause()
     {
+        canvas.enabled = !canvas.enabled;
+
         if (Time.timeScale == 0.0f)
         {
             Time.timeScale = 1.0f;
