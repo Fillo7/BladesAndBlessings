@@ -7,11 +7,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int currentHealth;
     [SerializeField] private Slider healthSlider;
 
-    private bool dead;
+    private bool dead = false;
 
     void Awake()
     {
-        dead = false;
         currentHealth = baseHealth;
         healthSlider.maxValue = baseHealth;
         healthSlider.value = currentHealth;
@@ -41,6 +40,5 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         dead = true;
-        // ...
     }
 }

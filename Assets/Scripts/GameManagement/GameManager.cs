@@ -7,10 +7,14 @@ public class GameManager : MonoBehaviour
     private WaveManager waveManager;
     private Canvas canvas;
     private MenuController menuController;
+    private PlayerHealth playerHealth;
+
+    private bool gameOver = false;
 
     void Awake()
     {
         waveManager = GetComponent<WaveManager>();
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         canvas = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<Canvas>();
         menuController = canvas.GetComponent<MenuController>();
         canvas.enabled = false;
@@ -19,7 +23,17 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (gameOver)
+        {
+            return;
+        }
+
+        if (playerHealth.IsDead())
+        {
+            TriggerGameOver();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameOver)
         {
             TogglePause();
         }
@@ -62,6 +76,13 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0.0f;
         }
+    }
+
+    public void TriggerGameOver()
+    {
+        TogglePause();
+        menuController.GoToGameOverPanel();
+        gameOver = true;
     }
 
     public void Quit()
