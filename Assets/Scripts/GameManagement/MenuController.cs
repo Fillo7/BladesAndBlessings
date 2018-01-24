@@ -10,6 +10,7 @@ public class MenuController : MonoBehaviour
     {
         // welcomePanel.SetActive(true);
         // menuPanel.SetActive(false);
+        // controlPanel.SetActive(false);
         GoToMenuPanel();
     }
 

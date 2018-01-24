@@ -6,11 +6,13 @@ public class GameManager : MonoBehaviour
 {
     private WaveManager waveManager;
     private Canvas canvas;
+    private MenuController menuController;
 
     void Awake()
     {
         waveManager = GetComponent<WaveManager>();
         canvas = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<Canvas>();
+        menuController = canvas.GetComponent<MenuController>();
         canvas.enabled = false;
         // TogglePause();
     }
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 // to do: show wave defeated text
-                waveManager.SpawnNextWave();
+                waveManager.SpawnNextWave(2.0f);
             }
         }
     }
@@ -50,6 +52,7 @@ public class GameManager : MonoBehaviour
     public void TogglePause()
     {
         canvas.enabled = !canvas.enabled;
+        menuController.GoToMenuPanel();
 
         if (Time.timeScale == 0.0f)
         {

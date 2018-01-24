@@ -1,14 +1,28 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class WaveManager : MonoBehaviour
 {
     [SerializeField] private List<EnemyWave> waves = new List<EnemyWave>();
+    [SerializeField] private Slider waveSlider;
+    [SerializeField] private Text waveText;
 
     bool firstWaveSpawned = false;
     private int currentWaveIndex = -1;
 
+    public void Update()
+    {
+        waveSlider.value = GetCurrentWaveHealth();
+    }
+
     public void SpawnNextWave()
+    {
+        SpawnNextWave(0.0f);
+    }
+
+    public void SpawnNextWave(float delay)
     {
         currentWaveIndex++;
 
@@ -17,7 +31,9 @@ public class WaveManager : MonoBehaviour
             return;
         }
 
-        waves[currentWaveIndex].SpawnWave();
+        waves[currentWaveIndex].SpawnWave(delay);
+        waveSlider.maxValue = GetTotalWaveHealth();
+        waveText.text = "Wave " + (currentWaveIndex + 1) + " / " + waves.Count;
         firstWaveSpawned = true;
     }
 

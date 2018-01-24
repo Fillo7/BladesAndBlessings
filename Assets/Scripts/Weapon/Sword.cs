@@ -11,15 +11,15 @@ public class Sword : Weapon
     private int maxHitCount = 0;
     private int damageToDeal = 0;
 
-    private float activeBlockTimer = 0.0f;
+    private float activeBlockTimer = 3.1f;
     private float activeBlockMax = 3.0f;
     private bool blocking = false;
-    private float blockTimer = 0.0f;
+    private float blockTimer = 5.0f;
     private float blockCooldown = 5.0f;
 
     private List<GameObject> slashedEnemies = new List<GameObject>();
     private bool slashing = false;
-    private float slashTimer = 0.0f;
+    private float slashTimer = 10.0f;
     private float slashCooldown = 10.0f;
 
     void Awake()
@@ -30,15 +30,15 @@ public class Sword : Weapon
 
     void Update()
     {
-        blockTimer -= Time.deltaTime;
-        slashTimer -= Time.deltaTime;
+        blockTimer += Time.deltaTime;
+        slashTimer += Time.deltaTime;
 
         if (blocking)
         {
-            activeBlockTimer -= Time.deltaTime;
+            activeBlockTimer += Time.deltaTime;
             animator.SetFloat("BlockTimer", activeBlockTimer);
 
-            if (activeBlockTimer <= 0.0f)
+            if (activeBlockTimer > activeBlockMax)
             {
                 ResetBlocking();
             }
@@ -83,19 +83,29 @@ public class Sword : Weapon
 
     public override void DoSpecialAttack1(Vector3 targetPosition)
     {
-        if (blockTimer > 0.0f)
+        if (blockTimer < blockCooldown)
         {
             return;
         }
 
-        animator.SetFloat("BlockTimer", activeBlockMax);
-        activeBlockTimer = activeBlockMax;
+        animator.SetFloat("BlockTimer", 0.0f);
+        activeBlockTimer = 0.0f;
         blocking = true;
+    }
+
+    public override float GetSpecialAttack1Timer()
+    {
+        return blockTimer;
+    }
+
+    public override float GetSpecialAttack1Cooldown()
+    {
+        return blockCooldown;
     }
 
     public override void DoSpecialAttack2(Vector3 targetPosition)
     {
-        if (slashTimer > 0.0f)
+        if (slashTimer < slashCooldown)
         {
             return;
         }
@@ -108,7 +118,31 @@ public class Sword : Weapon
         maxHitCount = 5;
         damageToDeal = baseDamage * 2;
         animator.SetTrigger("SwordSlash");
-        slashTimer = slashCooldown;
+        slashTimer = 0.0f;
+    }
+
+    public override float GetSpecialAttack2Timer()
+    {
+        return slashTimer;
+    }
+
+    public override float GetSpecialAttack2Cooldown()
+    {
+        return slashCooldown;
+    }
+
+    public override void AdjustCooldowns(float passedTime)
+    {
+        blockTimer += passedTime;
+        slashTimer += passedTime;
+    }
+
+    public override void OnWeaponSwap()
+    {
+        if (blocking)
+        {
+            ResetBlocking();
+        }
     }
 
     public override float GetOffsetSide()
@@ -124,9 +158,9 @@ public class Sword : Weapon
     private void ResetBlocking()
     {
         blocking = false;
-        activeBlockTimer = 0.0f;
-        animator.SetFloat("BlockTimer", activeBlockTimer);
-        blockTimer = blockCooldown;
+        activeBlockTimer = activeBlockMax + 0.1f;
+        animator.SetFloat("BlockTimer", activeBlockMax + 0.1f);
+        blockTimer = 0.0f;
     }
 
     private void HandleBlock(Collider other)

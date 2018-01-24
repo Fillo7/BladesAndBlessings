@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -23,7 +24,7 @@ public class EnemyHealth : MonoBehaviour
 
     public int GetCurrentHealth()
     {
-        return currentHealth;
+        return Math.Max(0, currentHealth);
     }
 
     public int GetBaseHealth()

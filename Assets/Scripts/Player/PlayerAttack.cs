@@ -1,13 +1,18 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private List<GameObject> weaponPrefabs = new List<GameObject>();
+    [SerializeField] private Slider ability1Slider;
+    [SerializeField] private Slider ability2Slider;
     private List<GameObject> weapons = new List<GameObject>();
     private GameObject activeWeapon = null;
     private Weapon activeWeaponScript = null;
     private int activeWeaponIndex = 0;
+
+    private float weaponSwapTimer = 0.0f;
 
     private bool freezeAttack = false;
     private float timeBetweenAttacks = 0.3f;
@@ -29,6 +34,9 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        weaponSwapTimer += Time.deltaTime;
+        ability1Slider.value = activeWeaponScript.GetSpecialAttack1Timer();
+        ability2Slider.value = activeWeaponScript.GetSpecialAttack2Timer();
 
         if (Input.GetButton("Fire1") && TimerIsReady())
         {
@@ -94,6 +102,7 @@ public class PlayerAttack : MonoBehaviour
         freezeAttack = true;
         if (activeWeapon != null)
         {
+            activeWeaponScript.OnWeaponSwap();
             activeWeapon.SetActive(false);
             activeWeaponScript = null;
         }
@@ -101,6 +110,9 @@ public class PlayerAttack : MonoBehaviour
         activeWeapon = weapons[activeWeaponIndex];
         activeWeapon.SetActive(true);
         activeWeaponScript = activeWeapon.GetComponentInChildren<Weapon>();
+        activeWeaponScript.AdjustCooldowns(weaponSwapTimer);
+        weaponSwapTimer = 0.0f;
+        InitializeCooldownSliders();
         freezeAttack = false;
     }
 
@@ -108,6 +120,14 @@ public class PlayerAttack : MonoBehaviour
     {
         activeWeaponIndex = (activeWeaponIndex + 1) % 2;
         ActivateWeapon(activeWeaponIndex);
+    }
+
+    private void InitializeCooldownSliders()
+    {
+        ability1Slider.maxValue = activeWeaponScript.GetSpecialAttack1Cooldown();
+        ability2Slider.maxValue = activeWeaponScript.GetSpecialAttack2Cooldown();
+        ability1Slider.value = activeWeaponScript.GetSpecialAttack1Timer();
+        ability2Slider.value = activeWeaponScript.GetSpecialAttack2Timer();
     }
 
     private Vector3 GetCursorWorldPosition()
@@ -124,7 +144,7 @@ public class PlayerAttack : MonoBehaviour
 
     private bool TimerIsReady()
     {
-        return timer >= timeBetweenAttacks && Time.timeScale != 0 && !freezeAttack;
+        return timer >= timeBetweenAttacks && Time.timeScale != 0.0f && !freezeAttack;
     }
 
     private void ResetTimer()

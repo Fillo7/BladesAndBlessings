@@ -9,11 +9,12 @@ public class EnemyWave : MonoBehaviour
 
     public void SpawnWave()
     {
-        foreach (EnemyInstance instance in enemies)
-        {
-            instance.SpawnEnemy();
-        }
+        SpawnWave(0.0f);
+    }
 
+    public void SpawnWave(float delay)
+    {
+        Invoke("SpawnWavePrivate", delay);
         waveSpawned = true;
     }
 
@@ -28,11 +29,23 @@ public class EnemyWave : MonoBehaviour
 
         foreach (EnemyInstance instance in enemies)
         {
-            GameObject enemy = instance.GetEnemy();
-
-            if (enemy != null)
+            if (!instance.IsEnemySpawned())
             {
-                waveHealth += enemy.GetComponent<EnemyHealth>().GetCurrentHealth();
+                GameObject enemy = instance.GetEnemyPrefab();
+
+                if (enemy != null)
+                {
+                    waveHealth += enemy.GetComponent<EnemyHealth>().GetBaseHealth();
+                }
+            }
+            else
+            {
+                GameObject enemy = instance.GetEnemy();
+
+                if (enemy != null)
+                {
+                    waveHealth += enemy.GetComponent<EnemyHealth>().GetCurrentHealth();
+                }
             }
         }
 
@@ -45,7 +58,7 @@ public class EnemyWave : MonoBehaviour
 
         foreach (EnemyInstance instance in enemies)
         {
-            GameObject enemy = instance.GetEnemy();
+            GameObject enemy = instance.GetEnemyPrefab();
 
             if (enemy != null)
             {
@@ -70,5 +83,13 @@ public class EnemyWave : MonoBehaviour
         }
 
         return result && waveSpawned;
+    }
+
+    private void SpawnWavePrivate()
+    {
+        foreach (EnemyInstance instance in enemies)
+        {
+            instance.SpawnEnemy();
+        }
     }
 }

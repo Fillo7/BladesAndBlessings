@@ -13,6 +13,8 @@ public class PlayerHealth : MonoBehaviour
     {
         dead = false;
         currentHealth = baseHealth;
+        healthSlider.maxValue = baseHealth;
+        healthSlider.value = currentHealth;
     }
     
     void Update()
@@ -28,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
-        // healthSlider.value = currentHealth;
+        healthSlider.value = currentHealth;
 
         if (currentHealth <= 0 && !dead)
         {

@@ -11,10 +11,10 @@ public class Bow : Weapon
 
     private float arrowSpeed = 20.0f;
 
-    private float arrowFanTimer = 0.0f;
+    private float arrowFanTimer = 5.0f;
     private float arrowFanCooldown = 5.0f;
 
-    private float chargedArrowTimer = 0.0f;
+    private float chargedArrowTimer = 15.0f;
     private float chargedArrowCooldown = 15.0f;
 
     void Awake()
@@ -25,8 +25,8 @@ public class Bow : Weapon
 
     void Update()
     {
-        arrowFanTimer -= Time.deltaTime;
-        chargedArrowTimer -= Time.deltaTime;
+        arrowFanTimer += Time.deltaTime;
+        chargedArrowTimer += Time.deltaTime;
     }
 
     public override void DoBasicAttack(Vector3 targetPosition)
@@ -36,25 +36,54 @@ public class Bow : Weapon
 
     public override void DoSpecialAttack1(Vector3 targetPosition)
     {
-        if (arrowFanTimer > 0.0f)
+        if (arrowFanTimer < arrowFanCooldown)
         {
             return;
         }
 
         animator.SetTrigger("SpecialAttack1");
-        arrowFanTimer = arrowFanCooldown;
+        arrowFanTimer = 0.0f;
+    }
+
+    public override float GetSpecialAttack1Timer()
+    {
+        return arrowFanTimer;
+    }
+
+    public override float GetSpecialAttack1Cooldown()
+    {
+        return arrowFanCooldown;
     }
 
     public override void DoSpecialAttack2(Vector3 targetPosition)
     {
-        if (chargedArrowTimer > 0.0f)
+        if (chargedArrowTimer < chargedArrowCooldown)
         {
             return;
         }
 
         animator.SetTrigger("SpecialAttack2");
-        chargedArrowTimer = chargedArrowCooldown;
+        chargedArrowTimer = 0.0f;
     }
+
+    public override float GetSpecialAttack2Timer()
+    {
+        return chargedArrowTimer;
+    }
+
+    public override float GetSpecialAttack2Cooldown()
+    {
+        return chargedArrowCooldown;
+    }
+
+    public override void AdjustCooldowns(float passedTime)
+    {
+        arrowFanTimer += passedTime;
+        chargedArrowTimer += passedTime;
+    }
+
+    public override void OnWeaponSwap()
+    {}
 
     public override float GetOffsetSide()
     {
