@@ -169,6 +169,7 @@ public class Sword : Weapon
         {
             Arrow arrow = other.gameObject.GetComponent<Arrow>();
             arrow.SwapDirection();
+            arrow.SetOwner(ProjectileOwner.Player);
         }
 
         // to do: handle melee attacks

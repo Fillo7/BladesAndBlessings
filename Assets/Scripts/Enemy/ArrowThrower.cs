@@ -29,5 +29,6 @@ public class ArrowThrower : MonoBehaviour
             Quaternion.LookRotation(-transform.up, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f)) as GameObject;
         Arrow script = movingArrow.GetComponent<Arrow>();
         script.FollowDirection(-transform.up);
+        script.SetOwner(ProjectileOwner.Enemy);
     }
 }
