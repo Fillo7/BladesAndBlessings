@@ -605,7 +605,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1572002460959934, guid: aa56f37465c4e3648919ab12eed3c858,
     type: 2}
   spawnPoint: {fileID: 132286057}
-  spawnDelay: 1
+  spawnDelay: 0
 --- !u!1 &137462643
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,7 +1337,7 @@ GameObject:
   - component: {fileID: 492875992}
   - component: {fileID: 492875996}
   m_Layer: 5
-  m_Name: HudCanvas
+  m_Name: HUDCanvas
   m_TagString: HUDCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2038,7 +2038,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1572002460959934, guid: aa56f37465c4e3648919ab12eed3c858,
     type: 2}
   spawnPoint: {fileID: 751067336}
-  spawnDelay: 1
+  spawnDelay: 0
 --- !u!1 &763504346
 GameObject:
   m_ObjectHideFlags: 0
@@ -3356,7 +3356,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1628474345739142, guid: 474eec9c0422baf47ac4098b2cbd94de,
     type: 2}
   spawnPoint: {fileID: 1302062105}
-  spawnDelay: 2
+  spawnDelay: 1.5
 --- !u!1 &1315070466
 GameObject:
   m_ObjectHideFlags: 0
@@ -3631,7 +3631,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1628474345739142, guid: 474eec9c0422baf47ac4098b2cbd94de,
     type: 2}
   spawnPoint: {fileID: 1356549696}
-  spawnDelay: 2
+  spawnDelay: 1.5
 --- !u!1 &1357983679
 GameObject:
   m_ObjectHideFlags: 0
@@ -3814,7 +3814,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1572002460959934, guid: aa56f37465c4e3648919ab12eed3c858,
     type: 2}
   spawnPoint: {fileID: 1369051494}
-  spawnDelay: 1
+  spawnDelay: 0
 --- !u!1 &1372297044
 GameObject:
   m_ObjectHideFlags: 0
@@ -4202,7 +4202,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1572002460959934, guid: aa56f37465c4e3648919ab12eed3c858,
     type: 2}
   spawnPoint: {fileID: 1454531824}
-  spawnDelay: 1
+  spawnDelay: 0
 --- !u!1 &1456993570
 GameObject:
   m_ObjectHideFlags: 0
@@ -4246,7 +4246,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1572002460959934, guid: aa56f37465c4e3648919ab12eed3c858,
     type: 2}
   spawnPoint: {fileID: 1456993571}
-  spawnDelay: 1
+  spawnDelay: 0
 --- !u!1 &1462333108
 GameObject:
   m_ObjectHideFlags: 0
@@ -5702,7 +5702,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1628474345739142, guid: 474eec9c0422baf47ac4098b2cbd94de,
     type: 2}
   spawnPoint: {fileID: 1955928474}
-  spawnDelay: 2
+  spawnDelay: 1.5
 --- !u!1 &1961026786
 GameObject:
   m_ObjectHideFlags: 0

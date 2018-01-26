@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
         if (!waveManager.IsFirstWaveSpawned())
         {
-            waveManager.SpawnNextWave();
+            waveManager.SpawnNextWave(2.0f);
         }
 
         if (waveManager.IsCurrentWaveDefeated())
