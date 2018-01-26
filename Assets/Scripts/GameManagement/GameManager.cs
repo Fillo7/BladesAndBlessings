@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
             {
                 HUDCanvas.GetComponent<Animator>().SetTrigger("Victory");
                 victory = true;
+                Invoke("TogglePause", 5.0f);
             }
             else
             {
