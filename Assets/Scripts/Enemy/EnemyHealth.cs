@@ -22,6 +22,18 @@ public class EnemyHealth : MonoBehaviour
         ProcessDots();
     }
 
+	public void Heal(int amount) {
+
+		currentHealth += amount;
+
+		if (currentHealth > baseHealth) {
+
+			currentHealth = baseHealth;
+
+		}
+
+	}
+
     public int GetCurrentHealth()
     {
         return Math.Max(0, currentHealth);

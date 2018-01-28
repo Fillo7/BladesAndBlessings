@@ -9,18 +9,38 @@ public class PlayerMovement : MonoBehaviour
     private int floorMask;
     private float cameraRayLength = 100.0f;
 
+	//how long is the player character snared - can't move
+	private float snared = 0.0f;
+
     void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
         floorMask = LayerMask.GetMask("Floor");
     }
 
+	//snares player character for the given time
+	public void Snare(float lenghtOfSnare) {
+
+		snared += lenghtOfSnare;
+
+	}
+
     void FixedUpdate()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-        Move(horizontal, vertical);
+		if (snared > 0.0f) {
+		
+			snared -= Time.fixedDeltaTime;
+
+		} else {
+
+			snared = 0.0f;
+			Move(horizontal, vertical);
+
+		}
+			        
         Turn();
     }
 
