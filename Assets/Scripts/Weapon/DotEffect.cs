@@ -2,12 +2,12 @@
 {
     private float duration;
     private float tickInterval;
-    private int tickDamage;
+    private float tickDamage;
 
     private float timer;
     private float tickTimer;
 
-    public DotEffect(float duration, float tickInterval, int tickDamage)
+    public DotEffect(float duration, float tickInterval, float tickDamage)
     {
         this.duration = duration;
         this.tickInterval = tickInterval;
@@ -33,7 +33,7 @@
         return true;
     }
 
-    public int GetTickDamage()
+    public float GetTickDamage()
     {
         return tickDamage;
     }

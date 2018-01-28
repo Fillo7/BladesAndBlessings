@@ -9,7 +9,7 @@ public class Sword : Weapon
     private int baseDamage = 20;
 
     private int maxHitCount = 0;
-    private int damageToDeal = 0;
+    private float damageToDeal = 0;
 
     private float activeBlockTimer = 3.1f;
     private float activeBlockMax = 3.0f;
@@ -77,7 +77,7 @@ public class Sword : Weapon
         }
 
         maxHitCount = 1;
-        damageToDeal = baseDamage;
+        damageToDeal = (float)baseDamage;
         animator.SetTrigger("BasicAttack");
     }
 
@@ -116,7 +116,7 @@ public class Sword : Weapon
         }
 
         maxHitCount = 5;
-        damageToDeal = baseDamage * 2;
+        damageToDeal = baseDamage * 1.75f;
         animator.SetTrigger("SwordSlash");
         slashTimer = 0.0f;
     }

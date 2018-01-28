@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
         menuCanvas = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<Canvas>();
         menuController = menuCanvas.GetComponent<MenuController>();
         menuCanvas.enabled = false;
+
+        // Enable following line for final build
         // TogglePause();
     }
 
@@ -38,6 +40,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape) && !gameOver)
         {
+            menuController.GoToMenuPanel();
             TogglePause();
         }
 
@@ -50,9 +53,7 @@ public class GameManager : MonoBehaviour
         {
             if (waveManager.AreAllWavesDefeated())
             {
-                HUDCanvas.GetComponent<Animator>().SetTrigger("Victory");
-                victory = true;
-                Invoke("TogglePause", 5.0f);
+                TriggerVictory();
             }
             else
             {
@@ -70,7 +71,6 @@ public class GameManager : MonoBehaviour
     public void TogglePause()
     {
         menuCanvas.enabled = !menuCanvas.enabled;
-        menuController.GoToMenuPanel();
 
         if (Time.timeScale == 0.0f)
         {
@@ -84,9 +84,17 @@ public class GameManager : MonoBehaviour
 
     public void TriggerGameOver()
     {
-        TogglePause();
         menuController.GoToGameOverPanel();
+        TogglePause();
         gameOver = true;
+    }
+
+    public void TriggerVictory()
+    {
+        HUDCanvas.GetComponent<Animator>().SetTrigger("Victory");
+        menuController.GoToVictoryPanel();
+        Invoke("TogglePause", 5.0f);
+        victory = true;
     }
 
     public void Quit()
