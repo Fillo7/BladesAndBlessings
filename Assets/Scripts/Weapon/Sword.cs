@@ -5,7 +5,6 @@ public class Sword : Weapon
 {
     private Animator animator;
     // private WeaponType weaponType = WeaponType.Melee;
-    // private PlayerMovementController playerMovement;
     private int baseDamage = 20;
 
     private int maxHitCount = 0;
@@ -25,7 +24,6 @@ public class Sword : Weapon
     void Awake()
     {
         animator = GetComponent<Animator>();
-        // playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovementController>();
     }
 
     void Update()
@@ -171,8 +169,14 @@ public class Sword : Weapon
             arrow.SwapDirection();
             arrow.SetOwner(ProjectileOwner.Player);
         }
-
-        // to do: handle melee attacks
+        else if (other.tag.Equals("Weapon"))
+        {
+            EnemyWeapon weapon = other.gameObject.GetComponent<EnemyWeapon>();
+            if (weapon != null)
+            {
+                weapon.OnAttackBlock();
+            }
+        }
     }
 
     private void SetSlash()

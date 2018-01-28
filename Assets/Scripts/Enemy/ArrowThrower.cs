@@ -12,7 +12,7 @@ public class ArrowThrower : MonoBehaviour
         nextArrowTimer = Random.Range(1.0f, 5.0f);
     }
 
-	void Update()
+    void Update()
     {
         nextArrowTimer -= Time.deltaTime;
 
@@ -21,7 +21,7 @@ public class ArrowThrower : MonoBehaviour
             spawnArrow();
             nextArrowTimer = arrowCooldown;
         }
-	}
+    }
 
     private void spawnArrow()
     {
