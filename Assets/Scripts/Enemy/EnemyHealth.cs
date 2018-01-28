@@ -49,9 +49,9 @@ public class EnemyHealth : MonoBehaviour
         return dead;
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
-        currentHealth -= amount;
+        currentHealth -= (int)amount;
 
         if (currentHealth <= 0 && !dead)
         {
@@ -59,7 +59,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    public void ApplyDot(float duration, float tickInterval, int tickDamage)
+    public void ApplyDot(float duration, float tickInterval, float tickDamage)
     {
         dotEffects.AddLast(new DotEffect(duration, tickInterval, tickDamage));
     }

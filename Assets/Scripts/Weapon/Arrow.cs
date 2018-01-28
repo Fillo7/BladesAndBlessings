@@ -5,6 +5,7 @@ public class Arrow : MonoBehaviour
     private int damage = 20;
     private float speed = 20.0f;
     private float timeToLive = 10.0f;
+    private ProjectileOwner owner = ProjectileOwner.Player;
 
     void Update()
     {
@@ -25,11 +26,21 @@ public class Arrow : MonoBehaviour
 
         if (other.tag.Equals("Enemy"))
         {
+            if (owner == ProjectileOwner.Enemy)
+            {
+                return;
+            }
+
             EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
             enemyHealth.TakeDamage(damage);
         }
         else if (other.tag.Equals("Player"))
         {
+            if (owner == ProjectileOwner.Player)
+            {
+                return;
+            }
+
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             playerHealth.TakeDamage(damage);
         }
@@ -45,6 +56,11 @@ public class Arrow : MonoBehaviour
     public void SetSpeed(float value)
     {
         speed = value;
+    }
+
+    public void SetOwner(ProjectileOwner owner)
+    {
+        this.owner = owner;
     }
 
     public void FollowDirection(Vector3 direction)
