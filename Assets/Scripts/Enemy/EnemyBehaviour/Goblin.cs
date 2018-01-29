@@ -11,6 +11,7 @@ public class Goblin : MonoBehaviour
     float attackTimer = 1.5f;
     float attackCooldown = 1.2f;
     float attackRange = 2.5f;
+    float speed = 4.0f;
 
     void Awake()
     {
@@ -18,6 +19,7 @@ public class Goblin : MonoBehaviour
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         enemyHealth = GetComponent<EnemyHealth>();
         navigator = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        navigator.speed = speed;
         animator = GetComponentInChildren<Animator>();
     }
 

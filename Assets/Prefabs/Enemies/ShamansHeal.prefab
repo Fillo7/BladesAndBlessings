@@ -20,7 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4408318461281562}
   - component: {fileID: 135053320132296128}
-  - component: {fileID: 114672246143824208}
+  - component: {fileID: 54697143091111230}
+  - component: {fileID: 114736302122138172}
   m_Layer: 0
   m_Name: ShamansHeal
   m_TagString: Projectile
@@ -114,7 +115,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1800389043055914}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114672246143824208
+--- !u!54 &54697143091111230
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1356909798350856}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 4
+  m_CollisionDetection: 0
+--- !u!114 &114736302122138172
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
