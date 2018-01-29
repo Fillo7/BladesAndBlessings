@@ -165,9 +165,9 @@ public class Sword : Weapon
     {
         if (other.tag.Equals("Projectile"))
         {
-            Arrow arrow = other.gameObject.GetComponent<Arrow>();
-            arrow.SwapDirection();
-            arrow.SetOwner(ProjectileOwner.Player);
+            Projectile projectile = other.gameObject.GetComponent<Projectile>();
+            projectile.ReverseDirection();
+            projectile.SetOwner(ProjectileOwner.Player);
         }
         else if (other.tag.Equals("Weapon"))
         {

@@ -28,7 +28,7 @@ public class ArrowThrower : MonoBehaviour
         GameObject movingArrow = Instantiate(arrow, transform.position - transform.up,
             Quaternion.LookRotation(-transform.up, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f)) as GameObject;
         Arrow script = movingArrow.GetComponent<Arrow>();
-        script.FollowDirection(-transform.up);
+        script.SetDirection(-transform.up);
         script.SetOwner(ProjectileOwner.Enemy);
     }
 }

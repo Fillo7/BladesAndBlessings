@@ -1,29 +1,17 @@
 ﻿using UnityEngine;
 
-public class ArrowCharged : MonoBehaviour
+public class ArrowCharged : Projectile
 {
-    private int damage = 40;
-    private float speed = 30.0f;
-    private float chargeCount = 5;
-    private float timeToLive = 30.0f;
-    Rigidbody body;
-    Vector3 currentVelocity;
-    Vector3 velocitySnapshot;
+    [SerializeField] private int damage = 40;
+    [SerializeField] private int chargeCount = 5;
 
-    void Awake()
+    private Vector3 currentVelocity;
+    private Vector3 velocitySnapshot;
+
+    protected override void Awake()
     {
-        body = GetComponent<Rigidbody>();
+        base.Awake();
         body.freezeRotation = true;
-    }
-
-    void Update()
-    {
-        timeToLive -= Time.deltaTime;
-
-        if (timeToLive <= 0.0f)
-        {
-            Destroy(gameObject);
-        }
     }
 
     void FixedUpdate()
@@ -75,19 +63,14 @@ public class ArrowCharged : MonoBehaviour
         }
     }
 
-    public void SetDamage(int value)
+    public void SetDamage(int damage)
     {
-        damage = value;
+        this.damage = damage;
     }
 
-    public void SetSpeed(float value)
+    public override void SetDirection(Vector3 direction)
     {
-        speed = value;
-    }
-
-    public void FollowDirection(Vector3 direction)
-    {
-        body.velocity = direction * speed;
+        base.SetDirection(direction);
         velocitySnapshot = direction * speed;
     }
 }

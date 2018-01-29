@@ -162,7 +162,7 @@ MonoBehaviour:
   bufferDistance: 4
   isRanged: 1
   projectile:
-  - {fileID: 1382385901807308, guid: fdba97c20e44081408bbfa5545b606de, type: 2}
+  - {fileID: 1535607547840934, guid: 8f1529c899f2cbc4ea679c40176b896d, type: 2}
   isStatic: 0
   isChasing: 1
   waypoints: []

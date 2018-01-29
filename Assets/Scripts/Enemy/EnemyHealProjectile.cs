@@ -1,25 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class EnemyHealProjectile : MonoBehaviour {
+public class EnemyHealProjectile : Projectile {
 
 	//for how much this object heals any enemy that is in range
 	public int heal = 0;
 
-	//how fast it flies
-	public float speed = 1.0f;
-
-	//how many seconds the projectile can fly
-	public float timeToLive = 1.0f;
-
-	void Update () {
-
-		if (timeToLive <= 0.0f) {
-
-			Destroy (gameObject);
-
-		}
+	protected override void Update () {
+        base.Update();
 
 		gameObject.transform.position += gameObject.transform.forward * speed * Time.deltaTime;
 

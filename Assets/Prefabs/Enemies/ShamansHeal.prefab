@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114672246143824208}
   m_Layer: 0
   m_Name: ShamansHeal
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,9 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00346cc9fa2a05f47b618ff7595f35a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
+  timeToLive: 15
+  owner: 1
   heal: 20
-  speed: 1
-  timeToLive: 3
 --- !u!135 &135053320132296128
 SphereCollider:
   m_ObjectHideFlags: 1

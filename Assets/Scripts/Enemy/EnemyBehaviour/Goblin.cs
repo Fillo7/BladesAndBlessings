@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class GoblinBehaviour : MonoBehaviour
+public class Goblin : MonoBehaviour
 {
     Transform player;
     PlayerHealth playerHealth;

@@ -37,11 +37,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4555354009932222}
-  - component: {fileID: 114442350737182782}
   - component: {fileID: 135623137089707930}
+  - component: {fileID: 54118530984662682}
+  - component: {fileID: 114472494613080280}
   m_Layer: 0
   m_Name: ShamansFireball
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,7 +115,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1239830948742482}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114442350737182782
+--- !u!54 &54118530984662682
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1451718245620104}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 4
+  m_CollisionDetection: 0
+--- !u!114 &114472494613080280
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -122,12 +138,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1451718245620104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e1ea91e602f96840bd394e2ce22fa0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c60fdf25aef3d74a9c7b00811cc1679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
-  speed: 1
-  timeToLive: 3
+  speed: 10
+  timeToLive: 15
+  owner: 1
+  damage: 30
 --- !u!135 &135234888320809246
 SphereCollider:
   m_ObjectHideFlags: 1

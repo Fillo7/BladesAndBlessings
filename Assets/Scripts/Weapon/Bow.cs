@@ -102,7 +102,7 @@ public class Bow : Weapon
         Arrow script = movingArrow.GetComponent<Arrow>();
         script.SetDamage(baseDamage);
         script.SetSpeed(arrowSpeed);
-        script.FollowDirection(transform.forward);
+        script.SetDirection(transform.forward);
     }
 
     public void SpawnArrowFan()
@@ -114,7 +114,7 @@ public class Bow : Weapon
             Arrow script = movingArrow.GetComponent<Arrow>();
             script.SetDamage(baseDamage);
             script.SetSpeed(arrowSpeed);
-            script.FollowDirection(movingArrow.transform.up);
+            script.SetDirection(movingArrow.transform.up);
         }
     }
 
@@ -125,6 +125,6 @@ public class Bow : Weapon
         ArrowCharged script = movingArrow.GetComponent<ArrowCharged>();
         script.SetDamage(baseDamage * 2);
         script.SetSpeed(arrowSpeed * 1.5f);
-        script.FollowDirection(transform.forward);
+        script.SetDirection(transform.forward);
     }
 }
