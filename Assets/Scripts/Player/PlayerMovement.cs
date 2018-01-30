@@ -1,47 +1,42 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 5.0f;
-    private Vector3 direction;
-    private Rigidbody playerRigidbody;
+    private float defaultSpeed;
 
     private int floorMask;
     private float cameraRayLength = 100.0f;
 
-	//how long is the player character snared - can't move
-	private float snared = 0.0f;
+    private Vector3 direction;
+    private Rigidbody playerRigidbody;
+    private LinkedList<MovementEffect> movementEffects = new LinkedList<MovementEffect>();
 
     void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
         floorMask = LayerMask.GetMask("Floor");
+        defaultSpeed = speed;
     }
 
-	//snares player character for the given time
-	public void Snare(float lenghtOfSnare) {
-
-		snared += lenghtOfSnare;
-
-	}
+    void Update()
+    {
+        ProcessMovementEffects();
+    }
 
     void FixedUpdate()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-		if (snared > 0.0f) {
-		
-			snared -= Time.fixedDeltaTime;
-
-		} else {
-
-			snared = 0.0f;
-			Move(horizontal, vertical);
-
-		}
-			        
+		Move(horizontal, vertical);       
         Turn();
+    }
+
+    public void ApplyMovementEffect(float duration, float speedMultiplier)
+    {
+        movementEffects.AddLast(new MovementEffect(duration, speedMultiplier));
     }
 
     private void Move(float horizontal, float vertical)
@@ -63,5 +58,30 @@ public class PlayerMovement : MonoBehaviour
             Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
             playerRigidbody.MoveRotation(newRotation);
         }
+    }
+
+    private void ProcessMovementEffects()
+    {
+        float speedMultiplier = 1.0f;
+        LinkedList<MovementEffect> toRemove = new LinkedList<MovementEffect>();
+
+        foreach (MovementEffect effect in movementEffects)
+        {
+            effect.UpdateTimer(Time.deltaTime);
+
+            speedMultiplier *= effect.GetSpeedMultiplier();
+
+            if (effect.IsExpired())
+            {
+                toRemove.AddLast(effect);
+            }
+        }
+
+        foreach (MovementEffect effect in toRemove)
+        {
+            movementEffects.Remove(effect);
+        }
+
+        speed = defaultSpeed * speedMultiplier;
     }
 }

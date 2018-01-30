@@ -19,20 +19,8 @@ public class EnemyHealth : MonoBehaviour
 
     void Update()
     {
-        ProcessDots();
+        ProcessDotEffects();
     }
-
-	public void Heal(int amount) {
-
-		currentHealth += amount;
-
-		if (currentHealth > baseHealth) {
-
-			currentHealth = baseHealth;
-
-		}
-
-	}
 
     public int GetCurrentHealth()
     {
@@ -59,7 +47,18 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    public void ApplyDot(float duration, float tickInterval, float tickDamage)
+    public void Heal(int amount)
+    {
+        if (dead)
+        {
+            return;
+        }
+
+        int healAmount = Math.Min(amount, baseHealth - currentHealth);
+        currentHealth += healAmount;
+    }
+
+    public void ApplyDotEffect(float duration, float tickInterval, float tickDamage)
     {
         dotEffects.AddLast(new DotEffect(duration, tickInterval, tickDamage));
     }
@@ -76,7 +75,7 @@ public class EnemyHealth : MonoBehaviour
         Destroy(gameObject, 2.0f);
     }
 
-    private void ProcessDots()
+    private void ProcessDotEffects()
     {
         LinkedList<DotEffect> toRemove = new LinkedList<DotEffect>();
 

@@ -1,17 +1,18 @@
 ﻿using UnityEngine;
 
-public class Goblin : MonoBehaviour
+public class GoblinPiker : MonoBehaviour
 {
-    Transform player;
-    PlayerHealth playerHealth;
-    EnemyHealth enemyHealth;
-    UnityEngine.AI.NavMeshAgent navigator;
+    private Transform player;
+    private PlayerHealth playerHealth;
+    private EnemyHealth enemyHealth;
+
+    private UnityEngine.AI.NavMeshAgent navigator;
     private Animator animator;
 
-    float attackTimer = 1.5f;
-    float attackCooldown = 1.2f;
-    float attackRange = 2.5f;
-    float speed = 4.0f;
+    [SerializeField] private float speed = 4.0f;
+    [SerializeField] private float attackRange = 2.5f;
+    [SerializeField] private float attackCooldown = 1.2f;
+    private float attackTimer = 1.2f;
 
     void Awake()
     {

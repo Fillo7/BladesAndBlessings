@@ -6,7 +6,7 @@ public class Arrow : Projectile
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Equals("Projectile") || other.tag.Equals("Weapon"))
+        if (other.tag.Equals("Projectile") || other.tag.Equals("Weapon") || other.tag.Equals("EnemyObject"))
         {
             return;
         }

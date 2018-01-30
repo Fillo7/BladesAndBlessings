@@ -63,7 +63,7 @@ public class Sword : Weapon
         if (slashing)
         {
             slashedEnemies.Add(other.gameObject);
-            enemyHealth.ApplyDot(10.1f, 2.0f, 2);
+            enemyHealth.ApplyDotEffect(10.1f, 2.0f, 2);
         }
     }
 
