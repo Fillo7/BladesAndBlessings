@@ -5,13 +5,6 @@ public class EnemyHealProjectile : Projectile {
 	//for how much this object heals any enemy that is in range
 	public int heal = 0;
 
-	protected override void Update () {
-        base.Update();
-
-		gameObject.transform.position += gameObject.transform.forward * speed * Time.deltaTime;
-
-	}
-
 	public void SetHeal(int heal)
 	{
 		this.heal = heal;
@@ -25,7 +18,7 @@ public class EnemyHealProjectile : Projectile {
 
 			EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
 			enemyHealth.Heal (heal);
-
+            Destroy(gameObject);
 		}
 
 	}

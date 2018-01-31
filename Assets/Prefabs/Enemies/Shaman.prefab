@@ -220,10 +220,10 @@ MonoBehaviour:
   healingball: {fileID: 1356909798350856, guid: 746280c614dcdfe45a7b6d8ad8656e89,
     type: 2}
   healingballHeal: 40
-  movementSpeed: 2
+  movementSpeed: 3
   minimumDistance: 6
-  maximumDistance: 12
-  attackCooldown: 1
+  maximumDistance: 20
+  attackCooldown: 5
 --- !u!114 &114164223849575670
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -245,7 +245,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1819167719896502}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1

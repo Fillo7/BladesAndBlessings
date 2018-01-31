@@ -12,7 +12,7 @@ public class Hatchling : MonoBehaviour {
 
 	[SerializeField] private float attackCooldown = 3.0f;
 
-	[SerializeField] private float attackRange = 1.5f;
+	[SerializeField] private float attackRange = 1.8f;
 
 	[SerializeField] private float damage = 5;
 
@@ -35,8 +35,6 @@ public class Hatchling : MonoBehaviour {
 	{
 
 		attackTimer += Time.deltaTime;
-
-		navigator.enabled = true;
 
 		if (enemyHealth.GetCurrentHealth() <= 0 || playerHealth.IsDead())
 		{

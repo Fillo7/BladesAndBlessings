@@ -87,7 +87,10 @@ public class OrcTrapper : MonoBehaviour
 
     private void PrepareAttack()
     {
-        navigator.isStopped = true;
+        if (navigator.enabled)
+        {
+            navigator.isStopped = true;
+        }
         turningTowardsPlayer = true;
         attacking = true;
 
@@ -107,7 +110,6 @@ public class OrcTrapper : MonoBehaviour
         attackTimer = 0.0f;
         attacking = false;
         turningTowardsPlayer = false;
-
         if (navigator.enabled)
         {
             navigator.isStopped = false;
@@ -116,7 +118,7 @@ public class OrcTrapper : MonoBehaviour
 
     private void SpawnTrap()
     {
-        Instantiate(trap, new Vector3(transform.position.x, 0.0f, transform.position.z), Quaternion.identity);
+        Instantiate(trap, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         trapTimer = 0.0f;
     }
 
