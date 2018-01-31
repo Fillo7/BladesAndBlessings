@@ -100,11 +100,10 @@ public class OrcTrapper : MonoBehaviour
     private void Attack()
     {
         Vector3 arrowDirection = player.position - transform.position;
-        GameObject movingArrow = Instantiate(arrow, transform.position + transform.forward * 2.5f + transform.up * 1.5f,
+        GameObject movingArrow = Instantiate(arrow, transform.position + transform.forward * 1.5f + transform.up,
             Quaternion.LookRotation(arrowDirection, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f)) as GameObject;
         Arrow script = movingArrow.GetComponent<Arrow>();
         script.SetDamage(arrowDamage);
-        script.SetOwner(ProjectileOwner.Enemy);
         script.SetDirection(movingArrow.transform.up);
 
         attackTimer = 0.0f;

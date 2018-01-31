@@ -150,7 +150,7 @@ public class Sword : Weapon
 
     public override float GetOffsetHeight()
     {
-        return -1.0f;
+        return 0.0f;
     }
 
     private void ResetBlocking()

@@ -141,6 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ad36f6d6cf43f4eb4a338b6d7d9bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrow: {fileID: 1535607547840934, guid: 8f1529c899f2cbc4ea679c40176b896d, type: 2}
+  arrow: {fileID: 1337432570872208, guid: 8f1529c899f2cbc4ea679c40176b896d, type: 2}
   chargedArrow: {fileID: 1066082733001090, guid: 8d4b3eb8becf9714eaec58cb9ca52a01,
     type: 2}

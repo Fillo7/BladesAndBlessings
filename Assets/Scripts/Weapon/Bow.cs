@@ -92,7 +92,7 @@ public class Bow : Weapon
 
     public override float GetOffsetHeight()
     {
-        return -0.8f;
+        return 0.0f;
     }
 
     public void SpawnArrow()

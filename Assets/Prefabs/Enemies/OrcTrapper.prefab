@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximumMovementDistance: 30
-  arrow: {fileID: 1535607547840934, guid: 8f1529c899f2cbc4ea679c40176b896d, type: 2}
+  arrow: {fileID: 1452379704656852, guid: 237e2733c467c8f4198576e129e10188, type: 2}
   trap: {fileID: 1621652229659696, guid: 19fbe645f8002e0449b04b456794d1b5, type: 2}
   arrowDamage: 25
   speed: 6

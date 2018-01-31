@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4408318461281562}
-  - component: {fileID: 135053320132296128}
   - component: {fileID: 54697143091111230}
   - component: {fileID: 114736302122138172}
+  - component: {fileID: 136820504055845400}
   m_Layer: 0
   m_Name: ShamansHeal
   m_TagString: Projectile
@@ -29,18 +29,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1800389043055914
+--- !u!1 &1802111632734752
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4798489276933450}
-  - component: {fileID: 33630175208185154}
-  - component: {fileID: 23741277084244890}
+  - component: {fileID: 4584707713010054}
+  - component: {fileID: 33904834640471014}
+  - component: {fileID: 23958254363038690}
   m_Layer: 0
-  m_Name: Body
+  m_Name: ShamanHeal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,29 +56,29 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4798489276933450}
+  - {fileID: 4584707713010054}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4798489276933450
+--- !u!4 &4584707713010054
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1800389043055914}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.21, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_GameObject: {fileID: 1802111632734752}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 4408318461281562}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23741277084244890
+--- !u!23 &23958254363038690
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1800389043055914}
+  m_GameObject: {fileID: 1802111632734752}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -87,7 +87,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: d02d46c1727353643808b95df72a75ec, type: 2}
+  - {fileID: 2100000, guid: d1ea0ce7428e87c468d4098bf82effec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,7 +95,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
+  m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 0
@@ -107,13 +107,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33630175208185154
+--- !u!33 &33904834640471014
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1800389043055914}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_GameObject: {fileID: 1802111632734752}
+  m_Mesh: {fileID: 4300000, guid: 72b1c182dff5b0f4a90a83dde3bb12b3, type: 3}
 --- !u!54 &54697143091111230
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -144,8 +144,8 @@ MonoBehaviour:
   timeToLive: 15
   owner: 1
   heal: 20
---- !u!135 &135053320132296128
-SphereCollider:
+--- !u!136 &136820504055845400
+CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -153,6 +153,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
   m_Radius: 0.3
-  m_Center: {x: 0, y: 0.21, z: 0}
+  m_Height: 1.4
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.5, z: 0.05}
