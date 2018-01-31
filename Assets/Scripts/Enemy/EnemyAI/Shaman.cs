@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Shaman : MonoBehaviour {
 
@@ -86,7 +84,7 @@ public class Shaman : MonoBehaviour {
 	{
 		Vector3 spellDirection = player.position - transform.position;
 		transform.LookAt(player.transform);
-		if (UnityEngine.Random.Range (0, 2) > 0) 
+		if (Random.Range (0, 2) > 0) 
 		{
 			GameObject fireballInstance = Instantiate(fireball, transform.position + transform.forward * 2f + transform.up * 0.8f,
 				Quaternion.LookRotation(spellDirection, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f)) as GameObject;

@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour
 
     public virtual void SetDirection(Vector3 direction)
     {
-        body.velocity = direction * speed;
+        body.velocity = direction.normalized * speed;
     }
 
     public virtual void ReverseDirection()

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class GoblinPiker : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class GoblinPiker : MonoBehaviour
     private PlayerHealth playerHealth;
     private EnemyHealth enemyHealth;
 
-    private UnityEngine.AI.NavMeshAgent navigator;
+    private NavMeshAgent navigator;
     private Animator animator;
 
     [SerializeField] private float speed = 4.0f;
@@ -19,7 +20,7 @@ public class GoblinPiker : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         enemyHealth = GetComponent<EnemyHealth>();
-        navigator = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        navigator = GetComponent<NavMeshAgent>();
         navigator.speed = speed;
         animator = GetComponentInChildren<Animator>();
     }

@@ -18,8 +18,6 @@ public class Hatchling : MonoBehaviour {
 
 	private float attackTimer = 0.0f;
 
-	private bool isRelocating = true;
-
 	private UnityEngine.AI.NavMeshAgent navigator;
 
 	void Awake()

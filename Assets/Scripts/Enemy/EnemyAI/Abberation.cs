@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Abberation : MonoBehaviour {
 
@@ -29,24 +27,26 @@ public class Abberation : MonoBehaviour {
 	{
 		tickTimer += Time.deltaTime;
 
-		navigator.enabled = true;
-
 		if (enemyHealth.GetCurrentHealth() <= 0 || playerHealth.IsDead())
 		{
 			navigator.enabled = false;
 			return;
 		}
 
-		if (Vector3.Distance(transform.position, player.position) < auraRadius && tickTimer > tickTime)
+		if (IsPlayerInRange(auraRadius) && tickTimer > tickTime)
 		{
 			playerHealth.TakeDamage (auraDamage);
-			tickTimer -= tickTime;
+			tickTimer = 0.0f;
 		}
 
 		if (navigator.enabled)
 		{
 			navigator.SetDestination(player.position);
 		}
-	}		
+	}
 
+	private bool IsPlayerInRange(float range)
+	{
+		return Vector3.Distance(transform.position, player.position) < range;
+	}
 }

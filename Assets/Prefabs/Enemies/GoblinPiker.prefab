@@ -74,8 +74,8 @@ GameObject:
   - component: {fileID: 114334650341298794}
   - component: {fileID: 195817636868875918}
   - component: {fileID: 136019665205679734}
-  - component: {fileID: 54547760128221178}
   - component: {fileID: 114220453186694652}
+  - component: {fileID: 54692709149629564}
   m_Layer: 0
   m_Name: GoblinPiker
   m_TagString: Enemy
@@ -220,7 +220,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1119376384179228}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54547760128221178
+--- !u!54 &54692709149629564
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -230,8 +230,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 3
   m_AngularDrag: 3
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
@@ -325,7 +325,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1976840827633338}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
@@ -334,7 +334,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1.8
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

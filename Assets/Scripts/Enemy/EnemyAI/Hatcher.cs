@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class Hatcher : MonoBehaviour {
 
-	private Transform player;
 	private PlayerHealth playerHealth;
 	private EnemyHealth enemyHealth;
 
@@ -15,7 +14,6 @@ public class Hatcher : MonoBehaviour {
 
 	void Awake()
 	{
-		player = GameObject.FindGameObjectWithTag("Player").transform;
 		playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
 		enemyHealth = GetComponent<EnemyHealth>();
 		navigator = GetComponent<NavMeshAgent>();

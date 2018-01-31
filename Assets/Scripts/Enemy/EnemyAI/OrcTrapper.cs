@@ -22,6 +22,9 @@ public class OrcTrapper : MonoBehaviour
     [SerializeField] private float trapCooldown = 10.0f;
     private float trapTimer = 5.0f;
 
+    private bool attacking = false;
+    private bool turningTowardsPlayer = false;
+
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -44,7 +47,7 @@ public class OrcTrapper : MonoBehaviour
             return;
         }
 
-        if (movementTimer > movementCooldown)
+        if (movementTimer > movementCooldown && !attacking)
         {
             MoveRandomly();
         }
@@ -54,9 +57,14 @@ public class OrcTrapper : MonoBehaviour
             SpawnTrap();
         }
 
-        if (attackTimer > attackCooldown && IsPlayerInSight())
+        if (attackTimer > attackCooldown && IsPlayerInSight() && !attacking)
         {
-            Attack();
+            PrepareAttack();
+        }
+
+        if (turningTowardsPlayer)
+        {
+            TurnTowardsPlayer();
         }
     }
 
@@ -70,29 +78,40 @@ public class OrcTrapper : MonoBehaviour
         }
     }
 
-    private void EnableMovement()
+    private void TurnTowardsPlayer()
     {
-        if (navigator.enabled)
-        {
-            navigator.isStopped = false;
-        }
-        movementTimer = 3.0f;
+        Quaternion lookRotation = Quaternion.LookRotation(player.position - transform.position);
+        lookRotation = Quaternion.Euler(0.0f, lookRotation.eulerAngles.y, 0.0f);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, 150.0f * Time.deltaTime);
+    }
+
+    private void PrepareAttack()
+    {
+        navigator.isStopped = true;
+        turningTowardsPlayer = true;
+        attacking = true;
+
+        Invoke("Attack", 1.5f);
     }
 
     private void Attack()
     {
-        navigator.isStopped = true;
         Vector3 arrowDirection = player.position - transform.position;
-        transform.LookAt(player.transform);
-
-        GameObject movingArrow = Instantiate(arrow, transform.position + transform.forward * 1.5f,
+        GameObject movingArrow = Instantiate(arrow, transform.position + transform.forward * 2.5f + transform.up * 1.5f,
             Quaternion.LookRotation(arrowDirection, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f)) as GameObject;
         Arrow script = movingArrow.GetComponent<Arrow>();
         script.SetDamage(arrowDamage);
         script.SetOwner(ProjectileOwner.Enemy);
         script.SetDirection(movingArrow.transform.up);
+
         attackTimer = 0.0f;
-        Invoke("EnableMovement", 1.0f);
+        attacking = false;
+        turningTowardsPlayer = false;
+
+        if (navigator.enabled)
+        {
+            navigator.isStopped = false;
+        }
     }
 
     private void SpawnTrap()

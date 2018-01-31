@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 5.0f;
-    private float defaultSpeed;
+    private float currentSpeed;
 
     private int floorMask;
     private float cameraRayLength = 100.0f;
@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRigidbody = GetComponent<Rigidbody>();
         floorMask = LayerMask.GetMask("Floor");
-        defaultSpeed = speed;
+        currentSpeed = speed;
     }
 
     void Update()
@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     private void Move(float horizontal, float vertical)
     {
         direction.Set(horizontal, 0.0f, vertical);
-        direction = direction.normalized * speed * Time.deltaTime;
+        direction = direction.normalized * currentSpeed * Time.deltaTime;
         playerRigidbody.MovePosition(transform.position + direction);
     }
 
@@ -82,6 +82,6 @@ public class PlayerMovement : MonoBehaviour
             movementEffects.Remove(effect);
         }
 
-        speed = defaultSpeed * speedMultiplier;
+        currentSpeed = speed * speedMultiplier;
     }
 }
