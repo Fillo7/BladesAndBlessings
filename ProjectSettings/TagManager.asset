@@ -10,6 +10,7 @@ TagManager:
   - MenuCanvas
   - HUDCanvas
   - EnemyObject
+  - Wall
   layers:
   - Default
   - TransparentFX

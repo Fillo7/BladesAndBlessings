@@ -12,6 +12,11 @@ public class EnemyHealProjectile : Projectile {
 
 	}
 
+	public void SetHeal(int heal)
+	{
+		this.heal = heal;
+	}
+
 	void OnTriggerEnter(Collider other)
 	{
 
