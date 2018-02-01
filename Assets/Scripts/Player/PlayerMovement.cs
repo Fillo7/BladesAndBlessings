@@ -33,10 +33,7 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-        if (movementEnabled)
-        {
-            Move(horizontal, vertical);
-        }
+        Move(horizontal, vertical);
     }
 
     public bool IsMoving()
@@ -66,6 +63,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (TurnTowardsDirection(horizontal, vertical))
         {
+            if (!movementEnabled)
+            {
+                return;
+            }
+                
             moving = true;
 
             if (turningLeft)
@@ -83,6 +85,11 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("TurningLeft", false);
             animator.SetBool("TurningRight", false);
+        }
+
+        if (!movementEnabled)
+        {
+            return;
         }
 
         if (Math.Abs(horizontal) > 0.01f || Math.Abs(vertical) > 0.01f)

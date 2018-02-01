@@ -12,15 +12,19 @@ public class EnemyHealProjectile : Projectile {
 
 	void OnTriggerEnter(Collider other)
 	{
+        if (other.tag.Equals("Projectile") || other.tag.Equals("Weapon") || other.tag.Equals("EnemyObject") || other.tag.Equals("Player"))
+        {
+            return;
+        }
 
-		if (other.gameObject.tag == "Enemy")
+        if (other.tag.Equals("Enemy") && owner == ProjectileOwner.Enemy)
 		{
 
 			EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
 			enemyHealth.Heal (heal);
-            Destroy(gameObject);
 		}
 
-	}
+        Destroy(gameObject);
+    }
 
 }

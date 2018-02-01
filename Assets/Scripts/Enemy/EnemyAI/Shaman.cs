@@ -18,9 +18,9 @@ public class Shaman : MonoBehaviour
 
     [SerializeField] private float minimumDistance = 6.0f;
 
-    [SerializeField] private float maximumDistance = 20.0f;
+    [SerializeField] private float maximumDistance = 16.0f;
 
-    [SerializeField] private float attackCooldown = 5.0f;
+    [SerializeField] private float attackCooldown = 3.5f;
     private float attackTimer = 0.0f;
 
     private bool isRelocating = true;

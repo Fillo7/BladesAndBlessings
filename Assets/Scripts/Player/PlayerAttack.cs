@@ -47,7 +47,7 @@ public class PlayerAttack : MonoBehaviour
             Attack(AttackCommand.Basic, GetCursorWorldPosition());
             ResetTimer();
 
-            Invoke("EnableMovement", 0.75f);
+            Invoke("EnableMovement", 1.2f);
         }
 
         if (Input.GetButton("Fire2") && TimerIsReady())

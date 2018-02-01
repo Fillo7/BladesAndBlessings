@@ -124,5 +124,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrow: {fileID: 1337432570872208, guid: 8f1529c899f2cbc4ea679c40176b896d, type: 2}
-  chargedArrow: {fileID: 1066082733001090, guid: 8d4b3eb8becf9714eaec58cb9ca52a01,
+  chargedArrow: {fileID: 1161871020945066, guid: 8d4b3eb8becf9714eaec58cb9ca52a01,
     type: 2}
