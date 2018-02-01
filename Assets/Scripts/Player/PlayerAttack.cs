@@ -4,10 +4,9 @@ using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> weaponPrefabs = new List<GameObject>();
+    [SerializeField] private List<GameObject> weapons = new List<GameObject>();
     [SerializeField] private Slider ability1Slider;
     [SerializeField] private Slider ability2Slider;
-    private List<GameObject> weapons = new List<GameObject>();
     private GameObject activeWeapon = null;
     private Weapon activeWeaponScript = null;
     private int activeWeaponIndex = 0;
@@ -18,12 +17,14 @@ public class PlayerAttack : MonoBehaviour
     private float timeBetweenAttacks = 0.3f;
     private float timer = 0.0f;
 
+    private Animator animator;
     private PlayerMovement playerMovement;
     private int floorMask;
     private float cameraRayLength = 100.0f;
 
     void Awake()
     {
+        animator = GetComponentInChildren<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
         floorMask = LayerMask.GetMask("Floor");
 
@@ -40,8 +41,13 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetButton("Fire1") && TimerIsReady())
         {
+            playerMovement.EnableMovement(false);
+
+            animator.SetTrigger("BasicAttack");
             Attack(AttackCommand.Basic, GetCursorWorldPosition());
             ResetTimer();
+
+            Invoke("EnableMovement", 0.75f);
         }
 
         if (Input.GetButton("Fire2") && TimerIsReady())
@@ -79,19 +85,18 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    private void EnableMovement()
+    {
+        playerMovement.EnableMovement(true);
+    }
+
     private void InitializeWeapons()
     {
         freezeAttack = true;
 
-        for (int i = 0; i < weaponPrefabs.Count; i++)
+        for (int i = 0; i < weapons.Count; i++)
         {
-            Weapon weaponScript = weaponPrefabs[i].GetComponentInChildren<Weapon>();
-            GameObject weapon = Instantiate(weaponPrefabs[i], playerMovement.transform.position
-                + playerMovement.transform.right * weaponScript.GetOffsetSide(), playerMovement.transform.rotation) as GameObject;
-            weapon.transform.parent = playerMovement.transform;
-            weapon.transform.Translate(0.0f, weaponScript.GetOffsetHeight(), 0.0f);
-            weapon.SetActive(false);
-            weapons.Add(weapon);
+            weapons[i].SetActive(false);
         }
 
         freezeAttack = false;

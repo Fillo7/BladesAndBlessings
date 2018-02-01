@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: PlayerBow
+  m_Controller: {fileID: 9100000, guid: 401db9a3ebe67da4aad9a261db53c691, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 089c3d8718d173e43800fc9d95f5eedd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 089c3d8718d173e43800fc9d95f5eedd, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 79626585dc1f2db46a28a8d0ce1d4101, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 79626585dc1f2db46a28a8d0ce1d4101, type: 2}

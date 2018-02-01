@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: ce15522a6855ba043956575c50ab8a36
-timeCreated: 1517421903
+guid: 9af10ae0619f49d408443c2be0fbed0e
+timeCreated: 1517421902
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: PlayerWithSword
+    100000: PlayerSword
     100002: //RootNode
-    400000: PlayerWithSword
+    400000: PlayerSword
     400002: //RootNode
-    2300000: PlayerWithSword
-    3300000: PlayerWithSword
-    4300000: PlayerWithSword
+    2300000: PlayerSword
+    3300000: PlayerSword
+    4300000: PlayerSword
   externalObjects:
   - first:
       type: UnityEngine:Material

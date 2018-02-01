@@ -170,6 +170,11 @@ public class Shaman : MonoBehaviour
 
         foreach (GameObject ally in alliesList)
         {
+            if (ally == null || ally.Equals(gameObject))
+            {
+                continue;
+            }
+
             EnemyHealth health = ally.GetComponent<EnemyHealth>();
             if (Vector3.Distance(transform.position, ally.transform.position) < maximumRange && !health.IsDead() && health.GetCurrentHealth() < health.GetBaseHealth())
             {

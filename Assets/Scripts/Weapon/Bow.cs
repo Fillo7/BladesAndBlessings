@@ -4,8 +4,6 @@ public class Bow : Weapon
 {
     [SerializeField] private GameObject arrow;
     [SerializeField] private GameObject chargedArrow;
-    private Animator animator;
-    // private WeaponType weaponType = WeaponType.Ranged;
     private PlayerMovement playerMovement;
     private int baseDamage = 15;
 
@@ -19,7 +17,6 @@ public class Bow : Weapon
 
     void Awake()
     {
-        animator = GetComponent<Animator>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
@@ -30,9 +27,7 @@ public class Bow : Weapon
     }
 
     public override void DoBasicAttack(Vector3 targetPosition)
-    {
-        animator.SetTrigger("BasicAttack");
-    }
+    {}
 
     public override void DoSpecialAttack1(Vector3 targetPosition)
     {
@@ -41,7 +36,6 @@ public class Bow : Weapon
             return;
         }
 
-        animator.SetTrigger("SpecialAttack1");
         arrowFanTimer = 0.0f;
     }
 
@@ -62,7 +56,6 @@ public class Bow : Weapon
             return;
         }
 
-        animator.SetTrigger("SpecialAttack2");
         chargedArrowTimer = 0.0f;
     }
 
@@ -84,16 +77,6 @@ public class Bow : Weapon
 
     public override void OnWeaponSwap()
     {}
-
-    public override float GetOffsetSide()
-    {
-        return 0.68f;
-    }
-
-    public override float GetOffsetHeight()
-    {
-        return 0.0f;
-    }
 
     public void SpawnArrow()
     {

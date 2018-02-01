@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -6,17 +7,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed = 5.0f;
     private float currentSpeed;
 
-    private int floorMask;
-    private float cameraRayLength = 100.0f;
-
     private Vector3 direction;
+    private bool movementEnabled = true;
+    private bool moving = false;
+    private bool turningLeft = false;
+
     private Rigidbody playerRigidbody;
+    private Animator animator;
     private LinkedList<MovementEffect> movementEffects = new LinkedList<MovementEffect>();
 
     void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
-        floorMask = LayerMask.GetMask("Floor");
+        animator = GetComponentInChildren<Animator>();
         currentSpeed = speed;
     }
 
@@ -30,8 +33,28 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-		Move(horizontal, vertical);       
-        Turn();
+        if (movementEnabled)
+        {
+            Move(horizontal, vertical);
+        }
+    }
+
+    public bool IsMoving()
+    {
+        return moving;
+    }
+
+    public void EnableMovement(bool flag)
+    {
+        movementEnabled = flag;
+
+        if (!flag)
+        {
+            moving = false;
+            animator.SetBool("Running", false);
+            animator.SetBool("TurningLeft", false);
+            animator.SetBool("TurningRight", false);
+        }
     }
 
     public void ApplyMovementEffect(float duration, float speedMultiplier)
@@ -41,23 +64,79 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move(float horizontal, float vertical)
     {
+        if (TurnTowardsDirection(horizontal, vertical))
+        {
+            moving = true;
+
+            if (turningLeft)
+            {
+                animator.SetBool("TurningLeft", true);
+            }
+            else
+            {
+                animator.SetBool("TurningRight", true);
+            }
+
+            return;
+        }
+        else
+        {
+            animator.SetBool("TurningLeft", false);
+            animator.SetBool("TurningRight", false);
+        }
+
+        if (Math.Abs(horizontal) > 0.01f || Math.Abs(vertical) > 0.01f)
+        {
+            moving = true;
+            animator.SetBool("Running", true);
+        }
+        else
+        {
+            moving = false;
+            animator.SetBool("Running", false);
+        }
+
         direction.Set(horizontal, 0.0f, vertical);
         direction = direction.normalized * currentSpeed * Time.deltaTime;
         playerRigidbody.MovePosition(transform.position + direction);
     }
 
-    private void Turn()
+    private bool TurnTowardsDirection(float horizontal, float vertical)
     {
-        Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit floorHit;
-
-        if (Physics.Raycast(cameraRay, out floorHit, cameraRayLength, floorMask))
+        if (Math.Abs(horizontal) < 0.01f && Math.Abs(vertical) < 0.01f)
         {
-            Vector3 playerToMouse = floorHit.point - transform.position;
-            playerToMouse.y = 0.0f;
-            Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
-            playerRigidbody.MoveRotation(newRotation);
+            return false;
         }
+
+        Vector3 direction = new Vector3(horizontal, 0.0f, vertical);
+        Quaternion lookRotation = Quaternion.LookRotation(direction.normalized);
+        playerRigidbody.MoveRotation(Quaternion.RotateTowards(playerRigidbody.rotation, lookRotation, 400.0f * Time.deltaTime));
+
+        turningLeft = GetRotationDirection(playerRigidbody.rotation, lookRotation);
+
+        return Math.Abs(playerRigidbody.rotation.eulerAngles.y - lookRotation.eulerAngles.y) > 40.0f;
+    }
+
+    private bool GetRotationDirection(Quaternion from, Quaternion to)
+    {
+        float fromY = from.eulerAngles.y;
+        float toY = to.eulerAngles.y;
+        float clockwise = 0.0f;
+        float counterClockwise = 0.0f;
+
+        if (fromY <= toY)
+        {
+            clockwise = toY - fromY;
+            counterClockwise = fromY + (360 - toY);
+        }
+        else
+        {
+            clockwise = (360 - fromY) + toY;
+            counterClockwise = fromY - toY;
+        }
+
+        // Returns true if rotating left
+        return (clockwise <= counterClockwise);
     }
 
     private void ProcessMovementEffects()

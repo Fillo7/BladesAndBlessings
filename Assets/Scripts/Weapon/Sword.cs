@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class Sword : Weapon
 {
-    private Animator animator;
-    // private WeaponType weaponType = WeaponType.Melee;
     private int baseDamage = 20;
 
     private int maxHitCount = 0;
@@ -21,11 +19,6 @@ public class Sword : Weapon
     private float slashTimer = 10.0f;
     private float slashCooldown = 10.0f;
 
-    void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
-
     void Update()
     {
         blockTimer += Time.deltaTime;
@@ -34,7 +27,6 @@ public class Sword : Weapon
         if (blocking)
         {
             activeBlockTimer += Time.deltaTime;
-            animator.SetFloat("BlockTimer", activeBlockTimer);
 
             if (activeBlockTimer > activeBlockMax)
             {
@@ -76,7 +68,6 @@ public class Sword : Weapon
 
         maxHitCount = 1;
         damageToDeal = (float)baseDamage;
-        animator.SetTrigger("BasicAttack");
     }
 
     public override void DoSpecialAttack1(Vector3 targetPosition)
@@ -86,7 +77,6 @@ public class Sword : Weapon
             return;
         }
 
-        animator.SetFloat("BlockTimer", 0.0f);
         activeBlockTimer = 0.0f;
         blocking = true;
     }
@@ -115,7 +105,6 @@ public class Sword : Weapon
 
         maxHitCount = 5;
         damageToDeal = baseDamage * 1.75f;
-        animator.SetTrigger("SwordSlash");
         slashTimer = 0.0f;
     }
 
@@ -143,21 +132,10 @@ public class Sword : Weapon
         }
     }
 
-    public override float GetOffsetSide()
-    {
-        return 0.65f;
-    }
-
-    public override float GetOffsetHeight()
-    {
-        return 0.0f;
-    }
-
     private void ResetBlocking()
     {
         blocking = false;
         activeBlockTimer = activeBlockMax + 0.1f;
-        animator.SetFloat("BlockTimer", activeBlockMax + 0.1f);
         blockTimer = 0.0f;
     }
 

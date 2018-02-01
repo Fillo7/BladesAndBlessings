@@ -19,8 +19,4 @@ public abstract class Weapon : MonoBehaviour
     public abstract void AdjustCooldowns(float passedTime);
 
     public abstract void OnWeaponSwap();
-
-    public abstract float GetOffsetSide();
-
-    public abstract float GetOffsetHeight();
 }
