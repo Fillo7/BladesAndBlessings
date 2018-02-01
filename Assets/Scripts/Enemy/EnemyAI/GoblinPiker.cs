@@ -29,7 +29,7 @@ public class GoblinPiker : MonoBehaviour
     {
         attackTimer += Time.deltaTime;
 
-        if (enemyHealth.GetCurrentHealth() <= 0 || playerHealth.IsDead())
+        if (enemyHealth.IsDead() || playerHealth.IsDead())
         {
             navigator.enabled = false;
             return;

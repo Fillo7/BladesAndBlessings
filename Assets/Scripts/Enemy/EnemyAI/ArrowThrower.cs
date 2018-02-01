@@ -6,28 +6,35 @@ public class ArrowThrower : MonoBehaviour
 
     private float nextArrowTimer;
     private float arrowCooldown = 5.0f;
+    private EnemyHealth health;
 
-    void Start()
+    void Awake()
     {
-        nextArrowTimer = Random.Range(1.0f, 5.0f);
+        health = GetComponent<EnemyHealth>();
+        nextArrowTimer = Random.Range(2.0f, 5.0f);
     }
 
     void Update()
     {
-        nextArrowTimer -= Time.deltaTime;
+        if (health.IsDead())
+        {
+            return;
+        }
 
-        if (nextArrowTimer <= 0.0f)
+        nextArrowTimer += Time.deltaTime;
+
+        if (nextArrowTimer > arrowCooldown)
         {
             spawnArrow();
-            nextArrowTimer = arrowCooldown;
+            nextArrowTimer = 0.0f;
         }
     }
 
     private void spawnArrow()
     {
-        GameObject movingArrow = Instantiate(arrow, transform.position - transform.up,
-            Quaternion.LookRotation(-transform.up, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f)) as GameObject;
+        GameObject movingArrow = Instantiate(arrow, transform.position + transform.forward + transform.up,
+            Quaternion.LookRotation(transform.forward, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f)) as GameObject;
         Arrow script = movingArrow.GetComponent<Arrow>();
-        script.SetDirection(-transform.up);
+        script.SetDirection(transform.forward);
     }
 }

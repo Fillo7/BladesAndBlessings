@@ -27,17 +27,26 @@ public class Abberation : MonoBehaviour {
 	{
 		tickTimer += Time.deltaTime;
 
-		if (enemyHealth.GetCurrentHealth() <= 0 || playerHealth.IsDead())
+		if (enemyHealth.IsDead() || playerHealth.IsDead())
 		{
 			navigator.enabled = false;
 			return;
 		}
 
-		if (IsPlayerInRange(auraRadius) && tickTimer > tickTime)
-		{
-			playerHealth.TakeDamage (auraDamage);
-			tickTimer = 0.0f;
-		}
+        if (IsPlayerInRange(auraRadius))
+        {
+            navigator.speed = 0.2f;
+
+            if (tickTimer > tickTime)
+            {
+                playerHealth.TakeDamage(auraDamage);
+                tickTimer = 0.0f;
+            }
+        }
+        else
+        {
+            navigator.speed = speed;
+        }
 
 		if (navigator.enabled)
 		{

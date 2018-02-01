@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class Hatchling : MonoBehaviour {
 
@@ -12,13 +11,13 @@ public class Hatchling : MonoBehaviour {
 
 	[SerializeField] private float attackCooldown = 3.0f;
 
-	[SerializeField] private float attackRange = 1.8f;
+	[SerializeField] private float attackRange = 1.9f;
 
 	[SerializeField] private float damage = 5;
 
 	private float attackTimer = 0.0f;
 
-	private UnityEngine.AI.NavMeshAgent navigator;
+	private NavMeshAgent navigator;
 
 	void Awake()
 	{
@@ -26,7 +25,7 @@ public class Hatchling : MonoBehaviour {
 		playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
 		enemyHealth = GetComponent<EnemyHealth>();
 
-		navigator = GetComponent<UnityEngine.AI.NavMeshAgent>();
+		navigator = GetComponent<NavMeshAgent>();
 		navigator.speed = movementSpeed;
 
 	}
@@ -36,17 +35,26 @@ public class Hatchling : MonoBehaviour {
 
 		attackTimer += Time.deltaTime;
 
-		if (enemyHealth.GetCurrentHealth() <= 0 || playerHealth.IsDead())
+		if (enemyHealth.IsDead() || playerHealth.IsDead())
 		{
 			navigator.enabled = false;
 			return;
 		}
 
-		if (Vector3.Distance(transform.position, player.position) < attackRange && attackTimer > attackCooldown)
+		if (Vector3.Distance(transform.position, player.position) < attackRange)
 		{
-			playerHealth.TakeDamage (damage);
-			attackTimer = 0;
+            navigator.speed = 0.05f;
+
+            if (attackTimer > attackCooldown)
+            {
+                playerHealth.TakeDamage(damage);
+                attackTimer = 0.0f;
+            }
 		}
+        else
+        {
+            navigator.speed = movementSpeed;
+        }
 
 		if (navigator.enabled)
 		{

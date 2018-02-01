@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4997469548778496}
   - component: {fileID: 33336925023815456}
   - component: {fileID: 23942251838976042}
-  - component: {fileID: 114750613642380910}
   m_Layer: 0
   m_Name: Thrower
   m_TagString: Untagged
@@ -40,6 +39,7 @@ GameObject:
   - component: {fileID: 114141732813820076}
   - component: {fileID: 65664991212778652}
   - component: {fileID: 54539606195851982}
+  - component: {fileID: 114205385301758280}
   m_Layer: 0
   m_Name: ArrowThrower
   m_TagString: Enemy
@@ -87,7 +87,7 @@ Transform:
   m_GameObject: {fileID: 1695695756486308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.75, z: 0}
-  m_LocalScale: {x: 0.7, y: 1.5, z: 1}
+  m_LocalScale: {x: 1, y: 1.5, z: 0.7}
   m_Children: []
   m_Father: {fileID: 4079629870380794}
   m_RootOrder: 0
@@ -98,13 +98,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1519582155336028}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.55, y: 0.75, z: 0}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0.6}
   m_LocalScale: {x: 0.5, y: 0.25, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4079629870380794}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!23 &23201729533015826
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -227,12 +227,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 60
   currentHealth: 0
---- !u!114 &114750613642380910
+--- !u!114 &114205385301758280
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1519582155336028}
+  m_GameObject: {fileID: 1628474345739142}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96f0afd20d3807a4f90db34a934cf56a, type: 3}

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class Hatcher : MonoBehaviour {
@@ -26,7 +24,7 @@ public class Hatcher : MonoBehaviour {
 
 		navigator.enabled = true;
 
-		if (enemyHealth.GetCurrentHealth() <= 0 || playerHealth.IsDead())
+		if (enemyHealth.IsDead() || playerHealth.IsDead())
 		{
 			navigator.enabled = false;
 			return;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Sword : Weapon
 {
-    private int baseDamage = 20;
+    private int baseDamage = 25;
 
     private int maxHitCount = 0;
     private float damageToDeal = 0;
@@ -55,7 +55,7 @@ public class Sword : Weapon
         if (slashing)
         {
             slashedEnemies.Add(other.gameObject);
-            enemyHealth.ApplyDotEffect(10.1f, 2.0f, 2);
+            enemyHealth.ApplyDotEffect(10.1f, 2.0f, 3);
         }
     }
 

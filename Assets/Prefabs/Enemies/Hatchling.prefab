@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 4
   attackCooldown: 3
-  attackRange: 1.8
+  attackRange: 1.9
   damage: 5
 --- !u!114 &114470131571173678
 MonoBehaviour:
