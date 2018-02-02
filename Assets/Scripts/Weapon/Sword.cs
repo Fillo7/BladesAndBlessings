@@ -88,11 +88,6 @@ public class Sword : Weapon
         return blockTimer;
     }
 
-    public override float GetSpecialAttack1Cooldown()
-    {
-        return blockCooldown;
-    }
-
     public override void DoSpecialAttack2(Vector3 targetPosition)
     {
         if (slashTimer < slashCooldown)
@@ -115,11 +110,6 @@ public class Sword : Weapon
         return slashTimer;
     }
 
-    public override float GetSpecialAttack2Cooldown()
-    {
-        return slashCooldown;
-    }
-
     public override void AdjustCooldowns(float passedTime)
     {
         blockTimer += passedTime;
@@ -132,6 +122,16 @@ public class Sword : Weapon
         {
             ResetBlocking();
         }
+    }
+
+    public override List<AbilityInfo> GetAbilityInfo()
+    {
+        List<AbilityInfo> result = new List<AbilityInfo>();
+        result.Add(new AbilityInfo(0.0f, 0.0f, 1.28f));
+        result.Add(new AbilityInfo(blockCooldown, 0.0f, 0.47f));
+        result.Add(new AbilityInfo(slashCooldown, 0.0f, 2.1f));
+
+        return result;
     }
 
     public override AnimatorOverrideController GetAnimatorController()

@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Slider ability2Slider;
     private GameObject activeWeapon = null;
     private Weapon activeWeaponScript = null;
+    private List<AbilityInfo> activeAbilityInfo = null;
     private int activeWeaponIndex = 0;
 
     private float weaponSwapTimer = 0.0f;
@@ -22,6 +23,7 @@ public class PlayerAttack : MonoBehaviour
     private int floorMask;
     private float cameraRayLength = 100.0f;
 
+    private bool attacking = false;
     private AttackCommand attackCommand = AttackCommand.Basic;
     private Vector3 attackTarget = Vector3.zero;
 
@@ -44,6 +46,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetButton("Fire1") && TimerIsReady())
         {
+            attacking = true;
             playerMovement.EnableMovement(false);
 
             animator.SetTrigger("BasicAbility");
@@ -51,11 +54,18 @@ public class PlayerAttack : MonoBehaviour
             attackTarget = GetCursorWorldPosition();
             ResetTimer();
 
-            Invoke("FinishAttack", 1.0f);
+            Invoke("FinishAttack", activeAbilityInfo[0].GetAnimationDelay());
+            Invoke("ResetAttacking", activeAbilityInfo[0].GetAnimationDuration());
         }
 
         if (Input.GetButton("Fire2") && TimerIsReady())
         {
+            if (activeWeaponScript.GetSpecialAttack1Timer() < activeAbilityInfo[1].GetCooldown())
+            {
+                return;
+            }
+
+            attacking = true;
             playerMovement.EnableMovement(false);
 
             animator.SetTrigger("SpecialAbility1");
@@ -63,11 +73,18 @@ public class PlayerAttack : MonoBehaviour
             attackTarget = GetCursorWorldPosition();
             ResetTimer();
 
-            Invoke("FinishAttack", 1.0f);
+            Invoke("FinishAttack", activeAbilityInfo[1].GetAnimationDelay());
+            Invoke("ResetAttacking", activeAbilityInfo[1].GetAnimationDuration());
         }
 
         if (Input.GetButton("Fire3") && TimerIsReady())
         {
+            if (activeWeaponScript.GetSpecialAttack2Timer() < activeAbilityInfo[2].GetCooldown())
+            {
+                return;
+            }
+
+            attacking = true;
             playerMovement.EnableMovement(false);
 
             animator.SetTrigger("SpecialAbility2");
@@ -75,7 +92,8 @@ public class PlayerAttack : MonoBehaviour
             attackTarget = GetCursorWorldPosition();
             ResetTimer();
 
-            Invoke("FinishAttack", 1.0f);
+            Invoke("FinishAttack", activeAbilityInfo[2].GetAnimationDelay());
+            Invoke("ResetAttacking", activeAbilityInfo[2].GetAnimationDuration());
         }
 
         if (Input.GetButton("SwapWeapon") && TimerIsReady())
@@ -104,7 +122,12 @@ public class PlayerAttack : MonoBehaviour
     private void FinishAttack()
     {
         Attack(attackCommand, attackTarget);
+    }
+
+    private void ResetAttacking()
+    {
         playerMovement.EnableMovement(true);
+        attacking = false;
     }
 
     private void InitializeWeapons()
@@ -133,6 +156,7 @@ public class PlayerAttack : MonoBehaviour
         activeWeapon.SetActive(true);
         activeWeaponScript = activeWeapon.GetComponentInChildren<Weapon>();
         activeWeaponScript.AdjustCooldowns(weaponSwapTimer);
+        activeAbilityInfo = activeWeaponScript.GetAbilityInfo();
         weaponSwapTimer = 0.0f;
         animator.runtimeAnimatorController = activeWeaponScript.GetAnimatorController();
         InitializeCooldownSliders();
@@ -147,8 +171,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void InitializeCooldownSliders()
     {
-        ability1Slider.maxValue = activeWeaponScript.GetSpecialAttack1Cooldown();
-        ability2Slider.maxValue = activeWeaponScript.GetSpecialAttack2Cooldown();
+        ability1Slider.maxValue = activeAbilityInfo[1].GetCooldown();
+        ability2Slider.maxValue = activeAbilityInfo[2].GetCooldown();
         ability1Slider.value = activeWeaponScript.GetSpecialAttack1Timer();
         ability2Slider.value = activeWeaponScript.GetSpecialAttack2Timer();
     }
@@ -167,7 +191,7 @@ public class PlayerAttack : MonoBehaviour
 
     private bool TimerIsReady()
     {
-        return timer >= timeBetweenAttacks && Time.timeScale != 0.0f && !freezeAttack;
+        return timer >= timeBetweenAttacks && Time.timeScale != 0.0f && !freezeAttack && !attacking;
     }
 
     private void ResetTimer()
