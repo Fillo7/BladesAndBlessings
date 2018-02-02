@@ -10,7 +10,7 @@ public class Shaman : MonoBehaviour
     private EnemyHealth enemyHealth;
 
     [SerializeField] private GameObject fireball;
-    [SerializeField] private int fireballDamage = 20;
+    [SerializeField] private int fireballDamage = 50;
     [SerializeField] private GameObject healingball;
     [SerializeField] private int healingballHeal = 40;
 
@@ -28,6 +28,7 @@ public class Shaman : MonoBehaviour
     private bool turning = false;
     private Transform turningTarget;
 
+    private Animator animator;
     private NavMeshAgent navigator;
 
     void Awake()
@@ -36,6 +37,7 @@ public class Shaman : MonoBehaviour
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         enemyHealth = GetComponent<EnemyHealth>();
 
+        animator = GetComponentInChildren<Animator>();
         navigator = GetComponent<NavMeshAgent>();
         navigator.speed = movementSpeed;
         turningTarget = player;
@@ -43,15 +45,20 @@ public class Shaman : MonoBehaviour
 
     void Update()
     {
-        if (!isRelocating)
-        {
-            attackTimer += Time.deltaTime;
-        }
-
         if (enemyHealth.IsDead() || playerHealth.IsDead())
         {
             navigator.enabled = false;
             return;
+        }
+
+        if (!isRelocating)
+        {
+            attackTimer += Time.deltaTime;
+            animator.SetBool("Running", false);
+        }
+        else
+        {
+            animator.SetBool("Running", true);
         }
 
         if (isRelocating && DistanceToPlayer() > (minimumDistance + 1.0f) && DistanceToPlayer() < (maximumDistance - 1.0f))
@@ -102,6 +109,7 @@ public class Shaman : MonoBehaviour
         }
         turning = true;
         attacking = true;
+        animator.SetTrigger("Attack");
 
         if (Random.Range(0, 2) == 0)
         {
@@ -110,50 +118,47 @@ public class Shaman : MonoBehaviour
             if (ally != null)
             {
                 turningTarget = ally.transform;
-                Invoke("CastHealing", 1.5f);
+                Invoke("CastHealing", 1.2f);
             }
             else
             {
                 turningTarget = player;
-                Invoke("CastFireball", 1.5f);
+                Invoke("CastFireball", 1.2f);
             }
         }
         else
         {
             turningTarget = player;
-            Invoke("CastFireball", 1.5f);
+            Invoke("CastFireball", 1.2f);
         }
+
+        Invoke("ResetAttack", 2.5f);
     }
 
     private void CastHealing()
     {
         Vector3 spellDirection = turningTarget.position - transform.position;
-        GameObject healingballInstance = Instantiate(healingball, transform.position + transform.forward * 2.2f + transform.up * 1.0f,
+        GameObject healingballInstance = Instantiate(healingball, transform.position + transform.forward * 2.0f + transform.up * 1.1f,
             Quaternion.LookRotation(spellDirection, new Vector3(0.0f, 1.0f, 0.0f))) as GameObject;
         EnemyHealProjectile script = healingballInstance.GetComponent<EnemyHealProjectile>();
         script.SetHeal(healingballHeal);
         script.SetOwner(ProjectileOwner.Enemy);
         script.SetDirection(healingballInstance.transform.forward);
-
-        attackTimer = 0.0f;
-        attacking = false;
-        turning = false;
-        if (navigator.enabled)
-        {
-            navigator.isStopped = false;
-        }
     }
 
     private void CastFireball()
     {
         Vector3 spellDirection = turningTarget.position - transform.position;
-        GameObject fireballInstance = Instantiate(fireball, transform.position + transform.forward * 2.2f + transform.up * 1.0f,
+        GameObject fireballInstance = Instantiate(fireball, transform.position + transform.forward * 1.5f + transform.up * 1.1f,
             Quaternion.LookRotation(spellDirection, new Vector3(0.0f, 1.0f, 0.0f))) as GameObject;
         Arrow script = fireballInstance.GetComponent<Arrow>();
         script.SetDamage(fireballDamage);
         script.SetOwner(ProjectileOwner.Enemy);
         script.SetDirection(fireballInstance.transform.forward);
+    }
 
+    private void ResetAttack()
+    {
         attackTimer = 0.0f;
         attacking = false;
         turning = false;

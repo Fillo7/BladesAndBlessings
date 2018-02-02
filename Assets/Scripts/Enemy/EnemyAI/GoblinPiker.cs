@@ -10,10 +10,10 @@ public class GoblinPiker : MonoBehaviour
     private NavMeshAgent navigator;
     private Animator animator;
 
-    [SerializeField] private float speed = 4.0f;
-    [SerializeField] private float attackRange = 2.5f;
-    [SerializeField] private float attackCooldown = 1.2f;
-    private float attackTimer = 1.2f;
+    [SerializeField] private float speed = 4.5f;
+    [SerializeField] private float attackRange = 1.8f;
+    [SerializeField] private float attackCooldown = 2.0f;
+    private float attackTimer = 1.0f;
     private bool attacking = false;
 
     void Awake()
@@ -28,12 +28,21 @@ public class GoblinPiker : MonoBehaviour
 
     void Update()
     {
-        attackTimer += Time.deltaTime;
-
         if (enemyHealth.IsDead() || playerHealth.IsDead())
         {
             navigator.enabled = false;
             return;
+        }
+
+        attackTimer += Time.deltaTime;
+
+        if (navigator.enabled && navigator.velocity.magnitude > 0.1f)
+        {
+            animator.SetBool("Running", true);
+        }
+        else
+        {
+            animator.SetBool("Running", false);
         }
 
         if (IsPlayerInRange(attackRange))
@@ -45,7 +54,7 @@ public class GoblinPiker : MonoBehaviour
             navigator.enabled = true;
         }
 
-        if (IsPlayerInRange(attackRange) && IsPlayerInFront(60.0f) && attackTimer > attackCooldown)
+        if (IsPlayerInRange(attackRange) && IsPlayerInFront(60.0f) && attackTimer > attackCooldown && !attacking)
         {
             Attack();
         }
@@ -67,14 +76,14 @@ public class GoblinPiker : MonoBehaviour
 
     private void Attack()
     {
-        animator.SetTrigger("Attack");
-        attackTimer = 0.0f;
         attacking = true;
+        animator.SetTrigger("Attack");
         Invoke("ResetAttack", 2.0f);
     }
 
     private void ResetAttack()
     {
+        attackTimer = 0.0f;
         attacking = false;
     }
 
