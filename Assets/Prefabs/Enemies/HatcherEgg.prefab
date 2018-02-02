@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathDestroyDelay: 3
-  health: 50
+  health: 35
 --- !u!114 &114358851294670564
 MonoBehaviour:
   m_ObjectHideFlags: 1

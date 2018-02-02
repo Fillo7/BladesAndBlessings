@@ -7,13 +7,14 @@ public class OrcTrapper : MonoBehaviour
     private PlayerHealth playerHealth;
     private EnemyHealth enemyHealth;
 
+    private Animator animator;
     private NavMeshAgent navigator;
     [SerializeField] private float maximumMovementDistance = 15.0f;
 
     [SerializeField] private GameObject arrow;
     [SerializeField] private GameObject trap;
 
-    [SerializeField] private int arrowDamage = 25;
+    [SerializeField] private int arrowDamage = 35;
     [SerializeField] private float speed = 6.0f;
     [SerializeField] private float movementCooldown = 3.0f;
     private float movementTimer = 3.0f;
@@ -31,27 +32,37 @@ public class OrcTrapper : MonoBehaviour
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         enemyHealth = GetComponent<EnemyHealth>();
 
+        animator = GetComponentInChildren<Animator>();
         navigator = GetComponent<NavMeshAgent>();
         navigator.speed = speed;
     }
 
     void Update()
     {
-        movementTimer += Time.deltaTime;
-        attackTimer += Time.deltaTime;
-        trapTimer += Time.deltaTime;
-
         if (enemyHealth.IsDead() || playerHealth.IsDead())
         {
             navigator.enabled = false;
             return;
         }
 
+        movementTimer += Time.deltaTime;
+        attackTimer += Time.deltaTime;
+        trapTimer += Time.deltaTime;
+
+        if (navigator.enabled && navigator.velocity.magnitude > 0.1f)
+        {
+            animator.SetBool("Running", true);
+        }
+        else
+        {
+            animator.SetBool("Running", false);
+        }
+
         if (movementTimer > movementCooldown && !attacking)
         {
             MoveRandomly();
         }
-
+        
         if (trapTimer > trapCooldown)
         {
             SpawnTrap();
@@ -93,19 +104,24 @@ public class OrcTrapper : MonoBehaviour
         }
         turningTowardsPlayer = true;
         attacking = true;
+        animator.SetTrigger("Attack");
 
-        Invoke("Attack", 1.5f);
+        Invoke("Attack", 3.6f);
+        Invoke("ResetAttack", 4.75f);
     }
 
     private void Attack()
     {
         Vector3 arrowDirection = player.position - transform.position;
-        GameObject movingArrow = Instantiate(arrow, transform.position + transform.forward * 1.5f + transform.up,
+        GameObject movingArrow = Instantiate(arrow, transform.position + transform.forward * 0.7f + transform.up * 1.5f,
             Quaternion.LookRotation(arrowDirection, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f)) as GameObject;
         Arrow script = movingArrow.GetComponent<Arrow>();
         script.SetDamage(arrowDamage);
         script.SetDirection(movingArrow.transform.up);
+    }
 
+    private void ResetAttack()
+    {
         attackTimer = 0.0f;
         attacking = false;
         turningTowardsPlayer = false;

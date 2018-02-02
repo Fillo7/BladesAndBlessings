@@ -110,14 +110,18 @@ public class Sword : Weapon
 
     public override void OnWeaponSwap()
     {
+        if (blocking)
+        {
+            ResetBlocking();
+        }
     }
 
     public override List<AbilityInfo> GetAbilityInfo()
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
-        result.Add(new AbilityInfo(0.0f, 0.0f, 1.3f));
-        result.Add(new AbilityInfo(blockCooldown, 0.0f, 0.5f));
-        result.Add(new AbilityInfo(slashCooldown, 0.0f, 2.1f));
+        result.Add(new AbilityInfo(0.0f, 0.0f, 1.6f));
+        result.Add(new AbilityInfo(blockCooldown, 0.0f, 1.0f));
+        result.Add(new AbilityInfo(slashCooldown, 0.0f, 2.2f));
 
         return result;
     }

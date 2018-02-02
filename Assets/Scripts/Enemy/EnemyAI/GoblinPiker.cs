@@ -14,6 +14,7 @@ public class GoblinPiker : MonoBehaviour
     [SerializeField] private float attackRange = 2.5f;
     [SerializeField] private float attackCooldown = 1.2f;
     private float attackTimer = 1.2f;
+    private bool attacking = false;
 
     void Awake()
     {
@@ -49,7 +50,7 @@ public class GoblinPiker : MonoBehaviour
             Attack();
         }
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("PikeAttack"))
+        if (attacking)
         {
             navigator.enabled = false;
         }
@@ -68,6 +69,13 @@ public class GoblinPiker : MonoBehaviour
     {
         animator.SetTrigger("Attack");
         attackTimer = 0.0f;
+        attacking = true;
+        Invoke("ResetAttack", 2.0f);
+    }
+
+    private void ResetAttack()
+    {
+        attacking = false;
     }
 
     private bool IsPlayerInRange(float range)

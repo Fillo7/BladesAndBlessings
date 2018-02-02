@@ -4,13 +4,15 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int baseHealth = 200;
-    [SerializeField] private int currentHealth;
+    private int currentHealth;
     [SerializeField] private Slider healthSlider;
 
     private bool dead = false;
+    private Animator animator;
 
     void Awake()
     {
+        animator = GetComponentInChildren<Animator>();
         currentHealth = baseHealth;
         healthSlider.maxValue = baseHealth;
         healthSlider.value = currentHealth;
@@ -35,5 +37,10 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         dead = true;
+
+        if (animator != null)
+        {
+            animator.SetTrigger("Death");
+        }
     }
 }

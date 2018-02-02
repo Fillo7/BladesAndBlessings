@@ -9,7 +9,6 @@ public class EnemyHealth : MonoBehaviour
     private int currentHealth;
 
     private Animator animator;
-    private Collider enemyCollider;
 
     private bool dead = false;
     private LinkedList<DotEffect> dotEffects = new LinkedList<DotEffect>();
@@ -17,7 +16,6 @@ public class EnemyHealth : MonoBehaviour
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-        enemyCollider = GetComponent<Collider>();
 
         currentHealth = health;
     }
@@ -75,11 +73,6 @@ public class EnemyHealth : MonoBehaviour
         if (animator != null)
         {
             animator.SetTrigger("Death");
-        }
-        
-        if (enemyCollider != null)
-        {
-            enemyCollider.enabled = false;
         }
 
         Destroy(gameObject, deathDestroyDelay);

@@ -7,7 +7,7 @@ public class Bow : Weapon
     [SerializeField] private GameObject arrow;
     [SerializeField] private GameObject chargedArrow;
     private PlayerMovement playerMovement;
-    private int baseDamage = 15;
+    private int baseDamage = 20;
 
     private float arrowSpeed = 20.0f;
 
@@ -77,9 +77,9 @@ public class Bow : Weapon
     public override List<AbilityInfo> GetAbilityInfo()
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
-        result.Add(new AbilityInfo(0.0f, 2.25f, 3.1f));
-        result.Add(new AbilityInfo(arrowFanCooldown, 2.25f, 3.1f));
-        result.Add(new AbilityInfo(chargedArrowCooldown, 2.25f, 3.1f));
+        result.Add(new AbilityInfo(0.0f, 2.4f, 3.2f));
+        result.Add(new AbilityInfo(arrowFanCooldown, 2.4f, 3.2f));
+        result.Add(new AbilityInfo(chargedArrowCooldown, 2.4f, 3.2f));
 
         return result;
     }

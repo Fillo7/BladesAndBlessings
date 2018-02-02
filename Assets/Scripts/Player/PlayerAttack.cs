@@ -19,7 +19,8 @@ public class PlayerAttack : MonoBehaviour
     private float timer = 0.0f;
 
     private Animator animator;
-    private PlayerMovement playerMovement;
+    private PlayerHealth health;
+    private PlayerMovement movement;
     private int floorMask;
     private float cameraRayLength = 100.0f;
 
@@ -30,7 +31,8 @@ public class PlayerAttack : MonoBehaviour
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-        playerMovement = GetComponent<PlayerMovement>();
+        health = GetComponent<PlayerHealth>();
+        movement = GetComponent<PlayerMovement>();
         floorMask = LayerMask.GetMask("Floor");
 
         InitializeWeapons();
@@ -39,6 +41,11 @@ public class PlayerAttack : MonoBehaviour
     
     void Update()
     {
+        if (health.IsDead())
+        {
+            return;
+        }
+
         timer += Time.deltaTime;
         weaponSwapTimer += Time.deltaTime;
         ability1Slider.value = activeWeaponScript.GetSpecialAttack1Timer();
@@ -47,15 +54,15 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetButton("Fire1") && TimerIsReady())
         {
             attacking = true;
-            playerMovement.EnableMovement(false);
+            movement.EnableMovement(false);
 
             animator.SetTrigger("BasicAbility");
             attackCommand = AttackCommand.Basic;
             attackTarget = GetCursorWorldPosition();
             ResetTimer();
 
-            Invoke("FinishAttack", activeAbilityInfo[0].GetAnimationDelay());
-            Invoke("ResetAttacking", activeAbilityInfo[0].GetAnimationDuration());
+            Invoke("PrepareAttack", activeAbilityInfo[0].GetAnimationDelay());
+            Invoke("ResetAttack", activeAbilityInfo[0].GetAnimationDuration());
         }
 
         if (Input.GetButton("Fire2") && TimerIsReady())
@@ -66,15 +73,15 @@ public class PlayerAttack : MonoBehaviour
             }
 
             attacking = true;
-            playerMovement.EnableMovement(false);
+            movement.EnableMovement(false);
 
             animator.SetTrigger("SpecialAbility1");
             attackCommand = AttackCommand.Special1;
             attackTarget = GetCursorWorldPosition();
             ResetTimer();
 
-            Invoke("FinishAttack", activeAbilityInfo[1].GetAnimationDelay());
-            Invoke("ResetAttacking", activeAbilityInfo[1].GetAnimationDuration());
+            Invoke("PrepareAttack", activeAbilityInfo[1].GetAnimationDelay());
+            Invoke("ResetAttack", activeAbilityInfo[1].GetAnimationDuration());
         }
 
         if (Input.GetButton("Fire3") && TimerIsReady())
@@ -85,15 +92,15 @@ public class PlayerAttack : MonoBehaviour
             }
 
             attacking = true;
-            playerMovement.EnableMovement(false);
+            movement.EnableMovement(false);
 
             animator.SetTrigger("SpecialAbility2");
             attackCommand = AttackCommand.Special2;
             attackTarget = GetCursorWorldPosition();
             ResetTimer();
 
-            Invoke("FinishAttack", activeAbilityInfo[2].GetAnimationDelay());
-            Invoke("ResetAttacking", activeAbilityInfo[2].GetAnimationDuration());
+            Invoke("PrepareAttack", activeAbilityInfo[2].GetAnimationDelay());
+            Invoke("ResetAttack", activeAbilityInfo[2].GetAnimationDuration());
         }
 
         if (Input.GetButton("SwapWeapon") && TimerIsReady())
@@ -119,14 +126,14 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private void FinishAttack()
+    private void PrepareAttack()
     {
         Attack(attackCommand, attackTarget);
     }
 
-    private void ResetAttacking()
+    private void ResetAttack()
     {
-        playerMovement.EnableMovement(true);
+        movement.EnableMovement(true);
         attacking = false;
     }
 

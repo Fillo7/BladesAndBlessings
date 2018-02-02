@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float speed = 6.0f;
     private float currentSpeed;
 
     private Vector3 direction;
@@ -12,12 +12,14 @@ public class PlayerMovement : MonoBehaviour
     private bool moving = false;
     private bool turningLeft = false;
 
+    private PlayerHealth health;
     private Rigidbody playerRigidbody;
     private Animator animator;
     private LinkedList<MovementEffect> movementEffects = new LinkedList<MovementEffect>();
 
     void Awake()
     {
+        health = GetComponent<PlayerHealth>();
         playerRigidbody = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
         currentSpeed = speed;
@@ -30,6 +32,11 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (health.IsDead())
+        {
+            return;
+        }
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 

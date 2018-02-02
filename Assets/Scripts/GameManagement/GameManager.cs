@@ -35,7 +35,8 @@ public class GameManager : MonoBehaviour
 
         if (playerHealth.IsDead())
         {
-            TriggerGameOver();
+            gameOver = true;
+            Invoke("TriggerGameOver", 5.0f);
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && !gameOver)
@@ -86,7 +87,6 @@ public class GameManager : MonoBehaviour
     {
         menuController.GoToGameOverPanel();
         TogglePause();
-        gameOver = true;
     }
 
     public void TriggerVictory()
