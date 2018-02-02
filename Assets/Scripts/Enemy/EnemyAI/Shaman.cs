@@ -176,7 +176,7 @@ public class Shaman : MonoBehaviour
             }
 
             EnemyHealth health = ally.GetComponent<EnemyHealth>();
-            if (Vector3.Distance(transform.position, ally.transform.position) < maximumRange && !health.IsDead() && health.GetCurrentHealth() < health.GetBaseHealth())
+            if (Vector3.Distance(transform.position, ally.transform.position) < maximumRange && !health.IsDead() && health.GetCurrentHealth() < health.GetHealth())
             {
                 return ally;
             }

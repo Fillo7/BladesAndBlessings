@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Sword : Weapon
 {
+    [SerializeField] private AnimatorOverrideController animatorController;
+
     private int baseDamage = 25;
 
     private int maxHitCount = 0;
@@ -130,6 +132,11 @@ public class Sword : Weapon
         {
             ResetBlocking();
         }
+    }
+
+    public override AnimatorOverrideController GetAnimatorController()
+    {
+        return animatorController;
     }
 
     private void ResetBlocking()

@@ -2,6 +2,7 @@
 
 public class Bow : Weapon
 {
+    [SerializeField] private AnimatorOverrideController animatorController;
     [SerializeField] private GameObject arrow;
     [SerializeField] private GameObject chargedArrow;
     private PlayerMovement playerMovement;
@@ -27,7 +28,9 @@ public class Bow : Weapon
     }
 
     public override void DoBasicAttack(Vector3 targetPosition)
-    {}
+    {
+        SpawnArrow();
+    }
 
     public override void DoSpecialAttack1(Vector3 targetPosition)
     {
@@ -36,6 +39,7 @@ public class Bow : Weapon
             return;
         }
 
+        SpawnArrowFan();
         arrowFanTimer = 0.0f;
     }
 
@@ -56,6 +60,7 @@ public class Bow : Weapon
             return;
         }
 
+        SpawnChargedArrow();
         chargedArrowTimer = 0.0f;
     }
 
@@ -78,21 +83,26 @@ public class Bow : Weapon
     public override void OnWeaponSwap()
     {}
 
+    public override AnimatorOverrideController GetAnimatorController()
+    {
+        return animatorController;
+    }
+
     public void SpawnArrow()
     {
-        GameObject movingArrow = Instantiate(arrow, transform.position + transform.forward,
+        GameObject movingArrow = Instantiate(arrow, playerMovement.transform.position + playerMovement.transform.forward + playerMovement.transform.up,
             Quaternion.LookRotation(playerMovement.transform.forward, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f)) as GameObject;
         Arrow script = movingArrow.GetComponent<Arrow>();
         script.SetDamage(baseDamage);
         script.SetSpeed(arrowSpeed);
-        script.SetDirection(transform.forward);
+        script.SetDirection(playerMovement.transform.forward);
     }
 
     public void SpawnArrowFan()
     {
         for (int i = -2; i < 3; i++)
         {
-            GameObject movingArrow = Instantiate(arrow, transform.position + transform.forward,
+            GameObject movingArrow = Instantiate(arrow, playerMovement.transform.position + playerMovement.transform.forward + playerMovement.transform.up,
                 Quaternion.LookRotation(playerMovement.transform.forward, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f) * Quaternion.Euler(i * 25.0f, 0.0f, 0.0f)) as GameObject;
             Arrow script = movingArrow.GetComponent<Arrow>();
             script.SetDamage(baseDamage);
@@ -103,11 +113,11 @@ public class Bow : Weapon
 
     public void SpawnChargedArrow()
     {
-        GameObject movingArrow = Instantiate(chargedArrow, transform.position + transform.forward,
+        GameObject movingArrow = Instantiate(chargedArrow, playerMovement.transform.position + playerMovement.transform.forward + playerMovement.transform.up,
             Quaternion.LookRotation(playerMovement.transform.forward, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f)) as GameObject;
         ArrowCharged script = movingArrow.GetComponent<ArrowCharged>();
         script.SetDamage(baseDamage * 2);
         script.SetSpeed(arrowSpeed * 1.5f);
-        script.SetDirection(transform.forward);
+        script.SetDirection(playerMovement.transform.forward);
     }
 }

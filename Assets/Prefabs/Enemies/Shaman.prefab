@@ -243,9 +243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59727135eaa264d43b7a9b42eeaa2c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireball: {fileID: 1451718245620104, guid: b974e1874a2ddfa4597a4bbfab3729e3, type: 2}
+  fireball: {fileID: 1736437554949028, guid: a613f3f4ecc2fb242a3dfb2c4d84fa5c, type: 2}
   fireballDamage: 20
-  healingball: {fileID: 1356909798350856, guid: 746280c614dcdfe45a7b6d8ad8656e89,
+  healingball: {fileID: 1935773273563364, guid: 68ca62f8a5416ba458eeefcb86a3b539,
     type: 2}
   healingballHeal: 40
   movementSpeed: 3
@@ -263,8 +263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9432573446433b429a7d62bcf4e7934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 100
-  currentHealth: 0
+  deathDestroyDelay: 3
+  health: 100
 --- !u!136 &136776137066008122
 CapsuleCollider:
   m_ObjectHideFlags: 1

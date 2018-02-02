@@ -22,6 +22,9 @@ public class PlayerAttack : MonoBehaviour
     private int floorMask;
     private float cameraRayLength = 100.0f;
 
+    private AttackCommand attackCommand = AttackCommand.Basic;
+    private Vector3 attackTarget = Vector3.zero;
+
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -43,23 +46,36 @@ public class PlayerAttack : MonoBehaviour
         {
             playerMovement.EnableMovement(false);
 
-            animator.SetTrigger("BasicAttack");
-            Attack(AttackCommand.Basic, GetCursorWorldPosition());
+            animator.SetTrigger("BasicAbility");
+            attackCommand = AttackCommand.Basic;
+            attackTarget = GetCursorWorldPosition();
             ResetTimer();
 
-            Invoke("EnableMovement", 1.2f);
+            Invoke("FinishAttack", 1.0f);
         }
 
         if (Input.GetButton("Fire2") && TimerIsReady())
         {
-            Attack(AttackCommand.Special1, GetCursorWorldPosition());
+            playerMovement.EnableMovement(false);
+
+            animator.SetTrigger("SpecialAbility1");
+            attackCommand = AttackCommand.Special1;
+            attackTarget = GetCursorWorldPosition();
             ResetTimer();
+
+            Invoke("FinishAttack", 1.0f);
         }
 
         if (Input.GetButton("Fire3") && TimerIsReady())
         {
-            Attack(AttackCommand.Special2, GetCursorWorldPosition());
+            playerMovement.EnableMovement(false);
+
+            animator.SetTrigger("SpecialAbility2");
+            attackCommand = AttackCommand.Special2;
+            attackTarget = GetCursorWorldPosition();
             ResetTimer();
+
+            Invoke("FinishAttack", 1.0f);
         }
 
         if (Input.GetButton("SwapWeapon") && TimerIsReady())
@@ -85,8 +101,9 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private void EnableMovement()
+    private void FinishAttack()
     {
+        Attack(attackCommand, attackTarget);
         playerMovement.EnableMovement(true);
     }
 
@@ -117,6 +134,7 @@ public class PlayerAttack : MonoBehaviour
         activeWeaponScript = activeWeapon.GetComponentInChildren<Weapon>();
         activeWeaponScript.AdjustCooldowns(weaponSwapTimer);
         weaponSwapTimer = 0.0f;
+        animator.runtimeAnimatorController = activeWeaponScript.GetAnimatorController();
         InitializeCooldownSliders();
         freezeAttack = false;
     }

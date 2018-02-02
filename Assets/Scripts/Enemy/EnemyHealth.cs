@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private int baseHealth = 50;
-    [SerializeField] private int currentHealth;
+    [SerializeField] private float deathDestroyDelay = 3.0f;
+    [SerializeField] private int health = 50;
+    private int currentHealth;
 
     private Animator animator;
+    private Collider enemyCollider;
+
     private bool dead = false;
     private LinkedList<DotEffect> dotEffects = new LinkedList<DotEffect>();
 
     void Awake()
     {
-        currentHealth = baseHealth;
         animator = GetComponentInChildren<Animator>();
+        enemyCollider = GetComponent<Collider>();
+
+        currentHealth = health;
     }
 
     void Update()
@@ -27,9 +32,9 @@ public class EnemyHealth : MonoBehaviour
         return Math.Max(0, currentHealth);
     }
 
-    public int GetBaseHealth()
+    public int GetHealth()
     {
-        return baseHealth;
+        return health;
     }
 
     public bool IsDead()
@@ -47,14 +52,14 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    public void Heal(int amount)
+    public void Heal(float amount)
     {
         if (dead)
         {
             return;
         }
 
-        int healAmount = Math.Min(amount, baseHealth - currentHealth);
+        int healAmount = Math.Min((int)amount, health - currentHealth);
         currentHealth += healAmount;
     }
 
@@ -72,7 +77,12 @@ public class EnemyHealth : MonoBehaviour
             animator.SetTrigger("Death");
         }
         
-        Destroy(gameObject, 2.0f);
+        if (enemyCollider != null)
+        {
+            enemyCollider.enabled = false;
+        }
+
+        Destroy(gameObject, deathDestroyDelay);
     }
 
     private void ProcessDotEffects()

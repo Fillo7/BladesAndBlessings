@@ -35,7 +35,7 @@ public class EnemyWave : MonoBehaviour
 
                 if (enemy != null)
                 {
-                    waveHealth += enemy.GetComponent<EnemyHealth>().GetBaseHealth();
+                    waveHealth += enemy.GetComponent<EnemyHealth>().GetHealth();
                 }
             }
             else
@@ -62,7 +62,7 @@ public class EnemyWave : MonoBehaviour
 
             if (enemy != null)
             {
-                waveHealth += enemy.GetComponent<EnemyHealth>().GetBaseHealth();
+                waveHealth += enemy.GetComponent<EnemyHealth>().GetHealth();
             }
         }
 
