@@ -10,11 +10,9 @@ public class Sword : Weapon
     private int maxHitCount = 0;
     private float damageToDeal = 0;
 
-    private float activeBlockTimer = 3.1f;
-    private float activeBlockMax = 3.0f;
-    private bool blocking = false;
-    private float blockTimer = 5.0f;
-    private float blockCooldown = 5.0f;
+    private bool blocking = true;
+    private float blockTimer = 2.5f;
+    private float blockCooldown = 2.5f;
 
     private List<GameObject> slashedEnemies = new List<GameObject>();
     private bool slashing = false;
@@ -25,16 +23,6 @@ public class Sword : Weapon
     {
         blockTimer += Time.deltaTime;
         slashTimer += Time.deltaTime;
-
-        if (blocking)
-        {
-            activeBlockTimer += Time.deltaTime;
-
-            if (activeBlockTimer > activeBlockMax)
-            {
-                ResetBlocking();
-            }
-        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -79,8 +67,9 @@ public class Sword : Weapon
             return;
         }
 
-        activeBlockTimer = 0.0f;
         blocking = true;
+        blockTimer = 0.0f;
+        Invoke("ResetBlocking", 0.5f);
     }
 
     public override float GetSpecialAttack1Timer()
@@ -102,7 +91,10 @@ public class Sword : Weapon
 
         maxHitCount = 5;
         damageToDeal = baseDamage * 1.75f;
+        slashing = true;
         slashTimer = 0.0f;
+
+        Invoke("ClearSlash", 2.1f);
     }
 
     public override float GetSpecialAttack2Timer()
@@ -118,17 +110,13 @@ public class Sword : Weapon
 
     public override void OnWeaponSwap()
     {
-        if (blocking)
-        {
-            ResetBlocking();
-        }
     }
 
     public override List<AbilityInfo> GetAbilityInfo()
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
-        result.Add(new AbilityInfo(0.0f, 0.0f, 1.28f));
-        result.Add(new AbilityInfo(blockCooldown, 0.0f, 0.47f));
+        result.Add(new AbilityInfo(0.0f, 0.0f, 1.3f));
+        result.Add(new AbilityInfo(blockCooldown, 0.0f, 0.5f));
         result.Add(new AbilityInfo(slashCooldown, 0.0f, 2.1f));
 
         return result;
@@ -142,8 +130,6 @@ public class Sword : Weapon
     private void ResetBlocking()
     {
         blocking = false;
-        activeBlockTimer = activeBlockMax + 0.1f;
-        blockTimer = 0.0f;
     }
 
     private void HandleBlock(Collider other)
@@ -162,11 +148,6 @@ public class Sword : Weapon
                 weapon.OnAttackBlock();
             }
         }
-    }
-
-    private void SetSlash()
-    {
-        slashing = true;
     }
 
     private void ClearSlash()

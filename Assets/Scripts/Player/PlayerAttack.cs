@@ -159,6 +159,7 @@ public class PlayerAttack : MonoBehaviour
         activeAbilityInfo = activeWeaponScript.GetAbilityInfo();
         weaponSwapTimer = 0.0f;
         animator.runtimeAnimatorController = activeWeaponScript.GetAnimatorController();
+        animator.Rebind();
         InitializeCooldownSliders();
         freezeAttack = false;
     }
