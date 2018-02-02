@@ -31,6 +31,7 @@ ModelImporter:
     100046: mixamorig:Spine1
     100048: mixamorig:Spine2
     100050: //RootNode
+    100052: Player
     400000: mixamorig:Head
     400002: mixamorig:HeadTop_End
     400004: mixamorig:Hips
@@ -57,9 +58,17 @@ ModelImporter:
     400046: mixamorig:Spine1
     400048: mixamorig:Spine2
     400050: //RootNode
+    400052: Player
+    4300000: Player
     7400000: mixamo.com
     9500000: //RootNode
-  externalObjects: {}
+    13700000: Player
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palettemat
+    second: {fileID: 2100000, guid: 7f3908a894ece6f4d8f9039b20e4a831, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
