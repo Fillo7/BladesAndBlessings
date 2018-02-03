@@ -5,10 +5,10 @@ AnimatorOverrideController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ArrowThrower
+  m_Name: SimpleEnemyEgg
   m_Controller: {fileID: 9100000, guid: 884dcc49ba9efae4fa5eb834fa6f6aec, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: ab25a7a02b314464f8192598db2d1bb1, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 806e692c478523f48b56af3afdddd1de, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 73bbdc3846463eb429b0d434f400e927, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 3c33765ce037fd7409317c917c1c585a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a910c277a37605941aef3cbb4799578d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ab25a7a02b314464f8192598db2d1bb1, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6879bab9f23684c4791a4797769b4976, type: 2}

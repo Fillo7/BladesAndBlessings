@@ -43,18 +43,18 @@ public class Hatchling : MonoBehaviour {
 
 		if (Vector3.Distance(transform.position, player.position) < attackRange)
 		{
-            navigator.speed = 0.05f;
+			navigator.speed = 0.05f;
 
-            if (attackTimer > attackCooldown)
-            {
-                playerHealth.TakeDamage(damage);
-                attackTimer = 0.0f;
-            }
+			if (attackTimer > attackCooldown)
+			{
+				playerHealth.TakeDamage(damage);
+				attackTimer = 0.0f;
+			}
 		}
-        else
-        {
-            navigator.speed = movementSpeed;
-        }
+		else
+		{
+			navigator.speed = movementSpeed;
+		}
 
 		if (navigator.enabled)
 		{

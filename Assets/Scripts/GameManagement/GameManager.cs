@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private MenuController menuController;
     private PlayerHealth playerHealth;
 
+    private float waveSpawnDelay = 2.0f;
     private bool gameOver = false;
     private bool victory = false;
 
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour
 
         if (!waveManager.IsFirstWaveSpawned())
         {
-            waveManager.SpawnNextWave(2.0f);
+            waveManager.SpawnNextWave(waveSpawnDelay);
         }
 
         if (waveManager.IsCurrentWaveDefeated())
@@ -58,9 +59,14 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                waveManager.SpawnNextWave(2.0f);
+                waveManager.SpawnNextWave(waveSpawnDelay);
             }
         }
+    }
+    
+    public void RestartLevel()
+    {
+        LoadLevel(SceneManager.GetActiveScene().name);
     }
 
     public void LoadLevel(string levelName)

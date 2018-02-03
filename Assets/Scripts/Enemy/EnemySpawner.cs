@@ -14,17 +14,29 @@ public class EnemySpawner : MonoBehaviour {
 	//Enemy to spawn
 	public GameObject enemy = null;
 
-	float time = 0.0f;
+	private float timer = 0.0f;
+
+	private EnemyHealth health;
+
+	void Awake()
+	{
+		health = GetComponent<EnemyHealth>();
+	}
 
 	void Update () {
 
-		time += Time.deltaTime;
+		if (health.IsDead())
+		{
+			return;
+		}
 
-		if ((time > spawnTime) && (numberOfCharges > 0)) {
+		timer += Time.deltaTime;
 
-			time -= spawnTime;
+		if ((timer > spawnTime) && (numberOfCharges > 0)) {
 
-			spawnEnemy ();
+			timer -= spawnTime;
+
+			SpawnEnemy ();
 
 			numberOfCharges -= 1;
 
@@ -38,7 +50,7 @@ public class EnemySpawner : MonoBehaviour {
 
 	}
 
-	void spawnEnemy() {
+	void SpawnEnemy() {
 
 		Instantiate(enemy, gameObject.transform.position, gameObject.transform.rotation);
 
