@@ -995,7 +995,7 @@ MonoBehaviour:
   hurtClip: {fileID: 8300000, guid: 3d6762d08c8654443a525ce47c950a85, type: 3}
   deathClip: {fileID: 8300000, guid: a9abf8ad04e8cb64bbe505cc2f9c190b, type: 3}
   deathDestroyDelay: 5
-  health: 135
+  health: 120
 --- !u!136 &136892184696630654
 CapsuleCollider:
   m_ObjectHideFlags: 1

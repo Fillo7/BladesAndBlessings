@@ -12,6 +12,11 @@ public class PlayerMovement : MonoBehaviour
     private bool moving = false;
     private bool turningLeft = false;
 
+    private Vector3 turningDirection;
+    private bool automaticTurningEnabled = false;
+    private float automaticTurningTimer = 0.0f;
+    private float automaticTurningMaximum = 0.0f;
+
     private PlayerHealth health;
     private Rigidbody playerRigidbody;
     private Animator animator;
@@ -40,7 +45,20 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-        Move(horizontal, vertical);
+        if (!automaticTurningEnabled)
+        {
+            Move(horizontal, vertical);
+        }
+        else
+        {
+            automaticTurningTimer += Time.deltaTime;
+            TurnTowardsDirectionAutomatic();
+
+            if (automaticTurningTimer > automaticTurningMaximum)
+            {
+                automaticTurningEnabled = false;
+            }
+        }
     }
 
     public bool IsMoving()
@@ -59,6 +77,14 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("TurningLeft", false);
             animator.SetBool("TurningRight", false);
         }
+    }
+
+    public void TurnTowardsDirection(Vector3 direction, float maximumTurningDuration)
+    {
+        turningDirection = direction;
+        automaticTurningTimer = 0.0f;
+        automaticTurningMaximum = maximumTurningDuration;
+        automaticTurningEnabled = true;
     }
 
     public void ApplyMovementEffect(float duration, float speedMultiplier)
@@ -113,6 +139,13 @@ public class PlayerMovement : MonoBehaviour
         direction.Set(horizontal, 0.0f, vertical);
         direction = direction.normalized * currentSpeed * Time.deltaTime;
         playerRigidbody.MovePosition(transform.position + direction);
+    }
+
+    private void TurnTowardsDirectionAutomatic()
+    {
+        Quaternion lookRotation = Quaternion.LookRotation(turningDirection - transform.position);
+        lookRotation = Quaternion.Euler(0.0f, lookRotation.eulerAngles.y, 0.0f);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, 150.0f * Time.deltaTime);
     }
 
     private bool TurnTowardsDirection(float horizontal, float vertical)

@@ -217,8 +217,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9432573446433b429a7d62bcf4e7934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtClip: {fileID: 0}
+  deathClip: {fileID: 0}
   deathDestroyDelay: 3
-  health: 160
+  health: 150
 --- !u!135 &135545387666494894
 SphereCollider:
   m_ObjectHideFlags: 1

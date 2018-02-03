@@ -17,6 +17,8 @@ public abstract class Weapon : MonoBehaviour
 
     public abstract void OnWeaponSwap();
 
+    public abstract WeaponType GetWeaponType();
+
     public abstract List<AbilityInfo> GetAbilityInfo();
 
     public abstract AnimatorOverrideController GetAnimatorController();

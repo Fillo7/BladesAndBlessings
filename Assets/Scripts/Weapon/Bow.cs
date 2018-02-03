@@ -74,6 +74,11 @@ public class Bow : Weapon
     public override void OnWeaponSwap()
     {}
 
+    public override WeaponType GetWeaponType()
+    {
+        return WeaponType.Ranged;
+    }
+
     public override List<AbilityInfo> GetAbilityInfo()
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
@@ -91,7 +96,7 @@ public class Bow : Weapon
 
     public void SpawnArrow()
     {
-        GameObject movingArrow = Instantiate(arrow, playerMovement.transform.position + playerMovement.transform.forward * 0.7f + playerMovement.transform.up * 1.5f,
+        GameObject movingArrow = Instantiate(arrow, playerMovement.transform.position + playerMovement.transform.forward * 0.7f + playerMovement.transform.up * 1.1f,
             Quaternion.LookRotation(playerMovement.transform.forward, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f)) as GameObject;
         Arrow script = movingArrow.GetComponent<Arrow>();
         script.SetDamage(baseDamage);
@@ -103,7 +108,7 @@ public class Bow : Weapon
     {
         for (int i = -2; i < 3; i++)
         {
-            GameObject movingArrow = Instantiate(arrow, playerMovement.transform.position + playerMovement.transform.forward * 0.7f + playerMovement.transform.up * 1.5f,
+            GameObject movingArrow = Instantiate(arrow, playerMovement.transform.position + playerMovement.transform.forward * 0.7f + playerMovement.transform.up * 1.1f,
                 Quaternion.LookRotation(playerMovement.transform.forward, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f) * Quaternion.Euler(i * 25.0f, 0.0f, 0.0f)) as GameObject;
 
             if (playerMovement.transform.forward == Vector3.right || playerMovement.transform.forward == Vector3.left)
@@ -120,7 +125,7 @@ public class Bow : Weapon
 
     public void SpawnChargedArrow()
     {
-        GameObject movingArrow = Instantiate(chargedArrow, playerMovement.transform.position + playerMovement.transform.forward * 0.7f + playerMovement.transform.up * 1.5f,
+        GameObject movingArrow = Instantiate(chargedArrow, playerMovement.transform.position + playerMovement.transform.forward * 0.7f + playerMovement.transform.up * 1.1f,
             Quaternion.LookRotation(playerMovement.transform.forward, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f)) as GameObject;
         ArrowCharged script = movingArrow.GetComponent<ArrowCharged>();
         script.SetDamage(baseDamage * 2);

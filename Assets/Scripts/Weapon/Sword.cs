@@ -126,6 +126,11 @@ public class Sword : Weapon
         }
     }
 
+    public override WeaponType GetWeaponType()
+    {
+        return WeaponType.Melee;
+    }
+
     public override List<AbilityInfo> GetAbilityInfo()
     {
         List<AbilityInfo> result = new List<AbilityInfo>();

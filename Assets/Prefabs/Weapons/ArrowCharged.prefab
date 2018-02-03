@@ -157,7 +157,7 @@ MonoBehaviour:
   timeToLive: 15
   owner: 0
   damage: 40
-  chargeCount: 5
+  chargeCount: 10
 --- !u!136 &136541427550151006
 CapsuleCollider:
   m_ObjectHideFlags: 1

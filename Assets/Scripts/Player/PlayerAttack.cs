@@ -59,6 +59,10 @@ public class PlayerAttack : MonoBehaviour
             animator.SetTrigger("BasicAbility");
             attackCommand = AttackCommand.Basic;
             attackTarget = GetCursorWorldPosition();
+            if (activeWeaponScript.GetWeaponType() == WeaponType.Ranged)
+            {
+                movement.TurnTowardsDirection(attackTarget, activeAbilityInfo[0].GetAnimationDuration());
+            }
             ResetTimer();
 
             Invoke("PrepareAttack", activeAbilityInfo[0].GetAnimationDelay());
@@ -78,6 +82,10 @@ public class PlayerAttack : MonoBehaviour
             animator.SetTrigger("SpecialAbility1");
             attackCommand = AttackCommand.Special1;
             attackTarget = GetCursorWorldPosition();
+            if (activeWeaponScript.GetWeaponType() == WeaponType.Ranged)
+            {
+                movement.TurnTowardsDirection(attackTarget, activeAbilityInfo[1].GetAnimationDuration());
+            }
             ResetTimer();
 
             Invoke("PrepareAttack", activeAbilityInfo[1].GetAnimationDelay());
@@ -97,6 +105,10 @@ public class PlayerAttack : MonoBehaviour
             animator.SetTrigger("SpecialAbility2");
             attackCommand = AttackCommand.Special2;
             attackTarget = GetCursorWorldPosition();
+            if (activeWeaponScript.GetWeaponType() == WeaponType.Ranged)
+            {
+                movement.TurnTowardsDirection(attackTarget, activeAbilityInfo[2].GetAnimationDuration());
+            }
             ResetTimer();
 
             Invoke("PrepareAttack", activeAbilityInfo[2].GetAnimationDelay());
