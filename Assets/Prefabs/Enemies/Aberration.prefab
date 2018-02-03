@@ -190,9 +190,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  auraRadius: 3.5
-  auraDamage: 1.5
-  tickTime: 0.2
+  auraRadius: 5
+  auraDamage: 4
+  tickTime: 0.1
 --- !u!114 &114920997038271996
 MonoBehaviour:
   m_ObjectHideFlags: 1

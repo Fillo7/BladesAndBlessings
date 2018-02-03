@@ -188,6 +188,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9432573446433b429a7d62bcf4e7934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtClip: {fileID: 0}
+  deathClip: {fileID: 0}
   deathDestroyDelay: 4
   health: 30
 --- !u!114 &114358851294670564
@@ -201,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62fddfeb5cb07934a839a1d67984df60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTime: 8
+  spawnTime: 18
   numberOfCharges: 1
   selfDestruct: 1
   enemy: {fileID: 1216003177425490, guid: 774631e6261605847918273d3a05c5b6, type: 2}
