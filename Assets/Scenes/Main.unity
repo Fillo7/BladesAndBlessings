@@ -1142,6 +1142,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114030709749642458, guid: 91faead90ce6e0a409bd67478d44883c,
+        type: 2}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 129108995}
     - target: {fileID: 114370831380632840, guid: 91faead90ce6e0a409bd67478d44883c,
         type: 2}
       propertyPath: ability1Slider
@@ -1152,11 +1157,6 @@ Prefab:
       propertyPath: ability2Slider
       value: 
       objectReference: {fileID: 1204482371}
-    - target: {fileID: 114030709749642458, guid: 91faead90ce6e0a409bd67478d44883c,
-        type: 2}
-      propertyPath: healthSlider
-      value: 
-      objectReference: {fileID: 129108995}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91faead90ce6e0a409bd67478d44883c, type: 2}
   m_IsPrefabParent: 0
