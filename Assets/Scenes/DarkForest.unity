@@ -5644,7 +5644,7 @@ Prefab:
     - target: {fileID: 114994510636983732, guid: c4187962bb86aa041a1a67d8b70b00fb,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: RestartLevel
       objectReference: {fileID: 0}
     - target: {fileID: 114994510636983732, guid: c4187962bb86aa041a1a67d8b70b00fb,
         type: 2}
@@ -5669,7 +5669,7 @@ Prefab:
     - target: {fileID: 114740564961928574, guid: c4187962bb86aa041a1a67d8b70b00fb,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: RestartLevel
       objectReference: {fileID: 0}
     - target: {fileID: 114740564961928574, guid: c4187962bb86aa041a1a67d8b70b00fb,
         type: 2}
@@ -5704,7 +5704,7 @@ Prefab:
     - target: {fileID: 114755532873637540, guid: c4187962bb86aa041a1a67d8b70b00fb,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: RestartLevel
       objectReference: {fileID: 0}
     - target: {fileID: 114755532873637540, guid: c4187962bb86aa041a1a67d8b70b00fb,
         type: 2}
