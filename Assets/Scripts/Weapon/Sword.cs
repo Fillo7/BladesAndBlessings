@@ -5,7 +5,7 @@ public class Sword : Weapon
 {
     [SerializeField] private AnimatorOverrideController animatorController;
 
-    private int baseDamage = 25;
+    private float baseDamage = 25.0f;
 
     private int maxHitCount = 0;
     private float damageToDeal = 0;
@@ -18,6 +18,16 @@ public class Sword : Weapon
     private bool slashing = false;
     private float slashTimer = 10.0f;
     private float slashCooldown = 10.0f;
+
+    void Awake()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player != null)
+        {
+            Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>());
+        }
+    }
 
     void Update()
     {
@@ -57,7 +67,7 @@ public class Sword : Weapon
         }
 
         maxHitCount = 1;
-        damageToDeal = (float)baseDamage;
+        damageToDeal = baseDamage;
     }
 
     public override void DoSpecialAttack1(Vector3 targetPosition)

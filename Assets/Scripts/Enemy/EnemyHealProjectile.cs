@@ -3,9 +3,9 @@
 public class EnemyHealProjectile : Projectile {
 
 	//for how much this object heals any enemy that is in range
-	public int heal = 0;
+	[SerializeField] private float heal = 0.0f;
 
-	public void SetHeal(int heal)
+	public void SetHeal(float heal)
 	{
 		this.heal = heal;
 	}

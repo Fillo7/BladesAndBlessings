@@ -2,7 +2,7 @@
 
 public class ArrowCharged : Projectile
 {
-    [SerializeField] private int damage = 40;
+    [SerializeField] private float damage = 40.0f;
     [SerializeField] private int chargeCount = 5;
 
     private Vector3 currentVelocity;
@@ -63,7 +63,7 @@ public class ArrowCharged : Projectile
         }
     }
 
-    public void SetDamage(int damage)
+    public void SetDamage(float damage)
     {
         this.damage = damage;
     }

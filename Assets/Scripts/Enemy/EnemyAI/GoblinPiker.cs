@@ -9,7 +9,9 @@ public class GoblinPiker : MonoBehaviour
 
     private NavMeshAgent navigator;
     private Animator animator;
+    private EnemyWeapon weapon;
 
+    [SerializeField] private float damage = 30.0f;
     [SerializeField] private float speed = 4.5f;
     [SerializeField] private float attackRange = 1.8f;
     [SerializeField] private float attackCooldown = 2.0f;
@@ -24,6 +26,8 @@ public class GoblinPiker : MonoBehaviour
         navigator = GetComponent<NavMeshAgent>();
         navigator.speed = speed;
         animator = GetComponentInChildren<Animator>();
+        weapon = GetComponentInChildren<EnemyWeapon>();
+        weapon.Initialize(animator, enemyHealth, damage);
     }
 
     void Update()
@@ -77,6 +81,7 @@ public class GoblinPiker : MonoBehaviour
     private void Attack()
     {
         attacking = true;
+        weapon.SetMaxHitCount(1);
         animator.SetTrigger("Attack");
         Invoke("ResetAttack", 2.0f);
     }

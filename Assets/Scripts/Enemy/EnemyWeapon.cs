@@ -2,48 +2,55 @@
 
 public class EnemyWeapon : MonoBehaviour
 {
-    [SerializeField] private Animator enemyAnimator;
-    [SerializeField] private EnemyHealth health;
-    [SerializeField] private int damage = 30;
+    private Animator animator;
+    private EnemyHealth health;
 
-    private bool attackBlocked = false;
-    private float attackBlockedTimer = 0.0f;
-    private float attackBlockedThreshold = 1.5f;
-
-    void Update()
-    {
-        if (attackBlocked)
-        {
-            attackBlockedTimer += Time.deltaTime;
-
-            if (attackBlockedTimer > attackBlockedThreshold)
-            {
-                attackBlocked = false;
-                attackBlockedTimer = 0.0f;
-            }
-        }
-    }
+    private float damage = 30.0f;
+    private int maxHitCount = 0;
 
     void OnTriggerEnter(Collider other)
     {
-        if (!other.tag.Equals("Player") || attackBlocked)
+        if (!other.tag.Equals("Player") || maxHitCount <= 0)
         {
             return;
         }
 
+        maxHitCount--;
         PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
         playerHealth.TakeDamage(damage);
     }
 
     public void OnAttackBlock()
     {
-        attackBlocked = true;
-        enemyAnimator.SetTrigger("Blocked");
-        health.TakeDamage(damage * 1.5f);
+        maxHitCount--;
+        animator.SetTrigger("Blocked");
+        health.TakeDamage(damage * 1.25f);
     }
 
-    public void SetDamage(int damage)
+    public void Initialize(Animator animator, EnemyHealth health, float damage)
+    {
+        SetEnemyAnimator(animator);
+        SetEnemyHealth(health);
+        SetDamage(damage);
+    }
+
+    public void SetEnemyAnimator(Animator animator)
+    {
+        this.animator = animator;
+    }
+
+    public void SetEnemyHealth(EnemyHealth health)
+    {
+        this.health = health;
+    }
+
+    public void SetDamage(float damage)
     {
         this.damage = damage;
+    }
+
+    public void SetMaxHitCount(int count)
+    {
+        maxHitCount = count;
     }
 }

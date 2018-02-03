@@ -10,9 +10,9 @@ public class Shaman : MonoBehaviour
     private EnemyHealth enemyHealth;
 
     [SerializeField] private GameObject fireball;
-    [SerializeField] private int fireballDamage = 50;
+    [SerializeField] private float fireballDamage = 50.0f;
     [SerializeField] private GameObject healingball;
-    [SerializeField] private int healingballHeal = 40;
+    [SerializeField] private float healingballHeal = 40.0f;
 
     [SerializeField] private float movementSpeed = 3.0f;
 
@@ -20,7 +20,7 @@ public class Shaman : MonoBehaviour
 
     [SerializeField] private float maximumDistance = 16.0f;
 
-    [SerializeField] private float attackCooldown = 3.5f;
+    [SerializeField] private float attackCooldown = 3.0f;
     private float attackTimer = 0.0f;
 
     private bool isRelocating = true;
@@ -79,7 +79,7 @@ public class Shaman : MonoBehaviour
             isRelocating = true;	
             navigator.enabled = true;
 
-            Vector3 fleeDirection = -(turningTarget.position - transform.position);
+            Vector3 fleeDirection = -(player.position - transform.position);
             navigator.SetDestination(fleeDirection.normalized * 15f);
         }
 

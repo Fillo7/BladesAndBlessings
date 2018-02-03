@@ -2,7 +2,7 @@
 
 public class Arrow : Projectile
 {
-    [SerializeField] private int damage = 20;
+    [SerializeField] private float damage = 20.0f;
 
     void OnTriggerEnter(Collider other)
     {
@@ -35,7 +35,7 @@ public class Arrow : Projectile
         Destroy(gameObject);
     }
 
-    public void SetDamage(int damage)
+    public void SetDamage(float damage)
     {
         this.damage = damage;
     }

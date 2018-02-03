@@ -7,7 +7,7 @@ public class Bow : Weapon
     [SerializeField] private GameObject arrow;
     [SerializeField] private GameObject chargedArrow;
     private PlayerMovement playerMovement;
-    private int baseDamage = 20;
+    private float baseDamage = 20.0f;
 
     private float arrowSpeed = 20.0f;
 
