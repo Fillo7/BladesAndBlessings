@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
-public class Abberation : MonoBehaviour {
+public class Aberration : MonoBehaviour {
 
 	private Transform player;
 	private PlayerHealth playerHealth;
 	private EnemyHealth enemyHealth;
 
-	private UnityEngine.AI.NavMeshAgent navigator;
+    private Animator animator;
+    private NavMeshAgent navigator;
 
-	[SerializeField] private float speed = 0.9f;
+	[SerializeField] private float speed = 1.0f;
 	[SerializeField] private float auraRadius = 3.5f;
-	[SerializeField] private int auraDamage = 1;
+	[SerializeField] private float auraDamage = 1.5f;
 	[SerializeField] private float tickTime = 0.2f;
 	private float tickTimer = 0.0f;
 
@@ -19,7 +21,9 @@ public class Abberation : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag("Player").transform;
 		playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
 		enemyHealth = GetComponent<EnemyHealth>();
-		navigator = GetComponent<UnityEngine.AI.NavMeshAgent>();
+
+        animator = GetComponentInChildren<Animator>();
+        navigator = GetComponent<NavMeshAgent>();
 		navigator.speed = speed;
 	}
 
@@ -32,6 +36,15 @@ public class Abberation : MonoBehaviour {
 			navigator.enabled = false;
 			return;
 		}
+
+        if (navigator.enabled && navigator.velocity.magnitude > 0.25f)
+        {
+            animator.SetBool("Running", true);
+        }
+        else
+        {
+            animator.SetBool("Running", false);
+        }
 
         if (IsPlayerInRange(auraRadius))
         {

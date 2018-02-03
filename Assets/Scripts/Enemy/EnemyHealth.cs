@@ -75,6 +75,20 @@ public class EnemyHealth : MonoBehaviour
             animator.SetTrigger("Death");
         }
 
+        Rigidbody body = GetComponent<Rigidbody>();
+
+        if (body != null)
+        {
+            body.isKinematic = true;
+        }
+
+        Collider enemyCollider = GetComponent<Collider>();
+
+        if (enemyCollider != null)
+        {
+            enemyCollider.enabled = false;
+        }
+
         Destroy(gameObject, deathDestroyDelay);
     }
 
