@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    [SerializeField] private AudioClip hurtClip = null;
+    [SerializeField] private AudioClip deathClip = null;
+    private AudioSource audioPlayer;
+
     [SerializeField] private float deathDestroyDelay = 3.0f;
     [SerializeField] private int health = 50;
     private int currentHealth;
@@ -15,6 +19,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Awake()
     {
+        audioPlayer = gameObject.AddComponent<AudioSource>();
         animator = GetComponentInChildren<Animator>();
 
         currentHealth = health;
@@ -43,6 +48,12 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float amount)
     {
         currentHealth -= (int)amount;
+
+        if (deathClip != null && !dead && UnityEngine.Random.Range(0, 5) >= 3)
+        {
+            audioPlayer.clip = hurtClip;
+            audioPlayer.Play();
+        }
 
         if (currentHealth <= 0 && !dead)
         {
@@ -73,6 +84,12 @@ public class EnemyHealth : MonoBehaviour
         if (animator != null)
         {
             animator.SetTrigger("Death");
+        }
+
+        if (deathClip != null)
+        {
+            audioPlayer.clip = deathClip;
+            audioPlayer.Play();
         }
 
         Rigidbody body = GetComponent<Rigidbody>();

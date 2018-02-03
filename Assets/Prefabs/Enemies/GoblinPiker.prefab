@@ -975,9 +975,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acfb8e53ecb1c304885ab30480344806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAnimator: {fileID: 95896137450991702}
-  health: {fileID: 114284964046231444}
-  damage: 35
 --- !u!114 &114284964046231444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -989,6 +986,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9432573446433b429a7d62bcf4e7934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtClip: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: 7e5b5c65d1ad9d5408c4f5e2442ebc15, type: 3}
   deathDestroyDelay: 5
   health: 120
 --- !u!114 &114540016625666908
@@ -1002,6 +1001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8c7de3d971fc144bb068644ceebaf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 30
   speed: 4.5
   attackRange: 1.8
   attackCooldown: 2

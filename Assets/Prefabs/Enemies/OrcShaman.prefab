@@ -973,6 +973,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9432573446433b429a7d62bcf4e7934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtClip: {fileID: 8300000, guid: 3d6762d08c8654443a525ce47c950a85, type: 3}
+  deathClip: {fileID: 8300000, guid: a9abf8ad04e8cb64bbe505cc2f9c190b, type: 3}
   deathDestroyDelay: 5
   health: 100
 --- !u!114 &114589867432840490

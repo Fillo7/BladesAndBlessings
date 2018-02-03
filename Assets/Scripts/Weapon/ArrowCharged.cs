@@ -3,7 +3,7 @@
 public class ArrowCharged : Projectile
 {
     [SerializeField] private float damage = 40.0f;
-    [SerializeField] private int chargeCount = 5;
+    [SerializeField] private int chargeCount = 10;
 
     private Vector3 currentVelocity;
     private Vector3 velocitySnapshot;
@@ -60,6 +60,7 @@ public class ArrowCharged : Projectile
         {
             EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
             enemyHealth.TakeDamage(damage);
+            chargeCount--;
         }
     }
 
