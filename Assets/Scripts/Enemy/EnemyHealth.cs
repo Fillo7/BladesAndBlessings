@@ -13,6 +13,7 @@ public class EnemyHealth : MonoBehaviour
     private int currentHealth;
 
     private Animator animator;
+    private ParticleSystem bloodParticles;
 
     private bool dead = false;
     private LinkedList<DotEffect> dotEffects = new LinkedList<DotEffect>();
@@ -21,6 +22,7 @@ public class EnemyHealth : MonoBehaviour
     {
         audioPlayer = gameObject.AddComponent<AudioSource>();
         animator = GetComponentInChildren<Animator>();
+        bloodParticles = GetComponentInChildren<ParticleSystem>();
 
         currentHealth = health;
     }
@@ -47,6 +49,11 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+        if (bloodParticles != null)
+        {
+            bloodParticles.Play();
+        }
+
         currentHealth -= (int)amount;
 
         if (deathClip != null && !dead && UnityEngine.Random.Range(0, 5) >= 3)
