@@ -12,8 +12,8 @@ public class Aberration : MonoBehaviour {
 
     [SerializeField] private float speed = 1.0f;
     [SerializeField] private float auraRadius = 3.5f;
-    [SerializeField] private float auraDamage = 1.5f;
-    [SerializeField] private float tickTime = 0.2f;
+    [SerializeField] private float auraDamage = 8.0f;
+    [SerializeField] private float tickTime = 0.25f;
     private float tickTimer = 0.0f;
 
     void Awake()

@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 198670733229226668}
   - component: {fileID: 199118684316448766}
   m_Layer: 0
-  m_Name: WhiteSmoke
+  m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   hurtClip: {fileID: 0}
   deathClip: {fileID: 0}
   deathDestroyDelay: 5
-  health: 125
+  health: 115
 --- !u!114 &114628560223449404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -236,9 +236,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  auraRadius: 5
-  auraDamage: 4
-  tickTime: 0.1
+  auraRadius: 3.5
+  auraDamage: 8
+  tickTime: 0.25
 --- !u!135 &135292575301494738
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -484,7 +484,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 8
+      scalar: 3
       minScalar: 1
       maxCurve:
         serializedVersion: 2

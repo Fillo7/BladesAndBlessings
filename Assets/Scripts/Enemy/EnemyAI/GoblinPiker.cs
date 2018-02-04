@@ -34,6 +34,7 @@ public class GoblinPiker : MonoBehaviour
     {
         if (enemyHealth.IsDead() || playerHealth.IsDead())
         {
+            CancelInvoke();
             navigator.enabled = false;
             return;
         }

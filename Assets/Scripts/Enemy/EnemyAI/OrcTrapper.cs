@@ -41,6 +41,7 @@ public class OrcTrapper : MonoBehaviour
     {
         if (enemyHealth.IsDead() || playerHealth.IsDead())
         {
+            CancelInvoke();
             navigator.enabled = false;
             return;
         }
