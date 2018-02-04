@@ -12,7 +12,7 @@ public class Shaman : MonoBehaviour
     [SerializeField] private GameObject fireball;
     [SerializeField] private float fireballDamage = 50.0f;
     [SerializeField] private GameObject healingball;
-    [SerializeField] private float healingballHeal = 40.0f;
+    [SerializeField] private float healingballHeal = 30.0f;
 
     [SerializeField] private float movementSpeed = 3.0f;
 
