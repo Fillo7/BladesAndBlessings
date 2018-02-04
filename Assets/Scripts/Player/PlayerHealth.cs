@@ -25,6 +25,13 @@ public class PlayerHealth : MonoBehaviour
         healthSlider.value = (float)currentHealth;
     }
 
+    public void SetBaseHealth(int amount)
+    {
+        baseHealth = amount;
+        currentHealth = baseHealth;
+        healthSlider.maxValue = baseHealth;
+    }
+
     public bool IsDead()
     {
         return dead;

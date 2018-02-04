@@ -82,6 +82,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(levelName);
     }
 
+    public void TogglePauseAndIncreaseHealth()
+    {
+        playerHealth.SetBaseHealth(800);
+        TogglePause();
+    }
+
     public void TogglePause()
     {
         menuCanvas.enabled = !menuCanvas.enabled;
