@@ -1,0 +1,10 @@
+Príspevky členov tímu
+
+Marek Nedbal - tvorba levelu, tvorba a programovanie nepriateľov, úprava štatistík nepriateľov,
+hudba
+
+Simona Nemčoková - tvorba modelov, textúr a animácií, práca na osvetlení a zvukových efektoch,
+tvorba prezentácie
+
+Filip Petrovič - programovanie ovládania hráča, zbraní, projektilov, spawn systému nepriateľov,
+programovanie animácií, tvorba UI

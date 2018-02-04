@@ -100,6 +100,7 @@ public class GameManager : MonoBehaviour
         HUDCanvas.GetComponent<Animator>().SetTrigger("Victory");
         menuController.GoToVictoryPanel();
         Invoke("TogglePause", 5.0f);
+        DespawnEnemies();
         victory = true;
     }
 
@@ -110,5 +111,18 @@ public class GameManager : MonoBehaviour
         #else
             Application.Quit();
         #endif
+    }
+
+    private void DespawnEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            if (enemies[i] != null)
+            {
+                Destroy(enemies[i]);
+            }
+        }
     }
 }

@@ -20,6 +20,11 @@ public class PlayerHealth : MonoBehaviour
         healthSlider.value = currentHealth;
     }
 
+    void Update()
+    {
+        healthSlider.value = (float)currentHealth;
+    }
+
     public bool IsDead()
     {
         return dead;
@@ -29,7 +34,6 @@ public class PlayerHealth : MonoBehaviour
     {
         bloodParticles.Play();
         currentHealth -= (int)amount;
-        healthSlider.value = currentHealth;
 
         if (currentHealth <= 0 && !dead)
         {

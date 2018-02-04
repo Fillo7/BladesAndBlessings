@@ -12,8 +12,8 @@ public class Aberration : MonoBehaviour {
 
     [SerializeField] private float speed = 2.0f;
     [SerializeField] private float auraRadius = 4.0f;
-    [SerializeField] private float auraDamage = 15.0f;
-    [SerializeField] private float tickTime = 0.5f;
+    [SerializeField] private float auraDamage = 8.0f;
+    [SerializeField] private float tickTime = 0.25f;
     private float tickTimer = 0.0f;
 
     void Awake()
@@ -29,8 +29,6 @@ public class Aberration : MonoBehaviour {
 
     void Update()
     {
-        tickTimer += Time.deltaTime;
-
         if (enemyHealth.IsDead() || playerHealth.IsDead())
         {
             navigator.enabled = false;
@@ -48,6 +46,7 @@ public class Aberration : MonoBehaviour {
 
         if (IsPlayerInRange(auraRadius))
         {
+            tickTimer += Time.deltaTime;
             navigator.speed = 0.2f;
 
             if (tickTimer > tickTime)
@@ -58,6 +57,7 @@ public class Aberration : MonoBehaviour {
         }
         else
         {
+            tickTimer = 0.0f;
             navigator.speed = speed;
         }
 
