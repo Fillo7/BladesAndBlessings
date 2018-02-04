@@ -125,8 +125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lengthOfSnare: 3
-  damage: 10
-  timeToLive: 15
+  damage: 25
+  timeToLive: 30
 --- !u!135 &135291018565249020
 SphereCollider:
   m_ObjectHideFlags: 1

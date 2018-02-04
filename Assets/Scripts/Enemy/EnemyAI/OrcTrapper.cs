@@ -9,19 +9,19 @@ public class OrcTrapper : MonoBehaviour
 
     private Animator animator;
     private NavMeshAgent navigator;
-    [SerializeField] private float maximumMovementDistance = 15.0f;
+    [SerializeField] private float maximumMovementDistance = 20.0f;
 
     [SerializeField] private GameObject arrow;
     [SerializeField] private GameObject trap;
 
     [SerializeField] private int arrowDamage = 35;
-    [SerializeField] private float speed = 6.0f;
+    [SerializeField] private float speed = 6.5f;
     [SerializeField] private float movementCooldown = 3.0f;
     private float movementTimer = 3.0f;
-    [SerializeField] private float attackCooldown = 6.0f;
+    [SerializeField] private float attackCooldown = 8.0f;
     private float attackTimer = 2.0f;
-    [SerializeField] private float trapCooldown = 10.0f;
-    private float trapTimer = 5.0f;
+    [SerializeField] private float trapCooldown = 12.0f;
+    private float trapTimer = 6.0f;
 
     private bool attacking = false;
     private bool turningTowardsPlayer = false;
@@ -123,7 +123,7 @@ public class OrcTrapper : MonoBehaviour
 
     private void ResetAttack()
     {
-        attackTimer = 0.0f;
+        attackTimer = Random.Range(0.0f, 3.0f);
         attacking = false;
         turningTowardsPlayer = false;
         if (navigator.enabled)
@@ -135,7 +135,7 @@ public class OrcTrapper : MonoBehaviour
     private void SpawnTrap()
     {
         Instantiate(trap, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-        trapTimer = 0.0f;
+        trapTimer = Random.Range(0.0f, 4.0f);
     }
 
     private Vector3 GetRandomPosition(float maximumDistance)

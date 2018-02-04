@@ -6,10 +6,10 @@ public class EnemyTrap : MonoBehaviour {
 	[SerializeField] private float lengthOfSnare = 3.0f;
 
 	//how much damage deals the trap to the player when he steps on it
-	[SerializeField] private int damage = 10;
+	[SerializeField] private int damage = 25;
 
 	//how long (in seconds) will the trap exist until it despawns
-	[SerializeField] private float timeToLive = 15.0f;
+	[SerializeField] private float timeToLive = 30.0f;
 
 	void Update () {
 

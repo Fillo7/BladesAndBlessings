@@ -10,10 +10,10 @@ public class Aberration : MonoBehaviour {
     private Animator animator;
     private NavMeshAgent navigator;
 
-    [SerializeField] private float speed = 1.0f;
-    [SerializeField] private float auraRadius = 3.5f;
-    [SerializeField] private float auraDamage = 8.0f;
-    [SerializeField] private float tickTime = 0.25f;
+    [SerializeField] private float speed = 2.0f;
+    [SerializeField] private float auraRadius = 4.0f;
+    [SerializeField] private float auraDamage = 15.0f;
+    [SerializeField] private float tickTime = 0.5f;
     private float tickTimer = 0.0f;
 
     void Awake()
