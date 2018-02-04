@@ -237,8 +237,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   auraRadius: 4
-  auraDamage: 15
-  tickTime: 0.5
+  auraDamage: 8
+  tickTime: 0.25
 --- !u!135 &135292575301494738
 SphereCollider:
   m_ObjectHideFlags: 1
