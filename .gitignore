@@ -5,6 +5,7 @@
 *.sln
 *.userprefs
 
+Builds
 Library
 Temp
 obj
