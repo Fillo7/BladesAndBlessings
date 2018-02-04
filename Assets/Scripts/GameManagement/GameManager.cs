@@ -23,8 +23,8 @@ public class GameManager : MonoBehaviour
         menuController = menuCanvas.GetComponent<MenuController>();
         menuCanvas.enabled = false;
 
-        // Enable following line for final build
-        // TogglePause();
+        // Comment following line to disable welcome message
+        TogglePause();
     }
 
     void Update()

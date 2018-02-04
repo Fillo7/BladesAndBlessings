@@ -10,10 +10,7 @@ public class MenuController : MonoBehaviour
 
     void Awake()
     {
-        GoToMenuPanel();
-
-        // Enable following line for final build
-        // GoToWelcomePanel();
+        GoToWelcomePanel();
     }
 
     public void GoToWelcomePanel()
