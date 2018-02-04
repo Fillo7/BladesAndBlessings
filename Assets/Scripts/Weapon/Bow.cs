@@ -7,7 +7,7 @@ public class Bow : Weapon
     [SerializeField] private GameObject arrow;
     [SerializeField] private GameObject chargedArrow;
     private PlayerMovement playerMovement;
-    private float baseDamage = 20.0f;
+    private float baseDamage = 15.0f;
 
     private float arrowSpeed = 20.0f;
 
@@ -82,9 +82,9 @@ public class Bow : Weapon
     public override List<AbilityInfo> GetAbilityInfo()
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
-        result.Add(new AbilityInfo(0.0f, 2.4f, 3.2f));
-        result.Add(new AbilityInfo(arrowFanCooldown, 2.4f, 3.2f));
-        result.Add(new AbilityInfo(chargedArrowCooldown, 2.4f, 3.2f));
+        result.Add(new AbilityInfo(0.0f, 2.0f, 2.5f));
+        result.Add(new AbilityInfo(arrowFanCooldown, 2.0f, 2.5f));
+        result.Add(new AbilityInfo(chargedArrowCooldown, 2.0f, 2.5f));
 
         return result;
     }
@@ -128,7 +128,7 @@ public class Bow : Weapon
         GameObject movingArrow = Instantiate(chargedArrow, playerMovement.transform.position + playerMovement.transform.forward * 0.7f + playerMovement.transform.up * 1.1f,
             Quaternion.LookRotation(playerMovement.transform.forward, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f)) as GameObject;
         ArrowCharged script = movingArrow.GetComponent<ArrowCharged>();
-        script.SetDamage(baseDamage * 2);
+        script.SetDamage(baseDamage * 2.0f);
         script.SetSpeed(arrowSpeed * 2.0f);
         script.SetDirection(playerMovement.transform.forward);
     }

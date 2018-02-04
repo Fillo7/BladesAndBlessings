@@ -46,6 +46,11 @@ public class GameManager : MonoBehaviour
             TogglePause();
         }
 
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            ScreenCapture.CaptureScreenshot("Screenshot" + Random.Range(0, 100000) + ".png");
+        }
+
         if (!waveManager.IsFirstWaveSpawned())
         {
             waveManager.SpawnNextWave(waveSpawnDelay);
