@@ -9,11 +9,16 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private Slider waveSlider;
     [SerializeField] private Text waveText;
 
+    bool freezeSlider = false;
     bool firstWaveSpawned = false;
     private int currentWaveIndex = -1;
 
     public void Update()
     {
+        if (freezeSlider)
+        {
+            return;
+        }
         waveSlider.value = GetCurrentWaveHealth();
     }
 
@@ -24,6 +29,8 @@ public class WaveManager : MonoBehaviour
 
     public void SpawnNextWave(float delay)
     {
+        firstWaveSpawned = true;
+        freezeSlider = true;
         currentWaveIndex++;
 
         if (currentWaveIndex >= waves.Count)
@@ -31,10 +38,8 @@ public class WaveManager : MonoBehaviour
             return;
         }
 
-        waves[currentWaveIndex].SpawnWave(delay);
-        waveSlider.maxValue = GetTotalWaveHealth();
-        waveText.text = "Wave " + (currentWaveIndex + 1) + " / " + waves.Count;
-        firstWaveSpawned = true;
+        waveSlider.value = 0;
+        Invoke("SpawnNextWavePrivate", delay);
     }
 
     public int GetCurrentWaveIndex()
@@ -70,5 +75,13 @@ public class WaveManager : MonoBehaviour
     public bool AreAllWavesDefeated()
     {
         return (currentWaveIndex + 1) == waves.Count && waves[currentWaveIndex].IsWaveDefeated();
+    }
+
+    private void SpawnNextWavePrivate()
+    {
+        waves[currentWaveIndex].SpawnWave();
+        waveSlider.maxValue = GetTotalWaveHealth();
+        waveText.text = "Wave " + (currentWaveIndex + 1) + " / " + waves.Count;
+        freezeSlider = false;
     }
 }

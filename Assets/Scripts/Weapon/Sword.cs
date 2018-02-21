@@ -4,42 +4,40 @@ using UnityEngine;
 public class Sword : Weapon
 {
     [SerializeField] private AnimatorOverrideController animatorController;
+    [SerializeField] private AnimationClip basicAttack;
+    [SerializeField] private AnimationClip specialAttack1;
+    [SerializeField] private AnimationClip specialAttack2;
 
     private float baseDamage = 25.0f;
 
     private int maxHitCount = 0;
     private float damageToDeal = 0;
 
+    private List<GameObject> blockedObjects = new List<GameObject>();
     private bool blocking = true;
     private float blockTimer = 2.5f;
     private float blockCooldown = 2.5f;
 
     private List<GameObject> slashedEnemies = new List<GameObject>();
-    private bool slashing = false;
-    private float slashTimer = 10.0f;
-    private float slashCooldown = 10.0f;
-
-    void Awake()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-        if (player != null)
-        {
-            Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>());
-        }
-    }
+    private bool coneSlashing = false;
+    private float coneSlashTimer = 10.0f;
+    private float coneSlashCooldown = 10.0f;
 
     void Update()
     {
         blockTimer += Time.deltaTime;
-        slashTimer += Time.deltaTime;
+        coneSlashTimer += Time.deltaTime;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (blocking)
         {
-            HandleBlock(other);
+            if (!blockedObjects.Contains(other.gameObject))
+            {
+                HandleBlock(other);
+            }
+            
             return;
         }
 
@@ -52,25 +50,25 @@ public class Sword : Weapon
         EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
         enemyHealth.TakeDamage(damageToDeal);
 
-        if (slashing)
+        if (coneSlashing)
         {
             slashedEnemies.Add(other.gameObject);
-            enemyHealth.ApplyDotEffect(10.1f, 2.0f, 3);
+            enemyHealth.ApplyDotEffect(10.1f, 2.0f, 6.0f);
         }
     }
 
-    public override void DoBasicAttack(Vector3 targetPosition)
+    public override void DoBasicAttack()
     {
         if (blocking)
         {
-            ResetBlocking();
+            ResetBlock();
         }
 
         maxHitCount = 1;
         damageToDeal = baseDamage;
     }
 
-    public override void DoSpecialAttack1(Vector3 targetPosition)
+    public override void DoSpecialAttack1()
     {
         if (blockTimer < blockCooldown)
         {
@@ -79,7 +77,7 @@ public class Sword : Weapon
 
         blocking = true;
         blockTimer = 0.0f;
-        Invoke("ResetBlocking", 0.5f);
+        Invoke("ResetBlock", specialAttack1.length);
     }
 
     public override float GetSpecialAttack1Timer()
@@ -87,42 +85,42 @@ public class Sword : Weapon
         return blockTimer;
     }
 
-    public override void DoSpecialAttack2(Vector3 targetPosition)
+    public override void DoSpecialAttack2()
     {
-        if (slashTimer < slashCooldown)
+        if (coneSlashTimer < coneSlashCooldown)
         {
             return;
         }
 
         if (blocking)
         {
-            ResetBlocking();
+            ResetBlock();
         }
 
-        maxHitCount = 5;
-        damageToDeal = baseDamage * 1.75f;
-        slashing = true;
-        slashTimer = 0.0f;
+        maxHitCount = 3;
+        damageToDeal = baseDamage * 1.3f;
+        coneSlashing = true;
+        coneSlashTimer = 0.0f;
 
-        Invoke("ClearSlash", 2.1f);
+        Invoke("ResetConeSlash", specialAttack2.length);
     }
 
     public override float GetSpecialAttack2Timer()
     {
-        return slashTimer;
+        return coneSlashTimer;
     }
 
     public override void AdjustCooldowns(float passedTime)
     {
         blockTimer += passedTime;
-        slashTimer += passedTime;
+        coneSlashTimer += passedTime;
     }
 
     public override void OnWeaponSwap()
     {
         if (blocking)
         {
-            ResetBlocking();
+            ResetBlock();
         }
     }
 
@@ -134,9 +132,9 @@ public class Sword : Weapon
     public override List<AbilityInfo> GetAbilityInfo()
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
-        result.Add(new AbilityInfo(0.0f, 0.0f, 1.6f));
-        result.Add(new AbilityInfo(blockCooldown, 0.0f, 1.0f));
-        result.Add(new AbilityInfo(slashCooldown, 0.0f, 2.2f));
+        result.Add(new AbilityInfo(0.0f, basicAttack.length));
+        result.Add(new AbilityInfo(blockCooldown, specialAttack1.length));
+        result.Add(new AbilityInfo(coneSlashCooldown, specialAttack2.length));
 
         return result;
     }
@@ -144,11 +142,6 @@ public class Sword : Weapon
     public override AnimatorOverrideController GetAnimatorController()
     {
         return animatorController;
-    }
-
-    private void ResetBlocking()
-    {
-        blocking = false;
     }
 
     private void HandleBlock(Collider other)
@@ -167,11 +160,19 @@ public class Sword : Weapon
                 weapon.OnAttackBlock();
             }
         }
+
+        blockedObjects.Add(other.gameObject);
     }
 
-    private void ClearSlash()
+    private void ResetBlock()
     {
-        slashing = false;
+        blocking = false;
+        blockedObjects.Clear();
+    }
+
+    private void ResetConeSlash()
+    {
+        coneSlashing = false;
         slashedEnemies.Clear();
     }
 }

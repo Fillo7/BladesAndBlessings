@@ -75,7 +75,7 @@ public class EnemyWave : MonoBehaviour
 
         foreach (EnemyInstance instance in enemies)
         {
-            if (instance.GetEnemy() != null || !instance.IsEnemySpawned())
+            if (instance.GetEnemy() != null && !instance.GetEnemy().GetComponent<EnemyHealth>().IsDead() || !instance.IsEnemySpawned())
             {
                 result = false;
                 break;

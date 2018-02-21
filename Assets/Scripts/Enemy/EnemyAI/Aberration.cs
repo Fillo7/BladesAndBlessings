@@ -10,8 +10,8 @@ public class Aberration : MonoBehaviour {
     private Animator animator;
     private NavMeshAgent navigator;
 
-    [SerializeField] private float speed = 2.0f;
-    [SerializeField] private float auraRadius = 4.0f;
+    [SerializeField] private float speed = 1.75f;
+    [SerializeField] private float auraRadius = 4.5f;
     [SerializeField] private float auraDamage = 8.0f;
     [SerializeField] private float tickTime = 0.25f;
     private float tickTimer = 0.0f;
@@ -29,6 +29,23 @@ public class Aberration : MonoBehaviour {
 
     void Update()
     {
+        if (IsPlayerInRange(auraRadius))
+        {
+            tickTimer += Time.deltaTime;
+            navigator.speed = 0.5f;
+
+            if (tickTimer > tickTime)
+            {
+                playerHealth.TakeDamage(auraDamage);
+                tickTimer = 0.0f;
+            }
+        }
+        else
+        {
+            tickTimer = 0.0f;
+            navigator.speed = speed;
+        }
+
         if (enemyHealth.IsDead() || playerHealth.IsDead())
         {
             navigator.enabled = false;
@@ -42,23 +59,6 @@ public class Aberration : MonoBehaviour {
         else
         {
             animator.SetBool("Running", false);
-        }
-
-        if (IsPlayerInRange(auraRadius))
-        {
-            tickTimer += Time.deltaTime;
-            navigator.speed = 0.2f;
-
-            if (tickTimer > tickTime)
-            {
-                playerHealth.TakeDamage(auraDamage);
-                tickTimer = 0.0f;
-            }
-        }
-        else
-        {
-            tickTimer = 0.0f;
-            navigator.speed = speed;
         }
 
         if (navigator.enabled)

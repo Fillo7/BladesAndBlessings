@@ -2325,7 +2325,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Slash which hits up to five enemies in front of player, damaged enemies
+  m_Text: Slash which hits up to three enemies in front of player, damaged enemies
     also start bleeding
 --- !u!114 &114456405556789002
 MonoBehaviour:

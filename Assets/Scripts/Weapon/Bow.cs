@@ -4,11 +4,15 @@ using UnityEngine;
 public class Bow : Weapon
 {
     [SerializeField] private AnimatorOverrideController animatorController;
+    [SerializeField] private AnimationClip basicAttack;
+    [SerializeField] private AnimationClip specialAttack1;
+    [SerializeField] private AnimationClip specialAttack2;
+
     [SerializeField] private GameObject arrow;
     [SerializeField] private GameObject chargedArrow;
+
     private PlayerMovement playerMovement;
     private float baseDamage = 15.0f;
-
     private float arrowSpeed = 20.0f;
 
     private float arrowFanTimer = 5.0f;
@@ -28,12 +32,12 @@ public class Bow : Weapon
         chargedArrowTimer += Time.deltaTime;
     }
 
-    public override void DoBasicAttack(Vector3 targetPosition)
+    public override void DoBasicAttack()
     {
         SpawnArrow();
     }
 
-    public override void DoSpecialAttack1(Vector3 targetPosition)
+    public override void DoSpecialAttack1()
     {
         if (arrowFanTimer < arrowFanCooldown)
         {
@@ -49,7 +53,7 @@ public class Bow : Weapon
         return arrowFanTimer;
     }
 
-    public override void DoSpecialAttack2(Vector3 targetPosition)
+    public override void DoSpecialAttack2()
     {
         if (chargedArrowTimer < chargedArrowCooldown)
         {
@@ -82,9 +86,9 @@ public class Bow : Weapon
     public override List<AbilityInfo> GetAbilityInfo()
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
-        result.Add(new AbilityInfo(0.0f, 2.0f, 2.5f));
-        result.Add(new AbilityInfo(arrowFanCooldown, 2.0f, 2.5f));
-        result.Add(new AbilityInfo(chargedArrowCooldown, 2.0f, 2.5f));
+        result.Add(new AbilityInfo(0.0f, basicAttack.length));
+        result.Add(new AbilityInfo(arrowFanCooldown, specialAttack1.length));
+        result.Add(new AbilityInfo(chargedArrowCooldown, specialAttack2.length));
 
         return result;
     }

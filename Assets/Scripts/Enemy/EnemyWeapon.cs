@@ -24,7 +24,7 @@ public class EnemyWeapon : MonoBehaviour
     {
         maxHitCount--;
         animator.SetTrigger("Blocked");
-        health.TakeDamage(damage * 1.25f);
+        health.TakeDamage(damage);
     }
 
     public void Initialize(Animator animator, EnemyHealth health, float damage)

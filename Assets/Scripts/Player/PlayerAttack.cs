@@ -7,16 +7,18 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private List<GameObject> weapons = new List<GameObject>();
     [SerializeField] private Slider ability1Slider;
     [SerializeField] private Slider ability2Slider;
+
+    private bool freezeAttack = false;
+    private int activeWeaponIndex = 0;
     private GameObject activeWeapon = null;
     private Weapon activeWeaponScript = null;
     private List<AbilityInfo> activeAbilityInfo = null;
-    private int activeWeaponIndex = 0;
+    private WeaponDelegate weaponDelegate = null;
 
+    private bool attacking = false;
+    private float actionTimer = 0.3f;
+    private float actionCooldown = 0.3f;
     private float weaponSwapTimer = 0.0f;
-
-    private bool freezeAttack = false;
-    private float timeBetweenAttacks = 0.3f;
-    private float timer = 0.0f;
 
     private Animator animator;
     private PlayerHealth health;
@@ -24,12 +26,9 @@ public class PlayerAttack : MonoBehaviour
     private int floorMask;
     private float cameraRayLength = 100.0f;
 
-    private bool attacking = false;
-    private AttackCommand attackCommand = AttackCommand.Basic;
-    private Vector3 attackTarget = Vector3.zero;
-
     void Awake()
     {
+        weaponDelegate = GetComponentInChildren<WeaponDelegate>();
         animator = GetComponentInChildren<Animator>();
         health = GetComponent<PlayerHealth>();
         movement = GetComponent<PlayerMovement>();
@@ -46,26 +45,22 @@ public class PlayerAttack : MonoBehaviour
             return;
         }
 
-        timer += Time.deltaTime;
+        actionTimer += Time.deltaTime;
         weaponSwapTimer += Time.deltaTime;
         ability1Slider.value = activeWeaponScript.GetSpecialAttack1Timer();
         ability2Slider.value = activeWeaponScript.GetSpecialAttack2Timer();
 
         if (Input.GetButton("Fire1") && TimerIsReady())
         {
-            attacking = true;
-            movement.EnableMovement(false);
-
+            EnableAttack();
             animator.SetTrigger("BasicAbility");
-            attackCommand = AttackCommand.Basic;
-            attackTarget = GetCursorWorldPosition();
+
             if (activeWeaponScript.GetWeaponType() == WeaponType.Ranged)
             {
-                movement.TurnTowardsDirection(attackTarget, activeAbilityInfo[0].GetAnimationDuration());
+                movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[0].GetAnimationDuration());
             }
-            ResetTimer();
 
-            Invoke("PrepareAttack", activeAbilityInfo[0].GetAnimationDelay());
+            actionTimer = 0.0f;
             Invoke("ResetAttack", activeAbilityInfo[0].GetAnimationDuration());
         }
 
@@ -76,19 +71,15 @@ public class PlayerAttack : MonoBehaviour
                 return;
             }
 
-            attacking = true;
-            movement.EnableMovement(false);
-
+            EnableAttack();
             animator.SetTrigger("SpecialAbility1");
-            attackCommand = AttackCommand.Special1;
-            attackTarget = GetCursorWorldPosition();
+
             if (activeWeaponScript.GetWeaponType() == WeaponType.Ranged)
             {
-                movement.TurnTowardsDirection(attackTarget, activeAbilityInfo[1].GetAnimationDuration());
+                movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[1].GetAnimationDuration());
             }
-            ResetTimer();
 
-            Invoke("PrepareAttack", activeAbilityInfo[1].GetAnimationDelay());
+            actionTimer = 0.0f;
             Invoke("ResetAttack", activeAbilityInfo[1].GetAnimationDuration());
         }
 
@@ -99,48 +90,29 @@ public class PlayerAttack : MonoBehaviour
                 return;
             }
 
-            attacking = true;
-            movement.EnableMovement(false);
-
+            EnableAttack();
             animator.SetTrigger("SpecialAbility2");
-            attackCommand = AttackCommand.Special2;
-            attackTarget = GetCursorWorldPosition();
+
             if (activeWeaponScript.GetWeaponType() == WeaponType.Ranged)
             {
-                movement.TurnTowardsDirection(attackTarget, activeAbilityInfo[2].GetAnimationDuration());
+                movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[2].GetAnimationDuration());
             }
-            ResetTimer();
 
-            Invoke("PrepareAttack", activeAbilityInfo[2].GetAnimationDelay());
+            actionTimer = 0.0f;
             Invoke("ResetAttack", activeAbilityInfo[2].GetAnimationDuration());
         }
 
         if (Input.GetButton("SwapWeapon") && TimerIsReady())
         {
             SwapWeapon();
-            ResetTimer();
+            actionTimer = 0.0f;
         }
     }
 
-    public void Attack(AttackCommand command, Vector3 target)
+    private void EnableAttack()
     {
-        if (command == AttackCommand.Basic)
-        {
-            activeWeaponScript.DoBasicAttack(target);
-        }
-        else if (command == AttackCommand.Special1)
-        {
-            activeWeaponScript.DoSpecialAttack1(target);
-        }
-        else if (command == AttackCommand.Special2)
-        {
-            activeWeaponScript.DoSpecialAttack2(target);
-        }
-    }
-
-    private void PrepareAttack()
-    {
-        Attack(attackCommand, attackTarget);
+        attacking = true;
+        movement.EnableMovement(false);
     }
 
     private void ResetAttack()
@@ -180,6 +152,8 @@ public class PlayerAttack : MonoBehaviour
         animator.runtimeAnimatorController = activeWeaponScript.GetAnimatorController();
         animator.Rebind();
         InitializeCooldownSliders();
+        weaponDelegate.SetWeapon(activeWeaponScript);
+
         freezeAttack = false;
     }
 
@@ -211,11 +185,6 @@ public class PlayerAttack : MonoBehaviour
 
     private bool TimerIsReady()
     {
-        return timer >= timeBetweenAttacks && Time.timeScale != 0.0f && !freezeAttack && !attacking;
-    }
-
-    private void ResetTimer()
-    {
-        timer = 0.0f;
+        return Time.timeScale != 0.0f && actionTimer >= actionCooldown && !freezeAttack && !attacking;
     }
 }

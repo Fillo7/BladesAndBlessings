@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     private MenuController menuController;
     private PlayerHealth playerHealth;
 
-    private float waveSpawnDelay = 2.0f;
+    private float waveSpawnDelay = 3.0f;
     private bool gameOver = false;
     private bool victory = false;
 
@@ -55,14 +55,16 @@ public class GameManager : MonoBehaviour
 
         if (!waveManager.IsFirstWaveSpawned())
         {
-            waveManager.SpawnNextWave(waveSpawnDelay);
+            waveManager.SpawnNextWave();
         }
 
         if (waveManager.IsCurrentWaveDefeated())
         {
             if (waveManager.AreAllWavesDefeated())
             {
-                TriggerVictory();
+                victory = true;
+                DespawnEnemies();
+                Invoke("TriggerVictory", 3.0f);
             }
             else
             {
@@ -113,8 +115,6 @@ public class GameManager : MonoBehaviour
         HUDCanvas.GetComponent<Animator>().SetTrigger("Victory");
         menuController.GoToVictoryPanel();
         Invoke("TogglePause", 5.0f);
-        DespawnEnemies();
-        victory = true;
     }
 
     public void Quit()
@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < enemies.Length; i++)
         {
-            if (enemies[i] != null)
+            if (enemies[i] != null && !enemies[i].GetComponent<EnemyHealth>().IsDead())
             {
                 Destroy(enemies[i]);
             }
