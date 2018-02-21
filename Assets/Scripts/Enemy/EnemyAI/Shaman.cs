@@ -4,20 +4,18 @@ using UnityEngine.AI;
 
 public class Shaman : MonoBehaviour
 {
-
     private Transform player;
     private PlayerHealth playerHealth;
     private EnemyHealth enemyHealth;
 
-    [SerializeField] private GameObject fireball;
+    [SerializeField] private AnimationClip attackClip;
+    [SerializeField] private AnimationClip healingClip;
+
     [SerializeField] private float fireballDamage = 50.0f;
-    [SerializeField] private GameObject healingball;
-    [SerializeField] private float healingballHeal = 30.0f;
+    [SerializeField] private float healingProjectileAmount = 30.0f;
 
     [SerializeField] private float movementSpeed = 3.0f;
-
     [SerializeField] private float minimumDistance = 6.0f;
-
     [SerializeField] private float maximumDistance = 16.0f;
 
     [SerializeField] private float attackCooldown = 3.0f;
@@ -30,6 +28,7 @@ public class Shaman : MonoBehaviour
 
     private Animator animator;
     private NavMeshAgent navigator;
+    private ShamanStaff weapon;
 
     void Awake()
     {
@@ -41,6 +40,10 @@ public class Shaman : MonoBehaviour
         navigator = GetComponent<NavMeshAgent>();
         navigator.speed = movementSpeed;
         turningTarget = player;
+
+        weapon = GetComponentInChildren<ShamanStaff>();
+        weapon.Initialize(fireballDamage, healingProjectileAmount);
+        GetComponentInChildren<EnemyWeaponDelegate>().SetWeapon(weapon);
     }
 
     void Update()
@@ -110,7 +113,7 @@ public class Shaman : MonoBehaviour
         }
         turning = true;
         attacking = true;
-        animator.SetTrigger("Attack");
+        weapon.SetPosition(transform);
 
         if (Random.Range(0, 2) == 0)
         {
@@ -119,43 +122,25 @@ public class Shaman : MonoBehaviour
             if (ally != null)
             {
                 turningTarget = ally.transform;
-                Invoke("CastHealing", 1.2f);
+                weapon.SetTarget(turningTarget);
+                animator.SetTrigger("AttackAlternate");
+                Invoke("ResetAttack", healingClip.length);
             }
             else
             {
                 turningTarget = player;
-                Invoke("CastFireball", 1.2f);
+                weapon.SetTarget(turningTarget);
+                animator.SetTrigger("Attack");
+                Invoke("ResetAttack", attackClip.length);
             }
         }
         else
         {
             turningTarget = player;
-            Invoke("CastFireball", 1.2f);
+            weapon.SetTarget(turningTarget);
+            animator.SetTrigger("Attack");
+            Invoke("ResetAttack", attackClip.length);
         }
-
-        Invoke("ResetAttack", 2.5f);
-    }
-
-    private void CastHealing()
-    {
-        Vector3 spellDirection = turningTarget.position - transform.position;
-        GameObject healingballInstance = Instantiate(healingball, transform.position + transform.forward * 2.0f + transform.up * 1.1f,
-            Quaternion.LookRotation(spellDirection, new Vector3(0.0f, 1.0f, 0.0f))) as GameObject;
-        EnemyHealProjectile script = healingballInstance.GetComponent<EnemyHealProjectile>();
-        script.SetHeal(healingballHeal);
-        script.SetOwner(ProjectileOwner.Enemy);
-        script.SetDirection(healingballInstance.transform.forward);
-    }
-
-    private void CastFireball()
-    {
-        Vector3 spellDirection = turningTarget.position - transform.position;
-        GameObject fireballInstance = Instantiate(fireball, transform.position + transform.forward * 1.5f + transform.up * 1.1f,
-            Quaternion.LookRotation(spellDirection, new Vector3(0.0f, 1.0f, 0.0f))) as GameObject;
-        Arrow script = fireballInstance.GetComponent<Arrow>();
-        script.SetDamage(fireballDamage);
-        script.SetOwner(ProjectileOwner.Enemy);
-        script.SetDirection(fireballInstance.transform.forward);
     }
 
     private void ResetAttack()

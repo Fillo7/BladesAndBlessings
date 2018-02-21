@@ -152,16 +152,13 @@ public class Sword : Weapon
             projectile.ReverseDirection();
             projectile.SetOwner(ProjectileOwner.Player);
         }
-        else if (other.tag.Equals("Weapon"))
-        {
-            EnemyWeapon weapon = other.gameObject.GetComponent<EnemyWeapon>();
-            if (weapon != null)
-            {
-                weapon.OnAttackBlock();
-            }
-        }
 
         blockedObjects.Add(other.gameObject);
+    }
+
+    public bool IsBlocking()
+    {
+        return blocking;
     }
 
     private void ResetBlock()

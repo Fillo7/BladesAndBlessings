@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class EnemyWeapon : MonoBehaviour
+public class GoblinPike : EnemyWeapon
 {
     private Animator animator;
     private EnemyHealth health;
@@ -10,6 +10,16 @@ public class EnemyWeapon : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.tag.Equals("Weapon"))
+        {
+            Sword sword = other.GetComponent<Sword>();
+            if (sword != null && sword.IsBlocking())
+            {
+                OnAttackBlock();
+                return;
+            }
+        }
+
         if (!other.tag.Equals("Player") || maxHitCount <= 0)
         {
             return;
@@ -20,9 +30,17 @@ public class EnemyWeapon : MonoBehaviour
         playerHealth.TakeDamage(damage);
     }
 
-    public void OnAttackBlock()
+    public override void DoAttack()
     {
-        maxHitCount--;
+        maxHitCount = 1;
+    }
+
+    public override void DoAlternateAttack()
+    {}
+
+    public override void OnAttackBlock()
+    {
+        maxHitCount = 0;
         animator.SetTrigger("Blocked");
         health.TakeDamage(damage);
     }
@@ -47,10 +65,5 @@ public class EnemyWeapon : MonoBehaviour
     public void SetDamage(float damage)
     {
         this.damage = damage;
-    }
-
-    public void SetMaxHitCount(int count)
-    {
-        maxHitCount = count;
     }
 }

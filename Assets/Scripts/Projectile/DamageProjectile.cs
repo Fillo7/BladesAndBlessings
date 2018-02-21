@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Arrow : Projectile
+public class DamageProjectile : Projectile
 {
     [SerializeField] private float damage = 20.0f;
 

@@ -251,6 +251,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4953623870971380}
+  - component: {fileID: 114435959030675384}
   m_Layer: 0
   m_Name: TrapperBow
   m_TagString: Weapon
@@ -422,6 +423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4613801345259388}
   - component: {fileID: 95957602172787290}
+  - component: {fileID: 114412923646047014}
   m_Layer: 0
   m_Name: OrcTrapper
   m_TagString: Untagged
@@ -1024,6 +1026,29 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114412923646047014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1843387105252692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4cf640d09f1ef4782f62583972ae8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114435959030675384
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1648206022558160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a37d3be0c553544091b166398a10ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrow: {fileID: 1452379704656852, guid: 237e2733c467c8f4198576e129e10188, type: 2}
 --- !u!114 &114706710599567158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1035,6 +1060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93997421a8972446ab7f29b06b73e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackClip: {fileID: 7400000, guid: f50a97d304c121743a6c14c339d8b050, type: 2}
   maximumMovementDistance: 20
   arrow: {fileID: 1452379704656852, guid: 237e2733c467c8f4198576e129e10188, type: 2}
   trap: {fileID: 1621652229659696, guid: 19fbe645f8002e0449b04b456794d1b5, type: 2}

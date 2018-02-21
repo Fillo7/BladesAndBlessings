@@ -9,6 +9,9 @@ public class OrcTrapper : MonoBehaviour
 
     private Animator animator;
     private NavMeshAgent navigator;
+    private TrapperBow weapon;
+
+    [SerializeField] private AnimationClip attackClip;
     [SerializeField] private float maximumMovementDistance = 20.0f;
 
     [SerializeField] private GameObject arrow;
@@ -35,6 +38,10 @@ public class OrcTrapper : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         navigator = GetComponent<NavMeshAgent>();
         navigator.speed = speed;
+
+        weapon = GetComponentInChildren<TrapperBow>();
+        weapon.SetDamage(arrowDamage);
+        GetComponentInChildren<EnemyWeaponDelegate>().SetWeapon(weapon);
     }
 
     void Update()
@@ -105,20 +112,11 @@ public class OrcTrapper : MonoBehaviour
         }
         turningTowardsPlayer = true;
         attacking = true;
+        weapon.SetPosition(transform);
+        weapon.SetTarget(player);
         animator.SetTrigger("Attack");
 
-        Invoke("Attack", 3.6f);
-        Invoke("ResetAttack", 4.75f);
-    }
-
-    private void Attack()
-    {
-        Vector3 arrowDirection = player.position - transform.position;
-        GameObject movingArrow = Instantiate(arrow, transform.position + transform.forward * 0.7f + transform.up * 1.5f,
-            Quaternion.LookRotation(arrowDirection, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f)) as GameObject;
-        Arrow script = movingArrow.GetComponent<Arrow>();
-        script.SetDamage(arrowDamage);
-        script.SetDirection(movingArrow.transform.up);
+        Invoke("ResetAttack", attackClip.length);
     }
 
     private void ResetAttack()

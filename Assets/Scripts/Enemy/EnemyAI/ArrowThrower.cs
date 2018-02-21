@@ -34,7 +34,7 @@ public class ArrowThrower : MonoBehaviour
     {
         GameObject movingArrow = Instantiate(arrow, transform.position + transform.forward + transform.up * 1.1f,
             Quaternion.LookRotation(transform.forward, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f)) as GameObject;
-        Arrow script = movingArrow.GetComponent<Arrow>();
+        DamageProjectile script = movingArrow.GetComponent<DamageProjectile>();
         script.SetDirection(transform.forward);
     }
 }

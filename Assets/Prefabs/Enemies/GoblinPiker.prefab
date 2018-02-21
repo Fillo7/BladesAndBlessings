@@ -174,8 +174,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4697481751813922}
-  - component: {fileID: 114121881196349070}
   - component: {fileID: 136606272421990592}
+  - component: {fileID: 114435316446195760}
   m_Layer: 0
   m_Name: Pike
   m_TagString: Weapon
@@ -302,6 +302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4260430142942540}
   - component: {fileID: 95896137450991702}
+  - component: {fileID: 114602859715750664}
   m_Layer: 0
   m_Name: GoblinPiker
   m_TagString: Untagged
@@ -1026,17 +1027,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114121881196349070
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1279662703342296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acfb8e53ecb1c304885ab30480344806, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114284964046231444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1052,6 +1042,17 @@ MonoBehaviour:
   deathClip: {fileID: 8300000, guid: 7e5b5c65d1ad9d5408c4f5e2442ebc15, type: 3}
   deathDestroyDelay: 5
   health: 100
+--- !u!114 &114435316446195760
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1279662703342296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f427038aed985a3499caf431f3a63adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114540016625666908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1063,10 +1064,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8c7de3d971fc144bb068644ceebaf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackClip: {fileID: 7400000, guid: d76c772e0a206494cb9419bcb96b238b, type: 2}
   damage: 30
   speed: 4.5
   attackRange: 1.8
   attackCooldown: 2
+--- !u!114 &114602859715750664
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1640027312645768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4cf640d09f1ef4782f62583972ae8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136446475492904544
 CapsuleCollider:
   m_ObjectHideFlags: 1

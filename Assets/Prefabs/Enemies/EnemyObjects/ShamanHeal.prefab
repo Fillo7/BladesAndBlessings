@@ -143,7 +143,7 @@ MonoBehaviour:
   speed: 15
   timeToLive: 15
   owner: 1
-  heal: 20
+  healing: 30
 --- !u!136 &136422548696486882
 CapsuleCollider:
   m_ObjectHideFlags: 1

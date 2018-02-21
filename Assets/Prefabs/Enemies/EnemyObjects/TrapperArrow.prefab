@@ -143,7 +143,7 @@ MonoBehaviour:
   speed: 20
   timeToLive: 15
   owner: 1
-  damage: 20
+  damage: 35
 --- !u!136 &136833178729497918
 CapsuleCollider:
   m_ObjectHideFlags: 1
