@@ -1081,7 +1081,7 @@ MonoBehaviour:
   movementSpeed: 6.5
   damage: 35
   attackCooldown: 8
-  movementCooldown: 4
+  movementCooldown: 3
 --- !u!114 &114742809484283580
 MonoBehaviour:
   m_ObjectHideFlags: 1

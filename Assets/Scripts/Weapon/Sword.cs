@@ -132,9 +132,9 @@ public class Sword : Weapon
     public override List<AbilityInfo> GetAbilityInfo()
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
-        result.Add(new AbilityInfo(0.0f, basicAttack.length));
-        result.Add(new AbilityInfo(blockCooldown, specialAttack1.length));
-        result.Add(new AbilityInfo(coneSlashCooldown, specialAttack2.length));
+        result.Add(new AbilityInfo(0.0f, basicAttack.length, 1.2f));
+        result.Add(new AbilityInfo(blockCooldown, specialAttack1.length, 1.15f));
+        result.Add(new AbilityInfo(coneSlashCooldown, specialAttack2.length, 1.15f));
 
         return result;
     }

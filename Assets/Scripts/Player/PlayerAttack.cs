@@ -53,15 +53,16 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetButton("Fire1") && TimerIsReady())
         {
             EnableAttack();
+            animator.SetFloat("BasicAbilitySpeedMultiplier", activeAbilityInfo[0].GetAnimationSpeedMultiplier());
             animator.SetTrigger("BasicAbility");
 
             if (activeWeaponScript.GetWeaponType() == WeaponType.Ranged)
             {
-                movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[0].GetAnimationDuration());
+                movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[0].GetAnimationDuration() / activeAbilityInfo[0].GetAnimationSpeedMultiplier());
             }
 
             actionTimer = 0.0f;
-            Invoke("ResetAttack", activeAbilityInfo[0].GetAnimationDuration());
+            Invoke("ResetAttack", activeAbilityInfo[0].GetAnimationDuration() / activeAbilityInfo[0].GetAnimationSpeedMultiplier());
         }
 
         if (Input.GetButton("Fire2") && TimerIsReady())
@@ -72,15 +73,16 @@ public class PlayerAttack : MonoBehaviour
             }
 
             EnableAttack();
+            animator.SetFloat("SpecialAbility1SpeedMultiplier", activeAbilityInfo[1].GetAnimationSpeedMultiplier());
             animator.SetTrigger("SpecialAbility1");
 
             if (activeWeaponScript.GetWeaponType() == WeaponType.Ranged)
             {
-                movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[1].GetAnimationDuration());
+                movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[1].GetAnimationDuration() / activeAbilityInfo[1].GetAnimationSpeedMultiplier());
             }
 
             actionTimer = 0.0f;
-            Invoke("ResetAttack", activeAbilityInfo[1].GetAnimationDuration());
+            Invoke("ResetAttack", activeAbilityInfo[1].GetAnimationDuration() / activeAbilityInfo[1].GetAnimationSpeedMultiplier());
         }
 
         if (Input.GetButton("Fire3") && TimerIsReady())
@@ -91,15 +93,16 @@ public class PlayerAttack : MonoBehaviour
             }
 
             EnableAttack();
+            animator.SetFloat("SpecialAbility2SpeedMultiplier", activeAbilityInfo[2].GetAnimationSpeedMultiplier());
             animator.SetTrigger("SpecialAbility2");
 
             if (activeWeaponScript.GetWeaponType() == WeaponType.Ranged)
             {
-                movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[2].GetAnimationDuration());
+                movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[2].GetAnimationDuration() / activeAbilityInfo[2].GetAnimationSpeedMultiplier());
             }
 
             actionTimer = 0.0f;
-            Invoke("ResetAttack", activeAbilityInfo[2].GetAnimationDuration());
+            Invoke("ResetAttack", activeAbilityInfo[2].GetAnimationDuration() / activeAbilityInfo[2].GetAnimationSpeedMultiplier());
         }
 
         if (Input.GetButton("SwapWeapon") && TimerIsReady())
@@ -118,6 +121,11 @@ public class PlayerAttack : MonoBehaviour
     private void ResetAttack()
     {
         movement.EnableMovement(true);
+
+        animator.SetFloat("BasicAbilitySpeedMultiplier", 1.0f);
+        animator.SetFloat("SpecialAbility1SpeedMultiplier", 1.0f);
+        animator.SetFloat("SpecialAbility2SpeedMultiplier", 1.0f);
+
         attacking = false;
     }
 
