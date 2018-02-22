@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 136892184696630654}
   - component: {fileID: 195713046337059780}
   - component: {fileID: 114706710599567158}
+  - component: {fileID: 114056273573375016}
   m_Layer: 0
   m_Name: OrcTrapper
   m_TagString: Enemy
@@ -1026,6 +1027,22 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114056273573375016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1429969677939738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62fddfeb5cb07934a839a1d67984df60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnTarget: {fileID: 1621652229659696, guid: 19fbe645f8002e0449b04b456794d1b5,
+    type: 2}
+  selfDestructOnSpawn: 0
+  spawnTime: 12
+  maxTimerRandomIncrease: 4
 --- !u!114 &114412923646047014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1061,14 +1078,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackClip: {fileID: 7400000, guid: f50a97d304c121743a6c14c339d8b050, type: 2}
-  maximumMovementDistance: 20
-  arrow: {fileID: 1452379704656852, guid: 237e2733c467c8f4198576e129e10188, type: 2}
-  trap: {fileID: 1621652229659696, guid: 19fbe645f8002e0449b04b456794d1b5, type: 2}
-  arrowDamage: 35
-  speed: 6.5
-  movementCooldown: 3
+  movementSpeed: 6.5
+  damage: 35
   attackCooldown: 8
-  trapCooldown: 12
+  movementCooldown: 4
 --- !u!114 &114742809484283580
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,30 +1,21 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 
-public class Aberration : MonoBehaviour {
-
-    private Transform player;
-    private PlayerHealth playerHealth;
-    private EnemyHealth enemyHealth;
-
-    private Animator animator;
-    private NavMeshAgent navigator;
-
-    [SerializeField] private float speed = 1.75f;
+public class Aberration : EnemyAI
+{
+    [SerializeField] private float movementSpeed = 1.75f;
     [SerializeField] private float auraRadius = 4.5f;
     [SerializeField] private float auraDamage = 8.0f;
     [SerializeField] private float tickTime = 0.25f;
+
+    private Animator animator;
+
     private float tickTimer = 0.0f;
 
-    void Awake()
+    protected override void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-        enemyHealth = GetComponent<EnemyHealth>();
-
+        base.Awake();
+        navigator.speed = movementSpeed;
         animator = GetComponentInChildren<Animator>();
-        navigator = GetComponent<NavMeshAgent>();
-        navigator.speed = speed;
     }
 
     void Update()
@@ -32,7 +23,7 @@ public class Aberration : MonoBehaviour {
         if (IsPlayerInRange(auraRadius))
         {
             tickTimer += Time.deltaTime;
-            navigator.speed = 0.5f;
+            navigator.speed = 0.3f;
 
             if (tickTimer > tickTime)
             {
@@ -43,16 +34,17 @@ public class Aberration : MonoBehaviour {
         else
         {
             tickTimer = 0.0f;
-            navigator.speed = speed;
+            navigator.speed = movementSpeed;
         }
 
         if (enemyHealth.IsDead() || playerHealth.IsDead())
         {
+            CancelInvoke();
             navigator.enabled = false;
             return;
         }
 
-        if (navigator.enabled && navigator.velocity.magnitude > 0.25f)
+        if (navigator.enabled && navigator.velocity.magnitude > 0.35f)
         {
             animator.SetBool("Running", true);
         }
@@ -65,10 +57,5 @@ public class Aberration : MonoBehaviour {
         {
             navigator.SetDestination(player.position);
         }
-    }
-
-    private bool IsPlayerInRange(float range)
-    {
-        return Vector3.Distance(transform.position, player.position) < range;
     }
 }

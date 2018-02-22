@@ -1,31 +1,23 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 
-public class GoblinPiker : MonoBehaviour
+public class GoblinPiker : EnemyAI
 {
-    private Transform player;
-    private PlayerHealth playerHealth;
-    private EnemyHealth enemyHealth;
+    [SerializeField] private AnimationClip attackClip;
+    [SerializeField] private float movementSpeed = 4.5f;
+    [SerializeField] private float damage = 30.0f;
+    [SerializeField] private float attackCooldown = 2.0f;
 
-    private NavMeshAgent navigator;
     private Animator animator;
     private GoblinPike weapon;
 
-    [SerializeField] private AnimationClip attackClip;
-    [SerializeField] private float damage = 30.0f;
-    [SerializeField] private float speed = 4.5f;
-    [SerializeField] private float attackRange = 1.8f;
-    [SerializeField] private float attackCooldown = 2.0f;
+    private float attackRange = 1.8f;
     private float attackTimer = 2.0f;
     private bool attacking = false;
 
-    void Awake()
+    protected override void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-        enemyHealth = GetComponent<EnemyHealth>();
-        navigator = GetComponent<NavMeshAgent>();
-        navigator.speed = speed;
+        base.Awake();
+        navigator.speed = movementSpeed;
         animator = GetComponentInChildren<Animator>();
         weapon = GetComponentInChildren<GoblinPike>();
         weapon.Initialize(animator, enemyHealth, damage);
@@ -55,24 +47,22 @@ public class GoblinPiker : MonoBehaviour
         if (IsPlayerInRange(attackRange))
         {
             navigator.enabled = false;
+
+            if (IsPlayerInFront(60.0f) && attackTimer > attackCooldown && !attacking)
+            {
+                Attack();
+            }
+            else
+            {
+                TurnTowardsPlayer();
+            }
         }
         else
         {
-            navigator.enabled = true;
-        }
-
-        if (IsPlayerInRange(attackRange) && IsPlayerInFront(60.0f) && attackTimer > attackCooldown && !attacking)
-        {
-            Attack();
-        }
-
-        if (attacking)
-        {
-            navigator.enabled = false;
-        }
-        else
-        {
-            navigator.enabled = true;
+            if (!attacking)
+            {
+                navigator.enabled = true;
+            }
         }
 
         if (navigator.enabled)
@@ -83,6 +73,7 @@ public class GoblinPiker : MonoBehaviour
 
     private void Attack()
     {
+        navigator.enabled = false;
         attacking = true;
         animator.SetTrigger("Attack");
         Invoke("ResetAttack", attackClip.length);
@@ -92,16 +83,6 @@ public class GoblinPiker : MonoBehaviour
     {
         attackTimer = 0.0f;
         attacking = false;
-    }
-
-    private bool IsPlayerInRange(float range)
-    {
-        return Vector3.Distance(transform.position, player.position) < range;
-    }
-
-    private bool IsPlayerInFront(float range)
-    {
-        float angle = Vector3.Angle(transform.forward, player.position - transform.position);
-        return Mathf.Abs(angle) < range;
+        navigator.enabled = true;
     }
 }

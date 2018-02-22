@@ -1,58 +1,40 @@
 ﻿using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour {
+[RequireComponent(typeof(EnemyHealth))]
+public class EnemySpawner : MonoBehaviour
+{
+    [SerializeField] private GameObject spawnTarget;
+    [SerializeField] private bool selfDestructOnSpawn = true;
+    [SerializeField] private float spawnTime = 10.0f;
+    [SerializeField] private float maxTimerRandomIncrease = 0.1f;
 
-	//Spawn time
-	public float spawnTime = 10.0f;
+    private float spawnTimer;
+    private EnemyHealth health;
 
-	//Number of spawn charges
-	public int numberOfCharges = 1;
+    void Awake()
+    {
+        health = GetComponent<EnemyHealth>();
+        spawnTimer = Random.Range(0.0f, maxTimerRandomIncrease);
+    }
 
-	//Self destruct
-	public bool selfDestruct = true;
+    void Update()
+    {
+        if (health.IsDead())
+        {
+            return;
+        }
 
-	//Enemy to spawn
-	public GameObject enemy = null;
+        spawnTimer += Time.deltaTime;
 
-	private float timer = 0.0f;
+        if (spawnTimer > spawnTime)
+        {
+            Instantiate(spawnTarget, transform.position, transform.rotation);
+            spawnTimer = Random.Range(0.0f, maxTimerRandomIncrease);
 
-	private EnemyHealth health;
-
-	void Awake()
-	{
-		health = GetComponent<EnemyHealth>();
-	}
-
-	void Update () {
-
-		if (health.IsDead())
-		{
-			return;
-		}
-
-		timer += Time.deltaTime;
-
-		if ((timer > spawnTime) && (numberOfCharges > 0)) {
-
-			timer -= spawnTime;
-
-			SpawnEnemy ();
-
-			numberOfCharges -= 1;
-
-			if ((selfDestruct) && (numberOfCharges <= 0)) {
-			
-				Destroy (gameObject);
-
-			}
-
-		}
-
-	}
-
-	void SpawnEnemy() {
-
-		Instantiate(enemy, gameObject.transform.position, gameObject.transform.rotation);
-
-	}
+            if (selfDestructOnSpawn)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
 }

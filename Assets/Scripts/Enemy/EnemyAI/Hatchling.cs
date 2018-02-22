@@ -1,65 +1,50 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 
-public class Hatchling : MonoBehaviour {
+public class Hatchling : EnemyAI
+{
+    [SerializeField] private float movementSpeed = 3.5f;
+    [SerializeField] private float damage = 5;
+    [SerializeField] private float attackCooldown = 1.5f;
 
-	private Transform player;
-	private PlayerHealth playerHealth;
-	private EnemyHealth enemyHealth;
+    private float attackRange = 1.75f;
+    private float attackTimer = 1.5f;
 
-	[SerializeField] private float movementSpeed = 2.0f;
+    protected override void Awake()
+    {
+        base.Awake();
+        navigator.speed = movementSpeed;
+    }
 
-	[SerializeField] private float attackCooldown = 3.0f;
+    void Update()
+    {
+        if (enemyHealth.IsDead() || playerHealth.IsDead())
+        {
+            CancelInvoke();
+            navigator.enabled = false;
+            return;
+        }
 
-	[SerializeField] private float attackRange = 1.9f;
+        attackTimer += Time.deltaTime;
 
-	[SerializeField] private float damage = 5;
+        if (IsPlayerInRange(attackRange))
+        {
+            navigator.enabled = false;
+            TurnTowardsPlayer();
 
-	private float attackTimer = 0.0f;
+            if (attackTimer > attackCooldown)
+            {
+                playerHealth.TakeDamage(damage);
+                attackTimer = 0.0f;
+            }
+        }
+        else
+        {
+            navigator.enabled = true;
+        }
 
-	private NavMeshAgent navigator;
-
-	void Awake()
-	{
-		player = GameObject.FindGameObjectWithTag("Player").transform;
-		playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-		enemyHealth = GetComponent<EnemyHealth>();
-
-		navigator = GetComponent<NavMeshAgent>();
-		navigator.speed = movementSpeed;
-
-	}
-
-	void Update()
-	{
-
-		attackTimer += Time.deltaTime;
-
-		if (enemyHealth.IsDead() || playerHealth.IsDead())
-		{
-			navigator.enabled = false;
-			return;
-		}
-
-		if (Vector3.Distance(transform.position, player.position) < attackRange)
-		{
-			navigator.speed = 0.05f;
-
-			if (attackTimer > attackCooldown)
-			{
-				playerHealth.TakeDamage(damage);
-				attackTimer = 0.0f;
-			}
-		}
-		else
-		{
-			navigator.speed = movementSpeed;
-		}
-
-		if (navigator.enabled)
-		{
-			navigator.SetDestination(player.position);
-		}
-	}
-		
+        if (navigator.enabled)
+        {
+            navigator.SetDestination(player.position);
+        }
+    }
 }

@@ -1,46 +1,29 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 
-public class OrcTrapper : MonoBehaviour
+public class OrcTrapper : EnemyAI
 {
-    private Transform player;
-    private PlayerHealth playerHealth;
-    private EnemyHealth enemyHealth;
+    [SerializeField] private AnimationClip attackClip;
+    [SerializeField] private float movementSpeed = 6.5f;
+    [SerializeField] private float damage = 35.0f;
+    [SerializeField] private float attackCooldown = 8.0f;
+    [SerializeField] private float movementCooldown = 3.0f;
 
     private Animator animator;
-    private NavMeshAgent navigator;
     private TrapperBow weapon;
 
-    [SerializeField] private AnimationClip attackClip;
-    [SerializeField] private float maximumMovementDistance = 20.0f;
-
-    [SerializeField] private GameObject arrow;
-    [SerializeField] private GameObject trap;
-
-    [SerializeField] private int arrowDamage = 35;
-    [SerializeField] private float speed = 6.5f;
-    [SerializeField] private float movementCooldown = 3.0f;
-    private float movementTimer = 3.0f;
-    [SerializeField] private float attackCooldown = 8.0f;
+    
+    private float maximumMovementDistance = 20.0f;
+    private float movementTimer = 4.0f;
     private float attackTimer = 2.0f;
-    [SerializeField] private float trapCooldown = 12.0f;
-    private float trapTimer = 6.0f;
-
     private bool attacking = false;
-    private bool turningTowardsPlayer = false;
 
-    void Awake()
+    protected override void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-        enemyHealth = GetComponent<EnemyHealth>();
-
+        base.Awake();
+        navigator.speed = movementSpeed;
         animator = GetComponentInChildren<Animator>();
-        navigator = GetComponent<NavMeshAgent>();
-        navigator.speed = speed;
-
         weapon = GetComponentInChildren<TrapperBow>();
-        weapon.SetDamage(arrowDamage);
+        weapon.SetDamage(damage);
         GetComponentInChildren<EnemyWeaponDelegate>().SetWeapon(weapon);
     }
 
@@ -53,9 +36,11 @@ public class OrcTrapper : MonoBehaviour
             return;
         }
 
-        movementTimer += Time.deltaTime;
+        if (!attacking)
+        {
+            movementTimer += Time.deltaTime;
+        }
         attackTimer += Time.deltaTime;
-        trapTimer += Time.deltaTime;
 
         if (navigator.enabled && navigator.velocity.magnitude > 0.1f)
         {
@@ -70,20 +55,17 @@ public class OrcTrapper : MonoBehaviour
         {
             MoveRandomly();
         }
-        
-        if (trapTimer > trapCooldown)
-        {
-            SpawnTrap();
-        }
 
-        if (attackTimer > attackCooldown && IsPlayerInSight() && !attacking)
+        if (attackTimer > attackCooldown && IsPlayerInSight())
         {
-            PrepareAttack();
-        }
-
-        if (turningTowardsPlayer)
-        {
-            TurnTowardsPlayer();
+            if (!attacking)
+            {
+                PrepareAttack();
+            }
+            else
+            {
+                TurnTowardsPlayer(150.0f);
+            }
         }
     }
 
@@ -93,15 +75,8 @@ public class OrcTrapper : MonoBehaviour
 
         if (navigator.enabled)
         {
-            navigator.SetDestination(GetRandomPosition(maximumMovementDistance));
+            navigator.SetDestination(GetRandomLocation(maximumMovementDistance));
         }
-    }
-
-    private void TurnTowardsPlayer()
-    {
-        Quaternion lookRotation = Quaternion.LookRotation(player.position - transform.position);
-        lookRotation = Quaternion.Euler(0.0f, lookRotation.eulerAngles.y, 0.0f);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, 150.0f * Time.deltaTime);
     }
 
     private void PrepareAttack()
@@ -110,58 +85,20 @@ public class OrcTrapper : MonoBehaviour
         {
             navigator.isStopped = true;
         }
-        turningTowardsPlayer = true;
         attacking = true;
         weapon.SetPosition(transform);
         weapon.SetTarget(player);
         animator.SetTrigger("Attack");
-
         Invoke("ResetAttack", attackClip.length);
     }
 
     private void ResetAttack()
     {
-        attackTimer = Random.Range(0.0f, 3.0f);
+        attackTimer = Random.Range(0.0f, attackCooldown / 2.0f);
         attacking = false;
-        turningTowardsPlayer = false;
         if (navigator.enabled)
         {
             navigator.isStopped = false;
         }
-    }
-
-    private void SpawnTrap()
-    {
-        Instantiate(trap, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-        trapTimer = Random.Range(0.0f, 4.0f);
-    }
-
-    private Vector3 GetRandomPosition(float maximumDistance)
-    {
-        Vector3 randomDirection = Random.insideUnitSphere * maximumDistance;
-        randomDirection += transform.position;
-
-        NavMeshHit hit;
-        NavMesh.SamplePosition(randomDirection, out hit, maximumDistance, -1);
-
-        return hit.position;
-    }
-
-    private bool IsPlayerInSight()
-    {
-        RaycastHit hit;
-        Vector3 rayDirection = player.position - transform.position;
-
-        if (Physics.Raycast(transform.position, rayDirection, out hit))
-        {
-            return hit.transform == player;
-        }
-        return false;
-    }
-
-    private bool IsPlayerInFront(float range)
-    {
-        float angle = Vector3.Angle(transform.forward, player.position - transform.position);
-        return Mathf.Abs(angle) < range;
     }
 }

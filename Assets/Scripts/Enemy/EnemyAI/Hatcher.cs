@@ -1,63 +1,35 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 
-public class Hatcher : MonoBehaviour {
+public class Hatcher : EnemyAI
+{
+    [SerializeField] private float movementSpeed = 3.0f;
 
-	private PlayerHealth playerHealth;
-	private EnemyHealth enemyHealth;
+    private float maximumMovementDistance = 25.0f;
 
-	private NavMeshAgent navigator;
+    protected override void Awake()
+    {
+        base.Awake();
+        navigator.speed = movementSpeed;
+        navigator.SetDestination(GetRandomLocation(maximumMovementDistance));
+    }
 
-	[SerializeField] private float speed = 0.9f;
+    void Update()
+    {
+        if (enemyHealth.IsDead() || playerHealth.IsDead())
+        {
+            CancelInvoke();
+            navigator.enabled = false;
+            return;
+        }
 
-	void Awake()
-	{
-		playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-		enemyHealth = GetComponent<EnemyHealth>();
-		navigator = GetComponent<NavMeshAgent>();
-		navigator.speed = speed;
-		navigator.SetDestination(GetRandomPosition(20f));
-	}
+        if (navigator.enabled && GetDistanceToCurrentTarget() < 1.5f)
+        {
+            navigator.SetDestination(GetRandomLocation(maximumMovementDistance));
+        }
+    }
 
-	void Update()
-	{
-
-		navigator.enabled = true;
-
-		if (enemyHealth.IsDead() || playerHealth.IsDead())
-		{
-			navigator.enabled = false;
-			return;
-		}
-
-		if (navigator.enabled && DistanceToTarget() < 0.4f)
-		{
-			navigator.SetDestination(GetRandomPosition(20f));
-		}
-	}
-
-	void OnTriggerEnter(Collider other)
-	{
-		if (other.tag.Equals("Wall"))
-		{
-			navigator.SetDestination(transform.position - transform.forward * 6f);
-		}
-	}
-
-	private Vector3 GetRandomPosition(float maximumDistance)
-	{
-		Vector3 randomDirection = Random.insideUnitSphere * maximumDistance;
-		randomDirection += transform.position;
-
-		NavMeshHit hit;
-		NavMesh.SamplePosition(randomDirection, out hit, maximumDistance, -1);
-
-		return hit.position;
-	}
-
-	private float DistanceToTarget()
-	{
-		return Vector3.Distance(transform.position, navigator.destination);
-	}
-
+    private float GetDistanceToCurrentTarget()
+    {
+        return Vector3.Distance(transform.position, navigator.destination);
+    }
 }

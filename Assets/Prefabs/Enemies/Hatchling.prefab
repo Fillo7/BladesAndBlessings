@@ -251,10 +251,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bfa65356f0fc614a981a8aaf98634c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4
-  attackCooldown: 3
-  attackRange: 1.9
+  movementSpeed: 3.5
   damage: 5
+  attackCooldown: 1.5
 --- !u!114 &114470131571173678
 MonoBehaviour:
   m_ObjectHideFlags: 1

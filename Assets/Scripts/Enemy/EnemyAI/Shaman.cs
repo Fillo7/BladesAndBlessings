@@ -1,49 +1,34 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class Shaman : MonoBehaviour
+public class Shaman : EnemyAI
 {
-    private Transform player;
-    private PlayerHealth playerHealth;
-    private EnemyHealth enemyHealth;
-
     [SerializeField] private AnimationClip attackClip;
     [SerializeField] private AnimationClip healingClip;
-
-    [SerializeField] private float fireballDamage = 50.0f;
-    [SerializeField] private float healingProjectileAmount = 30.0f;
-
     [SerializeField] private float movementSpeed = 3.0f;
-    [SerializeField] private float minimumDistance = 6.0f;
-    [SerializeField] private float maximumDistance = 16.0f;
-
+    [SerializeField] private float damage = 50.0f;
+    [SerializeField] private float healing = 30.0f;
     [SerializeField] private float attackCooldown = 3.0f;
-    private float attackTimer = 0.0f;
-
-    private bool isRelocating = true;
-    private bool attacking = false;
-    private bool turning = false;
-    private Transform turningTarget;
 
     private Animator animator;
-    private NavMeshAgent navigator;
     private ShamanStaff weapon;
 
-    void Awake()
+    private float minimumPlayerDistance = 6.0f;
+    private float maximumPlayerDistance = 15.0f;
+    private float attackTimer = 0.0f;
+    private bool isRelocating = true;
+    private bool attacking = false;
+    private Transform currentTarget;
+
+    protected override void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-        enemyHealth = GetComponent<EnemyHealth>();
-
-        animator = GetComponentInChildren<Animator>();
-        navigator = GetComponent<NavMeshAgent>();
+        base.Awake();
         navigator.speed = movementSpeed;
-        turningTarget = player;
-
+        animator = GetComponentInChildren<Animator>();
         weapon = GetComponentInChildren<ShamanStaff>();
-        weapon.Initialize(fireballDamage, healingProjectileAmount);
+        weapon.Initialize(damage, healing);
         GetComponentInChildren<EnemyWeaponDelegate>().SetWeapon(weapon);
+        currentTarget = player;
     }
 
     void Update()
@@ -65,20 +50,20 @@ public class Shaman : MonoBehaviour
             animator.SetBool("Running", true);
         }
 
-        if (isRelocating && DistanceToPlayer() > (minimumDistance + 1.0f) && DistanceToPlayer() < (maximumDistance - 1.0f))
+        if (isRelocating && GetDistanceToPlayer() > (minimumPlayerDistance + 1.0f) && GetDistanceToPlayer() < (maximumPlayerDistance - 1.0f))
         {
             isRelocating = false;
             navigator.enabled = false;
         }
 
-        if (DistanceToPlayer () > maximumDistance && !attacking)
+        if (GetDistanceToPlayer() > maximumPlayerDistance && !attacking)
         {
             isRelocating = true;
             navigator.enabled = true;
             navigator.SetDestination(player.position);
         }
 
-        if (DistanceToPlayer () < minimumDistance && !attacking)
+        if (GetDistanceToPlayer() < minimumPlayerDistance && !attacking)
         {
             isRelocating = true;	
             navigator.enabled = true;
@@ -87,22 +72,21 @@ public class Shaman : MonoBehaviour
             navigator.SetDestination(fleeDirection.normalized * 15f);
         }
 
-        if (attackTimer > attackCooldown && !isRelocating && !attacking)
+        if (attackTimer > attackCooldown && !isRelocating)
         {
-            PrepareAttack();
+            if (!attacking)
+            {
+                PrepareAttack();
+            }
+            else
+            {
+                TurnTowardsTarget(currentTarget);
+            }
         }
-
-        if (turning)
+        else if(!isRelocating)
         {
-            TurnTowardsLocation(turningTarget);
+            TurnTowardsPlayer();
         }
-    }
-
-    private void TurnTowardsLocation(Transform location)
-    {
-        Quaternion lookRotation = Quaternion.LookRotation(location.position - transform.position);
-        lookRotation = Quaternion.Euler(0.0f, lookRotation.eulerAngles.y, 0.0f);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, 150.0f * Time.deltaTime);
     }
 
     private void PrepareAttack()
@@ -111,33 +95,29 @@ public class Shaman : MonoBehaviour
         {
             navigator.isStopped = true;
         }
-        turning = true;
         attacking = true;
         weapon.SetPosition(transform);
 
-        if (Random.Range(0, 2) == 0)
+        int attackType = Random.Range(0, 2);
+        bool allyFound = false;
+        if (attackType == 0)
         {
-            GameObject ally = FindWoundedAllyInRange(15.0f);
+            GameObject ally = FindWoundedAllyInRange(20.0f);
 
             if (ally != null)
             {
-                turningTarget = ally.transform;
-                weapon.SetTarget(turningTarget);
+                allyFound = true;
+                currentTarget = ally.transform;
+                weapon.SetTarget(currentTarget);
                 animator.SetTrigger("AttackAlternate");
                 Invoke("ResetAttack", healingClip.length);
             }
-            else
-            {
-                turningTarget = player;
-                weapon.SetTarget(turningTarget);
-                animator.SetTrigger("Attack");
-                Invoke("ResetAttack", attackClip.length);
-            }
         }
-        else
+
+        if (attackType == 1 || !allyFound)
         {
-            turningTarget = player;
-            weapon.SetTarget(turningTarget);
+            currentTarget = player;
+            weapon.SetTarget(currentTarget);
             animator.SetTrigger("Attack");
             Invoke("ResetAttack", attackClip.length);
         }
@@ -147,7 +127,6 @@ public class Shaman : MonoBehaviour
     {
         attackTimer = 0.0f;
         attacking = false;
-        turning = false;
         if (navigator.enabled)
         {
             navigator.isStopped = false;
@@ -167,29 +146,12 @@ public class Shaman : MonoBehaviour
             }
 
             EnemyHealth health = ally.GetComponent<EnemyHealth>();
-            if (Vector3.Distance(transform.position, ally.transform.position) < maximumRange && !health.IsDead() && health.GetCurrentHealth() < health.GetHealth())
+            if (IsTargetInRange(ally.transform, maximumRange) && !health.IsDead() && health.GetCurrentHealth() < health.GetHealth())
             {
                 return ally;
             }
         }
 
         return null;
-    }
-
-    private bool IsPlayerInSight()
-    {
-        RaycastHit hit;
-        Vector3 rayDirection = player.position - transform.position;
-
-        if (Physics.Raycast(transform.position, rayDirection, out hit))
-        {
-            return hit.transform == player;
-        }
-        return false;
-    }
-
-    private float DistanceToPlayer()
-    {
-        return Vector3.Distance(transform.position, player.position);
     }
 }
