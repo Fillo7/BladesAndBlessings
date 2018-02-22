@@ -8,7 +8,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private AudioClip deathClip = null;
     private AudioSource audioPlayer;
 
-    [SerializeField] private float deathDestroyDelay = 3.0f;
+    [SerializeField] private float deathDestroyDelay = 5.0f;
     [SerializeField] private int health = 50;
     private int currentHealth;
 

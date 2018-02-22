@@ -172,5 +172,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hurtClip: {fileID: 0}
   deathClip: {fileID: 0}
-  deathDestroyDelay: 3
+  deathDestroyDelay: 5
   health: 60

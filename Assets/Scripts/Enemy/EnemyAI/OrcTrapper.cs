@@ -40,6 +40,10 @@ public class OrcTrapper : EnemyAI
         {
             movementTimer += Time.deltaTime;
         }
+        else
+        {
+            TurnTowardsPlayer(150.0f);
+        }
         attackTimer += Time.deltaTime;
 
         if (navigator.enabled && navigator.velocity.magnitude > 0.1f)
@@ -56,16 +60,9 @@ public class OrcTrapper : EnemyAI
             MoveRandomly();
         }
 
-        if (attackTimer > attackCooldown && IsPlayerInSight())
+        if (attackTimer > attackCooldown && IsPlayerInSight() && !attacking)
         {
-            if (!attacking)
-            {
-                PrepareAttack();
-            }
-            else
-            {
-                TurnTowardsPlayer(150.0f);
-            }
+            PrepareAttack();
         }
     }
 

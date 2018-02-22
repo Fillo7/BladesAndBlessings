@@ -1040,7 +1040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hurtClip: {fileID: 0}
   deathClip: {fileID: 8300000, guid: 7e5b5c65d1ad9d5408c4f5e2442ebc15, type: 3}
-  deathDestroyDelay: 5
+  deathDestroyDelay: 10
   health: 100
 --- !u!114 &114435316446195760
 MonoBehaviour:
@@ -1065,9 +1065,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackClip: {fileID: 7400000, guid: d76c772e0a206494cb9419bcb96b238b, type: 2}
+  movementSpeed: 4.5
   damage: 30
-  speed: 4.5
-  attackRange: 1.8
   attackCooldown: 2
 --- !u!114 &114602859715750664
 MonoBehaviour:

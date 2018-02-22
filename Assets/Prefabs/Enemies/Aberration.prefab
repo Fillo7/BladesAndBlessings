@@ -234,7 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hurtClip: {fileID: 0}
   deathClip: {fileID: 0}
-  deathDestroyDelay: 45
+  deathDestroyDelay: 60
   health: 115
 --- !u!114 &114628560223449404
 MonoBehaviour:
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cede649621c77a4d9d2633afc63aa65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.75
+  movementSpeed: 1.75
   auraRadius: 4.5
   auraDamage: 8
   tickTime: 0.25

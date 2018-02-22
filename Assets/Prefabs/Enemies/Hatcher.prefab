@@ -267,8 +267,8 @@ MonoBehaviour:
   spawnTarget: {fileID: 1417921750101134, guid: fa7c12dbfba8d464fad67a22c99159c0,
     type: 2}
   selfDestructOnSpawn: 0
-  spawnTime: 20
-  maxTimerRandomIncrease: 4
+  spawnTime: 15
+  maxTimerRandomIncrease: 3
 --- !u!114 &114830592977879436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -282,8 +282,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hurtClip: {fileID: 0}
   deathClip: {fileID: 0}
-  deathDestroyDelay: 3
-  health: 140
+  deathDestroyDelay: 10
+  health: 150
 --- !u!136 &136236777186072500
 CapsuleCollider:
   m_ObjectHideFlags: 1

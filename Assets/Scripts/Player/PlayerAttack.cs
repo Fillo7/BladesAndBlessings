@@ -58,11 +58,11 @@ public class PlayerAttack : MonoBehaviour
 
             if (activeWeaponScript.GetWeaponType() == WeaponType.Ranged)
             {
-                movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[0].GetAnimationDuration() / activeAbilityInfo[0].GetAnimationSpeedMultiplier());
+                movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[0].GetAnimationDuration());
             }
 
             actionTimer = 0.0f;
-            Invoke("ResetAttack", activeAbilityInfo[0].GetAnimationDuration() / activeAbilityInfo[0].GetAnimationSpeedMultiplier());
+            Invoke("ResetAttack", activeAbilityInfo[0].GetAnimationDuration());
         }
 
         if (Input.GetButton("Fire2") && TimerIsReady())
@@ -78,11 +78,11 @@ public class PlayerAttack : MonoBehaviour
 
             if (activeWeaponScript.GetWeaponType() == WeaponType.Ranged)
             {
-                movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[1].GetAnimationDuration() / activeAbilityInfo[1].GetAnimationSpeedMultiplier());
+                movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[1].GetAnimationDuration());
             }
 
             actionTimer = 0.0f;
-            Invoke("ResetAttack", activeAbilityInfo[1].GetAnimationDuration() / activeAbilityInfo[1].GetAnimationSpeedMultiplier());
+            Invoke("ResetAttack", activeAbilityInfo[1].GetAnimationDuration());
         }
 
         if (Input.GetButton("Fire3") && TimerIsReady())
@@ -98,11 +98,11 @@ public class PlayerAttack : MonoBehaviour
 
             if (activeWeaponScript.GetWeaponType() == WeaponType.Ranged)
             {
-                movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[2].GetAnimationDuration() / activeAbilityInfo[2].GetAnimationSpeedMultiplier());
+                movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[2].GetAnimationDuration());
             }
 
             actionTimer = 0.0f;
-            Invoke("ResetAttack", activeAbilityInfo[2].GetAnimationDuration() / activeAbilityInfo[2].GetAnimationSpeedMultiplier());
+            Invoke("ResetAttack", activeAbilityInfo[2].GetAnimationDuration());
         }
 
         if (Input.GetButton("SwapWeapon") && TimerIsReady())

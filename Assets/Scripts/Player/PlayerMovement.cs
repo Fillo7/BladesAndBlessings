@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 6.0f;
+    [SerializeField] private float speed = 5.5f;
     private float currentSpeed;
 
     private Vector3 direction;

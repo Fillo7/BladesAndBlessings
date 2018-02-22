@@ -1039,8 +1039,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hurtClip: {fileID: 8300000, guid: 3d6762d08c8654443a525ce47c950a85, type: 3}
   deathClip: {fileID: 8300000, guid: a9abf8ad04e8cb64bbe505cc2f9c190b, type: 3}
-  deathDestroyDelay: 5
-  health: 110
+  deathDestroyDelay: 10
+  health: 120
 --- !u!114 &114288140541100262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1079,11 +1079,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackClip: {fileID: 7400000, guid: 8fae4e99f00ff6646812e4111d9020e1, type: 2}
   healingClip: {fileID: 7400000, guid: 624528a7e6eb1514594d9af22d25f079, type: 2}
-  fireballDamage: 50
-  healingProjectileAmount: 30
   movementSpeed: 3
-  minimumDistance: 6
-  maximumDistance: 16
+  damage: 50
+  healing: 30
   attackCooldown: 3
 --- !u!136 &136668185305103800
 CapsuleCollider:

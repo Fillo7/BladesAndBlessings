@@ -4,7 +4,7 @@ public class Hatcher : EnemyAI
 {
     [SerializeField] private float movementSpeed = 3.0f;
 
-    private float maximumMovementDistance = 25.0f;
+    private float maximumMovementDistance = 35.0f;
 
     protected override void Awake()
     {
