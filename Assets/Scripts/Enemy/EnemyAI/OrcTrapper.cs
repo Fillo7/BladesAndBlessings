@@ -11,7 +11,6 @@ public class OrcTrapper : EnemyAI
     private Animator animator;
     private TrapperBow weapon;
 
-    
     private float maximumMovementDistance = 20.0f;
     private float movementTimer = 4.0f;
     private float attackTimer = 2.0f;

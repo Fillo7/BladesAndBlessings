@@ -50,7 +50,7 @@ public class PlayerAttack : MonoBehaviour
         ability1Slider.value = activeWeaponScript.GetSpecialAttack1Timer();
         ability2Slider.value = activeWeaponScript.GetSpecialAttack2Timer();
 
-        if (Input.GetButton("Fire1") && TimerIsReady())
+        if (Input.GetButton("BasicAttack") && TimerIsReady())
         {
             EnableAttack();
             animator.SetFloat("BasicAbilitySpeedMultiplier", activeAbilityInfo[0].GetAnimationSpeedMultiplier());
@@ -65,7 +65,7 @@ public class PlayerAttack : MonoBehaviour
             Invoke("ResetAttack", activeAbilityInfo[0].GetAnimationDuration());
         }
 
-        if (Input.GetButton("Fire2") && TimerIsReady())
+        if (Input.GetButton("SpecialAttack1") && TimerIsReady())
         {
             if (activeWeaponScript.GetSpecialAttack1Timer() < activeAbilityInfo[1].GetCooldown())
             {
@@ -85,7 +85,7 @@ public class PlayerAttack : MonoBehaviour
             Invoke("ResetAttack", activeAbilityInfo[1].GetAnimationDuration());
         }
 
-        if (Input.GetButton("Fire3") && TimerIsReady())
+        if (Input.GetButton("SpecialAttack2") && TimerIsReady())
         {
             if (activeWeaponScript.GetSpecialAttack2Timer() < activeAbilityInfo[2].GetCooldown())
             {

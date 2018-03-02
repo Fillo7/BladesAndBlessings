@@ -42,13 +42,13 @@ public class GameManager : MonoBehaviour
             Invoke("TriggerGameOver", 5.0f);
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !gameOver)
+        if (Input.GetButtonDown("Cancel") && !gameOver && !victory)
         {
             menuController.GoToMenuPanel();
             TogglePause();
         }
 
-        if (Input.GetKeyDown(KeyCode.F10))
+        if (Input.GetButtonDown("Screenshot"))
         {
             ScreenCapture.CaptureScreenshot("Screenshot" + Random.Range(0, 100000) + ".png");
         }
@@ -92,6 +92,21 @@ public class GameManager : MonoBehaviour
 
     public void TogglePause()
     {
+        menuCanvas.enabled = !menuCanvas.enabled;
+
+        if (Time.timeScale == 0.0f)
+        {
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            Time.timeScale = 0.0f;
+        }
+    }
+
+    public void TogglePauseDefaultMenu()
+    {
+        menuController.GoToMenuPanel();
         menuCanvas.enabled = !menuCanvas.enabled;
 
         if (Time.timeScale == 0.0f)
