@@ -2,7 +2,6 @@
 
 public class MenuController : MonoBehaviour
 {
-    [SerializeField] private GameObject welcomePanel;
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject controlPanel;
     [SerializeField] private GameObject gameOverPanel;
@@ -11,13 +10,7 @@ public class MenuController : MonoBehaviour
 
     void Awake()
     {
-        GoToWelcomePanel();
-    }
-
-    public void GoToWelcomePanel()
-    {
-        ResetPanels();
-        welcomePanel.SetActive(true);
+        GoToMenuPanel();
     }
 
     public void GoToMenuPanel()
@@ -52,11 +45,23 @@ public class MenuController : MonoBehaviour
 
     private void ResetPanels()
     {
-        welcomePanel.SetActive(false);
         menuPanel.SetActive(false);
-        controlPanel.SetActive(false);
-        gameOverPanel.SetActive(false);
-        victoryPanel.SetActive(false);
-        weaponsPanel.SetActive(false);
+
+        if (controlPanel != null)
+        {
+            controlPanel.SetActive(false);
+        }
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(false);
+        }
+        if (victoryPanel != null)
+        {
+            victoryPanel.SetActive(false);
+        }
+        if (weaponsPanel != null)
+        {
+            weaponsPanel.SetActive(false);
+        }
     }
 }

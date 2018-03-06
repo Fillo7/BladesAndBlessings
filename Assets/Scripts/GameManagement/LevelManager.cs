@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(GameManager))]
+[RequireComponent(typeof(WaveManager))]
 public class LevelManager : MonoBehaviour
 {
     private GameManager gameManager;
@@ -50,7 +52,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public bool IsGameActive()
+    public bool IsLevelActive()
     {
         return !gameOver && !victory;
     }

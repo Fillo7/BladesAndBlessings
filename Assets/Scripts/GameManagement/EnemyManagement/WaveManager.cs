@@ -11,7 +11,7 @@ public class WaveManager : MonoBehaviour
 
     bool freezeSlider = false;
     bool firstWaveSpawned = false;
-    private int currentWaveIndex = -1;
+    private int currentWaveIndex = 0;
 
     public void Update()
     {
@@ -29,9 +29,15 @@ public class WaveManager : MonoBehaviour
 
     public void SpawnNextWave(float delay)
     {
-        firstWaveSpawned = true;
+        if (firstWaveSpawned)
+        {
+            currentWaveIndex++;
+        }
+        else
+        {
+            firstWaveSpawned = true;
+        }
         freezeSlider = true;
-        currentWaveIndex++;
 
         if (currentWaveIndex >= waves.Count)
         {

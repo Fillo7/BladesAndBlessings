@@ -6,123 +6,92 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private WaveManager waveManager;
     private Canvas HUDCanvas;
     private Canvas menuCanvas;
     private MenuController menuController;
-    private PlayerHealth playerHealth;
-
-    private float waveSpawnDelay = 3.0f;
-    private bool gameOver = false;
-    private bool victory = false;
+    private LevelManager levelManager;
+    bool gamePaused = true;
 
     void Awake()
     {
-        waveManager = GetComponent<WaveManager>();
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-        HUDCanvas = GameObject.FindGameObjectWithTag("HUDCanvas").GetComponent<Canvas>();
+        GameObject HUD = GameObject.FindGameObjectWithTag("HUDCanvas");
+        if (HUD != null)
+        {
+            HUDCanvas = HUD.GetComponent<Canvas>();
+        }
+
         menuCanvas = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<Canvas>();
         menuController = menuCanvas.GetComponent<MenuController>();
-        menuCanvas.enabled = false;
+        levelManager = GetComponent<LevelManager>();
 
-        // Comment following line to disable welcome message
-        TogglePause();
+        Pause();
+        if (levelManager != null)
+        {
+            Resume();
+        }
     }
 
     void Update()
     {
-        if (gameOver || victory)
+        if (Input.GetButtonDown("Cancel") && levelManager != null && levelManager.IsLevelActive())
         {
-            return;
-        }
-
-        if (playerHealth.IsDead())
-        {
-            gameOver = true;
-            Invoke("TriggerGameOver", 5.0f);
-        }
-
-        if (Input.GetButtonDown("Cancel") && !gameOver && !victory)
-        {
-            menuController.GoToMenuPanel();
-            TogglePause();
+            TogglePauseWithDefaultMenu();
         }
 
         if (Input.GetButtonDown("Screenshot"))
         {
             ScreenCapture.CaptureScreenshot("Screenshot" + Random.Range(0, 100000) + ".png");
         }
-
-        if (!waveManager.IsFirstWaveSpawned())
-        {
-            waveManager.SpawnNextWave();
-        }
-
-        if (waveManager.IsCurrentWaveDefeated())
-        {
-            if (waveManager.AreAllWavesDefeated())
-            {
-                victory = true;
-                DespawnEnemies();
-                Invoke("TriggerVictory", 3.0f);
-            }
-            else
-            {
-                waveManager.SpawnNextWave(waveSpawnDelay);
-            }
-        }
     }
     
     public void RestartLevel()
     {
+        Pause();
         LoadLevel(SceneManager.GetActiveScene().name);
     }
 
     public void LoadLevel(string levelName)
     {
-        TogglePause();
+        Pause();
         SceneManager.LoadScene(levelName);
     }
 
-    public void TogglePauseAndIncreaseHealth()
+    public void Pause()
     {
-        playerHealth.SetBaseHealth(800);
-        TogglePause();
+        gamePaused = true;
+        Time.timeScale = 0.0f;
+        menuCanvas.enabled = true;
+    }
+
+    public void Resume()
+    {
+        gamePaused = false;
+        Time.timeScale = 1.0f;
+        menuCanvas.enabled = false;
     }
 
     public void TogglePause()
     {
-        menuCanvas.enabled = !menuCanvas.enabled;
-
-        if (Time.timeScale == 0.0f)
+        if (gamePaused)
         {
-            Time.timeScale = 1.0f;
+            Resume();
         }
         else
         {
-            Time.timeScale = 0.0f;
+            Pause();
         }
     }
 
-    public void TogglePauseDefaultMenu()
+    public void TogglePauseWithDefaultMenu()
     {
         menuController.GoToMenuPanel();
-        menuCanvas.enabled = !menuCanvas.enabled;
-
-        if (Time.timeScale == 0.0f)
-        {
-            Time.timeScale = 1.0f;
-        }
-        else
-        {
-            Time.timeScale = 0.0f;
-        }
+        TogglePause();
     }
 
     public void TriggerGameOver()
     {
         menuController.GoToGameOverPanel();
-        TogglePause();
+        Pause();
     }
 
     public void TriggerVictory()
@@ -139,18 +108,5 @@ public class GameManager : MonoBehaviour
         #else
             Application.Quit();
         #endif
-    }
-
-    private void DespawnEnemies()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        for (int i = 0; i < enemies.Length; i++)
-        {
-            if (enemies[i] != null && !enemies[i].GetComponent<EnemyHealth>().IsDead())
-            {
-                Destroy(enemies[i]);
-            }
-        }
     }
 }
