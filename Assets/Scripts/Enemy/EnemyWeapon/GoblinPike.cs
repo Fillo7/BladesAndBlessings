@@ -3,7 +3,7 @@
 public class GoblinPike : EnemyWeapon
 {
     private Animator animator;
-    private EnemyHealth health;
+    private GoblinPiker pikerAI;
 
     private float damage = 30.0f;
     private int maxHitCount = 0;
@@ -42,13 +42,15 @@ public class GoblinPike : EnemyWeapon
     {
         maxHitCount = 0;
         animator.SetTrigger("Blocked");
-        health.TakeDamage(damage);
+        pikerAI.CancelInvoke();
+        pikerAI.ResetAttack();
+        pikerAI.SetAttackTimer(-3.0f);
     }
 
-    public void Initialize(Animator animator, EnemyHealth health, float damage)
+    public void Initialize(Animator animator, GoblinPiker pikerAI, float damage)
     {
         SetEnemyAnimator(animator);
-        SetEnemyHealth(health);
+        SetPikerAI(pikerAI);
         SetDamage(damage);
     }
 
@@ -57,9 +59,9 @@ public class GoblinPike : EnemyWeapon
         this.animator = animator;
     }
 
-    public void SetEnemyHealth(EnemyHealth health)
+    public void SetPikerAI(GoblinPiker pikerAI)
     {
-        this.health = health;
+        this.pikerAI = pikerAI;
     }
 
     public void SetDamage(float damage)

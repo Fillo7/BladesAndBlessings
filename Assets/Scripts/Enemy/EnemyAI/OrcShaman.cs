@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Shaman : EnemyAI
+public class OrcShaman : EnemyAI
 {
     [SerializeField] private AnimationClip attackClip;
     [SerializeField] private AnimationClip healingClip;
@@ -12,6 +13,7 @@ public class Shaman : EnemyAI
 
     private Animator animator;
     private ShamanStaff weapon;
+    private NavMeshObstacle obstacle;
 
     private float minimumPlayerDistance = 6.0f;
     private float maximumPlayerDistance = 15.0f;
@@ -29,6 +31,8 @@ public class Shaman : EnemyAI
         weapon.Initialize(damage, healing);
         GetComponentInChildren<EnemyWeaponDelegate>().SetWeapon(weapon);
         currentTarget = player;
+        obstacle = GetComponent<NavMeshObstacle>();
+        obstacle.enabled = false;
     }
 
     void Update()
@@ -54,18 +58,21 @@ public class Shaman : EnemyAI
         {
             isRelocating = false;
             navigator.enabled = false;
+            obstacle.enabled = true;
         }
 
         if (GetDistanceToPlayer() > maximumPlayerDistance && !attacking)
         {
             isRelocating = true;
+            obstacle.enabled = false;
             navigator.enabled = true;
             navigator.SetDestination(player.position);
         }
 
         if (GetDistanceToPlayer() < minimumPlayerDistance && !attacking)
         {
-            isRelocating = true;	
+            isRelocating = true;
+            obstacle.enabled = false;
             navigator.enabled = true;
 
             Vector3 fleeDirection = -(player.position - transform.position);
@@ -76,7 +83,7 @@ public class Shaman : EnemyAI
         {
             if (!attacking)
             {
-                PrepareAttack();
+                Attack();
             }
             else
             {
@@ -89,7 +96,7 @@ public class Shaman : EnemyAI
         }
     }
 
-    private void PrepareAttack()
+    private void Attack()
     {
         if (navigator.enabled)
         {

@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 136446475492904544}
   - component: {fileID: 114540016625666908}
   - component: {fileID: 54056622629920258}
+  - component: {fileID: 208115035013245734}
   m_Layer: 0
   m_Name: GoblinPiker
   m_TagString: Enemy
@@ -1067,7 +1068,7 @@ MonoBehaviour:
   attackClip: {fileID: 7400000, guid: d76c772e0a206494cb9419bcb96b238b, type: 2}
   movementSpeed: 4.5
   damage: 30
-  attackCooldown: 2
+  attackCooldown: 1.25
 --- !u!114 &114602859715750664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7663,3 +7664,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!208 &208115035013245734
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387694318014432}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.65, y: 0.875, z: 0.65}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.15, y: 0.8, z: 0.1}
+  m_TimeToStationary: 0.5

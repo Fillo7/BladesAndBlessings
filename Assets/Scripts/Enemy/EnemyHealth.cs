@@ -49,6 +49,11 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+        if (dead)
+        {
+            return;
+        }
+
         if (bloodParticles != null)
         {
             bloodParticles.Play();

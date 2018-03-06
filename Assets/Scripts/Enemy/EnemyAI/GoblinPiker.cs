@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class GoblinPiker : EnemyAI
 {
     [SerializeField] private AnimationClip attackClip;
     [SerializeField] private float movementSpeed = 4.5f;
     [SerializeField] private float damage = 30.0f;
-    [SerializeField] private float attackCooldown = 2.0f;
+    [SerializeField] private float attackCooldown = 1.25f;
 
     private Animator animator;
     private GoblinPike weapon;
+    private NavMeshObstacle obstacle;
 
     private float attackRange = 1.8f;
-    private float attackTimer = 2.0f;
+    private float attackTimer = 1.25f;
     private bool attacking = false;
 
     protected override void Awake()
@@ -20,8 +22,10 @@ public class GoblinPiker : EnemyAI
         navigator.speed = movementSpeed;
         animator = GetComponentInChildren<Animator>();
         weapon = GetComponentInChildren<GoblinPike>();
-        weapon.Initialize(animator, enemyHealth, damage);
+        weapon.Initialize(animator, this, damage);
         GetComponentInChildren<EnemyWeaponDelegate>().SetWeapon(weapon);
+        obstacle = GetComponent<NavMeshObstacle>();
+        obstacle.enabled = false;
     }
 
     void Update()
@@ -30,6 +34,7 @@ public class GoblinPiker : EnemyAI
         {
             CancelInvoke();
             navigator.enabled = false;
+            obstacle.enabled = false;
             return;
         }
 
@@ -47,6 +52,7 @@ public class GoblinPiker : EnemyAI
         if (IsPlayerInRange(attackRange))
         {
             navigator.enabled = false;
+            obstacle.enabled = true;
 
             if (IsPlayerInFront(60.0f) && attackTimer > attackCooldown && !attacking)
             {
@@ -61,6 +67,7 @@ public class GoblinPiker : EnemyAI
         {
             if (!attacking)
             {
+                obstacle.enabled = false;
                 navigator.enabled = true;
             }
         }
@@ -71,18 +78,25 @@ public class GoblinPiker : EnemyAI
         }
     }
 
-    private void Attack()
+    public void SetAttackTimer(float attackTimer)
     {
-        navigator.enabled = false;
-        attacking = true;
-        animator.SetTrigger("Attack");
-        Invoke("ResetAttack", attackClip.length);
+        this.attackTimer = attackTimer;
     }
 
-    private void ResetAttack()
+    public void ResetAttack()
     {
         attackTimer = 0.0f;
-        attacking = false;
+        obstacle.enabled = false;
         navigator.enabled = true;
+        attacking = false;
+    }
+
+    private void Attack()
+    {
+        attacking = true;
+        navigator.enabled = false;
+        obstacle.enabled = true;
+        animator.SetTrigger("Attack");
+        Invoke("ResetAttack", attackClip.length);
     }
 }

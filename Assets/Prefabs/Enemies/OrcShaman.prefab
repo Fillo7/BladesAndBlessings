@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 195239018248068000}
   - component: {fileID: 136668185305103800}
   - component: {fileID: 114589867432840490}
+  - component: {fileID: 208386329993309498}
   m_Layer: 0
   m_Name: OrcShaman
   m_TagString: Enemy
@@ -7654,3 +7655,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!208 &208386329993309498
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1418947653511498}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.7, y: 1.65, z: 0.7}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.1, z: 0.1}
+  m_TimeToStationary: 0.5
