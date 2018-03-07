@@ -3,10 +3,13 @@
 public class MenuController : MonoBehaviour
 {
     [SerializeField] private GameObject menuPanel;
-    [SerializeField] private GameObject controlPanel;
+    [SerializeField] private GameObject optionsPanel;
+    [SerializeField] private GameObject controlsPanel;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject victoryPanel;
     [SerializeField] private GameObject weaponsPanel;
+    [SerializeField] private GameObject audioPanel;
+    [SerializeField] private GameObject graphicsPanel;
 
     void Awake()
     {
@@ -19,10 +22,16 @@ public class MenuController : MonoBehaviour
         menuPanel.SetActive(true);
     }
 
-    public void GoToControlPanel()
+    public void GoToOptionsPanel()
     {
         ResetPanels();
-        controlPanel.SetActive(true);
+        optionsPanel.SetActive(true);
+    }
+
+    public void GoToControlsPanel()
+    {
+        ResetPanels();
+        controlsPanel.SetActive(true);
     }
 
     public void GoToGameOverPanel()
@@ -43,13 +52,31 @@ public class MenuController : MonoBehaviour
         weaponsPanel.SetActive(true);
     }
 
+    public void GoToAudioPanel()
+    {
+        ResetPanels();
+        audioPanel.SetActive(true);
+    }
+
+    public void GoToGraphicsPanel()
+    {
+        ResetPanels();
+        graphicsPanel.SetActive(true);
+    }
+
     private void ResetPanels()
     {
-        menuPanel.SetActive(false);
-
-        if (controlPanel != null)
+        if (menuPanel != null)
         {
-            controlPanel.SetActive(false);
+            menuPanel.SetActive(false);
+        }
+        if (optionsPanel != null)
+        {
+            optionsPanel.SetActive(false);
+        }
+        if (controlsPanel != null)
+        {
+            controlsPanel.SetActive(false);
         }
         if (gameOverPanel != null)
         {
@@ -62,6 +89,14 @@ public class MenuController : MonoBehaviour
         if (weaponsPanel != null)
         {
             weaponsPanel.SetActive(false);
+        }
+        if (audioPanel != null)
+        {
+            audioPanel.SetActive(false);
+        }
+        if (graphicsPanel != null)
+        {
+            graphicsPanel.SetActive(false);
         }
     }
 }

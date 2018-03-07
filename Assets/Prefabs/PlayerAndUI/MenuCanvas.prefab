@@ -2151,7 +2151,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114907598455134650}
-        m_MethodName: GoToControlPanel
+        m_MethodName: GoToControlsPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3586,7 +3586,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 1853305422419488}
-  controlPanel: {fileID: 1452155038371266}
+  optionsPanel: {fileID: 0}
+  controlsPanel: {fileID: 1452155038371266}
   gameOverPanel: {fileID: 1525390327211012}
   victoryPanel: {fileID: 1183430663101914}
   weaponsPanel: {fileID: 1817202385313886}
