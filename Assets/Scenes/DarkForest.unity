@@ -269,6 +269,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundSlider: {fileID: 0}
   musicSlider: {fileID: 0}
+  qualitySlider: {fileID: 0}
+  ambientOcclusionToggle: {fileID: 0}
+  postProcessing: {fileID: 1257996623}
   musicPlayer: {fileID: 373251322}
 --- !u!1001 &5416504
 Prefab:
