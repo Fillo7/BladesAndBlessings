@@ -4,6 +4,7 @@ public class MenuController : MonoBehaviour
 {
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject optionsPanel;
+    [SerializeField] private GameObject levelPanel;
     [SerializeField] private GameObject controlsPanel;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject victoryPanel;
@@ -26,6 +27,12 @@ public class MenuController : MonoBehaviour
     {
         ResetPanels();
         optionsPanel.SetActive(true);
+    }
+
+    public void GoToLevelPanel()
+    {
+        ResetPanels();
+        levelPanel.SetActive(true);
     }
 
     public void GoToControlsPanel()
@@ -73,6 +80,10 @@ public class MenuController : MonoBehaviour
         if (optionsPanel != null)
         {
             optionsPanel.SetActive(false);
+        }
+        if (levelPanel != null)
+        {
+            levelPanel.SetActive(false);
         }
         if (controlsPanel != null)
         {

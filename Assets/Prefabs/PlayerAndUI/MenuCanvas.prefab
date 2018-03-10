@@ -1417,7 +1417,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_MethodName: TogglePause
+        m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3587,10 +3587,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 1853305422419488}
   optionsPanel: {fileID: 0}
+  levelPanel: {fileID: 0}
   controlsPanel: {fileID: 1452155038371266}
   gameOverPanel: {fileID: 1525390327211012}
   victoryPanel: {fileID: 1183430663101914}
   weaponsPanel: {fileID: 1817202385313886}
+  audioPanel: {fileID: 0}
+  graphicsPanel: {fileID: 0}
 --- !u!114 &114917613321310126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3913,7 +3916,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MainMenu
+          m_StringArgument: 00MainMenu
           m_BoolArgument: 0
         m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
