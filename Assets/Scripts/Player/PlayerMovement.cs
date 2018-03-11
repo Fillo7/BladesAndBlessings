@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private float automaticTurningTimer = 0.0f;
     private float automaticTurningMaximum = 0.0f;
 
+    private CustomInputManager inputManager;
     private PlayerHealth health;
     private Rigidbody playerRigidbody;
     private Animator animator;
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
+        inputManager = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponentInChildren<CustomInputManager>();
         health = GetComponent<PlayerHealth>();
         playerRigidbody = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
@@ -42,8 +44,8 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        float horizontal = inputManager.GetAxisRaw("Horizontal");
+        float vertical = inputManager.GetAxisRaw("Vertical");
 
         if (!automaticTurningEnabled)
         {

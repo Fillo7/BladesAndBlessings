@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private Canvas menuCanvas;
     private MenuController menuController;
     private LevelManager levelManager;
+    private CustomInputManager inputManager;
     bool gamePaused = true;
 
     void Awake()
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
         menuCanvas = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<Canvas>();
         menuController = menuCanvas.GetComponent<MenuController>();
         levelManager = GetComponent<LevelManager>();
+        inputManager = menuCanvas.GetComponentInChildren<CustomInputManager>();
 
         Pause();
         if (levelManager != null)
@@ -33,12 +35,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && levelManager != null && levelManager.IsLevelActive())
+        if (inputManager.GetKeyDown("InputCancel") && levelManager != null && levelManager.IsLevelActive() && !inputManager.IsWaitingForKey())
         {
             TogglePauseWithDefaultMenu();
         }
 
-        if (Input.GetButtonDown("Screenshot"))
+        if (inputManager.GetKeyDown("InputScreenshot") && !inputManager.IsWaitingForKey())
         {
             ScreenCapture.CaptureScreenshot("Screenshot" + Random.Range(0, 100000) + ".png");
         }

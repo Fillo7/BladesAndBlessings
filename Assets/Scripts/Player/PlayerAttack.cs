@@ -20,6 +20,7 @@ public class PlayerAttack : MonoBehaviour
     private float actionCooldown = 0.3f;
     private float weaponSwapTimer = 0.0f;
 
+    private CustomInputManager inputManager;
     private Animator animator;
     private PlayerHealth health;
     private PlayerMovement movement;
@@ -29,6 +30,7 @@ public class PlayerAttack : MonoBehaviour
     void Awake()
     {
         weaponDelegate = GetComponentInChildren<WeaponDelegate>();
+        inputManager = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponentInChildren<CustomInputManager>();
         animator = GetComponentInChildren<Animator>();
         health = GetComponent<PlayerHealth>();
         movement = GetComponent<PlayerMovement>();
@@ -50,7 +52,7 @@ public class PlayerAttack : MonoBehaviour
         ability1Slider.value = activeWeaponScript.GetSpecialAttack1Timer();
         ability2Slider.value = activeWeaponScript.GetSpecialAttack2Timer();
 
-        if (Input.GetButton("BasicAttack") && TimerIsReady())
+        if (inputManager.GetKeyDown("InputBasicAttack") && TimerIsReady())
         {
             EnableAttack();
             animator.SetFloat("BasicAbilitySpeedMultiplier", activeAbilityInfo[0].GetAnimationSpeedMultiplier());
@@ -65,7 +67,7 @@ public class PlayerAttack : MonoBehaviour
             Invoke("ResetAttack", activeAbilityInfo[0].GetAnimationDuration());
         }
 
-        if (Input.GetButton("SpecialAttack1") && TimerIsReady())
+        if (inputManager.GetKeyDown("InputSpecialAttack1") && TimerIsReady())
         {
             if (activeWeaponScript.GetSpecialAttack1Timer() < activeAbilityInfo[1].GetCooldown())
             {
@@ -85,7 +87,7 @@ public class PlayerAttack : MonoBehaviour
             Invoke("ResetAttack", activeAbilityInfo[1].GetAnimationDuration());
         }
 
-        if (Input.GetButton("SpecialAttack2") && TimerIsReady())
+        if (inputManager.GetKeyDown("InputSpecialAttack2") && TimerIsReady())
         {
             if (activeWeaponScript.GetSpecialAttack2Timer() < activeAbilityInfo[2].GetCooldown())
             {
@@ -105,7 +107,7 @@ public class PlayerAttack : MonoBehaviour
             Invoke("ResetAttack", activeAbilityInfo[2].GetAnimationDuration());
         }
 
-        if (Input.GetButton("SwapWeapon") && TimerIsReady())
+        if (inputManager.GetKeyDown("InputWeaponSwap") && TimerIsReady())
         {
             SwapWeapon();
             actionTimer = 0.0f;
