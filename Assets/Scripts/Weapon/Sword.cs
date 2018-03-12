@@ -15,13 +15,13 @@ public class Sword : Weapon
 
     private List<GameObject> blockedObjects = new List<GameObject>();
     private bool blocking = true;
-    private float blockTimer = 2.5f;
-    private float blockCooldown = 2.5f;
+    private float blockTimer = 3.0f;
+    private float blockCooldown = 3.0f;
 
     private List<GameObject> slashedEnemies = new List<GameObject>();
     private bool coneSlashing = false;
-    private float coneSlashTimer = 10.0f;
-    private float coneSlashCooldown = 10.0f;
+    private float coneSlashTimer = 12.0f;
+    private float coneSlashCooldown = 12.0f;
 
     void Update()
     {

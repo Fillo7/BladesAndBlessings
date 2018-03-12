@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4767410576459102}
   - component: {fileID: 65152621747784106}
   m_Layer: 0
-  m_Name: Tent
+  m_Name: tent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

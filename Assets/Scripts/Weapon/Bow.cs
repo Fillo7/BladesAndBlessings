@@ -15,11 +15,11 @@ public class Bow : Weapon
     private float baseDamage = 15.0f;
     private float arrowSpeed = 20.0f;
 
-    private float arrowFanTimer = 5.0f;
-    private float arrowFanCooldown = 5.0f;
+    private float arrowFanTimer = 7.5f;
+    private float arrowFanCooldown = 7.5f;
 
-    private float chargedArrowTimer = 15.0f;
-    private float chargedArrowCooldown = 15.0f;
+    private float chargedArrowTimer = 13.5f;
+    private float chargedArrowCooldown = 13.5f;
 
     void Awake()
     {
