@@ -5276,6 +5276,10 @@ Prefab:
       propertyPath: m_NavMeshLayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1869009338076028, guid: 67f1ccb028f1fb24f9c513391a6809d2, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1496605128071340, guid: 67f1ccb028f1fb24f9c513391a6809d2, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -5285,10 +5289,6 @@ Prefab:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1236008826326522, guid: 67f1ccb028f1fb24f9c513391a6809d2, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1869009338076028, guid: 67f1ccb028f1fb24f9c513391a6809d2, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}

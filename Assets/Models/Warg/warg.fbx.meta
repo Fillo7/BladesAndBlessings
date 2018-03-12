@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1bb6ea2733bd844229b6ef8bbeb3061c
+guid: 5cd26d50a89c646c18e0eb0ddf10db1c
 timeCreated: 1520885068
 licenseType: Free
 ModelImporter:
@@ -43,10 +43,8 @@ ModelImporter:
     100070: Bone_R.003
     100072: Bone_R.004
     100074: Bone_R.004_end
-    100076: Camera
-    100078: Lamp
-    100080: //RootNode
-    100082: warg
+    100076: //RootNode
+    100078: warg
     400000: Armature
     400002: Bone
     400004: Bone.001
@@ -85,17 +83,13 @@ ModelImporter:
     400070: Bone_R.003
     400072: Bone_R.004
     400074: Bone_R.004_end
-    400076: Camera
-    400078: Lamp
-    400080: warg
-    400082: //RootNode
-    2000000: Camera
+    400076: //RootNode
+    400078: warg
     4300000: warg
-    7400000: Armature|Death
-    7400002: Armature|Idle
+    7400000: Armature|Attack
+    7400002: Armature|Death
     7400004: Armature|Run
     9500000: //RootNode
-    10800000: Lamp
     13700000: warg
   externalObjects:
   - first:
