@@ -45,7 +45,7 @@ public class OrcTrapper : EnemyAI
         }
         attackTimer += Time.deltaTime;
 
-        if (navigator.enabled && navigator.velocity.magnitude > 0.1f)
+        if (navigator.enabled && navigator.velocity.magnitude > 0.35f)
         {
             animator.SetBool("Running", true);
         }

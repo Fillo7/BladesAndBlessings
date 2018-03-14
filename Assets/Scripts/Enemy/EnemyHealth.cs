@@ -18,7 +18,7 @@ public class EnemyHealth : MonoBehaviour
     private bool dead = false;
     private LinkedList<DotEffect> dotEffects = new LinkedList<DotEffect>();
 
-    void Awake()
+    virtual protected void Awake()
     {
         audioPlayer = gameObject.AddComponent<AudioSource>();
         animator = GetComponentInChildren<Animator>();
@@ -47,7 +47,7 @@ public class EnemyHealth : MonoBehaviour
         return dead;
     }
 
-    public void TakeDamage(float amount)
+    virtual public void TakeDamage(float amount)
     {
         if (dead)
         {

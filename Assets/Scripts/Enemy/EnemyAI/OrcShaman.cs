@@ -76,7 +76,7 @@ public class OrcShaman : EnemyAI
             navigator.enabled = true;
 
             Vector3 fleeDirection = -(player.position - transform.position);
-            navigator.SetDestination(fleeDirection.normalized * 15f);
+            navigator.SetDestination(fleeDirection.normalized * 15.0f);
         }
 
         if (attackTimer > attackCooldown && !isRelocating)

@@ -5,7 +5,7 @@ public class GoblinDagger : EnemyWeapon
     private Animator animator;
     private GoblinRogue rogueAI;
 
-    private float damage = 20.0f;
+    private float damage = 15.0f;
     private int maxHitCount = 0;
 
     void OnTriggerEnter(Collider other)
@@ -28,7 +28,7 @@ public class GoblinDagger : EnemyWeapon
         maxHitCount--;
         PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
         playerHealth.TakeDamage(damage);
-        playerHealth.ApplyDotEffect(16.1f, 4.0f, 4.0f);
+        playerHealth.ApplyDotEffect(20.1f, 4.0f, 5.0f);
     }
 
     public override void DoAttack()
@@ -45,7 +45,7 @@ public class GoblinDagger : EnemyWeapon
         animator.SetTrigger("Blocked");
         rogueAI.CancelInvoke();
         rogueAI.ResetAttack();
-        rogueAI.SetAttackTimer(-1.5f);
+        rogueAI.ApplyStun(2.0f);
     }
 
     public void Initialize(Animator animator, GoblinRogue rogueAI, float damage)
