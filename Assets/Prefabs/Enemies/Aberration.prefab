@@ -235,7 +235,7 @@ MonoBehaviour:
   hurtClip: {fileID: 0}
   deathClip: {fileID: 0}
   deathDestroyDelay: 60
-  health: 115
+  health: 110
 --- !u!114 &114628560223449404
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -42,6 +42,11 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+        if (dead)
+        {
+            return;
+        }
+
         bloodParticles.Play();
         currentHealth -= (int)amount;
 

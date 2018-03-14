@@ -191,7 +191,7 @@ public class GoblinRogue : EnemyAI
         attacking = true;
         navigator.enabled = false;
         obstacle.enabled = true;
-        TurnVisible();
+        Invoke("TurnVisible", 0.25f);
         animator.SetTrigger("Attack");
         Invoke("ResetAttack", attackClip.length);
     }
