@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -8,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Slider healthSlider;
     
     private bool dead = false;
+    private LinkedList<DotEffect> dotEffects = new LinkedList<DotEffect>();
     private Animator animator;
     private ParticleSystem bloodParticles;
 
@@ -22,6 +24,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
+        ProcessDotEffects();
         healthSlider.value = (float)currentHealth;
     }
 
@@ -48,6 +51,11 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void ApplyDotEffect(float duration, float tickInterval, float tickDamage)
+    {
+        dotEffects.AddLast(new DotEffect(duration, tickInterval, tickDamage));
+    }
+
     private void Die()
     {
         dead = true;
@@ -55,6 +63,31 @@ public class PlayerHealth : MonoBehaviour
         if (animator != null)
         {
             animator.SetTrigger("Death");
+        }
+    }
+
+    private void ProcessDotEffects()
+    {
+        LinkedList<DotEffect> toRemove = new LinkedList<DotEffect>();
+
+        foreach (DotEffect effect in dotEffects)
+        {
+            effect.UpdateTimer(Time.deltaTime);
+
+            if (effect.NextTickReady())
+            {
+                TakeDamage(effect.GetTickDamage());
+            }
+
+            if (effect.IsExpired())
+            {
+                toRemove.AddLast(effect);
+            }
+        }
+
+        foreach (DotEffect effect in toRemove)
+        {
+            dotEffects.Remove(effect);
         }
     }
 }
