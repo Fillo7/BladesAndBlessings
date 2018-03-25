@@ -7,6 +7,7 @@ public class GoblinPike : EnemyWeapon
 
     private float damage = 30.0f;
     private int maxHitCount = 0;
+    private bool playerHit = false;
 
     void OnTriggerEnter(Collider other)
     {
@@ -28,11 +29,13 @@ public class GoblinPike : EnemyWeapon
         maxHitCount--;
         PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
         playerHealth.TakeDamage(damage);
+        playerHit = true;
     }
 
     public override void DoAttack()
     {
         maxHitCount = 1;
+        playerHit = false;
     }
 
     public override void DoAlternateAttack()
@@ -40,6 +43,11 @@ public class GoblinPike : EnemyWeapon
 
     public override void OnAttackBlock()
     {
+        if (playerHit)
+        {
+            return;
+        }
+
         maxHitCount = 0;
         animator.SetTrigger("Blocked");
         pikerAI.CancelInvoke();

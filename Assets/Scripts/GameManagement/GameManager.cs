@@ -48,8 +48,13 @@ public class GameManager : MonoBehaviour
     
     public void RestartLevel()
     {
-        Pause();
         LoadLevel(SceneManager.GetActiveScene().name);
+    }
+
+    public void LoadNextLevel()
+    {
+        string name = GetNextLevelName(SceneManager.GetActiveScene().name);
+        LoadLevel(name);
     }
 
     public void LoadLevel(string levelName)
@@ -110,5 +115,20 @@ public class GameManager : MonoBehaviour
         #else
             Application.Quit();
         #endif
+    }
+
+    private string GetNextLevelName(string currentLevel)
+    {
+        switch (currentLevel)
+        {
+            case "00MainMenu":
+                return "01CityOutskirts";
+            case "01CityOutskirts":
+                return "DarkForest";
+            case "DarkForest":
+                return "00MainMenu";
+        }
+
+        return "00MainMenu";
     }
 }
