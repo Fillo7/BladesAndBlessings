@@ -64,7 +64,7 @@ public class ArrowCharged : Projectile
         if (other.tag.Equals("Enemy"))
         {
             EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
-            enemyHealth.TakeDamage(damage);
+            enemyHealth.TakeDamage(damage, DamageType.Magic);
             chargeCount -= 2;
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 5.5f;
+    private float speedSnapshot;
     private float currentSpeed;
 
     private Vector3 direction;
@@ -30,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
         currentSpeed = speed;
+        speedSnapshot = speed;
     }
 
     void Update()
@@ -61,6 +63,16 @@ public class PlayerMovement : MonoBehaviour
                 automaticTurningEnabled = false;
             }
         }
+    }
+
+    public void SetSpeed(float speed)
+    {
+        this.speed = speed;
+    }
+
+    public void ResetSpeed()
+    {
+        speed = speedSnapshot;
     }
 
     public bool IsMoving()

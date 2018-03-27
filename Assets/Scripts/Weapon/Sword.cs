@@ -48,7 +48,7 @@ public class Sword : Weapon
 
         maxHitCount--;
         EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
-        enemyHealth.TakeDamage(damageToDeal);
+        enemyHealth.TakeDamage(damageToDeal, DamageType.Slashing);
 
         if (coneSlashing)
         {

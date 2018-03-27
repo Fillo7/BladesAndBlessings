@@ -3,6 +3,7 @@
 public class DamageProjectile : Projectile
 {
     [SerializeField] private float damage = 20.0f;
+    [SerializeField] private DamageType damageType = DamageType.Piercing;
 
     void OnTriggerEnter(Collider other)
     {
@@ -19,7 +20,7 @@ public class DamageProjectile : Projectile
             }
 
             EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
-            enemyHealth.TakeDamage(damage);
+            enemyHealth.TakeDamage(damage, damageType);
         }
         else if (other.tag.Equals("Player"))
         {

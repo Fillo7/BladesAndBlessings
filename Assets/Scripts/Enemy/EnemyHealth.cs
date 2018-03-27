@@ -12,6 +12,12 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int health = 50;
     private int currentHealth;
 
+    [SerializeField] private float slashingDamageMultiplier = 1.0f;
+    [SerializeField] private float piercingDamageMultiplier = 1.0f;
+    [SerializeField] private float fireDamageMultiplier = 1.0f;
+    [SerializeField] private float magicDamageMultiplier = 1.0f;
+    [SerializeField] private float dotDamageMultiplier = 1.0f;
+
     private Animator animator;
     private ParticleSystem bloodParticles;
 
@@ -45,6 +51,16 @@ public class EnemyHealth : MonoBehaviour
     public bool IsDead()
     {
         return dead;
+    }
+
+    virtual public void TakeDamage(float amount, DamageType damageType)
+    {
+        float actualDamage = CalculateDamageForType(amount, damageType);
+
+        if (actualDamage > 0.0f)
+        {
+            TakeDamage(actualDamage);
+        }
     }
 
     virtual public void TakeDamage(float amount)
@@ -131,7 +147,7 @@ public class EnemyHealth : MonoBehaviour
 
             if (effect.NextTickReady())
             {
-                TakeDamage(effect.GetTickDamage());
+                TakeDamage(effect.GetTickDamage(), DamageType.DoT);
             }
 
             if (effect.IsExpired())
@@ -143,6 +159,25 @@ public class EnemyHealth : MonoBehaviour
         foreach (DotEffect effect in toRemove)
         {
             dotEffects.Remove(effect);
+        }
+    }
+
+    private float CalculateDamageForType(float amount, DamageType damageType)
+    {
+        switch (damageType)
+        {
+            case DamageType.Slashing:
+                return amount * slashingDamageMultiplier;
+            case DamageType.Piercing:
+                return amount * piercingDamageMultiplier;
+            case DamageType.Fire:
+                return amount * fireDamageMultiplier;
+            case DamageType.Magic:
+                return amount * magicDamageMultiplier;
+            case DamageType.DoT:
+                return amount * dotDamageMultiplier;
+            default:
+                return amount;
         }
     }
 }
