@@ -3,7 +3,7 @@
 public class ArrowCharged : Projectile
 {
     [SerializeField] private float damage = 40.0f;
-    [SerializeField] private int chargeCount = 10;
+    [SerializeField] private int chargeCount = 15;
 
     private Vector3 currentVelocity;
     private Vector3 velocitySnapshot;
@@ -36,8 +36,13 @@ public class ArrowCharged : Projectile
         else
         {
             ContactPoint contact = collision.contacts[0];
-
             Vector3 reflectedVelocity = Vector3.Reflect(currentVelocity, contact.normal);
+
+            if (reflectedVelocity == currentVelocity) // safeguard against arrow getting stuck
+            {
+                reflectedVelocity.x = -reflectedVelocity.x;
+            }
+
             reflectedVelocity = Quaternion.Euler(0.0f, Random.Range(0.0f, 5.0f), 0.0f) * reflectedVelocity;
             body.velocity = new Vector3(reflectedVelocity.x, body.velocity.y, reflectedVelocity.z);
             body.velocity = body.velocity.normalized * speed;
@@ -60,7 +65,7 @@ public class ArrowCharged : Projectile
         {
             EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
             enemyHealth.TakeDamage(damage);
-            chargeCount--;
+            chargeCount -= 2;
         }
     }
 
