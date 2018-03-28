@@ -17,7 +17,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: palette
-    second: {fileID: 2100000, guid: 88b66074eb6ca26439c67683fed78516, type: 2}
+    second: {fileID: 2100000, guid: a0f2c2a91a14d244f9536d7926785ae2, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -47,7 +47,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.035
+    globalScale: 0.07
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

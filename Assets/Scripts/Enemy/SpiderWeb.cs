@@ -15,6 +15,14 @@ public class SpiderWeb : MonoBehaviour
         }
     }
 
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag.Equals("Player"))
+        {
+            movement.SetSpeed(0.0f);
+        }
+    }
+
     void OnDestroy()
     {
         if (playerImmobilized)

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class EnemyTrap : MonoBehaviour
+public class TrapperTrap : MonoBehaviour
 {
     [SerializeField] private float lengthOfSnare = 3.0f;
     [SerializeField] private float damage = 25.0f;
