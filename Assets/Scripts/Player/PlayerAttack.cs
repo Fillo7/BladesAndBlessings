@@ -55,10 +55,11 @@ public class PlayerAttack : MonoBehaviour
         if (inputManager.GetKeyDown("InputBasicAttack") && TimerIsReady())
         {
             EnableAttack();
+            activeWeaponScript.SetCursorPosition(GetCursorWorldPosition());
             animator.SetFloat("BasicAbilitySpeedMultiplier", activeAbilityInfo[0].GetAnimationSpeedMultiplier());
             animator.SetTrigger("BasicAbility");
 
-            if (activeWeaponScript.GetWeaponType() == WeaponType.Ranged)
+            if (activeAbilityInfo[0].IsTurningLocked())
             {
                 movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[0].GetAnimationDuration());
             }
@@ -75,10 +76,11 @@ public class PlayerAttack : MonoBehaviour
             }
 
             EnableAttack();
+            activeWeaponScript.SetCursorPosition(GetCursorWorldPosition());
             animator.SetFloat("SpecialAbility1SpeedMultiplier", activeAbilityInfo[1].GetAnimationSpeedMultiplier());
             animator.SetTrigger("SpecialAbility1");
 
-            if (activeWeaponScript.GetWeaponType() == WeaponType.Ranged)
+            if (activeAbilityInfo[1].IsTurningLocked())
             {
                 movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[1].GetAnimationDuration());
             }
@@ -95,10 +97,11 @@ public class PlayerAttack : MonoBehaviour
             }
 
             EnableAttack();
+            activeWeaponScript.SetCursorPosition(GetCursorWorldPosition());
             animator.SetFloat("SpecialAbility2SpeedMultiplier", activeAbilityInfo[2].GetAnimationSpeedMultiplier());
             animator.SetTrigger("SpecialAbility2");
 
-            if (activeWeaponScript.GetWeaponType() == WeaponType.Ranged)
+            if (activeAbilityInfo[2].IsTurningLocked())
             {
                 movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[2].GetAnimationDuration());
             }

@@ -127,4 +127,5 @@ MonoBehaviour:
   basicAttack: {fileID: 0}
   specialAttack1: {fileID: 0}
   specialAttack2: {fileID: 0}
-  fissure: {fileID: 0}
+  flames: {fileID: 1435326591756716, guid: a9ec5387c445caf4c98a7dd5db29393d, type: 2}
+  fissure: {fileID: 1553145875917404, guid: 692b29ed3c479fd418426bb2a87b3502, type: 2}

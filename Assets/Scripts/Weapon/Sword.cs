@@ -124,17 +124,15 @@ public class Sword : Weapon
         }
     }
 
-    public override WeaponType GetWeaponType()
-    {
-        return WeaponType.Melee;
-    }
+    public override void SetCursorPosition(Vector3 position)
+    {}
 
     public override List<AbilityInfo> GetAbilityInfo()
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
-        result.Add(new AbilityInfo(0.0f, basicAttack.length / 1.2f, 1.2f));
-        result.Add(new AbilityInfo(blockCooldown, specialAttack1.length / 1.15f, 1.15f));
-        result.Add(new AbilityInfo(coneSlashCooldown, specialAttack2.length / 1.15f, 1.15f));
+        result.Add(new AbilityInfo(0.0f, basicAttack.length / 1.2f, 1.2f, false));
+        result.Add(new AbilityInfo(blockCooldown, specialAttack1.length / 1.15f, 1.15f, false));
+        result.Add(new AbilityInfo(coneSlashCooldown, specialAttack2.length / 1.15f, 1.15f, false));
 
         return result;
     }

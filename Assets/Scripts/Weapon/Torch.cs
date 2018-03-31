@@ -9,6 +9,7 @@ public class Torch : Weapon
     [SerializeField] private AnimationClip specialAttack1;
     [SerializeField] private AnimationClip specialAttack2;
 
+    [SerializeField] private GameObject flames;
     [SerializeField] private GameObject fissure;
 
     private PlayerMovement playerMovement;
@@ -20,9 +21,12 @@ public class Torch : Weapon
     private float flameCloakTimer = 25.0f;
     private float flameCloakCooldown = 25.0f;
 
+    private Vector3 cursorPosition;
+
     void Awake()
     {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        cursorPosition = new Vector3(0.0f, 0.0f, 0.0f);
     }
 
     void Update()
@@ -33,7 +37,8 @@ public class Torch : Weapon
 
     public override void DoBasicAttack()
     {
-        // todo
+        GameObject spawnedFlames = Instantiate(flames, gameObject.transform);
+        spawnedFlames.GetComponent<TorchFlames>().SetDamage(baseDamage);
     }
 
     public override void DoSpecialAttack1()
@@ -43,7 +48,8 @@ public class Torch : Weapon
             return;
         }
 
-        // todo
+        GameObject spawnedFissure = Instantiate(fissure, cursorPosition, Quaternion.identity);
+        spawnedFissure.GetComponent<TorchFissure>().SetDamage(baseDamage * 0.8f);
         fissureTimer = 0.0f;
     }
 
@@ -77,17 +83,17 @@ public class Torch : Weapon
     public override void OnWeaponSwap()
     {}
 
-    public override WeaponType GetWeaponType()
+    public override void SetCursorPosition(Vector3 position)
     {
-        return WeaponType.Ranged;
+        cursorPosition = position;
     }
 
     public override List<AbilityInfo> GetAbilityInfo()
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
-        result.Add(new AbilityInfo(0.0f, basicAttack.length / 1.0f, 1.0f));
-        result.Add(new AbilityInfo(fissureCooldown, specialAttack1.length / 1.0f, 1.0f));
-        result.Add(new AbilityInfo(flameCloakCooldown, specialAttack2.length / 1.0f, 1.0f));
+        result.Add(new AbilityInfo(0.0f, basicAttack.length / 1.0f, 1.0f, false));
+        result.Add(new AbilityInfo(fissureCooldown, specialAttack1.length / 1.0f, 1.0f, true));
+        result.Add(new AbilityInfo(flameCloakCooldown, specialAttack2.length / 1.0f, 1.0f, false));
 
         return result;
     }

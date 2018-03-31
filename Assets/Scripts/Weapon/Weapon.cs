@@ -17,7 +17,7 @@ public abstract class Weapon : MonoBehaviour
 
     public abstract void OnWeaponSwap();
 
-    public abstract WeaponType GetWeaponType();
+    public abstract void SetCursorPosition(Vector3 position);
 
     public abstract List<AbilityInfo> GetAbilityInfo();
 
