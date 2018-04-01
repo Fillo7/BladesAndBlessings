@@ -1,17 +1,23 @@
-﻿public class DotEffect
+﻿public class DoTEffect
 {
     private float duration;
     private float tickInterval;
     private float tickDamage;
+    private DamageType damageType;
 
     private float timer;
     private float tickTimer;
 
-    public DotEffect(float duration, float tickInterval, float tickDamage)
+    public DoTEffect(float duration, float tickInterval, float tickDamage) :
+        this(duration, tickInterval, tickDamage, DamageType.Bleeding)
+    {}
+
+    public DoTEffect(float duration, float tickInterval, float tickDamage, DamageType damageType)
     {
         this.duration = duration;
         this.tickInterval = tickInterval;
         this.tickDamage = tickDamage;
+        this.damageType = damageType;
         timer = 0.0f;
         tickTimer = 0.0f;
     }
@@ -36,6 +42,11 @@
     public float GetTickDamage()
     {
         return tickDamage;
+    }
+
+    public DamageType GetDamageType()
+    {
+        return damageType;
     }
 
     public bool IsExpired()
