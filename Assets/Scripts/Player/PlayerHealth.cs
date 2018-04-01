@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Slider healthSlider;
     
     private bool dead = false;
-    private LinkedList<DotEffect> dotEffects = new LinkedList<DotEffect>();
+    private LinkedList<DoTEffect> dotEffects = new LinkedList<DoTEffect>();
+    bool dotClearFlag = false;
+    private LinkedList<HoTEffect> hotEffects = new LinkedList<HoTEffect>();
     private Animator animator;
     private ParticleSystem bloodParticles;
 
@@ -24,7 +27,14 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        ProcessDotEffects();
+        if (dotClearFlag)
+        {
+            dotEffects.Clear();
+            dotClearFlag = false;
+        }
+
+        ProcessDoTEffects();
+        ProcessHoTEffects();
         healthSlider.value = (float)currentHealth;
     }
 
@@ -56,9 +66,30 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void ApplyDotEffect(float duration, float tickInterval, float tickDamage)
+    public void Heal(float amount)
     {
-        dotEffects.AddLast(new DotEffect(duration, tickInterval, tickDamage));
+        if (dead)
+        {
+            return;
+        }
+
+        int healAmount = Math.Min((int)amount, baseHealth - currentHealth);
+        currentHealth += healAmount;
+    }
+
+    public void ApplyDoTEffect(DoTEffect effect)
+    {
+        dotEffects.AddLast(effect);
+    }
+
+    public void ApplyHoTEffect(HoTEffect effect)
+    {
+        hotEffects.AddLast(effect);
+    }
+
+    public void ClearDoTEffects()
+    {
+        dotClearFlag = true;
     }
 
     private void Die()
@@ -71,11 +102,11 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void ProcessDotEffects()
+    private void ProcessDoTEffects()
     {
-        LinkedList<DotEffect> toRemove = new LinkedList<DotEffect>();
+        LinkedList<DoTEffect> toRemove = new LinkedList<DoTEffect>();
 
-        foreach (DotEffect effect in dotEffects)
+        foreach (DoTEffect effect in dotEffects)
         {
             effect.UpdateTimer(Time.deltaTime);
 
@@ -90,9 +121,34 @@ public class PlayerHealth : MonoBehaviour
             }
         }
 
-        foreach (DotEffect effect in toRemove)
+        foreach (DoTEffect effect in toRemove)
         {
             dotEffects.Remove(effect);
+        }
+    }
+
+    private void ProcessHoTEffects()
+    {
+        LinkedList<HoTEffect> toRemove = new LinkedList<HoTEffect>();
+
+        foreach (HoTEffect effect in hotEffects)
+        {
+            effect.UpdateTimer(Time.deltaTime);
+
+            if (effect.NextTickReady())
+            {
+                Heal(effect.GetTickHealing());
+            }
+
+            if (effect.IsExpired())
+            {
+                toRemove.AddLast(effect);
+            }
+        }
+
+        foreach (HoTEffect effect in toRemove)
+        {
+            hotEffects.Remove(effect);
         }
     }
 }

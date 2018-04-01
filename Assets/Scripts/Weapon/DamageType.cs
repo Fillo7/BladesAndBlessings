@@ -4,5 +4,5 @@
     Piercing,
     Fire,
     Magic,
-    DoT
+    Bleeding
 }

@@ -12,27 +12,27 @@ public class Torch : Weapon
     [SerializeField] private GameObject flames;
     [SerializeField] private GameObject fissure;
 
-    private PlayerMovement playerMovement;
+    private PlayerHealth health;
     private float baseDamage = 10.0f;
 
     private float fissureTimer = 10.0f;
     private float fissureCooldown = 10.0f;
 
-    private float flameCloakTimer = 25.0f;
-    private float flameCloakCooldown = 25.0f;
+    private float cleansingFlameTimer = 40.0f;
+    private float cleansingFlameCooldown = 40.0f;
 
     private Vector3 cursorPosition;
 
     void Awake()
     {
-        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         cursorPosition = new Vector3(0.0f, 0.0f, 0.0f);
+        health = GetComponentInParent<PlayerHealth>();
     }
 
     void Update()
     {
         fissureTimer += Time.deltaTime;
-        flameCloakTimer += Time.deltaTime;
+        cleansingFlameTimer += Time.deltaTime;
     }
 
     public override void DoBasicAttack()
@@ -60,24 +60,26 @@ public class Torch : Weapon
 
     public override void DoSpecialAttack2()
     {
-        if (flameCloakTimer < flameCloakCooldown)
+        if (cleansingFlameTimer < cleansingFlameCooldown)
         {
             return;
         }
 
-        // todo
-        flameCloakTimer = 0.0f;
+        health.ClearDoTEffects();
+        health.TakeDamage(75.0f);
+        health.ApplyHoTEffect(new HoTEffect(10.1f, 2.0f, 20.0f));
+        cleansingFlameTimer = 0.0f;
     }
 
     public override float GetSpecialAttack2Timer()
     {
-        return flameCloakTimer;
+        return cleansingFlameTimer;
     }
 
     public override void AdjustCooldowns(float passedTime)
     {
         fissureTimer += passedTime;
-        flameCloakTimer += passedTime;
+        cleansingFlameTimer += passedTime;
     }
 
     public override void OnWeaponSwap()
@@ -93,7 +95,7 @@ public class Torch : Weapon
         List<AbilityInfo> result = new List<AbilityInfo>();
         result.Add(new AbilityInfo(0.0f, basicAttack.length / 1.0f, 1.0f, false));
         result.Add(new AbilityInfo(fissureCooldown, specialAttack1.length / 1.0f, 1.0f, true));
-        result.Add(new AbilityInfo(flameCloakCooldown, specialAttack2.length / 1.0f, 1.0f, false));
+        result.Add(new AbilityInfo(cleansingFlameCooldown, specialAttack2.length / 1.0f, 1.0f, false));
 
         return result;
     }

@@ -23,7 +23,7 @@ public class Bow : Weapon
 
     void Awake()
     {
-        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        playerMovement = GetComponentInParent<PlayerMovement>();
     }
 
     void Update()

@@ -53,7 +53,7 @@ public class Sword : Weapon
         if (coneSlashing)
         {
             slashedEnemies.Add(other.gameObject);
-            enemyHealth.ApplyDotEffect(10.1f, 2.0f, 6.0f);
+            enemyHealth.ApplyDoTEffect(new DoTEffect(10.1f, 2.0f, 6.0f, DamageType.Bleeding));
         }
     }
 

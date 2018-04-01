@@ -29,7 +29,7 @@ public class GoblinDagger : EnemyWeapon
         maxHitCount--;
         PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
         playerHealth.TakeDamage(damage);
-        playerHealth.ApplyDotEffect(20.1f, 4.0f, 5.0f);
+        playerHealth.ApplyDoTEffect(new DoTEffect(20.1f, 4.0f, 5.0f));
         playerHit = true;
     }
 

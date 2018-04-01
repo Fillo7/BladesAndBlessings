@@ -16,13 +16,13 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float piercingDamageMultiplier = 1.0f;
     [SerializeField] private float fireDamageMultiplier = 1.0f;
     [SerializeField] private float magicDamageMultiplier = 1.0f;
-    [SerializeField] private float dotDamageMultiplier = 1.0f;
+    [SerializeField] private float bleedingDamageMultiplier = 1.0f;
 
     private Animator animator;
     private ParticleSystem bloodParticles;
 
     private bool dead = false;
-    private LinkedList<DotEffect> dotEffects = new LinkedList<DotEffect>();
+    private LinkedList<DoTEffect> dotEffects = new LinkedList<DoTEffect>();
 
     virtual protected void Awake()
     {
@@ -100,9 +100,9 @@ public class EnemyHealth : MonoBehaviour
         currentHealth += healAmount;
     }
 
-    public void ApplyDotEffect(float duration, float tickInterval, float tickDamage)
+    public void ApplyDoTEffect(DoTEffect effect)
     {
-        dotEffects.AddLast(new DotEffect(duration, tickInterval, tickDamage));
+        dotEffects.AddLast(effect);
     }
 
     private void Die()
@@ -139,15 +139,15 @@ public class EnemyHealth : MonoBehaviour
 
     private void ProcessDotEffects()
     {
-        LinkedList<DotEffect> toRemove = new LinkedList<DotEffect>();
+        LinkedList<DoTEffect> toRemove = new LinkedList<DoTEffect>();
 
-        foreach (DotEffect effect in dotEffects)
+        foreach (DoTEffect effect in dotEffects)
         {
             effect.UpdateTimer(Time.deltaTime);
 
             if (effect.NextTickReady())
             {
-                TakeDamage(effect.GetTickDamage(), DamageType.DoT);
+                TakeDamage(effect.GetTickDamage(), effect.GetDamageType());
             }
 
             if (effect.IsExpired())
@@ -156,7 +156,7 @@ public class EnemyHealth : MonoBehaviour
             }
         }
 
-        foreach (DotEffect effect in toRemove)
+        foreach (DoTEffect effect in toRemove)
         {
             dotEffects.Remove(effect);
         }
@@ -174,8 +174,8 @@ public class EnemyHealth : MonoBehaviour
                 return amount * fireDamageMultiplier;
             case DamageType.Magic:
                 return amount * magicDamageMultiplier;
-            case DamageType.DoT:
-                return amount * dotDamageMultiplier;
+            case DamageType.Bleeding:
+                return amount * bleedingDamageMultiplier;
             default:
                 return amount;
         }

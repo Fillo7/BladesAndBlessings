@@ -56,9 +56,14 @@ public class EnemyAI : MonoBehaviour
         return IsTargetInSight(player);
     }
 
+    protected float GetDistanceToTarget(Vector3 target)
+    {
+        return Vector3.Distance(transform.position, target);
+    }
+
     protected float GetDistanceToTarget(Transform target)
     {
-        return Vector3.Distance(transform.position, target.position);
+        return GetDistanceToTarget(target.position);
     }
 
     protected float GetDistanceToPlayer()
