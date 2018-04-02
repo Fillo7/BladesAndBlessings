@@ -73,7 +73,7 @@ public class Torch : Weapon
         flameParticles.Play();
         health.ClearDoTEffects();
         health.TakeDamage(75.0f);
-        health.ApplyHoTEffect(new HoTEffect(15.1f, 1.0f, 7.0f));
+        health.ApplyHoTEffect(new HoTEffect(20.1f, 1.0f, 5.0f));
         cleansingFlameTimer = 0.0f;
     }
 
