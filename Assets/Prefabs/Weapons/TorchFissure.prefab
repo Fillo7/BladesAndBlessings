@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tickTime: 0.5
-  fissureDuration: 5
+  fissureDuration: 6
 --- !u!135 &135959999484865428
 SphereCollider:
   m_ObjectHideFlags: 1

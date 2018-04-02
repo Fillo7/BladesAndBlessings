@@ -10,9 +10,10 @@ public class PlayerAttack : MonoBehaviour
 
     private bool freezeAttack = false;
     private int activeWeaponIndex = 0;
-    private GameObject activeWeapon = null;
-    private Weapon activeWeaponScript = null;
-    private List<AbilityInfo> activeAbilityInfo = null;
+    private List<GameObject> activeWeapons = new List<GameObject>();
+    private GameObject currentWeapon = null;
+    private Weapon currentWeaponScript = null;
+    private List<AbilityInfo> currentAbilityInfo = null;
     private WeaponDelegate weaponDelegate = null;
 
     private bool attacking = false;
@@ -37,7 +38,7 @@ public class PlayerAttack : MonoBehaviour
         floorMask = LayerMask.GetMask("Floor");
 
         InitializeWeapons();
-        ActivateWeapon(activeWeaponIndex);
+        SetActiveWeapons(0, 2);
     }
     
     void Update()
@@ -49,65 +50,65 @@ public class PlayerAttack : MonoBehaviour
 
         actionTimer += Time.deltaTime;
         weaponSwapTimer += Time.deltaTime;
-        ability1Slider.value = activeWeaponScript.GetSpecialAttack1Timer();
-        ability2Slider.value = activeWeaponScript.GetSpecialAttack2Timer();
+        ability1Slider.value = currentWeaponScript.GetSpecialAttack1Timer();
+        ability2Slider.value = currentWeaponScript.GetSpecialAttack2Timer();
 
         if (inputManager.GetKeyDown("InputBasicAttack") && TimerIsReady())
         {
             EnableAttack();
-            activeWeaponScript.SetCursorPosition(GetCursorWorldPosition());
-            animator.SetFloat("BasicAbilitySpeedMultiplier", activeAbilityInfo[0].GetAnimationSpeedMultiplier());
+            currentWeaponScript.SetCursorPosition(GetCursorWorldPosition());
+            animator.SetFloat("BasicAbilitySpeedMultiplier", currentAbilityInfo[0].GetAnimationSpeedMultiplier());
             animator.SetTrigger("BasicAbility");
 
-            if (activeAbilityInfo[0].IsTurningLocked())
+            if (currentAbilityInfo[0].IsTurningLocked())
             {
-                movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[0].GetAnimationDuration());
+                movement.TurnTowardsDirection(GetCursorWorldPosition(), currentAbilityInfo[0].GetAnimationDuration());
             }
 
             actionTimer = 0.0f;
-            Invoke("ResetAttack", activeAbilityInfo[0].GetAnimationDuration());
+            Invoke("ResetAttack", currentAbilityInfo[0].GetAnimationDuration());
         }
 
         if (inputManager.GetKeyDown("InputSpecialAttack1") && TimerIsReady())
         {
-            if (activeWeaponScript.GetSpecialAttack1Timer() < activeAbilityInfo[1].GetCooldown())
+            if (currentWeaponScript.GetSpecialAttack1Timer() < currentAbilityInfo[1].GetCooldown())
             {
                 return;
             }
 
             EnableAttack();
-            activeWeaponScript.SetCursorPosition(GetCursorWorldPosition());
-            animator.SetFloat("SpecialAbility1SpeedMultiplier", activeAbilityInfo[1].GetAnimationSpeedMultiplier());
+            currentWeaponScript.SetCursorPosition(GetCursorWorldPosition());
+            animator.SetFloat("SpecialAbility1SpeedMultiplier", currentAbilityInfo[1].GetAnimationSpeedMultiplier());
             animator.SetTrigger("SpecialAbility1");
 
-            if (activeAbilityInfo[1].IsTurningLocked())
+            if (currentAbilityInfo[1].IsTurningLocked())
             {
-                movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[1].GetAnimationDuration());
+                movement.TurnTowardsDirection(GetCursorWorldPosition(), currentAbilityInfo[1].GetAnimationDuration());
             }
 
             actionTimer = 0.0f;
-            Invoke("ResetAttack", activeAbilityInfo[1].GetAnimationDuration());
+            Invoke("ResetAttack", currentAbilityInfo[1].GetAnimationDuration());
         }
 
         if (inputManager.GetKeyDown("InputSpecialAttack2") && TimerIsReady())
         {
-            if (activeWeaponScript.GetSpecialAttack2Timer() < activeAbilityInfo[2].GetCooldown())
+            if (currentWeaponScript.GetSpecialAttack2Timer() < currentAbilityInfo[2].GetCooldown())
             {
                 return;
             }
 
             EnableAttack();
-            activeWeaponScript.SetCursorPosition(GetCursorWorldPosition());
-            animator.SetFloat("SpecialAbility2SpeedMultiplier", activeAbilityInfo[2].GetAnimationSpeedMultiplier());
+            currentWeaponScript.SetCursorPosition(GetCursorWorldPosition());
+            animator.SetFloat("SpecialAbility2SpeedMultiplier", currentAbilityInfo[2].GetAnimationSpeedMultiplier());
             animator.SetTrigger("SpecialAbility2");
 
-            if (activeAbilityInfo[2].IsTurningLocked())
+            if (currentAbilityInfo[2].IsTurningLocked())
             {
-                movement.TurnTowardsDirection(GetCursorWorldPosition(), activeAbilityInfo[2].GetAnimationDuration());
+                movement.TurnTowardsDirection(GetCursorWorldPosition(), currentAbilityInfo[2].GetAnimationDuration());
             }
 
             actionTimer = 0.0f;
-            Invoke("ResetAttack", activeAbilityInfo[2].GetAnimationDuration());
+            Invoke("ResetAttack", currentAbilityInfo[2].GetAnimationDuration());
         }
 
         if (inputManager.GetKeyDown("InputWeaponSwap") && TimerIsReady())
@@ -115,6 +116,18 @@ public class PlayerAttack : MonoBehaviour
             SwapWeapon();
             actionTimer = 0.0f;
         }
+    }
+
+    public void SetActiveWeapons(int firstIndex, int secondIndex)
+    {
+        freezeAttack = true;
+
+        activeWeapons.Clear();
+        activeWeapons.Add(weapons[firstIndex]);
+        activeWeapons.Add(weapons[secondIndex]);
+        ActivateWeapon(0);
+
+        freezeAttack = false;
     }
 
     private void EnableAttack()
@@ -149,39 +162,40 @@ public class PlayerAttack : MonoBehaviour
     private void ActivateWeapon(int weaponIndex)
     {
         freezeAttack = true;
-        if (activeWeapon != null)
+        if (currentWeapon != null)
         {
-            activeWeaponScript.OnWeaponSwap();
-            activeWeapon.SetActive(false);
-            activeWeaponScript = null;
+            currentWeaponScript.OnWeaponSwap();
+            currentWeapon.SetActive(false);
+            currentWeaponScript = null;
         }
 
-        activeWeapon = weapons[activeWeaponIndex];
-        activeWeapon.SetActive(true);
-        activeWeaponScript = activeWeapon.GetComponentInChildren<Weapon>();
-        activeWeaponScript.AdjustCooldowns(weaponSwapTimer);
-        activeAbilityInfo = activeWeaponScript.GetAbilityInfo();
+        activeWeaponIndex = weaponIndex;
+        currentWeapon = activeWeapons[activeWeaponIndex];
+        currentWeapon.SetActive(true);
+        currentWeaponScript = currentWeapon.GetComponentInChildren<Weapon>();
+        currentWeaponScript.AdjustCooldowns(weaponSwapTimer);
+        currentAbilityInfo = currentWeaponScript.GetAbilityInfo();
         weaponSwapTimer = 0.0f;
-        animator.runtimeAnimatorController = activeWeaponScript.GetAnimatorController();
+        animator.runtimeAnimatorController = currentWeaponScript.GetAnimatorController();
         animator.Rebind();
         InitializeCooldownSliders();
-        weaponDelegate.SetWeapon(activeWeaponScript);
+        weaponDelegate.SetWeapon(currentWeaponScript);
 
         freezeAttack = false;
     }
 
     private void SwapWeapon()
     {
-        activeWeaponIndex = (activeWeaponIndex + 1) % 2;
-        ActivateWeapon(activeWeaponIndex);
+        int newWeaponIndex = (activeWeaponIndex + 1) % 2;
+        ActivateWeapon(newWeaponIndex);
     }
 
     private void InitializeCooldownSliders()
     {
-        ability1Slider.maxValue = activeAbilityInfo[1].GetCooldown();
-        ability2Slider.maxValue = activeAbilityInfo[2].GetCooldown();
-        ability1Slider.value = activeWeaponScript.GetSpecialAttack1Timer();
-        ability2Slider.value = activeWeaponScript.GetSpecialAttack2Timer();
+        ability1Slider.maxValue = currentAbilityInfo[1].GetCooldown();
+        ability2Slider.maxValue = currentAbilityInfo[2].GetCooldown();
+        ability1Slider.value = currentWeaponScript.GetSpecialAttack1Timer();
+        ability2Slider.value = currentWeaponScript.GetSpecialAttack2Timer();
     }
 
     private Vector3 GetCursorWorldPosition()

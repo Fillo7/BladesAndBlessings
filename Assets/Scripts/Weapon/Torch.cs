@@ -13,13 +13,14 @@ public class Torch : Weapon
     [SerializeField] private GameObject fissure;
 
     private PlayerHealth health;
+    private PlayerMovement movement;
     private float baseDamage = 10.0f;
 
     private float fissureTimer = 10.0f;
     private float fissureCooldown = 10.0f;
 
-    private float cleansingFlameTimer = 40.0f;
-    private float cleansingFlameCooldown = 40.0f;
+    private float cleansingFlameTimer = 35.0f;
+    private float cleansingFlameCooldown = 35.0f;
 
     private Vector3 cursorPosition;
 
@@ -27,6 +28,7 @@ public class Torch : Weapon
     {
         cursorPosition = new Vector3(0.0f, 0.0f, 0.0f);
         health = GetComponentInParent<PlayerHealth>();
+        movement = GetComponentInParent<PlayerMovement>();
     }
 
     void Update()
@@ -37,8 +39,10 @@ public class Torch : Weapon
 
     public override void DoBasicAttack()
     {
-        GameObject spawnedFlames = Instantiate(flames, gameObject.transform);
-        spawnedFlames.GetComponent<TorchFlames>().SetDamage(baseDamage);
+        GameObject spawnedFlames = Instantiate(flames, movement.transform.position + movement.transform.up * 1.9f + movement.transform.forward * -0.2f,
+            movement.transform.rotation, movement.transform) as GameObject;
+        spawnedFlames.GetComponent<TorchFlames>().SetDamage(baseDamage * 0.4f);
+        spawnedFlames.GetComponent<TorchFlames>().SetDuration(basicAttack.length);
     }
 
     public override void DoSpecialAttack1()
@@ -49,7 +53,7 @@ public class Torch : Weapon
         }
 
         GameObject spawnedFissure = Instantiate(fissure, cursorPosition, Quaternion.identity);
-        spawnedFissure.GetComponent<TorchFissure>().SetDamage(baseDamage * 0.8f);
+        spawnedFissure.GetComponent<TorchFissure>().SetDamage(baseDamage * 0.7f);
         fissureTimer = 0.0f;
     }
 
@@ -67,7 +71,7 @@ public class Torch : Weapon
 
         health.ClearDoTEffects();
         health.TakeDamage(75.0f);
-        health.ApplyHoTEffect(new HoTEffect(10.1f, 2.0f, 20.0f));
+        health.ApplyHoTEffect(new HoTEffect(15.1f, 3.0f, 20.0f));
         cleansingFlameTimer = 0.0f;
     }
 
@@ -93,7 +97,7 @@ public class Torch : Weapon
     public override List<AbilityInfo> GetAbilityInfo()
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
-        result.Add(new AbilityInfo(0.0f, basicAttack.length / 1.0f, 1.0f, false));
+        result.Add(new AbilityInfo(0.0f, basicAttack.length / 0.8f, 0.8f, false));
         result.Add(new AbilityInfo(fissureCooldown, specialAttack1.length / 1.0f, 1.0f, true));
         result.Add(new AbilityInfo(cleansingFlameCooldown, specialAttack2.length / 1.0f, 1.0f, false));
 

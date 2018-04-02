@@ -4,9 +4,9 @@ using UnityEngine;
 public class TorchFissure : MonoBehaviour
 {
     [SerializeField] private float tickTime = 0.5f;
-    [SerializeField] private float fissureDuration = 5.0f;
+    [SerializeField] private float fissureDuration = 6.0f;
 
-    private float fissureDamage = 8.0f;
+    private float fissureDamage = 7.0f;
     private float tickTimer = 0.0f;
     private float fissureTimer = 0.0f;
     private LinkedList<EnemyHealth> enemiesInFissure = new LinkedList<EnemyHealth>();

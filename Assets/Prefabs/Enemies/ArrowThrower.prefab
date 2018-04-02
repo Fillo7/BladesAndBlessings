@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65664991212778652}
   - component: {fileID: 114205385301758280}
   - component: {fileID: 208404468861531610}
+  - component: {fileID: 54069371323945116}
   m_Layer: 0
   m_Name: ArrowThrower
   m_TagString: Enemy
@@ -145,6 +146,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1643211671409408}
   m_Mesh: {fileID: 4300000, guid: 2b0f643ee28ee4fb7824776c4639ed60, type: 3}
+--- !u!54 &54069371323945116
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1628474345739142}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 3
+  m_AngularDrag: 3
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65664991212778652
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -189,6 +205,11 @@ MonoBehaviour:
   deathClip: {fileID: 0}
   deathDestroyDelay: 5
   health: 80
+  slashingDamageMultiplier: 1
+  piercingDamageMultiplier: 1
+  fireDamageMultiplier: 1
+  magicDamageMultiplier: 1
+  bleedingDamageMultiplier: 1
 --- !u!114 &114205385301758280
 MonoBehaviour:
   m_ObjectHideFlags: 1

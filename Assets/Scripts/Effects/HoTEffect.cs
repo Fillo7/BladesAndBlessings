@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class HoTEffect : MonoBehaviour
+﻿public class HoTEffect
 {
     private float duration;
     private float tickInterval;
