@@ -1169,7 +1169,7 @@ GameObject:
   - component: {fileID: 169846058}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8112,6 +8112,7 @@ MonoBehaviour:
   weaponsPanel: {fileID: 0}
   audioPanel: {fileID: 678215231}
   graphicsPanel: {fileID: 1452867979}
+  loadoutPanel: {fileID: 0}
 --- !u!114 &1130177335
 MonoBehaviour:
   m_ObjectHideFlags: 0

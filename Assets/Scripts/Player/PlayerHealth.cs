@@ -8,18 +8,17 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int baseHealth = 300;
     private int currentHealth;
     [SerializeField] private Slider healthSlider;
-    
+    [SerializeField] private ParticleSystem bloodParticles;
+
     private bool dead = false;
     private LinkedList<DoTEffect> dotEffects = new LinkedList<DoTEffect>();
     bool dotClearFlag = false;
     private LinkedList<HoTEffect> hotEffects = new LinkedList<HoTEffect>();
     private Animator animator;
-    private ParticleSystem bloodParticles;
 
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-        bloodParticles = GetComponentInChildren<ParticleSystem>();
         currentHealth = baseHealth;
         healthSlider.maxValue = baseHealth;
         healthSlider.value = currentHealth;

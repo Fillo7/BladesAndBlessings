@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private LevelManager levelManager;
     private CustomInputManager inputManager;
     bool gamePaused = true;
+    bool inLoadout = false;
 
     void Awake()
     {
@@ -27,15 +28,12 @@ public class GameManager : MonoBehaviour
         inputManager = menuCanvas.GetComponentInChildren<CustomInputManager>();
 
         Pause();
-        if (levelManager != null)
-        {
-            Resume();
-        }
+        InitializeLoadout();
     }
 
     void Update()
     {
-        if (inputManager.GetKeyDown("InputCancel") && levelManager != null && levelManager.IsLevelActive() && !inputManager.IsWaitingForKey())
+        if (inputManager.GetKeyDown("InputCancel") && levelManager != null && levelManager.IsLevelActive() && !inputManager.IsWaitingForKey() && !inLoadout)
         {
             TogglePauseWithDefaultMenu();
         }
@@ -46,6 +44,14 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    public void StartGame(int firstWeaponIndex, int secondWeaponIndex)
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>().SetActiveWeapons(firstWeaponIndex, secondWeaponIndex);
+        HUDCanvas.enabled = true;
+        inLoadout = false;
+        Resume();
+    }
+
     public void RestartLevel()
     {
         LoadLevel(SceneManager.GetActiveScene().name);
@@ -115,6 +121,16 @@ public class GameManager : MonoBehaviour
         #else
             Application.Quit();
         #endif
+    }
+
+    private void InitializeLoadout()
+    {
+        if (levelManager != null)
+        {
+            menuController.GoToLoadoutPanel();
+            HUDCanvas.enabled = false;
+            inLoadout = true;
+        }
     }
 
     private string GetNextLevelName(string currentLevel)

@@ -8,13 +8,20 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject controlsPanel;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject victoryPanel;
-    [SerializeField] private GameObject weaponsPanel;
     [SerializeField] private GameObject audioPanel;
     [SerializeField] private GameObject graphicsPanel;
+    [SerializeField] private GameObject loadoutPanel;
 
     void Awake()
     {
-        GoToMenuPanel();
+        if (loadoutPanel != null)
+        {
+            GoToLoadoutPanel();
+        }
+        else
+        {
+            GoToMenuPanel();
+        }
     }
 
     public void GoToMenuPanel()
@@ -53,12 +60,6 @@ public class MenuController : MonoBehaviour
         victoryPanel.SetActive(true);
     }
 
-    public void GoToWeaponsPanel()
-    {
-        ResetPanels();
-        weaponsPanel.SetActive(true);
-    }
-
     public void GoToAudioPanel()
     {
         ResetPanels();
@@ -69,6 +70,12 @@ public class MenuController : MonoBehaviour
     {
         ResetPanels();
         graphicsPanel.SetActive(true);
+    }
+
+    public void GoToLoadoutPanel()
+    {
+        ResetPanels();
+        loadoutPanel.SetActive(true);
     }
 
     private void ResetPanels()
@@ -97,10 +104,6 @@ public class MenuController : MonoBehaviour
         {
             victoryPanel.SetActive(false);
         }
-        if (weaponsPanel != null)
-        {
-            weaponsPanel.SetActive(false);
-        }
         if (audioPanel != null)
         {
             audioPanel.SetActive(false);
@@ -108,6 +111,10 @@ public class MenuController : MonoBehaviour
         if (graphicsPanel != null)
         {
             graphicsPanel.SetActive(false);
+        }
+        if (loadoutPanel != null)
+        {
+            loadoutPanel.SetActive(false);
         }
     }
 }

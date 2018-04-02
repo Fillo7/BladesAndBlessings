@@ -11,6 +11,7 @@ public class Torch : Weapon
 
     [SerializeField] private GameObject flames;
     [SerializeField] private GameObject fissure;
+    [SerializeField] private ParticleSystem flameParticles;
 
     private PlayerHealth health;
     private PlayerMovement movement;
@@ -42,7 +43,7 @@ public class Torch : Weapon
         GameObject spawnedFlames = Instantiate(flames, movement.transform.position + movement.transform.up * 1.9f + movement.transform.forward * -0.2f,
             movement.transform.rotation, movement.transform) as GameObject;
         spawnedFlames.GetComponent<TorchFlames>().SetDamage(baseDamage * 0.4f);
-        spawnedFlames.GetComponent<TorchFlames>().SetDuration(basicAttack.length);
+        spawnedFlames.GetComponent<TorchFlames>().SetDuration(basicAttack.length / 1.1f);
     }
 
     public override void DoSpecialAttack1()
@@ -69,9 +70,10 @@ public class Torch : Weapon
             return;
         }
 
+        flameParticles.Play();
         health.ClearDoTEffects();
         health.TakeDamage(75.0f);
-        health.ApplyHoTEffect(new HoTEffect(15.1f, 3.0f, 20.0f));
+        health.ApplyHoTEffect(new HoTEffect(15.1f, 1.0f, 7.0f));
         cleansingFlameTimer = 0.0f;
     }
 
