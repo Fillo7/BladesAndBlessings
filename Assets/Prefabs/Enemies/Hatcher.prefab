@@ -284,6 +284,11 @@ MonoBehaviour:
   deathClip: {fileID: 0}
   deathDestroyDelay: 10
   health: 150
+  slashingDamageMultiplier: 1.2
+  piercingDamageMultiplier: 1
+  fireDamageMultiplier: 1
+  magicDamageMultiplier: 1
+  bleedingDamageMultiplier: 1
 --- !u!136 &136236777186072500
 CapsuleCollider:
   m_ObjectHideFlags: 1

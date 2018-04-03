@@ -7,8 +7,8 @@ public class ForestRuins : MonoBehaviour
     [SerializeField] private List<ListWrapper> pathList;
 
     private LinkedList<Tuple<int, GameObject>> activePaths = new LinkedList<Tuple<int, GameObject>>();
-    private float timer = 15.0f;
-    private float nextSpawn = 20.0f;
+    private float timer = 20.0f;
+    private float nextSpawn = 35.0f;
 
     void Update()
     {
@@ -17,7 +17,7 @@ public class ForestRuins : MonoBehaviour
 
         if (timer >= nextSpawn)
         {
-            timer = 0.0f;
+            timer = Random.Range(0.0f, 10.0f);
             int index = GetNextPathIndex();
 
             if (index == -1)
@@ -51,6 +51,8 @@ public class ForestRuins : MonoBehaviour
 
     private int GetNextPathIndex()
     {
+        List<int> unusedIndices = new List<int>();
+
         for (int i = 0; i < pathList.Count; i++)
         {
             bool indexUsed = false;
@@ -66,10 +68,15 @@ public class ForestRuins : MonoBehaviour
 
             if (!indexUsed)
             {
-                return i;
+                unusedIndices.Add(i);
             }
         }
 
-        return -1;
+        if (unusedIndices.Count == 0)
+        {
+            return -1;
+        }
+
+        return unusedIndices[Random.Range(0, unusedIndices.Count)];
     }
 }

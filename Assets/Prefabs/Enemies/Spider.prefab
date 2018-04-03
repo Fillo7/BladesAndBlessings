@@ -1083,8 +1083,8 @@ MonoBehaviour:
   spawnTarget: {fileID: 1488417758651418, guid: 7f1cc03055646ac4094ce6d94b69834c,
     type: 2}
   selfDestructOnSpawn: 0
-  spawnTime: 8
-  maxTimerRandomIncrease: 4
+  spawnTime: 10
+  maxTimerRandomIncrease: 2
 --- !u!114 &114133528104179856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1113,10 +1113,10 @@ MonoBehaviour:
   deathDestroyDelay: 10
   health: 120
   slashingDamageMultiplier: 0.7
-  piercingDamageMultiplier: 1.25
-  fireDamageMultiplier: 1.25
+  piercingDamageMultiplier: 1.35
+  fireDamageMultiplier: 1.5
   magicDamageMultiplier: 1
-  dotDamageMultiplier: 1
+  bleedingDamageMultiplier: 1
 --- !u!135 &135479299803958912
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -142,9 +142,9 @@ MonoBehaviour:
   health: 15
   slashingDamageMultiplier: 1
   piercingDamageMultiplier: 0
-  fireDamageMultiplier: 1
+  fireDamageMultiplier: 1.5
   magicDamageMultiplier: 1
-  dotDamageMultiplier: 0
+  bleedingDamageMultiplier: 0
 --- !u!136 &136135504282173400
 CapsuleCollider:
   m_ObjectHideFlags: 1
