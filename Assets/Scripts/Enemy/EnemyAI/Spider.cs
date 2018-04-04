@@ -3,15 +3,12 @@ using UnityEngine;
 
 public class Spider : EnemyAI
 {
-    [SerializeField] private float movementSpeed = 4.5f;
+    [SerializeField] private float movementSpeed = 3.0f;
 
     private Animator animator;
 
     private List<Transform> waypoints;
     private bool waypointsInitialized = false;
-
-    private int currentWaypointIndex = 0;
-    private bool movementInitialized = false;
 
     protected override void Awake()
     {
@@ -59,15 +56,6 @@ public class Spider : EnemyAI
 
     private void GoToNextWaypoint()
     {
-        if (!movementInitialized)
-        {
-            navigator.SetDestination(waypoints[currentWaypointIndex].position);
-            movementInitialized = true;
-            return;
-        }
-
-        currentWaypointIndex++;
-        currentWaypointIndex %= waypoints.Count;
-        navigator.SetDestination(waypoints[currentWaypointIndex].position);
+        navigator.SetDestination(waypoints[Random.Range(0, waypoints.Count)].position);
     }
 }
