@@ -41,8 +41,8 @@ GameObject:
   m_Name: tree10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4126357080328386
 Transform:
@@ -121,7 +121,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 2
+  m_Radius: 2.2
   m_Height: 7
   m_Direction: 1
   m_Center: {x: 0.3, y: 3.5, z: 1.7}
