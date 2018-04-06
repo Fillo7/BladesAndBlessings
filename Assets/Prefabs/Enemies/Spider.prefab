@@ -1111,7 +1111,7 @@ MonoBehaviour:
   hurtClip: {fileID: 0}
   deathClip: {fileID: 0}
   deathDestroyDelay: 10
-  health: 110
+  health: 100
   slashingDamageMultiplier: 0.7
   piercingDamageMultiplier: 1.35
   fireDamageMultiplier: 1.5
