@@ -144,6 +144,8 @@ public class GameManager : MonoBehaviour
             case "02ForestRuins":
                 return "DarkForest";
             case "DarkForest":
+                return "05TrollCave";
+            case "05TrollCave":
                 return "00MainMenu";
         }
 
