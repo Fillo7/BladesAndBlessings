@@ -5,7 +5,7 @@ public class Ghost : EnemyAI
     [SerializeField] private AnimationClip attackClip;
     [SerializeField] private float movementSpeed = 4.0f;
     [SerializeField] private float damage = 30.0f;
-    [SerializeField] private float attackCooldown = 3.5f;
+    [SerializeField] private float attackCooldown = 3.0f;
 
     private Animator animator;
     private GhostHand weapon;
@@ -57,7 +57,7 @@ public class Ghost : EnemyAI
                 navigator.SetDestination(GetRandomLocation(25.0f));
             }
             
-            if (IsPlayerInRange(10.0f))
+            if (IsPlayerInRange(12.5f))
             {
                 playerSighted = true;
             }

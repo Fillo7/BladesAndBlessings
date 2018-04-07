@@ -1063,7 +1063,7 @@ MonoBehaviour:
   attackClip: {fileID: 7400000, guid: ddc96f01aaec45747b1aa953bb449b27, type: 2}
   movementSpeed: 4
   damage: 30
-  attackCooldown: 3.5
+  attackCooldown: 3
 --- !u!114 &114688731053188180
 MonoBehaviour:
   m_ObjectHideFlags: 1
