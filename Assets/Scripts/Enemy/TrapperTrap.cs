@@ -23,7 +23,7 @@ public class TrapperTrap : MonoBehaviour
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             playerHealth.TakeDamage(damage);
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
-            playerMovement.ApplyMovementEffect(lengthOfSnare, 0.0f);
+            playerMovement.ApplyMovementEffect(new MovementEffect(lengthOfSnare, 0.0f));
             Destroy(gameObject);
         }
     }
