@@ -1047,7 +1047,7 @@ MonoBehaviour:
   piercingDamageMultiplier: 1
   fireDamageMultiplier: 1
   magicDamageMultiplier: 1
-  dotDamageMultiplier: 1
+  bleedingDamageMultiplier: 1
 --- !u!114 &114435316446195760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1198,7 +1198,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 1.7
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 7
   m_ObstacleAvoidanceType: 4
 --- !u!198 &198508306071330932
 ParticleSystem:

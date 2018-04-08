@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 018ffe6d656c2431f9c402f921f13e29
 timeCreated: 1523050888
+=======
+guid: a97dfb5c3fd372e40835bc4728027e7d
+timeCreated: 1523041833
+>>>>>>> fb26034f572eae3fa68fcec6a90b0cd3bd38426e
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -72,9 +77,15 @@ ModelImporter:
     400062: mixamorig:Spine1
     400064: mixamorig:Spine2
     4300000: ghostDress
+<<<<<<< HEAD
     7400000: Armature|Attack
     7400002: Armature|Idle
     7400004: Armature|Move
+=======
+    7400000: ArmatureAttack
+    7400002: ArmatureIdle
+    7400004: ArmatureMove
+>>>>>>> fb26034f572eae3fa68fcec6a90b0cd3bd38426e
     9500000: //RootNode
     13700000: ghostDress
   externalObjects:
@@ -82,7 +93,11 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: palettemat
+<<<<<<< HEAD
     second: {fileID: 2100000, guid: 4fe4eb656cfb248e68c5ff16c1cde080, type: 2}
+=======
+    second: {fileID: 2100000, guid: 5839c3aea4478b34c8961e50706b792e, type: 2}
+>>>>>>> fb26034f572eae3fa68fcec6a90b0cd3bd38426e
   materials:
     importMaterials: 1
     materialName: 0
@@ -108,11 +123,103 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
+<<<<<<< HEAD
     clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
+=======
+    clipAnimations:
+    - serializedVersion: 16
+      name: ArmatureAttack
+      takeName: Armature|Attack
+      firstFrame: 0
+      lastFrame: 116
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ArmatureIdle
+      takeName: Armature|Idle
+      firstFrame: 0
+      lastFrame: 116
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ArmatureMove
+      takeName: Armature|Move
+      firstFrame: 0
+      lastFrame: 116
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.75
+>>>>>>> fb26034f572eae3fa68fcec6a90b0cd3bd38426e
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

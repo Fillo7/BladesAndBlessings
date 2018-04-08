@@ -1,6 +1,7 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
 
         if (inputManager.GetKeyDown("InputScreenshot") && !inputManager.IsWaitingForKey())
         {
-            ScreenCapture.CaptureScreenshot("Screenshot" + Random.Range(0, 100000) + ".png");
+            ScreenCapture.CaptureScreenshot("BaB_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".png");
         }
     }
     
@@ -144,6 +145,8 @@ public class GameManager : MonoBehaviour
             case "02ForestRuins":
                 return "DarkForest";
             case "DarkForest":
+                return "05TrollCave";
+            case "05TrollCave":
                 return "00MainMenu";
         }
 

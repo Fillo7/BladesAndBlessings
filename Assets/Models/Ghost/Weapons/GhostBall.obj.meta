@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 13fcd57f0e8894013bfd431d154c2d2d
 timeCreated: 1523050889
+=======
+guid: cc26030728280324fbcb1d107bd9b9c0
+timeCreated: 1523041833
+>>>>>>> fb26034f572eae3fa68fcec6a90b0cd3bd38426e
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -17,7 +22,11 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: palette
+<<<<<<< HEAD
     second: {fileID: 2100000, guid: 554cd388aaf2c47699444db6453fa3a4, type: 2}
+=======
+    second: {fileID: 2100000, guid: a41aa8354da756141ae3c1da689ccdac, type: 2}
+>>>>>>> fb26034f572eae3fa68fcec6a90b0cd3bd38426e
   materials:
     importMaterials: 1
     materialName: 0
@@ -47,7 +56,11 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
+<<<<<<< HEAD
     globalScale: 1
+=======
+    globalScale: 0.05
+>>>>>>> fb26034f572eae3fa68fcec6a90b0cd3bd38426e
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

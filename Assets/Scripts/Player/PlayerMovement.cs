@@ -101,9 +101,9 @@ public class PlayerMovement : MonoBehaviour
         automaticTurningEnabled = true;
     }
 
-    public void ApplyMovementEffect(float duration, float speedMultiplier)
+    public void ApplyMovementEffect(MovementEffect effect)
     {
-        movementEffects.AddLast(new MovementEffect(duration, speedMultiplier));
+        movementEffects.AddLast(effect);
     }
 
     private void Move(float horizontal, float vertical)

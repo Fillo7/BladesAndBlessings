@@ -7781,6 +7781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f65c7eca807e741a4fb954c916d089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossLevel: 0
 --- !u!114 &1165033831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8220,7 +8221,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4157947932996512, guid: e1a58e13cefc2cb44bd9f52b65e5fc11, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 5.3600006
+      value: 3.04
       objectReference: {fileID: 0}
     - target: {fileID: 4157947932996512, guid: e1a58e13cefc2cb44bd9f52b65e5fc11, type: 2}
       propertyPath: m_LocalRotation.x
@@ -9558,11 +9559,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 114030709749642458, guid: 91faead90ce6e0a409bd67478d44883c,
-        type: 2}
-      propertyPath: healthSlider
-      value: 
-      objectReference: {fileID: 2138811985}
     - target: {fileID: 114370831380632840, guid: 91faead90ce6e0a409bd67478d44883c,
         type: 2}
       propertyPath: ability1Slider
@@ -9573,6 +9569,21 @@ Prefab:
       propertyPath: ability2Slider
       value: 
       objectReference: {fileID: 2138811982}
+    - target: {fileID: 114030709749642458, guid: 91faead90ce6e0a409bd67478d44883c,
+        type: 2}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 2138811985}
+    - target: {fileID: 208134689152844162, guid: 91faead90ce6e0a409bd67478d44883c,
+        type: 2}
+      propertyPath: m_Extents.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 208134689152844162, guid: 91faead90ce6e0a409bd67478d44883c,
+        type: 2}
+      propertyPath: m_Extents.z
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91faead90ce6e0a409bd67478d44883c, type: 2}
   m_IsPrefabParent: 0

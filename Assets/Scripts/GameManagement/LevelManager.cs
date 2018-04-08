@@ -4,6 +4,8 @@
 [RequireComponent(typeof(WaveManager))]
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] bool bossLevel = false;
+
     private GameManager gameManager;
     private WaveManager waveManager;
     private PlayerHealth playerHealth;
@@ -32,22 +34,25 @@ public class LevelManager : MonoBehaviour
             Invoke("TriggerGameOver", 5.0f);
         }
 
-        if (!waveManager.IsFirstWaveSpawned())
+        if (!bossLevel)
         {
-            waveManager.SpawnNextWave();
-        }
-
-        if (waveManager.IsCurrentWaveDefeated())
-        {
-            if (waveManager.AreAllWavesDefeated())
+            if (!waveManager.IsFirstWaveSpawned())
             {
-                victory = true;
-                DespawnEnemies();
-                Invoke("TriggerVictory", 3.0f);
+                waveManager.SpawnNextWave();
             }
-            else
+
+            if (waveManager.IsCurrentWaveDefeated())
             {
-                waveManager.SpawnNextWave(waveSpawnDelay);
+                if (waveManager.AreAllWavesDefeated())
+                {
+                    victory = true;
+                    DespawnEnemies();
+                    Invoke("TriggerVictory", 3.0f);
+                }
+                else
+                {
+                    waveManager.SpawnNextWave(waveSpawnDelay);
+                }
             }
         }
     }

@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DarkForest.unity
     guid: b6a01423b64f5f7478e66540534913a0
+  - enabled: 1
+    path: Assets/Scenes/05TrollCave.unity
+    guid: ea6deeb25a6bde34a87125d149ec5dd7

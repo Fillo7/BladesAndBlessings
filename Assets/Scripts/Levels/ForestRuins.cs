@@ -7,8 +7,8 @@ public class ForestRuins : MonoBehaviour
     [SerializeField] private List<Transform> waypoints;
 
     private LinkedList<GameObject> activeSpiders = new LinkedList<GameObject>();
-    private float timer = 30.0f;
-    private float nextSpawn = 45.0f;
+    private float timer = 35.0f;
+    private float nextSpawn = 50.0f;
 
     void Update()
     {
