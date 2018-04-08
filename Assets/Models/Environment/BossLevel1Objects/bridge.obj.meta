@@ -1,5 +1,7 @@
 fileFormatVersion: 2
-guid: edee67244a5f240b5aa411a5d95fa7b8
+guid: 6f66190eaf6b08348b9baf923e2c5a1c
+timeCreated: 1523041833
+licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -10,7 +12,6 @@ ModelImporter:
     2300000: bridge
     3300000: bridge
     4300000: bridge
-    9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -46,7 +47,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.3
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
@@ -88,7 +89,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

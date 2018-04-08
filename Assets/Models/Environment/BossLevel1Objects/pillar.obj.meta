@@ -1,5 +1,7 @@
 fileFormatVersion: 2
-guid: 04bdb815c725c404c8e88833f0af651f
+guid: 53a59fa1cbfd0ac4e8e036141449430c
+timeCreated: 1523041833
+licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -10,7 +12,6 @@ ModelImporter:
     2300000: pillar
     3300000: pillar
     4300000: pillar
-    9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -46,7 +47,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.5
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
@@ -88,7 +89,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
