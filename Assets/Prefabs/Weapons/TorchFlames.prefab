@@ -219,9 +219,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.8
-  m_Height: 5
+  m_Height: 6
   m_Direction: 2
-  m_Center: {x: 0, y: 0.1, z: 3}
+  m_Center: {x: 0, y: 0.1, z: 3.5}
 --- !u!198 &198822426237192272
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -282,7 +282,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1759627883
+  randomSeed: 1974419099
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3479,7 +3479,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 262996963
+  randomSeed: -1542195705
   InitialModule:
     serializedVersion: 3
     enabled: 1
