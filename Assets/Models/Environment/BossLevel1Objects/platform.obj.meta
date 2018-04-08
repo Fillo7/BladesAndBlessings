@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: c313bf92475a14ec1a86fa1e3141b2dc
-timeCreated: 1523050889
-=======
-guid: 2550ec7e111477440aab36ceb1d8d5ce
-timeCreated: 1523041833
->>>>>>> fb26034f572eae3fa68fcec6a90b0cd3bd38426e
-licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -17,6 +10,7 @@ ModelImporter:
     2300000: platform
     3300000: platform
     4300000: platform
+    9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -52,11 +46,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-<<<<<<< HEAD
     globalScale: 1
-=======
-    globalScale: 0.4
->>>>>>> fb26034f572eae3fa68fcec6a90b0cd3bd38426e
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
@@ -98,7 +88,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
