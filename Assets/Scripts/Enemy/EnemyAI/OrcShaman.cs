@@ -87,7 +87,10 @@ public class OrcShaman : EnemyAI
             }
             else
             {
-                TurnTowardsTarget(currentTarget);
+                if (currentTarget != null)
+                {
+                    TurnTowardsTarget(currentTarget);
+                }
             }
         }
         else if(!isRelocating)
@@ -153,7 +156,7 @@ public class OrcShaman : EnemyAI
             }
 
             EnemyHealth health = ally.GetComponent<EnemyHealth>();
-            if (IsTargetInRange(ally.transform, maximumRange) && !health.IsDead() && health.GetCurrentHealth() < health.GetHealth())
+            if (IsTargetInRange(ally.transform, maximumRange) && !health.IsDead() && health.GetCurrentHealth() < health.GetHealth() && health.GetHealth() > 30)
             {
                 return ally;
             }

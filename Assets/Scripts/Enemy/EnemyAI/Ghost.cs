@@ -5,12 +5,12 @@ public class Ghost : EnemyAI
     [SerializeField] private AnimationClip attackClip;
     [SerializeField] private float movementSpeed = 4.0f;
     [SerializeField] private float damage = 30.0f;
-    [SerializeField] private float attackCooldown = 3.0f;
+    [SerializeField] private float attackCooldown = 2.5f;
 
     private Animator animator;
     private GhostHand weapon;
 
-    private float attackTimer = 2.0f;
+    private float attackTimer = 0.0f;
     private bool hasDestination = false;
     private bool playerSighted = false;
     private bool attacking = false;

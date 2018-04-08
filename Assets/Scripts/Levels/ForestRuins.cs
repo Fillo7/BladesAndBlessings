@@ -17,7 +17,7 @@ public class ForestRuins : MonoBehaviour
 
         if (timer >= nextSpawn)
         {
-            timer = Random.Range(0.0f, 10.0f);
+            timer = 0.0f;
 
             if (activeSpiders.Count >= 3)
             {
