@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class CameraCollisionHandler : MonoBehaviour
 {
-    private float currentTransparency = 0.5f;
-    private float targetTransparency = 0.5f;
-    private float transparencyDuration = 0.1f;
+    private float transparencyLevel = 0.5f;
+
+    private float timer = 0.0f;
+    private float transparencyDuration = 0.15f;
 
     private Renderer[] objectRenderers = null;
     private List<Color> oldColors = new List<Color>();
@@ -18,31 +19,31 @@ public class CameraCollisionHandler : MonoBehaviour
         {
             oldColors.Add(objectRenderers[i].material.color);
         }
+
+        for (int i = 0; i < objectRenderers.Length; i++)
+        {
+            Material material = objectRenderers[i].material;
+            material.SetFloat("_Mode", 3);
+            material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
+            material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+            material.SetInt("_ZWrite", 0);
+            material.DisableKeyword("_ALPHATEST_ON");
+            material.DisableKeyword("_ALPHABLEND_ON");
+            material.EnableKeyword("_ALPHAPREMULTIPLY_ON");
+            material.renderQueue = 3000;
+
+            Color materialColor = material.color;
+            materialColor.a = transparencyLevel;
+            material.color = materialColor;
+            objectRenderers[i].material = material;
+        }
     }
 
     void Update()
     {
-        if (currentTransparency < 1.0f)
-        {
-            for (int i = 0; i < objectRenderers.Length; i++)
-            {
-                Material material = objectRenderers[i].material;
-                material.SetFloat("_Mode", 3);
-                material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
-                material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-                material.SetInt("_ZWrite", 0);
-                material.DisableKeyword("_ALPHATEST_ON");
-                material.DisableKeyword("_ALPHABLEND_ON");
-                material.EnableKeyword("_ALPHAPREMULTIPLY_ON");
-                material.renderQueue = 3000;
+        timer += Time.deltaTime;
 
-                Color materialColor = material.color;
-                materialColor.a = currentTransparency;
-                material.color = materialColor;
-                objectRenderers[i].material = material;
-            }
-        }
-        else
+        if (timer > transparencyDuration)
         {
             for (int i = 0; i < objectRenderers.Length; i++)
             {
@@ -61,11 +62,10 @@ public class CameraCollisionHandler : MonoBehaviour
             }
             Destroy(this);
         }
-        currentTransparency += ((1.0f - targetTransparency) * Time.deltaTime) / transparencyDuration;
     }
 
-    public void SetTransparency()
+    public void ResetTimer()
     {
-        currentTransparency = targetTransparency;
+        timer = 0.0f;
     }
 }

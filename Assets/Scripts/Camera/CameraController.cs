@@ -13,8 +13,11 @@ public class CameraController : MonoBehaviour
         environmentMask = LayerMask.GetMask("Environment");
     }
 
-    void Update()
+    void FixedUpdate()
     {
+        Vector3 targetCameraPosition = target.position + offset;
+        transform.position = Vector3.Lerp(transform.position, targetCameraPosition, smoothing * Time.deltaTime);
+
         RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, offset.magnitude, environmentMask);
 
         foreach (RaycastHit hit in hits)
@@ -24,13 +27,7 @@ public class CameraController : MonoBehaviour
             {
                 collisionHandler = hit.collider.gameObject.AddComponent<CameraCollisionHandler>();
             }
-            collisionHandler.SetTransparency();
+            collisionHandler.ResetTimer();
         }
-    }
-
-    void FixedUpdate()
-    {
-        Vector3 targetCameraPosition = target.position + offset;
-        transform.position = Vector3.Lerp(transform.position, targetCameraPosition, smoothing * Time.deltaTime);
     }
 }
