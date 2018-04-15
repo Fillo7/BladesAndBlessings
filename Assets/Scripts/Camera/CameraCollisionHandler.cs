@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CameraCollisionHandler : MonoBehaviour
 {
-    private float transparencyLevel = 0.5f;
+    private float transparencyLevel = 0.4f;
 
     private float timer = 0.0f;
     private float transparencyDuration = 0.15f;

@@ -47665,7 +47665,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1791966676}
   m_Layer: 0
-  m_Name: PlayAreaWalls
+  m_Name: LevelWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
