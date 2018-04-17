@@ -20,6 +20,8 @@ public class PlayerAttack : MonoBehaviour
     private float actionTimer = 0.3f;
     private float actionCooldown = 0.3f;
     private float weaponSwapTimer = 0.0f;
+    private float movementSpeedMultiplier = 1.0f;
+    private float movementSpeed = 5.5f;
 
     private CustomInputManager inputManager;
     private Animator animator;
@@ -55,6 +57,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (inputManager.GetKeyDown("InputBasicAttack") && TimerIsReady())
         {
+            movementSpeedMultiplier = currentAbilityInfo[0].GetAnimationMovementMultiplier();
             EnableAttack();
             currentWeaponScript.SetCursorPosition(GetCursorWorldPosition());
             animator.SetFloat("BasicAbilitySpeedMultiplier", currentAbilityInfo[0].GetAnimationSpeedMultiplier());
@@ -76,6 +79,7 @@ public class PlayerAttack : MonoBehaviour
                 return;
             }
 
+            movementSpeedMultiplier = currentAbilityInfo[1].GetAnimationMovementMultiplier();
             EnableAttack();
             currentWeaponScript.SetCursorPosition(GetCursorWorldPosition());
             animator.SetFloat("SpecialAbility1SpeedMultiplier", currentAbilityInfo[1].GetAnimationSpeedMultiplier());
@@ -97,6 +101,7 @@ public class PlayerAttack : MonoBehaviour
                 return;
             }
 
+            movementSpeedMultiplier = currentAbilityInfo[2].GetAnimationMovementMultiplier();
             EnableAttack();
             currentWeaponScript.SetCursorPosition(GetCursorWorldPosition());
             animator.SetFloat("SpecialAbility2SpeedMultiplier", currentAbilityInfo[2].GetAnimationSpeedMultiplier());
@@ -133,17 +138,20 @@ public class PlayerAttack : MonoBehaviour
     private void EnableAttack()
     {
         attacking = true;
-        movement.EnableMovement(false);
+        animator.SetFloat("RunningSpeedMultiplier", movementSpeedMultiplier);
+        movementSpeed = movementSpeedMultiplier * movement.GetSpeed();
+        movement.LimitSpeed(movementSpeed);
     }
 
     private void ResetAttack()
     {
-        movement.EnableMovement(true);
+        movement.ResetSpeed(movementSpeed);
 
+        animator.SetFloat("RunningSpeedMultiplier", 1.0f);
         animator.SetFloat("BasicAbilitySpeedMultiplier", 1.0f);
         animator.SetFloat("SpecialAbility1SpeedMultiplier", 1.0f);
         animator.SetFloat("SpecialAbility2SpeedMultiplier", 1.0f);
-
+        
         attacking = false;
     }
 

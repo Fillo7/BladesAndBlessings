@@ -65,14 +65,25 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void SetSpeed(float speed)
+    public void LimitSpeed(float speed)
     {
-        this.speed = speed;
+        if (speed < this.speed)
+        {
+            this.speed = speed;
+        }
     }
 
-    public void ResetSpeed()
+    public void ResetSpeed(float previousSpeedLimit)
     {
-        speed = speedSnapshot;
+        if (Mathf.Approximately(speed, previousSpeedLimit))
+        {
+            speed = speedSnapshot;
+        }
+    }
+
+    public float GetSpeed()
+    {
+        return speed;
     }
 
     public bool IsMoving()

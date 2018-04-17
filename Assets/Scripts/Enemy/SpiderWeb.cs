@@ -2,15 +2,15 @@
 
 public class SpiderWeb : MonoBehaviour
 {
-    bool playerImmobilized = false;
-    PlayerMovement movement;
+    private bool playerImmobilized = false;
+    private PlayerMovement movement;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Player"))
         {
             movement = other.GetComponent<PlayerMovement>();
-            movement.SetSpeed(0.0f);
+            movement.LimitSpeed(0.0f);
             playerImmobilized = true;
         }
     }
@@ -19,7 +19,7 @@ public class SpiderWeb : MonoBehaviour
     {
         if (other.tag.Equals("Player"))
         {
-            movement.SetSpeed(0.0f);
+            movement.LimitSpeed(0.0f);
         }
     }
 
@@ -27,7 +27,7 @@ public class SpiderWeb : MonoBehaviour
     {
         if (playerImmobilized)
         {
-            movement.ResetSpeed();
+            movement.ResetSpeed(0.0f);
         }
     }
 }
