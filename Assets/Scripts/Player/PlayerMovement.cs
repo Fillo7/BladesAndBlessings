@@ -9,20 +9,19 @@ public class PlayerMovement : MonoBehaviour
     private float currentSpeed;
 
     private Vector3 direction;
+    private Vector3 oldPosition;
     private bool movementEnabled = true;
-    private bool moving = false;
     private bool turningLeft = false;
-
-    private Vector3 turningDirection;
-    private bool automaticTurningEnabled = false;
-    private float automaticTurningTimer = 0.0f;
-    private float automaticTurningMaximum = 0.0f;
+    private bool mouseTurning = false;
 
     private CustomInputManager inputManager;
     private PlayerHealth health;
     private Rigidbody playerRigidbody;
     private Animator animator;
     private LinkedList<MovementEffect> movementEffects = new LinkedList<MovementEffect>();
+
+    private int floorMask;
+    private float cameraRayLength = 100.0f;
 
     void Awake()
     {
@@ -32,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         currentSpeed = speed;
         speedSnapshot = speed;
+        floorMask = LayerMask.GetMask("Floor");
     }
 
     void Update()
@@ -49,20 +49,16 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = inputManager.GetAxisRaw("Horizontal");
         float vertical = inputManager.GetAxisRaw("Vertical");
 
-        if (!automaticTurningEnabled)
+        if (!mouseTurning)
         {
             Move(horizontal, vertical);
         }
         else
         {
-            automaticTurningTimer += Time.deltaTime;
-            TurnTowardsDirectionAutomatic();
-
-            if (automaticTurningTimer > automaticTurningMaximum)
-            {
-                automaticTurningEnabled = false;
-            }
+            MoveWithMouseTurning(horizontal, vertical);
         }
+
+        oldPosition = transform.position;
     }
 
     public void LimitSpeed(float speed)
@@ -86,9 +82,13 @@ public class PlayerMovement : MonoBehaviour
         return speed;
     }
 
-    public bool IsMoving()
+    public void SetMouseTurning(bool flag)
     {
-        return moving;
+        if (!flag)
+        {
+            animator.SetBool("RunningBackwards", false);
+        }
+        mouseTurning = flag;
     }
 
     public void EnableMovement(bool flag)
@@ -97,19 +97,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (!flag)
         {
-            moving = false;
             animator.SetBool("Running", false);
             animator.SetBool("TurningLeft", false);
             animator.SetBool("TurningRight", false);
         }
-    }
-
-    public void TurnTowardsDirection(Vector3 direction, float maximumTurningDuration)
-    {
-        turningDirection = direction;
-        automaticTurningTimer = 0.0f;
-        automaticTurningMaximum = maximumTurningDuration;
-        automaticTurningEnabled = true;
     }
 
     public void ApplyMovementEffect(MovementEffect effect)
@@ -125,8 +116,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 return;
             }
-                
-            moving = true;
 
             if (turningLeft)
             {
@@ -152,12 +141,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (Math.Abs(horizontal) > 0.01f || Math.Abs(vertical) > 0.01f)
         {
-            moving = true;
             animator.SetBool("Running", true);
         }
         else
         {
-            moving = false;
             animator.SetBool("Running", false);
         }
 
@@ -166,11 +153,60 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody.MovePosition(transform.position + direction);
     }
 
-    private void TurnTowardsDirectionAutomatic()
+    private void MoveWithMouseTurning(float horizontal, float vertical)
     {
-        Quaternion lookRotation = Quaternion.LookRotation(turningDirection - transform.position);
-        lookRotation = Quaternion.Euler(0.0f, lookRotation.eulerAngles.y, 0.0f);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, 150.0f * Time.deltaTime);
+        if (TurnTowardsMouseCursor())
+        {
+            if (!movementEnabled)
+            {
+                return;
+            }
+
+            if (turningLeft)
+            {
+                animator.SetBool("TurningLeft", true);
+            }
+            else
+            {
+                animator.SetBool("TurningRight", true);
+            }
+        }
+        else
+        {
+            animator.SetBool("TurningLeft", false);
+            animator.SetBool("TurningRight", false);
+        }
+
+        if (!movementEnabled)
+        {
+            return;
+        }
+
+        if (Math.Abs(horizontal) > 0.01f || Math.Abs(vertical) > 0.01f)
+        {
+            Vector3 direction = transform.InverseTransformDirection(transform.position - oldPosition);
+            float forwardTest = Vector3.Dot(-direction.normalized, transform.position.normalized);
+
+            if (transform.position.z >= 0.0f && forwardTest <= 0.0f || transform.position.z < 0.0f && forwardTest > 0.0f)
+            {
+                animator.SetBool("Running", true);
+                animator.SetBool("RunningBackwards", false);
+            }
+            else
+            {
+                animator.SetBool("RunningBackwards", true);
+                animator.SetBool("Running", false);
+            }
+        }
+        else
+        {
+            animator.SetBool("Running", false);
+            animator.SetBool("RunningBackwards", false);
+        }
+
+        direction.Set(horizontal, 0.0f, vertical);
+        direction = direction.normalized * currentSpeed * Time.deltaTime;
+        playerRigidbody.MovePosition(transform.position + direction);
     }
 
     private bool TurnTowardsDirection(float horizontal, float vertical)
@@ -182,11 +218,30 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 direction = new Vector3(horizontal, 0.0f, vertical);
         Quaternion lookRotation = Quaternion.LookRotation(direction.normalized);
-        playerRigidbody.MoveRotation(Quaternion.RotateTowards(playerRigidbody.rotation, lookRotation, 400.0f * Time.deltaTime));
+        playerRigidbody.MoveRotation(Quaternion.RotateTowards(playerRigidbody.rotation, lookRotation, 350.0f * Time.deltaTime));
 
         turningLeft = GetRotationDirection(playerRigidbody.rotation, lookRotation);
 
-        return Math.Abs(playerRigidbody.rotation.eulerAngles.y - lookRotation.eulerAngles.y) > 40.0f;
+        return Math.Abs(playerRigidbody.rotation.eulerAngles.y - lookRotation.eulerAngles.y) > 35.0f;
+    }
+
+    private bool TurnTowardsMouseCursor()
+    {
+        Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit floorHit;
+
+        if (Physics.Raycast(cameraRay, out floorHit, cameraRayLength, floorMask))
+        {
+            Vector3 playerToMouse = floorHit.point - transform.position;
+            playerToMouse.y = 0.0f;
+            Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
+            playerRigidbody.MoveRotation(Quaternion.RotateTowards(playerRigidbody.rotation, newRotation, 200.0f * Time.deltaTime));
+            turningLeft = GetRotationDirection(playerRigidbody.rotation, newRotation);
+
+            return Math.Abs(playerRigidbody.rotation.eulerAngles.y - newRotation.eulerAngles.y) > 20.0f;
+        }
+
+        return false;
     }
 
     private bool GetRotationDirection(Quaternion from, Quaternion to)

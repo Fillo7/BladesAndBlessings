@@ -4,23 +4,19 @@
     private float animationDuration;
     private float animationSpeedMultiplier;
     private float animationMovementMultiplier;
-    private bool lockTurningFlag;
+    private bool mouseTurningFlag;
 
     public AbilityInfo(float cooldown, float animationDuration) :
         this(cooldown, animationDuration, 1.0f, 1.0f, true)
     {}
 
-    public AbilityInfo(float cooldown, float animationDuration, float animationSpeedMultiplier, bool lockTurningFlag) :
-        this(cooldown, animationDuration, animationSpeedMultiplier, 1.0f, lockTurningFlag)
-    {}
-
-    public AbilityInfo(float cooldown, float animationDuration, float animationSpeedMultiplier, float animationMovementMultiplier, bool lockTurningFlag)
+    public AbilityInfo(float cooldown, float animationDuration, float animationSpeedMultiplier, float animationMovementMultiplier, bool mouseTurningFlag)
     {
         this.cooldown = cooldown;
         this.animationDuration = animationDuration;
         this.animationSpeedMultiplier = animationSpeedMultiplier;
         this.animationMovementMultiplier = animationMovementMultiplier;
-        this.lockTurningFlag = lockTurningFlag;
+        this.mouseTurningFlag = mouseTurningFlag;
     }
 
     public float GetCooldown()
@@ -43,8 +39,8 @@
         return animationMovementMultiplier;
     }
 
-    public bool IsTurningLocked()
+    public bool GetMouseTurningFlag()
     {
-        return lockTurningFlag;
+        return mouseTurningFlag;
     }
 }

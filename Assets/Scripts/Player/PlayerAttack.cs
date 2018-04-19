@@ -62,10 +62,9 @@ public class PlayerAttack : MonoBehaviour
             currentWeaponScript.SetCursorPosition(GetCursorWorldPosition());
             animator.SetFloat("BasicAbilitySpeedMultiplier", currentAbilityInfo[0].GetAnimationSpeedMultiplier());
             animator.SetTrigger("BasicAbility");
-
-            if (currentAbilityInfo[0].IsTurningLocked())
+            if (currentAbilityInfo[0].GetMouseTurningFlag())
             {
-                movement.TurnTowardsDirection(GetCursorWorldPosition(), currentAbilityInfo[0].GetAnimationDuration());
+                movement.SetMouseTurning(true);
             }
 
             actionTimer = 0.0f;
@@ -84,10 +83,9 @@ public class PlayerAttack : MonoBehaviour
             currentWeaponScript.SetCursorPosition(GetCursorWorldPosition());
             animator.SetFloat("SpecialAbility1SpeedMultiplier", currentAbilityInfo[1].GetAnimationSpeedMultiplier());
             animator.SetTrigger("SpecialAbility1");
-
-            if (currentAbilityInfo[1].IsTurningLocked())
+            if (currentAbilityInfo[1].GetMouseTurningFlag())
             {
-                movement.TurnTowardsDirection(GetCursorWorldPosition(), currentAbilityInfo[1].GetAnimationDuration());
+                movement.SetMouseTurning(true);
             }
 
             actionTimer = 0.0f;
@@ -106,10 +104,9 @@ public class PlayerAttack : MonoBehaviour
             currentWeaponScript.SetCursorPosition(GetCursorWorldPosition());
             animator.SetFloat("SpecialAbility2SpeedMultiplier", currentAbilityInfo[2].GetAnimationSpeedMultiplier());
             animator.SetTrigger("SpecialAbility2");
-
-            if (currentAbilityInfo[2].IsTurningLocked())
+            if (currentAbilityInfo[2].GetMouseTurningFlag())
             {
-                movement.TurnTowardsDirection(GetCursorWorldPosition(), currentAbilityInfo[2].GetAnimationDuration());
+                movement.SetMouseTurning(true);
             }
 
             actionTimer = 0.0f;
@@ -138,7 +135,7 @@ public class PlayerAttack : MonoBehaviour
     private void EnableAttack()
     {
         attacking = true;
-        animator.SetFloat("RunningSpeedMultiplier", movementSpeedMultiplier);
+        animator.SetFloat("RunningSpeedMultiplier", (movementSpeedMultiplier + 1.0f) / 2.0f);
         movementSpeed = movementSpeedMultiplier * movement.GetSpeed();
         movement.LimitSpeed(movementSpeed);
     }
@@ -146,6 +143,7 @@ public class PlayerAttack : MonoBehaviour
     private void ResetAttack()
     {
         movement.ResetSpeed(movementSpeed);
+        movement.SetMouseTurning(false);
 
         animator.SetFloat("RunningSpeedMultiplier", 1.0f);
         animator.SetFloat("BasicAbilitySpeedMultiplier", 1.0f);
