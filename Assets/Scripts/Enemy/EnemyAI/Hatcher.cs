@@ -9,6 +9,7 @@ public class Hatcher : EnemyAI
     protected override void Awake()
     {
         base.Awake();
+        GetComponentInChildren<Animator>().SetFloat("DefaultAnimationMultiplier", 2.0f);
         navigator.speed = movementSpeed;
         navigator.SetDestination(GetRandomLocation(maximumMovementDistance));
     }
