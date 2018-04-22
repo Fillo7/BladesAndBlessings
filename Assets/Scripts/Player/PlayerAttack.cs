@@ -135,7 +135,6 @@ public class PlayerAttack : MonoBehaviour
     private void EnableAttack()
     {
         attacking = true;
-        animator.SetFloat("RunningSpeedMultiplier", (movementSpeedMultiplier + 1.0f) / 2.0f);
         movementSpeed = movementSpeedMultiplier * movement.GetSpeed();
         movement.LimitSpeed(movementSpeed);
     }
@@ -145,7 +144,6 @@ public class PlayerAttack : MonoBehaviour
         movement.ResetSpeed(movementSpeed);
         movement.SetMouseTurning(false);
 
-        animator.SetFloat("RunningSpeedMultiplier", 1.0f);
         animator.SetFloat("BasicAbilitySpeedMultiplier", 1.0f);
         animator.SetFloat("SpecialAbility1SpeedMultiplier", 1.0f);
         animator.SetFloat("SpecialAbility2SpeedMultiplier", 1.0f);

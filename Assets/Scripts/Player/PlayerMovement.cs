@@ -107,6 +107,8 @@ public class PlayerMovement : MonoBehaviour
         if (!flag)
         {
             animator.SetBool("Running", false);
+            animator.SetBool("Walking", false);
+            animator.SetBool("WalkingBackwards", false);
             animator.SetBool("TurningLeft", false);
             animator.SetBool("TurningRight", false);
         }
@@ -163,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (movementLimited)
             {
-                animator.SetBool("Running", true);
+                animator.SetBool("Walking", false);
             }
             else
             {

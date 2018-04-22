@@ -291,7 +291,7 @@ Transform:
   - {fileID: 4635128667529270}
   m_Father: {fileID: 4680052243980798}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -3.4932902, y: 88.97692, z: -44.063858}
+  m_LocalEulerAnglesHint: {x: -21.828836, y: 88.787735, z: -44.154137}
 --- !u!4 &4071184224102946
 Transform:
   m_ObjectHideFlags: 1
@@ -305,7 +305,7 @@ Transform:
   - {fileID: 4147072877823346}
   m_Father: {fileID: 4938425120583678}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 2.08569, y: 89.09434, z: 88.406654}
+  m_LocalEulerAnglesHint: {x: 85.65964, y: -1.9048651, z: -1.9048667}
 --- !u!4 &4147072877823346
 Transform:
   m_ObjectHideFlags: 1
@@ -321,7 +321,7 @@ Transform:
   - {fileID: 4624730019340394}
   m_Father: {fileID: 4071184224102946}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 1.2905791, y: -179.9999, z: 0.0000017336554}
+  m_LocalEulerAnglesHint: {x: 1.2905786, y: -179.9999, z: 0.0000016202387}
 --- !u!4 &4201089453796858
 Transform:
   m_ObjectHideFlags: 1
@@ -329,8 +329,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1246992161127818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 4938425120583678}
   - {fileID: 4279278631608234}
@@ -391,7 +391,7 @@ Transform:
   - {fileID: 4544778533163916}
   m_Father: {fileID: 4633517207503800}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -25.021015, y: -76.1412, z: 53.382885}
+  m_LocalEulerAnglesHint: {x: -21.828844, y: -88.78775, z: 44.154144}
 --- !u!4 &4544778533163916
 Transform:
   m_ObjectHideFlags: 1
@@ -418,7 +418,7 @@ Transform:
   - {fileID: 4849946836264160}
   m_Father: {fileID: 4147072877823346}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -20.20082, y: -0.000053179105, z: -0.000008209509}
+  m_LocalEulerAnglesHint: {x: -16.266483, y: -0.000054020602, z: -0.0000020987993}
 --- !u!4 &4633517207503800
 Transform:
   m_ObjectHideFlags: 1
@@ -432,7 +432,7 @@ Transform:
   - {fileID: 4509912819584272}
   m_Father: {fileID: 4147072877823346}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -67.355675, y: -130.92203, z: 146.53671}
+  m_LocalEulerAnglesHint: {x: -87.37229, y: 109.09196, z: -36.32938}
 --- !u!4 &4635128667529270
 Transform:
   m_ObjectHideFlags: 1
@@ -472,7 +472,7 @@ Transform:
   - {fileID: 4038243629433578}
   m_Father: {fileID: 4147072877823346}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -76.06602, y: 110.522575, z: -120.79743}
+  m_LocalEulerAnglesHint: {x: -87.37227, y: -109.09236, z: 36.32964}
 --- !u!4 &4776440364177630
 Transform:
   m_ObjectHideFlags: 1
@@ -500,7 +500,7 @@ Transform:
   - {fileID: 4642534297772064}
   m_Father: {fileID: 4624730019340394}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 16.028164, y: 0.0000009024266, z: 0.0000064096744}
+  m_LocalEulerAnglesHint: {x: 16.028162, y: 0.00000084338967, z: 0.00000599035}
 --- !u!4 &4938425120583678
 Transform:
   m_ObjectHideFlags: 1
@@ -514,7 +514,7 @@ Transform:
   - {fileID: 4071184224102946}
   m_Father: {fileID: 4201089453796858}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -2.541805, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -2.5418053, y: 0, z: 0}
 --- !u!54 &54600889559702108
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -574,7 +574,7 @@ MonoBehaviour:
     type: 2}
   selfDestructOnSpawn: 0
   spawnTime: 15
-  maxTimerRandomIncrease: 3
+  maxTimerRandomIncrease: 5
 --- !u!114 &114830592977879436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -604,10 +604,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.4
-  m_Height: 5.5
+  m_Radius: 1.2
+  m_Height: 5
   m_Direction: 0
-  m_Center: {x: 0, y: 1.6, z: 0.2}
+  m_Center: {x: 0, y: 1.8, z: 0.2}
 --- !u!137 &137361358792977216
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -670,7 +670,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1910316221344138}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2
+  m_Radius: 1.5
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50

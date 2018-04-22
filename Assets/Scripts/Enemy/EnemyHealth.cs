@@ -9,6 +9,7 @@ public class EnemyHealth : MonoBehaviour
     private AudioSource audioPlayer;
 
     [SerializeField] private float deathDestroyDelay = 5.0f;
+    [SerializeField] private bool destroyOnVictory = true;
     [SerializeField] private int health = 50;
     private int currentHealth;
 
@@ -51,6 +52,11 @@ public class EnemyHealth : MonoBehaviour
     public bool IsDead()
     {
         return dead;
+    }
+
+    public bool IsDestroyedOnVictory()
+    {
+        return destroyOnVictory;
     }
 
     virtual public void TakeDamage(float amount, DamageType damageType)

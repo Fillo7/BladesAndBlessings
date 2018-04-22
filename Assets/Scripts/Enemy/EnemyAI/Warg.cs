@@ -12,6 +12,7 @@ public class Warg : EnemyAI
     private NavMeshObstacle obstacle;
 
     private bool attacking = false;
+    private bool playerHit = false;
     private float attackRange = 2.5f;
     private float attackTimer = 0.5f;
     private float cancelAttackRange = 5.0f;
@@ -29,8 +30,9 @@ public class Warg : EnemyAI
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Equals("Player"))
+        if (other.tag.Equals("Player") && !playerHit)
         {
+            playerHit = true;
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             playerHealth.TakeDamage(damage);
         }
@@ -100,6 +102,7 @@ public class Warg : EnemyAI
     private void Attack()
     {
         attacking = true;
+        playerHit = false;
         navigator.enabled = false;
         obstacle.enabled = true;
         animator.SetTrigger("Attack");

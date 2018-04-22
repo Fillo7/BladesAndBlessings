@@ -78,7 +78,7 @@ public class LevelManager : MonoBehaviour
 
         for (int i = 0; i < enemies.Length; i++)
         {
-            if (enemies[i] != null && !enemies[i].GetComponent<EnemyHealth>().IsDead())
+            if (enemies[i] != null && !enemies[i].GetComponent<EnemyHealth>().IsDead() && enemies[i].GetComponent<EnemyHealth>().IsDestroyedOnVictory())
             {
                 Destroy(enemies[i]);
             }
