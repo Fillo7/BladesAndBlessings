@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 direction;
     private Vector3 oldPosition;
     private bool movementEnabled = true;
+    private bool movementLimited = false;
     private bool turningLeft = false;
     private bool mouseTurning = false;
 
@@ -66,6 +67,8 @@ public class PlayerMovement : MonoBehaviour
         if (speed < this.speed)
         {
             this.speed = speed;
+            movementLimited = true;
+            animator.SetBool("Running", false);
         }
     }
 
@@ -74,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
         if (Mathf.Approximately(speed, previousSpeedLimit))
         {
             speed = speedSnapshot;
+            movementLimited = false;
         }
     }
 
@@ -86,7 +90,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!flag)
         {
-            animator.SetBool("RunningBackwards", false);
+            animator.SetBool("Walking", false);
+            animator.SetBool("WalkingBackwards", false);
+        }
+        else
+        {
+            animator.SetBool("Running", false);
         }
         mouseTurning = flag;
     }
@@ -141,11 +150,25 @@ public class PlayerMovement : MonoBehaviour
 
         if (Math.Abs(horizontal) > 0.01f || Math.Abs(vertical) > 0.01f)
         {
-            animator.SetBool("Running", true);
+            if (movementLimited)
+            {
+                animator.SetBool("Walking", true);
+            }
+            else
+            {
+                animator.SetBool("Running", true);
+            }
         }
         else
         {
-            animator.SetBool("Running", false);
+            if (movementLimited)
+            {
+                animator.SetBool("Running", true);
+            }
+            else
+            {
+                animator.SetBool("Running", false);
+            }
         }
 
         direction.Set(horizontal, 0.0f, vertical);
@@ -189,19 +212,19 @@ public class PlayerMovement : MonoBehaviour
 
             if (transform.position.z >= 0.0f && forwardTest <= 0.0f || transform.position.z < 0.0f && forwardTest > 0.0f)
             {
-                animator.SetBool("Running", true);
-                animator.SetBool("RunningBackwards", false);
+                animator.SetBool("Walking", true);
+                animator.SetBool("WalkingBackwards", false);
             }
             else
             {
-                animator.SetBool("RunningBackwards", true);
-                animator.SetBool("Running", false);
+                animator.SetBool("WalkingBackwards", true);
+                animator.SetBool("Walking", false);
             }
         }
         else
         {
-            animator.SetBool("Running", false);
-            animator.SetBool("RunningBackwards", false);
+            animator.SetBool("Walking", false);
+            animator.SetBool("WalkingBackwards", false);
         }
 
         direction.Set(horizontal, 0.0f, vertical);
