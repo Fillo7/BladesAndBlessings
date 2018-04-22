@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 direction;
     private Vector3 oldPosition;
+    private float positionYSnapshot;
     private bool movementEnabled = true;
     private bool movementLimited = false;
     private bool turningLeft = false;
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         currentSpeed = speed;
         speedSnapshot = speed;
         floorMask = LayerMask.GetMask("Floor");
+        InvokeRepeating("SnapshotPositionY", 0.01f, 0.25f);
     }
 
     void Update()
@@ -44,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (health.IsDead())
         {
+            CancelInvoke();
             return;
         }
 
@@ -176,6 +179,20 @@ public class PlayerMovement : MonoBehaviour
         direction.Set(horizontal, 0.0f, vertical);
         direction = direction.normalized * currentSpeed * Time.deltaTime;
         playerRigidbody.MovePosition(transform.position + direction);
+    }
+
+    private void SnapshotPositionY()
+    {
+        if (Math.Abs(positionYSnapshot - transform.position.y) > 0.3f)
+        {
+            EnableMovement(false);
+        }
+        else
+        {
+            EnableMovement(true);
+        }
+
+        positionYSnapshot = transform.position.y;
     }
 
     private void MoveWithMouseTurning(float horizontal, float vertical)

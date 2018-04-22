@@ -93,7 +93,7 @@ public class OrcShaman : EnemyAI
                 }
             }
         }
-        else if(!isRelocating)
+        else if (!isRelocating)
         {
             TurnTowardsPlayer();
         }
