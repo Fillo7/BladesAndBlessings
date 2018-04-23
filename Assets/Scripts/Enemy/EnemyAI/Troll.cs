@@ -6,20 +6,24 @@ public class Troll : EnemyAI
     [SerializeField] private AnimationClip roarIntroductionClip;
     [SerializeField] private AnimationClip roarHatchlingsClip;
     [SerializeField] private AnimationClip roarBouldersClip;
+    [SerializeField] private AnimationClip breathLeftClip;
 
     private Animator animator;
     private NavMeshObstacle obstacle;
 
     private bool active = false;
 
-    private float roarHatchlingsCooldown = 45.0f;
+    private float roarHatchlingsCooldown = 30.0f;
     private float roarHatchlingsTimer = 0.0f;
 
-    private float roarBouldersCooldown = 30.0f;
-    private float roarBouldersTimer = 0.0f;
+    private float roarRocksCooldown = 10.0f;
+    private float roarRocksTimer = 0.0f;
 
-    private float globalCooldown = 5.0f;
-    private float globalTimer = 5.0f;
+    private float breathCooldown = 15.0f;
+    private float breathTimer = 0.0f;
+
+    private float globalCooldown = 4.0f;
+    private float globalTimer = 4.0f;
 
     private bool attacking = false;
 
@@ -28,6 +32,7 @@ public class Troll : EnemyAI
         base.Awake();
         navigator.enabled = false;
         animator = GetComponentInChildren<Animator>();
+        animator.SetFloat("BreathLeftSpeedMultiplier", 0.25f);
         obstacle = GetComponent<NavMeshObstacle>();
         obstacle.enabled = true;
     }
@@ -48,22 +53,32 @@ public class Troll : EnemyAI
 
         globalTimer += Time.deltaTime;
         roarHatchlingsTimer += Time.deltaTime;
+        roarRocksTimer += Time.deltaTime;
+        breathTimer += Time.deltaTime;
 
         if (roarHatchlingsTimer > roarHatchlingsCooldown && globalTimer > globalCooldown)
         {
-            roarHatchlingsTimer = Random.Range(0.0f, 20.0f);
+            roarHatchlingsTimer = Random.Range(0.0f, 10.0f);
             attacking = true;
             animator.SetTrigger("RoarHatchlings");
             
             Invoke("ResetAttack", roarHatchlingsClip.length);
         }
-        else if (roarBouldersTimer > roarBouldersCooldown && globalTimer > globalCooldown)
+        else if (roarRocksTimer > roarRocksCooldown && globalTimer > globalCooldown)
         {
-            roarBouldersTimer = Random.Range(0.0f, 15.0f);
+            roarRocksTimer = Random.Range(0.0f, 2.5f);
             attacking = true;
-            animator.SetTrigger("RoarBoulders");
+            animator.SetTrigger("RoarRocks");
 
             Invoke("ResetAttack", roarBouldersClip.length);
+        }
+        else if (breathTimer > breathCooldown && globalTimer > globalCooldown)
+        {
+            breathTimer = Random.Range(0.0f, 7.5f);
+            attacking = true;
+            animator.SetTrigger("BreathLeft");
+
+            Invoke("ResetAttack", breathLeftClip.length / 0.25f);
         }
         else
         {
