@@ -82,7 +82,7 @@ public class Troll : EnemyAI
         }
         else
         {
-            TurnTowardsPlayer(30.0f);
+            TurnTowardsPlayer(40.0f);
         }
     }
 

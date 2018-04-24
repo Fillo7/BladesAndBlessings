@@ -9,7 +9,7 @@ public class CaveAbilities : MonoBehaviour
 
     private float[] area1Boundaries = {-12.0f, -5.0f, -19.0f, 0.0f};
     private float[] area2Boundaries = {5.0f, 12.0f, -19.0f, 0.0f};
-    private float[] area3Boundaries = {-8.0f, 8.0f, -26.0f, -17.0f};
+    private float[] area3Boundaries = {-8.0f, 8.0f, -24.0f, -15.0f};
 
     public void SpawnHatchlings()
     {
