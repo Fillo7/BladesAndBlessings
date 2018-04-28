@@ -136,7 +136,7 @@ public class Troll : EnemyAI
         phase = 1;
         globalCooldown = 2.0f;
         maxConsecutiveSmashes = 3;
-        breathSpeedMultiplier = 0.35f;
+        breathSpeedMultiplier = 0.3f;
         animator.SetFloat("BreathSpeedMultiplier", breathSpeedMultiplier);
         smashSpeedMultiplier = 0.7f;
         animator.SetFloat("SmashSpeedMultiplier", smashSpeedMultiplier);
@@ -157,6 +157,7 @@ public class Troll : EnemyAI
     {
         if (breathTimer > breathCooldown && globalTimer > globalCooldown)
         {
+            playerHit = true;
             breathTimer = Random.Range(0.0f, 5.0f);
             CavePlatformController platform = GetClosestPlatformToPlayer();
 
@@ -206,6 +207,7 @@ public class Troll : EnemyAI
         }
         else if (breathTimer > breathCooldown && globalTimer > globalCooldown)
         {
+            playerHit = true;
             breathTimer = Random.Range(0.0f, 5.0f);
             CavePlatformController platform = GetClosestPlatformToPlayer();
 

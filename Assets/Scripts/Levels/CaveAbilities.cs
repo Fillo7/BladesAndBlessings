@@ -53,6 +53,6 @@ public class CaveAbilities : MonoBehaviour
     public void SpawnRocksWithIncrease()
     {
         SpawnRocks();
-        rockCount = System.Math.Min(rockCount + 10, 150);
+        rockCount = System.Math.Min(rockCount + 10, 200);
     }
 }
