@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CaveTeleportation : MonoBehaviour
 {
-    [SerializeField] private List<Transform> centers = new List<Transform>();
+    [SerializeField] private List<CavePlatformController> platforms = new List<CavePlatformController>();
 
     void OnTriggerEnter(Collider other)
     {
@@ -11,24 +11,30 @@ public class CaveTeleportation : MonoBehaviour
         {
             other.GetComponent<PlayerHealth>().TakeDamage(100.0f);
 
-            Transform targetArea = GetClosestCenter(other.transform.position);
-            other.transform.SetPositionAndRotation(targetArea.position, Quaternion.identity);
+            Vector3 targetArea = GetClosestCenter(other.transform.position);
+            other.transform.SetPositionAndRotation(targetArea, Quaternion.identity);
         }
     }
 
-    Transform GetClosestCenter(Vector3 position)
+    Vector3 GetClosestCenter(Vector3 position)
     {
         float shortestDistance = float.MaxValue;
-        Transform result = null;
+        Vector3 result = new Vector3();
 
-        foreach (Transform center in centers)
+        foreach (CavePlatformController platform in platforms)
         {
-            float currentDistance = Vector3.Distance(position, center.position);
+            if (!platform.IsActive())
+            {
+                continue;
+            }
+
+            Vector3 platformCenter = platform.GetCenterPoint();
+            float currentDistance = Vector3.Distance(position, platformCenter);
 
             if (currentDistance < shortestDistance)
             {
                 shortestDistance = currentDistance;
-                result = center;
+                result = platformCenter;
             }
         }
 

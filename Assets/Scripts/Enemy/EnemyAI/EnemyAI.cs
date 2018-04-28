@@ -71,16 +71,26 @@ public class EnemyAI : MonoBehaviour
         return GetDistanceToTarget(player);
     }
 
-    protected void TurnTowardsTarget(Transform target, float turningSpeed)
+    protected void TurnTowardsTarget(Vector3 target, float turningSpeed)
     {
-        Quaternion lookRotation = Quaternion.LookRotation(target.position - transform.position);
+        Quaternion lookRotation = Quaternion.LookRotation(target - transform.position);
         lookRotation = Quaternion.Euler(0.0f, lookRotation.eulerAngles.y, 0.0f);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, turningSpeed * Time.deltaTime);
     }
 
-    protected void TurnTowardsTarget(Transform target)
+    protected void TurnTowardsTarget(Vector3 target)
     {
         TurnTowardsTarget(target, 120.0f);
+    }
+
+    protected void TurnTowardsTarget(Transform target, float turningSpeed)
+    {
+        TurnTowardsTarget(target.position, turningSpeed);
+    }
+
+    protected void TurnTowardsTarget(Transform target)
+    {
+        TurnTowardsTarget(target.position, 120.0f);
     }
 
     protected void TurnTowardsPlayer(float turningSpeed)
