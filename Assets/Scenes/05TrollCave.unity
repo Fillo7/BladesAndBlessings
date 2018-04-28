@@ -478,6 +478,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4790434545672994, guid: d7da0304fc6463845835d10a3e36370a,
     type: 2}
   m_PrefabInternal: {fileID: 212323671}
+--- !u!1 &265722551 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1987177642273242, guid: 4f8637c72183e364da6d34d7d38a45ea,
+    type: 2}
+  m_PrefabInternal: {fileID: 2095930356}
 --- !u!1001 &279163769
 Prefab:
   m_ObjectHideFlags: 0
@@ -685,9 +690,9 @@ Transform:
   - {fileID: 1762887261}
   - {fileID: 80209852}
   - {fileID: 166139012}
-  - {fileID: 525725838}
   - {fileID: 1460491248}
   - {fileID: 1498136625}
+  - {fileID: 525725838}
   m_Father: {fileID: 485152053}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1037,24 +1042,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4009404731508090, guid: da715edc8f0a02944bde6d1e4c2915a1, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1626146894280448, guid: da715edc8f0a02944bde6d1e4c2915a1, type: 2}
       propertyPath: m_Name
       value: CaveBridgeRock (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 4009404731508090, guid: da715edc8f0a02944bde6d1e4c2915a1, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 57
-      objectReference: {fileID: 0}
-    - target: {fileID: 4009404731508090, guid: da715edc8f0a02944bde6d1e4c2915a1, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4009404731508090, guid: da715edc8f0a02944bde6d1e4c2915a1, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.0000002
-      objectReference: {fileID: 0}
+    - target: {fileID: 114021416737498472, guid: da715edc8f0a02944bde6d1e4c2915a1,
+        type: 2}
+      propertyPath: centerPoint
+      value: 
+      objectReference: {fileID: 1259082640}
     - target: {fileID: 114021416737498472, guid: da715edc8f0a02944bde6d1e4c2915a1,
         type: 2}
       propertyPath: connectingPoint1
@@ -1065,11 +1063,6 @@ Prefab:
       propertyPath: connectingPoint2
       value: 
       objectReference: {fileID: 923118661}
-    - target: {fileID: 114021416737498472, guid: da715edc8f0a02944bde6d1e4c2915a1,
-        type: 2}
-      propertyPath: centerPoint
-      value: 
-      objectReference: {fileID: 1259082640}
     - target: {fileID: 114021416737498472, guid: da715edc8f0a02944bde6d1e4c2915a1,
         type: 2}
       propertyPath: caveSide
@@ -1320,6 +1313,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossLevel: 1
+  boss: {fileID: 265722551}
+  bossSlider: {fileID: 1591839388}
+  bossText: {fileID: 1591839387}
 --- !u!114 &735323844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1671,6 +1667,11 @@ Prefab:
         type: 2}
       propertyPath: caveSide
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114037548968945072, guid: b0aa731e53edc774ea5b790232116683,
+        type: 2}
+      propertyPath: health
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0aa731e53edc774ea5b790232116683, type: 2}
@@ -2360,23 +2361,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4009404731508090, guid: da715edc8f0a02944bde6d1e4c2915a1, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1626146894280448, guid: da715edc8f0a02944bde6d1e4c2915a1, type: 2}
       propertyPath: m_Name
       value: CaveBridgeRock (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4009404731508090, guid: da715edc8f0a02944bde6d1e4c2915a1, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4009404731508090, guid: da715edc8f0a02944bde6d1e4c2915a1, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4009404731508090, guid: da715edc8f0a02944bde6d1e4c2915a1, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 114021416737498472, guid: da715edc8f0a02944bde6d1e4c2915a1,
         type: 2}
@@ -2443,24 +2432,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4009404731508090, guid: da715edc8f0a02944bde6d1e4c2915a1, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1626146894280448, guid: da715edc8f0a02944bde6d1e4c2915a1, type: 2}
       propertyPath: m_Name
       value: CaveBridgeRock (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 4009404731508090, guid: da715edc8f0a02944bde6d1e4c2915a1, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4009404731508090, guid: da715edc8f0a02944bde6d1e4c2915a1, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.59999996
-      objectReference: {fileID: 0}
-    - target: {fileID: 4009404731508090, guid: da715edc8f0a02944bde6d1e4c2915a1, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 114021416737498472, guid: da715edc8f0a02944bde6d1e4c2915a1,
+        type: 2}
+      propertyPath: centerPoint
+      value: 
+      objectReference: {fileID: 2117296223}
     - target: {fileID: 114021416737498472, guid: da715edc8f0a02944bde6d1e4c2915a1,
         type: 2}
       propertyPath: connectingPoint1
@@ -2471,11 +2453,6 @@ Prefab:
       propertyPath: connectingPoint2
       value: 
       objectReference: {fileID: 104643331}
-    - target: {fileID: 114021416737498472, guid: da715edc8f0a02944bde6d1e4c2915a1,
-        type: 2}
-      propertyPath: centerPoint
-      value: 
-      objectReference: {fileID: 2117296223}
     - target: {fileID: 114021416737498472, guid: da715edc8f0a02944bde6d1e4c2915a1,
         type: 2}
       propertyPath: caveSide
@@ -3066,10 +3043,6 @@ Prefab:
     - target: {fileID: 4009404731508090, guid: da715edc8f0a02944bde6d1e4c2915a1, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4009404731508090, guid: da715edc8f0a02944bde6d1e4c2915a1, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.59999996
       objectReference: {fileID: 0}
     - target: {fileID: 1626146894280448, guid: da715edc8f0a02944bde6d1e4c2915a1, type: 2}
       propertyPath: m_Name

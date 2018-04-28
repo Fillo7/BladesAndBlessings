@@ -25,6 +25,8 @@ public class EnemyHealth : MonoBehaviour
     private bool dead = false;
     private LinkedList<DoTEffect> dotEffects = new LinkedList<DoTEffect>();
 
+    private bool immune = false;
+
     virtual protected void Awake()
     {
         audioPlayer = gameObject.AddComponent<AudioSource>();
@@ -59,6 +61,11 @@ public class EnemyHealth : MonoBehaviour
         return destroyOnVictory;
     }
 
+    public void SetImmune(bool flag)
+    {
+        immune = flag;
+    }
+
     virtual public void TakeDamage(float amount, DamageType damageType)
     {
         float actualDamage = CalculateDamageForType(amount, damageType);
@@ -71,7 +78,7 @@ public class EnemyHealth : MonoBehaviour
 
     virtual public void TakeDamage(float amount)
     {
-        if (dead)
+        if (dead || immune)
         {
             return;
         }

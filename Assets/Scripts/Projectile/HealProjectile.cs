@@ -6,7 +6,7 @@ public class HealProjectile : Projectile
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Equals("Projectile") || other.tag.Equals("Weapon") || other.tag.Equals("EnemyObject") || other.tag.Equals("Wall"))
+        if (other.tag.Equals("Projectile") || other.tag.Equals("Weapon") || other.tag.Equals("EnemyObject") || other.tag.Equals("Wall") || other.isTrigger)
         {
             return;
         }

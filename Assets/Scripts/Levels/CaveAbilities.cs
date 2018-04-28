@@ -11,6 +11,8 @@ public class CaveAbilities : MonoBehaviour
     private float[] area2Boundaries = {5.0f, 12.0f, -19.0f, 0.0f};
     private float[] area3Boundaries = {-8.0f, 8.0f, -24.0f, -15.0f};
 
+    private int rockCount = 50;
+
     public void SpawnHatchlings()
     {
         for (int i = 0; i < 2; i++)
@@ -22,7 +24,7 @@ public class CaveAbilities : MonoBehaviour
 
     public void SpawnRocks()
     {
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < rockCount; i++)
         {
             int area = Random.Range(0, 3);
             float xPosition = 0.0f;
@@ -46,5 +48,11 @@ public class CaveAbilities : MonoBehaviour
 
             Instantiate(rock, new Vector3(xPosition, 40.0f, zPosition), Quaternion.identity);
         }
+    }
+
+    public void SpawnRocksWithIncrease()
+    {
+        SpawnRocks();
+        rockCount = System.Math.Min(rockCount + 10, 150);
     }
 }

@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(GameManager))]
 [RequireComponent(typeof(WaveManager))]
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] bool bossLevel = false;
+    [SerializeField] GameObject boss;
+    [SerializeField] private Slider bossSlider;
+    [SerializeField] private Text bossText;
+    private int bossPhase = 0;
+    EnemyHealth bossHealth;
 
     private GameManager gameManager;
     private WaveManager waveManager;
@@ -19,6 +25,13 @@ public class LevelManager : MonoBehaviour
         gameManager = GetComponent<GameManager>();
         waveManager = GetComponent<WaveManager>();
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+
+        if (bossLevel)
+        {
+            bossHealth = boss.GetComponent<EnemyHealth>();
+            bossText.text = "Phase 1 / 3";
+            bossSlider.maxValue = 750;
+        }
     }
 
     void Update()
@@ -53,6 +66,44 @@ public class LevelManager : MonoBehaviour
                 {
                     waveManager.SpawnNextWave(waveSpawnDelay);
                 }
+            }
+        }
+        else
+        {
+            if (bossPhase == 0)
+            {
+                bossSlider.value = bossHealth.GetCurrentHealth() - 1250;
+
+                if (bossHealth.GetCurrentHealth() <= 1250)
+                {
+                    bossPhase = 1;
+                    bossSlider.maxValue = 750;
+                    bossText.text = "Phase 2 / 3";
+                    boss.GetComponent<Troll>().TriggerPhase2();
+                }
+            }
+            else if (bossPhase == 1)
+            {
+                bossSlider.value = bossHealth.GetCurrentHealth() - 500;
+
+                if (bossHealth.GetCurrentHealth() <= 500)
+                {
+                    bossPhase = 2;
+                    bossSlider.maxValue = 500;
+                    bossText.text = "Phase 3 / 3";
+                    boss.GetComponent<Troll>().TriggerPhase3();
+                }
+            }
+            else
+            {
+                bossSlider.value = bossHealth.GetCurrentHealth();
+            }
+
+            if (bossHealth.IsDead())
+            {
+                victory = true;
+                DespawnEnemies();
+                Invoke("TriggerVictory", 5.0f);
             }
         }
     }

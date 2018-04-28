@@ -49,9 +49,8 @@ public class CavePlatformController : MonoBehaviour
     public void TakeDamage()
     {
         currentHealth -= 1;
-
         float healthPercentage = currentHealth / (float)health;
-        Debug.Log(healthPercentage);
+
         if (healthPercentage < 0.7f && !damaged && active)
         {
             damaged = true;
