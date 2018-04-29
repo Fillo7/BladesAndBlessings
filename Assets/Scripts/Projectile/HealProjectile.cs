@@ -31,6 +31,15 @@ public class HealProjectile : Projectile
         Destroy(gameObject);
     }
 
+    public override void SetOwner(ProjectileOwner owner)
+    {
+        if (owner == ProjectileOwner.Player)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>().Heal(healing);
+            Destroy(gameObject);
+        }
+    }
+
     public void SetHealing(float healing)
     {
         this.healing = healing;

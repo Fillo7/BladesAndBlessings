@@ -31,8 +31,8 @@ public class Staff : Weapon
 
     public override void DoBasicAttack()
     {
-        GameObject magicBoltInstance = Instantiate(magicBolt, movement.transform.position + movement.transform.forward * 0.7f + movement.transform.up * 1.35f,
-            Quaternion.LookRotation(movement.transform.forward, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f)) as GameObject;
+        GameObject magicBoltInstance = Instantiate(magicBolt, movement.transform.position + movement.transform.right * 0.5f + movement.transform.forward * 1.5f + movement.transform.up * 1.1f,
+            Quaternion.LookRotation(movement.transform.forward, new Vector3(0.0f, 1.0f, 0.0f))) as GameObject;
         DamageProjectile script = magicBoltInstance.GetComponent<DamageProjectile>();
         script.SetDirection(movement.transform.forward);
     }
@@ -60,7 +60,7 @@ public class Staff : Weapon
             return;
         }
 
-        movement.ApplyMovementEffect(new MovementEffect(8.0f, 2.0f));
+        movement.ApplyMovementEffect(new MovementEffect(10.0f, 1.75f));
         swiftnessTimer = 0.0f;
     }
 
@@ -84,9 +84,9 @@ public class Staff : Weapon
     public override List<AbilityInfo> GetAbilityInfo()
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
-        result.Add(new AbilityInfo(0.0f, basicAttack.length / 1.0f, 1.0f, 1.0f, true));
-        result.Add(new AbilityInfo(novaCooldown, specialAttack1.length / 1.0f, 1.0f, 1.0f, false));
-        result.Add(new AbilityInfo(swiftnessCooldown, specialAttack2.length / 1.0f, 1.0f, 1.0f, false));
+        result.Add(new AbilityInfo(0.0f, basicAttack.length / 0.65f, 0.65f, 0.35f, true));
+        result.Add(new AbilityInfo(novaCooldown, specialAttack1.length / 0.85f, 0.85f, 0.25f, false));
+        result.Add(new AbilityInfo(swiftnessCooldown, specialAttack2.length / 0.85f, 0.85f, 0.25f, false));
 
         return result;
     }

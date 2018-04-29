@@ -30,7 +30,7 @@ public class Projectile : MonoBehaviour
         this.speed = speed;
     }
 
-    public void SetOwner(ProjectileOwner owner)
+    public virtual void SetOwner(ProjectileOwner owner)
     {
         this.owner = owner;
     }
