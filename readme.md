@@ -13,3 +13,4 @@ Team members
 ------------
 * Simona Nemčoková - models, textures, animations and sound
 * Filip Petrovič - programming, level design, prefabs and UI
+* Marek Nedbal (prototype) - level design, programming of enemy AI
