@@ -266,6 +266,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1086855828907514
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224959475892434496}
+  - component: {fileID: 222073796758192578}
+  - component: {fileID: 114068166472474466}
+  m_Layer: 5
+  m_Name: TorchDescription
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1092959303127188
 GameObject:
   m_ObjectHideFlags: 1
@@ -329,6 +346,23 @@ GameObject:
   - component: {fileID: 114042401236706116}
   m_Layer: 5
   m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1111339081819944
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224069466435394972}
+  - component: {fileID: 222189319313462422}
+  - component: {fileID: 114773285919950574}
+  m_Layer: 5
+  m_Name: TorchAbilities
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -701,7 +735,7 @@ GameObject:
   - component: {fileID: 222459779217933514}
   - component: {fileID: 114676819492989126}
   m_Layer: 5
-  m_Name: TorchDescription
+  m_Name: StaffDescription
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -790,6 +824,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1262826845066972
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224019067745178968}
+  - component: {fileID: 222568147812007872}
+  - component: {fileID: 114405794217701740}
+  - component: {fileID: 114242807008678218}
+  m_Layer: 5
+  m_Name: TorchImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1274810037251946
 GameObject:
   m_ObjectHideFlags: 1
@@ -1504,7 +1556,7 @@ GameObject:
   - component: {fileID: 222298620864900378}
   - component: {fileID: 114876027300316106}
   m_Layer: 5
-  m_Name: TorchTitle
+  m_Name: StaffTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1780,7 +1832,7 @@ GameObject:
   - component: {fileID: 114889486740049940}
   - component: {fileID: 114203950184612188}
   m_Layer: 5
-  m_Name: TorchImage
+  m_Name: StaffImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2074,6 +2126,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1706458395911860
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224433684898450984}
+  - component: {fileID: 222098452052755304}
+  - component: {fileID: 114058151710633994}
+  m_Layer: 5
+  m_Name: SelectionImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1724394479209858
 GameObject:
   m_ObjectHideFlags: 1
@@ -2211,6 +2280,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1788374634406690
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224910522116704464}
+  - component: {fileID: 222834277359850554}
+  - component: {fileID: 114729789533162434}
+  m_Layer: 5
+  m_Name: TorchTitle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1789059455510362
 GameObject:
   m_ObjectHideFlags: 1
@@ -2222,7 +2308,7 @@ GameObject:
   - component: {fileID: 222296289616200450}
   - component: {fileID: 114150285540566080}
   m_Layer: 5
-  m_Name: TorchAbilities
+  m_Name: StaffAbilities
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3105,6 +3191,33 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114058151710633994
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1706458395911860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &114063824934787466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3157,6 +3270,33 @@ MonoBehaviour:
         m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114068166472474466
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1086855828907514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 0.19607843}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &114069395655330644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3767,15 +3907,14 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '* Fire Breath - Hero breathes fire which causes damage to all enemies inside
-    it.
+  m_Text: '* Magic Bolt - Shoots magic projectile in target direction.
 
 
-    * Fissure - Creates a fissure at target location which damages passing enemies.
+    * Frost Nova - Temporarily immobilizes all enemies in a medium area around hero.
 
 
-    * Cleansing Flames - Wraps hero''s body in flames which remove all DoT effects
-    but cause damage. Hero''s health is then regenerated over short period of time.'
+    * Swiftness - Significantly increases hero''s movement speed for a short period
+    of time.'
 --- !u!114 &114152462002724462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4003,7 +4142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 349587e4d47d1ac47803e4d31b532f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponIndex: 2
+  weaponIndex: 3
 --- !u!114 &114209909890853498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4070,6 +4209,7 @@ MonoBehaviour:
   weaponDescriptions:
   - {fileID: 1657579056715712}
   - {fileID: 1869775720449164}
+  - {fileID: 1086855828907514}
   - {fileID: 1221067251413346}
   errorPanel: {fileID: 1584564851227966}
 --- !u!114 &114227150104990282
@@ -4159,6 +4299,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114242807008678218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1262826845066972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 349587e4d47d1ac47803e4d31b532f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponIndex: 2
 --- !u!114 &114248453109215380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5561,6 +5713,32 @@ MonoBehaviour:
         m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114405794217701740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1262826845066972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Texture: {fileID: 2800000, guid: 5c786e97496a3e345972ac3e6c93478d, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!114 &114407693410799956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6091,13 +6269,15 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '* Slash - Hits single enemy in melee range.
+  m_Text: '* Slash - Hits a single enemy in melee range.
 
 
-    * Block - Blocks and redirects enemy attacks for a short period.
+    * Block - Blocks melee attacks and redirects projectiles for a short period of
+    time.
 
 
-    * Cone Slash - Hits up to three enemies in frontal cone and applies bleeding debuff.'
+    * Cone Slash - Hits up to three enemies in a frontal cone and applies a bleeding
+    debuff.'
 --- !u!114 &114504041383766022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6441,10 +6621,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '* Arrow - Fires single arrow in target direction.
+  m_Text: '* Arrow - Fires a single arrow in target direction.
 
 
-    * Arrow Fan - Fires five arrows in a cone in target direction.
+    * Arrow Fan - Fires a cone of five arrows in target direction.
 
 
     * Charged Arrow - Fires a supercharged arrow which pierces through enemies and
@@ -7456,6 +7636,39 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: OK
+--- !u!114 &114729789533162434
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1788374634406690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: bc47f02bc5fd3d84cad89f904162a8a3, type: 3}
+    m_FontSize: 50
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 50
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Torch Abilities
 --- !u!114 &114740564961928574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7691,6 +7904,47 @@ MonoBehaviour:
         m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114773285919950574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1111339081819944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: bc47f02bc5fd3d84cad89f904162a8a3, type: 3}
+    m_FontSize: 35
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 50
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: '* Fire Breath - Hero breathes fire which causes damage to all enemies inside
+    it.
+
+
+    * Fissure - Creates a fissure at target location which damages passing enemies.
+
+
+    * Cleansing Flames - Wraps hero''s body in flames which remove all DoT effects
+    but cause damage. Hero''s health is then regenerated over short period of time.'
 --- !u!114 &114774765804993512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8593,7 +8847,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Torch Abilities
+  m_Text: Staff Abilities
 --- !u!114 &114883515663408982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8719,7 +8973,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 2800000, guid: 5c786e97496a3e345972ac3e6c93478d, type: 3}
+  m_Texture: {fileID: 2800000, guid: c3f352fd17b18c2489cde6a2091ab2f8, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -9717,6 +9971,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1676217582788492}
+--- !u!222 &222073796758192578
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1086855828907514}
 --- !u!222 &222074117017409564
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -9729,6 +9989,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1289093401860048}
+--- !u!222 &222098452052755304
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1706458395911860}
 --- !u!222 &222106400398461172
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -9825,6 +10091,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1516376602496334}
+--- !u!222 &222189319313462422
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1111339081819944}
 --- !u!222 &222189899223889892
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -10149,6 +10421,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1869775720449164}
+--- !u!222 &222568147812007872
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1262826845066972}
 --- !u!222 &222570773766101094
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -10395,6 +10673,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1693205387432694}
+--- !u!222 &222834277359850554
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1788374634406690}
 --- !u!222 &222834621683642332
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -10553,6 +10837,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224019067745178968
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1262826845066972}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 224433684898450984}
+  m_Father: {fileID: 224370831161494778}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -400, y: 0}
+  m_SizeDelta: {x: 150, y: 300}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224031242019187666
 RectTransform:
   m_ObjectHideFlags: 1
@@ -10625,6 +10928,24 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224069466435394972
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1111339081819944}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224959475892434496}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 750, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224070315015342564
 RectTransform:
@@ -11395,7 +11716,7 @@ RectTransform:
   - {fileID: 224933027300920914}
   - {fileID: 224438286835264966}
   m_Father: {fileID: 224370831161494778}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11474,7 +11795,7 @@ RectTransform:
   - {fileID: 224230029263483674}
   - {fileID: 224936319572523382}
   m_Father: {fileID: 224370831161494778}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11627,7 +11948,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -425, y: 0}
+  m_AnchoredPosition: {x: -575, y: 0}
   m_SizeDelta: {x: 150, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224360307972524406
@@ -11698,9 +12019,11 @@ RectTransform:
   - {fileID: 224487752134994068}
   - {fileID: 224407112522098364}
   - {fileID: 224352391157368954}
+  - {fileID: 224019067745178968}
   - {fileID: 224383724564787662}
   - {fileID: 224516282151127304}
   - {fileID: 224289558989757732}
+  - {fileID: 224959475892434496}
   - {fileID: 224311349815685386}
   - {fileID: 224652105730667148}
   - {fileID: 224664244921845360}
@@ -11726,7 +12049,7 @@ RectTransform:
   - {fileID: 224758276387516036}
   - {fileID: 224316008706776888}
   m_Father: {fileID: 224370831161494778}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -11800,11 +12123,11 @@ RectTransform:
   m_Children:
   - {fileID: 224037904063527288}
   m_Father: {fileID: 224370831161494778}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: 0}
+  m_AnchoredPosition: {x: -225, y: 0}
   m_SizeDelta: {x: 150, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224384430094366780
@@ -11902,7 +12225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -650, y: 0}
+  m_AnchoredPosition: {x: -750, y: 0}
   m_SizeDelta: {x: 150, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224408350334086368
@@ -12089,6 +12412,24 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 500, y: 350}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224433684898450984
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1706458395911860}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224019067745178968}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224438286835264966
 RectTransform:
@@ -12292,7 +12633,7 @@ RectTransform:
   - {fileID: 224145040557755332}
   - {fileID: 224751969910325142}
   m_Father: {fileID: 224370831161494778}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12508,11 +12849,11 @@ RectTransform:
   m_Children:
   - {fileID: 224913696205455804}
   m_Father: {fileID: 224370831161494778}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -350}
+  m_AnchoredPosition: {x: 600, y: -400}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224660792128782416
@@ -12545,11 +12886,11 @@ RectTransform:
   m_Children:
   - {fileID: 224179615488087880}
   m_Father: {fileID: 224370831161494778}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 500, y: -350}
+  m_AnchoredPosition: {x: -600, y: -400}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224666105178706574
@@ -13298,6 +13639,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -175}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!224 &224910522116704464
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1788374634406690}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224959475892434496}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 200}
+  m_SizeDelta: {x: 400, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224913696205455804
 RectTransform:
   m_ObjectHideFlags: 1
@@ -13461,6 +13820,26 @@ RectTransform:
   m_AnchoredPosition: {x: 175, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!224 &224959475892434496
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1086855828907514}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 224910522116704464}
+  - {fileID: 224069466435394972}
+  m_Father: {fileID: 224370831161494778}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 375, y: 20}
+  m_SizeDelta: {x: 800, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224966174408102266
 RectTransform:
   m_ObjectHideFlags: 1

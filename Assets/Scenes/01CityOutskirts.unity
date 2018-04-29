@@ -8495,6 +8495,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossLevel: 0
+  boss: {fileID: 0}
+  bossSlider: {fileID: 0}
+  bossText: {fileID: 0}
 --- !u!114 &1165033831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10680,16 +10683,6 @@ Prefab:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 2138811985}
-    - target: {fileID: 208134689152844162, guid: 91faead90ce6e0a409bd67478d44883c,
-        type: 2}
-      propertyPath: m_Extents.x
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 208134689152844162, guid: 91faead90ce6e0a409bd67478d44883c,
-        type: 2}
-      propertyPath: m_Extents.z
-      value: 0.4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91faead90ce6e0a409bd67478d44883c, type: 2}
   m_IsPrefabParent: 0
