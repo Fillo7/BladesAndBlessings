@@ -143,8 +143,8 @@ public class GameManager : MonoBehaviour
             case "01CityOutskirts":
                 return "02ForestRuins";
             case "02ForestRuins":
-                return "DarkForest";
-            case "DarkForest":
+                return "04DarkForest";
+            case "04DarkForest":
                 return "05TrollCave";
             case "05TrollCave":
                 return "00MainMenu";

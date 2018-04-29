@@ -1584,7 +1584,7 @@ AnimationClip:
         outSlope: Infinity
         tangentMode: 103
       - serializedVersion: 2
-        time: 1.1666666
+        time: 1.125
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -8124,7 +8124,7 @@ AnimationClip:
         outSlope: Infinity
         tangentMode: 103
       - serializedVersion: 2
-        time: 1.1666666
+        time: 1.125
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -10822,4 +10822,11 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 1.1666666
+    functionName: DamagePlatform
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

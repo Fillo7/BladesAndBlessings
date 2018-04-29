@@ -57,7 +57,7 @@ public class CavePlatformController : MonoBehaviour
             ApplyMaterial(mediumDamageMaterial);
         }
 
-        if (healthPercentage < 0.3f && !criticallyDamaged && active)
+        if (healthPercentage < 0.35f && !criticallyDamaged && active)
         {
             criticallyDamaged = true;
             ApplyMaterial(criticalDamageMaterial);

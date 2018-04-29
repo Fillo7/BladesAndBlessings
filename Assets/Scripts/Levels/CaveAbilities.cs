@@ -12,6 +12,7 @@ public class CaveAbilities : MonoBehaviour
     private float[] area3Boundaries = {-8.0f, 8.0f, -24.0f, -15.0f};
 
     private int rockCount = 50;
+    private CavePlatformController targetPlatform = null;
 
     public void SpawnHatchlings()
     {
@@ -53,6 +54,20 @@ public class CaveAbilities : MonoBehaviour
     public void SpawnRocksWithIncrease()
     {
         SpawnRocks();
-        rockCount = System.Math.Min(rockCount + 10, 200);
+        rockCount = System.Math.Min(rockCount + 10, 180);
+    }
+
+    public void SetTargetPlatform(CavePlatformController platform)
+    {
+        targetPlatform = platform;
+    }
+
+    public void DamagePlatform()
+    {
+        if (targetPlatform != null)
+        {
+            targetPlatform.TakeDamage();
+            targetPlatform = null;
+        }
     }
 }

@@ -16,6 +16,7 @@ public class Troll : EnemyAI
     [SerializeField] private List<CavePlatformController> cavePlatforms;
 
     private Animator animator;
+    private CaveAbilities caveAbilities;
     private NavMeshObstacle obstacle;
 
     private bool active = false;
@@ -56,6 +57,7 @@ public class Troll : EnemyAI
         animator = GetComponentInChildren<Animator>();
         animator.SetFloat("BreathSpeedMultiplier", breathSpeedMultiplier);
         animator.SetFloat("SmashSpeedMultiplier", smashSpeedMultiplier);
+        caveAbilities = GetComponentInChildren<CaveAbilities>();
         obstacle = GetComponent<NavMeshObstacle>();
         obstacle.enabled = true;
         GetComponent<EnemyHealth>().SetImmune(true);
@@ -129,9 +131,7 @@ public class Troll : EnemyAI
         CancelInvoke();
         ResetAttack();
         repeatSmash = false;
-
-        animator.SetTrigger("RoarIntroduction");
-        Invoke("ResetAttack", roarIntroductionClip.length);
+        attacking = true;
 
         phase = 1;
         globalCooldown = 2.0f;
@@ -140,6 +140,9 @@ public class Troll : EnemyAI
         animator.SetFloat("BreathSpeedMultiplier", breathSpeedMultiplier);
         smashSpeedMultiplier = 0.7f;
         animator.SetFloat("SmashSpeedMultiplier", smashSpeedMultiplier);
+
+        animator.SetTrigger("RoarIntroduction");
+        Invoke("ResetAttack", roarIntroductionClip.length);
     }
 
     public void TriggerPhase3()
@@ -147,8 +150,10 @@ public class Troll : EnemyAI
         CancelInvoke();
         ResetAttack();
         repeatSmash = false;
+        attacking = true;
 
         phase = 2;
+
         animator.SetTrigger("RoarIntroduction");
         Invoke("ResetAttack", roarIntroductionClip.length);
     }
@@ -274,15 +279,15 @@ public class Troll : EnemyAI
             if (chainAttack && lastSmashLeft)
             {
                 lastSmashLeft = false;
+                caveAbilities.SetTargetPlatform(targetPlatform);
                 animator.SetTrigger("SmashRight");
-                Invoke("DamagePlatform", 1.2f / smashSpeedMultiplier);
                 Invoke("ResetAttack", smashRightClip.length / smashSpeedMultiplier);
             }
             else if (chainAttack && !lastSmashLeft)
             {
                 lastSmashLeft = true;
+                caveAbilities.SetTargetPlatform(targetPlatform);
                 animator.SetTrigger("SmashLeft");
-                Invoke("DamagePlatform", 1.2f / smashSpeedMultiplier);
                 Invoke("ResetAttack", smashLeftClip.length / smashSpeedMultiplier);
             }
             else
@@ -290,15 +295,15 @@ public class Troll : EnemyAI
                 if (Random.Range(0, 2) == 0)
                 {
                     lastSmashLeft = true;
+                    caveAbilities.SetTargetPlatform(targetPlatform);
                     animator.SetTrigger("SmashLeft");
-                    Invoke("DamagePlatform", 1.2f / smashSpeedMultiplier);
                     Invoke("ResetAttack", smashLeftClip.length / smashSpeedMultiplier);
                 }
                 else
                 {
                     lastSmashLeft = false;
+                    caveAbilities.SetTargetPlatform(targetPlatform);
                     animator.SetTrigger("SmashRight");
-                    Invoke("DamagePlatform", 1.2f / smashSpeedMultiplier);
                     Invoke("ResetAttack", smashRightClip.length / smashSpeedMultiplier);
                 }
             }
@@ -345,10 +350,5 @@ public class Troll : EnemyAI
         }
 
         return result;
-    }
-
-    private void DamagePlatform()
-    {
-        targetPlatform.TakeDamage();
     }
 }

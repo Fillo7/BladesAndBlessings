@@ -19,7 +19,7 @@ public class CaveTeleportation : MonoBehaviour
     Vector3 GetClosestCenter(Vector3 position)
     {
         float shortestDistance = float.MaxValue;
-        Vector3 result = new Vector3();
+        Vector3 result = new Vector3(0.0f, 18.0f, -21.0f);
 
         foreach (CavePlatformController platform in platforms)
         {
