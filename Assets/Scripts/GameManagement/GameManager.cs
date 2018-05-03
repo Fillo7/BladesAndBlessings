@@ -45,6 +45,18 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    public void BeginNewGame(int unlockedLevelIndex)
+    {
+        if (unlockedLevelIndex > 1)
+        {
+            menuController.GoToSaveResetPanel();
+        }
+        else
+        {
+            LoadLevelWithIndex(1);
+        }
+    }
+
     public void StartGame(int firstWeaponIndex, int secondWeaponIndex)
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>().SetActiveWeapons(firstWeaponIndex, secondWeaponIndex);
@@ -58,6 +70,12 @@ public class GameManager : MonoBehaviour
         LoadLevel(SceneManager.GetActiveScene().name);
     }
 
+    public void LoadLevelWithIndex(int index)
+    {
+        string name = GetLevelNameForIndex(index);
+        LoadLevel(name);
+    }
+
     public void LoadNextLevel()
     {
         string name = GetNextLevelName(SceneManager.GetActiveScene().name);
@@ -67,6 +85,7 @@ public class GameManager : MonoBehaviour
     public void LoadLevel(string levelName)
     {
         Pause();
+        menuController.GoToLoadingPanel();
         SceneManager.LoadScene(levelName);
     }
 
@@ -131,6 +150,46 @@ public class GameManager : MonoBehaviour
             menuController.GoToLoadoutPanel();
             HUDCanvas.enabled = false;
             inLoadout = true;
+        }
+    }
+
+    private int GetIndexForLevelName(string levelName)
+    {
+        switch(levelName)
+        {
+            case "00MainMenu":
+                return 0;
+            case "01CityOutskirts":
+                return 1;
+            case "02ForestRuins":
+                return 2;
+            case "04DarkForest":
+                return 4;
+            case "05TrollCave":
+                return 5;
+        }
+
+        return 0;
+    }
+
+    private string GetLevelNameForIndex(int index)
+    {
+        switch(index)
+        {
+            case 0:
+                return "00MainMenu";
+            case 1:
+                return "01CityOutskirts";
+            case 2:
+                return "02ForestRuins";
+            case 3:
+                return "04DarkForest";
+            case 4:
+                return "04DarkForest";
+            case 5:
+                return "05TrollCave";
+            default:
+                return "05TrollCave";
         }
     }
 

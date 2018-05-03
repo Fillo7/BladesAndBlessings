@@ -1260,6 +1260,7 @@ GameObject:
   - component: {fileID: 735323843}
   - component: {fileID: 735323842}
   - component: {fileID: 735323841}
+  - component: {fileID: 735323846}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -1340,6 +1341,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &735323846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 735323840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa5d6ab1c78fb1e4084a5e06f62d75e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  newButton: {fileID: 0}
+  continueButton: {fileID: 0}
+  levelButtons: []
+  lockedWeaponTexture: {fileID: 2800000, guid: d3123b13f81ff9744bf5b737739c233a, type: 3}
+  weaponImages:
+  - {fileID: 1603314562}
+  - {fileID: 1603314561}
+  - {fileID: 1603314560}
+  - {fileID: 1603314559}
 --- !u!4 &767328434 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4248329166263172, guid: b0aa731e53edc774ea5b790232116683,
@@ -2875,6 +2897,26 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1603314556}
   m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!1 &1603314559 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1262826845066972, guid: c4187962bb86aa041a1a67d8b70b00fb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1603314556}
+--- !u!1 &1603314560 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1625146275820408, guid: c4187962bb86aa041a1a67d8b70b00fb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1603314556}
+--- !u!1 &1603314561 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1969864457326600, guid: c4187962bb86aa041a1a67d8b70b00fb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1603314556}
+--- !u!1 &1603314562 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1932008014232890, guid: c4187962bb86aa041a1a67d8b70b00fb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1603314556}
 --- !u!1 &1618085589
 GameObject:
   m_ObjectHideFlags: 0

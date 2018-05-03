@@ -85,7 +85,7 @@ public class Staff : Weapon
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
         result.Add(new AbilityInfo(0.0f, basicAttack.length / 0.65f, 0.65f, 0.35f, true));
-        result.Add(new AbilityInfo(novaCooldown, specialAttack1.length / 0.85f, 0.85f, 0.25f, false));
+        result.Add(new AbilityInfo(novaCooldown, specialAttack1.length / 0.85f, 0.85f, 0.0f, false));
         result.Add(new AbilityInfo(swiftnessCooldown, specialAttack2.length / 0.85f, 0.85f, 0.25f, false));
 
         return result;
