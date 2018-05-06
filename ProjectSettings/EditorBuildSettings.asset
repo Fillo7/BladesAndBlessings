@@ -15,7 +15,10 @@ EditorBuildSettings:
     path: Assets/Scenes/02ForestRuins.unity
     guid: 992ce48340a274c4ea23120750fe99bd
   - enabled: 1
-    path: Assets/Scenes/DarkForest.unity
+    path: Assets/Scenes/03HauntedSwamp.unity
+    guid: d8aaf4fea56156c47a12e0923b0103d5
+  - enabled: 1
+    path: Assets/Scenes/04OrcEncampment.unity
     guid: b6a01423b64f5f7478e66540534913a0
   - enabled: 1
     path: Assets/Scenes/05TrollCave.unity

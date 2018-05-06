@@ -1036,7 +1036,7 @@ MonoBehaviour:
   slashingDamageMultiplier: 0.75
   piercingDamageMultiplier: 0.5
   fireDamageMultiplier: 0.75
-  magicDamageMultiplier: 1.25
+  magicDamageMultiplier: 1.3
   bleedingDamageMultiplier: 0.5
 --- !u!114 &114909584978074534
 MonoBehaviour:

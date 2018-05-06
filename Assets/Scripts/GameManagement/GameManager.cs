@@ -201,7 +201,9 @@ public class GameManager : MonoBehaviour
                 return 1;
             case "02ForestRuins":
                 return 2;
-            case "04DarkForest":
+            case "03HauntedSwamp":
+                return 3;
+            case "04OrcEncampment":
                 return 4;
             case "05TrollCave":
                 return 5;
@@ -221,9 +223,9 @@ public class GameManager : MonoBehaviour
             case 2:
                 return "02ForestRuins";
             case 3:
-                return "04DarkForest";
+                return "03HauntedSwamp";
             case 4:
-                return "04DarkForest";
+                return "04OrcEncampment";
             case 5:
                 return "05TrollCave";
             default:
@@ -240,8 +242,10 @@ public class GameManager : MonoBehaviour
             case "01CityOutskirts":
                 return "02ForestRuins";
             case "02ForestRuins":
-                return "04DarkForest";
-            case "04DarkForest":
+                return "03HauntedSwamp";
+            case "03HauntedSwamp":
+                return "04OrcEncampment";
+            case "04OrcEncampment":
                 return "05TrollCave";
             case "05TrollCave":
                 return "00MainMenu";

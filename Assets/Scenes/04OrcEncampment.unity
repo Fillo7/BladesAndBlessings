@@ -213,6 +213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c9371bf4c6d9d419161ed2dac6d6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponUnlockIndex: 0
+  weaponImage: {fileID: 0}
+  weaponTexture: {fileID: 0}
 --- !u!4 &5072693
 Transform:
   m_ObjectHideFlags: 0
