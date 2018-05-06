@@ -4,7 +4,6 @@ using UnityEngine.AI;
 public class GoblinPiker : EnemyAI
 {
     [SerializeField] private AnimationClip attackClip;
-    [SerializeField] private float movementSpeed = 4.5f;
     [SerializeField] private float damage = 30.0f;
     [SerializeField] private float attackCooldown = 1.25f;
 
@@ -19,7 +18,6 @@ public class GoblinPiker : EnemyAI
     protected override void Awake()
     {
         base.Awake();
-        navigator.speed = movementSpeed;
         animator = GetComponentInChildren<Animator>();
         weapon = GetComponentInChildren<GoblinPike>();
         weapon.Initialize(animator, this, damage);

@@ -3,7 +3,6 @@
 public class OrcTrapper : EnemyAI
 {
     [SerializeField] private AnimationClip attackClip;
-    [SerializeField] private float movementSpeed = 6.5f;
     [SerializeField] private float damage = 35.0f;
     [SerializeField] private float attackCooldown = 8.0f;
     [SerializeField] private float movementCooldown = 3.0f;
@@ -19,7 +18,6 @@ public class OrcTrapper : EnemyAI
     protected override void Awake()
     {
         base.Awake();
-        navigator.speed = movementSpeed;
         animator = GetComponentInChildren<Animator>();
         weapon = GetComponentInChildren<TrapperBow>();
         weapon.SetDamage(damage);

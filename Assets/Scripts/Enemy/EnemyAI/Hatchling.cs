@@ -4,7 +4,6 @@ using UnityEngine.AI;
 public class Hatchling : EnemyAI
 {
     [SerializeField] private AnimationClip attackClip;
-    [SerializeField] private float movementSpeed = 3.5f;
     [SerializeField] private float damage = 10;
     [SerializeField] private float attackCooldown = 1.5f;
 
@@ -19,7 +18,6 @@ public class Hatchling : EnemyAI
     protected override void Awake()
     {
         base.Awake();
-        navigator.speed = movementSpeed;
         animator = GetComponentInChildren<Animator>();
         animator.SetFloat("AttackSpeedMultiplier", 1.5f);
         animator.SetFloat("IdleSpeedMultiplier", 6.5f);

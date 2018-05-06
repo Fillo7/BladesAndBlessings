@@ -235,6 +235,7 @@ MonoBehaviour:
   hurtClip: {fileID: 0}
   deathClip: {fileID: 0}
   deathDestroyDelay: 60
+  destroyOnVictory: 1
   health: 110
   slashingDamageMultiplier: 0.5
   piercingDamageMultiplier: 0.3

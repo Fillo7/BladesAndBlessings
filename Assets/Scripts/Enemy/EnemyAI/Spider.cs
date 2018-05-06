@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class Spider : EnemyAI
 {
-    [SerializeField] private float movementSpeed = 3.0f;
-
     private Animator animator;
 
     private List<Transform> waypoints;
@@ -13,7 +11,6 @@ public class Spider : EnemyAI
     protected override void Awake()
     {
         base.Awake();
-        navigator.speed = movementSpeed;
         animator = GetComponentInChildren<Animator>();
         animator.SetFloat("RunningSpeedMultiplier", 3.5f);
     }

@@ -6,7 +6,6 @@ public class OrcShaman : EnemyAI
 {
     [SerializeField] private AnimationClip attackClip;
     [SerializeField] private AnimationClip healingClip;
-    [SerializeField] private float movementSpeed = 3.0f;
     [SerializeField] private float damage = 50.0f;
     [SerializeField] private float healing = 30.0f;
     [SerializeField] private float attackCooldown = 3.0f;
@@ -25,7 +24,6 @@ public class OrcShaman : EnemyAI
     protected override void Awake()
     {
         base.Awake();
-        navigator.speed = movementSpeed;
         animator = GetComponentInChildren<Animator>();
         weapon = GetComponentInChildren<ShamanStaff>();
         weapon.Initialize(damage, healing);

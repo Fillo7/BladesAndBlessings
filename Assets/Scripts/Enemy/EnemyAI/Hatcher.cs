@@ -2,15 +2,12 @@
 
 public class Hatcher : EnemyAI
 {
-    [SerializeField] private float movementSpeed = 3.0f;
-
     private float maximumMovementDistance = 35.0f;
 
     protected override void Awake()
     {
         base.Awake();
         GetComponentInChildren<Animator>().SetFloat("DefaultAnimationMultiplier", 2.0f);
-        navigator.speed = movementSpeed;
         navigator.SetDestination(GetRandomLocation(maximumMovementDistance));
     }
 

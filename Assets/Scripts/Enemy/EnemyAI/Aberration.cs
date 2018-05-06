@@ -2,7 +2,6 @@
 
 public class Aberration : EnemyAI
 {
-    [SerializeField] private float movementSpeed = 1.75f;
     [SerializeField] private float auraRadius = 4.5f;
     [SerializeField] private float auraDamage = 8.0f;
     [SerializeField] private float tickTime = 0.25f;
@@ -14,7 +13,6 @@ public class Aberration : EnemyAI
     protected override void Awake()
     {
         base.Awake();
-        navigator.speed = movementSpeed;
         animator = GetComponentInChildren<Animator>();
     }
 

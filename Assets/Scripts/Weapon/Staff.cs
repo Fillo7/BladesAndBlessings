@@ -9,6 +9,7 @@ public class Staff : Weapon
     [SerializeField] private AnimationClip specialAttack2;
 
     [SerializeField] private GameObject magicBolt;
+    [SerializeField] private GameObject staffBlizzard;
 
     private PlayerMovement movement;
 
@@ -44,7 +45,7 @@ public class Staff : Weapon
             return;
         }
 
-        // todo
+        Instantiate(staffBlizzard, new Vector3(movement.transform.position.x, movement.transform.position.y + 1.0f, movement.transform.position.z), Quaternion.identity);
         novaTimer = 0.0f;
     }
 
@@ -84,9 +85,9 @@ public class Staff : Weapon
     public override List<AbilityInfo> GetAbilityInfo()
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
-        result.Add(new AbilityInfo(0.0f, basicAttack.length / 0.65f, 0.65f, 0.35f, true));
-        result.Add(new AbilityInfo(novaCooldown, specialAttack1.length / 0.85f, 0.85f, 0.0f, false));
-        result.Add(new AbilityInfo(swiftnessCooldown, specialAttack2.length / 0.85f, 0.85f, 0.25f, false));
+        result.Add(new AbilityInfo(0.0f, basicAttack.length / 0.75f, 0.75f, 0.35f, true));
+        result.Add(new AbilityInfo(novaCooldown, specialAttack1.length / 0.6f, 0.6f, 0.0f, false));
+        result.Add(new AbilityInfo(swiftnessCooldown, specialAttack2.length / 0.85f, 0.85f, 0.5f, false));
 
         return result;
     }

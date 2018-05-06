@@ -4,7 +4,6 @@ using UnityEngine.AI;
 public class Warg : EnemyAI
 {
     [SerializeField] private AnimationClip attackClip;
-    [SerializeField] private float movementSpeed = 7.0f;
     [SerializeField] private float damage = 25.0f;
     [SerializeField] private float attackCooldown = 0.4f;
 
@@ -20,10 +19,10 @@ public class Warg : EnemyAI
     protected override void Awake()
     {
         base.Awake();
-        navigator.speed = movementSpeed;
         animator = GetComponentInChildren<Animator>();
         animator.SetFloat("AttackSpeedMultiplier", 1.5f);
         animator.SetFloat("RunningSpeedMultiplier", 2.25f);
+        animator.SetFloat("DeathSpeedMultiplier", 0.6f);
         obstacle = GetComponent<NavMeshObstacle>();
         obstacle.enabled = false;
     }

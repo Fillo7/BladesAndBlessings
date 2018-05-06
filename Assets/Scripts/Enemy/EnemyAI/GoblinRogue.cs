@@ -4,7 +4,6 @@ using UnityEngine.AI;
 public class GoblinRogue : EnemyAI
 {
     [SerializeField] private AnimationClip attackClip;
-    [SerializeField] private float movementSpeed = 5.0f;
     [SerializeField] private float damage = 15.0f;
     [SerializeField] private float attackCooldown = 2.0f;
     [SerializeField] private float invisibilityCooldown = 8.0f;
@@ -27,7 +26,6 @@ public class GoblinRogue : EnemyAI
     protected override void Awake()
     {
         base.Awake();
-        navigator.speed = movementSpeed;
         animator = GetComponentInChildren<Animator>();
         weapon = GetComponentInChildren<GoblinDagger>();
         weapon.Initialize(animator, this, damage);

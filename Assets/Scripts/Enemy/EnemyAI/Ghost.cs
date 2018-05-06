@@ -3,7 +3,6 @@
 public class Ghost : EnemyAI
 {
     [SerializeField] private AnimationClip attackClip;
-    [SerializeField] private float movementSpeed = 4.0f;
     [SerializeField] private float damage = 30.0f;
     [SerializeField] private float attackCooldown = 2.5f;
 
@@ -20,7 +19,6 @@ public class Ghost : EnemyAI
     protected override void Awake()
     {
         base.Awake();
-        navigator.speed = movementSpeed;
         animator = GetComponentInChildren<Animator>();
         weapon = GetComponentInChildren<GhostHand>();
         weapon.SetDamage(damage);
