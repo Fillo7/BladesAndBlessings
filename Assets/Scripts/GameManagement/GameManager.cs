@@ -4,16 +4,23 @@ using UnityEditor;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] int weaponUnlockIndex = 0;
+    [SerializeField] RawImage weaponImage;
+    [SerializeField] Texture weaponTexture;
+
     private Canvas HUDCanvas;
     private Canvas menuCanvas;
     private MenuController menuController;
     private LevelManager levelManager;
     private CustomInputManager inputManager;
+    private SaveManager saveManager;
     bool gamePaused = true;
     bool inLoadout = false;
+    bool inTutorial = false;
 
     void Awake()
     {
@@ -27,6 +34,7 @@ public class GameManager : MonoBehaviour
         menuController = menuCanvas.GetComponent<MenuController>();
         levelManager = GetComponent<LevelManager>();
         inputManager = menuCanvas.GetComponentInChildren<CustomInputManager>();
+        saveManager = GetComponent<SaveManager>();
 
         Pause();
         InitializeLoadout();
@@ -34,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (inputManager.GetKeyDown("InputCancel") && levelManager != null && levelManager.IsLevelActive() && !inputManager.IsWaitingForKey() && !inLoadout)
+        if (inputManager.GetKeyDown("InputCancel") && levelManager != null && levelManager.IsLevelActive() && !inputManager.IsWaitingForKey() && !inLoadout && !inTutorial)
         {
             TogglePauseWithDefaultMenu();
         }
@@ -63,6 +71,20 @@ public class GameManager : MonoBehaviour
         HUDCanvas.enabled = true;
         inLoadout = false;
         Resume();
+
+        if (!saveManager.GetSaveData().GetTutorialSeen())
+        {
+            inTutorial = true;
+            menuController.GoToTutorialPanel();
+            Pause();
+        }
+    }
+
+    public void FinishTutorial()
+    {
+        saveManager.UpdateTutorialSeen(true);
+        Resume();
+        inTutorial = false;
     }
 
     public void RestartLevel()
@@ -129,8 +151,24 @@ public class GameManager : MonoBehaviour
 
     public void TriggerVictory()
     {
+        string nextLevelName = GetNextLevelName(SceneManager.GetActiveScene().name);
+        if (GetIndexForLevelName(nextLevelName) > saveManager.GetSaveData().GetUnlockedLevelCount())
+        {
+            saveManager.UpdateUnlockedLevelCount(GetIndexForLevelName(nextLevelName));
+        }
+
+        if (weaponUnlockIndex > saveManager.GetSaveData().GetUnlockedWeaponCount())
+        {
+            saveManager.UpdateUnlockedWeaponCount(weaponUnlockIndex);
+            weaponImage.texture = weaponTexture;
+            menuController.GoToWeaponUnlockPanel();
+        }
+        else
+        {
+            menuController.GoToVictoryPanel();
+        }
+
         HUDCanvas.GetComponent<Animator>().SetTrigger("Victory");
-        menuController.GoToVictoryPanel();
         Invoke("TogglePause", 5.0f);
     }
 

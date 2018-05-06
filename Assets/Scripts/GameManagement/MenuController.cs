@@ -13,6 +13,8 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject loadoutPanel;
     [SerializeField] private GameObject loadingPanel;
     [SerializeField] private GameObject saveResetPanel;
+    [SerializeField] private GameObject tutorialPanel;
+    [SerializeField] private GameObject weaponUnlockPanel;
 
     void Awake()
     {
@@ -92,6 +94,18 @@ public class MenuController : MonoBehaviour
         saveResetPanel.SetActive(true);
     }
 
+    public void GoToTutorialPanel()
+    {
+        ResetPanels();
+        tutorialPanel.SetActive(true);
+    }
+
+    public void GoToWeaponUnlockPanel()
+    {
+        ResetPanels();
+        weaponUnlockPanel.SetActive(true);
+    }
+
     private void ResetPanels()
     {
         if (menuPanel != null)
@@ -137,6 +151,14 @@ public class MenuController : MonoBehaviour
         if (saveResetPanel != null)
         {
             saveResetPanel.SetActive(false);
+        }
+        if (tutorialPanel != null)
+        {
+            tutorialPanel.SetActive(false);
+        }
+        if (weaponUnlockPanel != null)
+        {
+            weaponUnlockPanel.SetActive(false);
         }
     }
 }

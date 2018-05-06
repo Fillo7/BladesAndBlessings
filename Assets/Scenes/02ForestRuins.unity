@@ -720,6 +720,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c9371bf4c6d9d419161ed2dac6d6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponUnlockIndex: 4
+  weaponImage: {fileID: 1758293404}
+  weaponTexture: {fileID: 2800000, guid: 5c786e97496a3e345972ac3e6c93478d, type: 3}
 --- !u!4 &39503948
 Transform:
   m_ObjectHideFlags: 0
@@ -16174,6 +16177,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1932008014232890, guid: c4187962bb86aa041a1a67d8b70b00fb,
     type: 2}
   m_PrefabInternal: {fileID: 1758293397}
+--- !u!114 &1758293404 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114367164675002566, guid: c4187962bb86aa041a1a67d8b70b00fb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1758293397}
+  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1762141276
 Prefab:
   m_ObjectHideFlags: 0
