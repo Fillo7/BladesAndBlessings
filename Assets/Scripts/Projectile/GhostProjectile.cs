@@ -18,6 +18,12 @@ public class GhostProjectile : Projectile
 
             EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
             enemyHealth.TakeDamage(damage, damageType);
+
+            EnemyAI enemy = other.GetComponent<EnemyAI>();
+            if (enemy != null)
+            {
+                enemy.ApplyMovementEffect(new MovementEffect(slowDuration, slowMultiplier));
+            }
             Destroy(gameObject);
         }
         else if (other.tag.Equals("Player"))
