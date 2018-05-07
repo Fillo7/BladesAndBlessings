@@ -26,6 +26,15 @@ public class Hatcher : EnemyAI
         }
     }
 
+    public override void ApplyMovementEffect(MovementEffect effect)
+    {
+        if (effect.GetSpeedMultiplier() < 1.0f)
+        {
+            return;
+        }
+        movementEffects.AddLast(effect);
+    }
+
     private float GetDistanceToCurrentTarget()
     {
         return Vector3.Distance(transform.position, navigator.destination);

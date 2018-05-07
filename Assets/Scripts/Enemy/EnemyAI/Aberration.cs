@@ -8,6 +8,7 @@ public class Aberration : EnemyAI
 
     private Animator animator;
 
+    private bool inPlayerRange = false;
     private float tickTimer = 0.0f;
 
     protected override void Awake()
@@ -18,10 +19,9 @@ public class Aberration : EnemyAI
 
     void Update()
     {
-        if (IsPlayerInRange(auraRadius))
+        if (inPlayerRange)
         {
             tickTimer += Time.deltaTime;
-            navigator.speed = 0.3f;
 
             if (tickTimer > tickTime)
             {
@@ -29,8 +29,15 @@ public class Aberration : EnemyAI
                 tickTimer = 0.0f;
             }
         }
-        else
+
+        if (IsPlayerInRange(auraRadius) && !inPlayerRange)
         {
+            inPlayerRange = true;
+            navigator.speed = 0.05f;
+        }
+        else if (!IsPlayerInRange(auraRadius) && inPlayerRange)
+        {
+            inPlayerRange = false;
             tickTimer = 0.0f;
             navigator.speed = movementSpeed;
         }

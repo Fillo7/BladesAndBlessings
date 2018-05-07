@@ -28,7 +28,7 @@ public class EnemyAI : MonoBehaviour
         ProcessMovementEffects();
     }
 
-    public void ApplyMovementEffect(MovementEffect effect)
+    public virtual void ApplyMovementEffect(MovementEffect effect)
     {
         movementEffects.AddLast(effect);
     }
@@ -129,7 +129,7 @@ public class EnemyAI : MonoBehaviour
         return hit.position;
     }
 
-    private void ProcessMovementEffects()
+    protected void ProcessMovementEffects()
     {
         float speedMultiplier = 1.0f;
         LinkedList<MovementEffect> toRemove = new LinkedList<MovementEffect>();

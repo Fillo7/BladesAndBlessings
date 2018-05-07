@@ -337,6 +337,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1754756628058586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4707278081052102}
+  - component: {fileID: 33985384339647400}
+  - component: {fileID: 23521133291158818}
+  - component: {fileID: 114884130309469572}
+  m_Layer: 0
+  m_Name: FrostNovaIce
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1767923634455516
 GameObject:
   m_ObjectHideFlags: 1
@@ -688,6 +706,7 @@ Transform:
   m_Children:
   - {fileID: 4613801345259388}
   - {fileID: 4854029188242702}
+  - {fileID: 4707278081052102}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -733,6 +752,19 @@ Transform:
   m_Father: {fileID: 4236327726138902}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 77.40951, y: -149.95776, z: 129.1552}
+--- !u!4 &4707278081052102
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1754756628058586}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0.1}
+  m_LocalScale: {x: 1.5999999, y: 0.79999995, z: 1.5999999}
+  m_Children: []
+  m_Father: {fileID: 4588954712026170}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4757137212718718
 Transform:
   m_ObjectHideFlags: 1
@@ -954,6 +986,40 @@ Transform:
   m_Father: {fileID: 4923262455092292}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23521133291158818
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1754756628058586}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 80b6d648fbddf6a47bb7ee73e6be6c88, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!23 &23808235750197546
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -995,6 +1061,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1344102759950702}
   m_Mesh: {fileID: 4300000, guid: 7becb0c8dfb0b428eb03b79741d66e87, type: 3}
+--- !u!33 &33985384339647400
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1754756628058586}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &54629784674779590
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1077,8 +1150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93997421a8972446ab7f29b06b73e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackClip: {fileID: 7400000, guid: f50a97d304c121743a6c14c339d8b050, type: 2}
   movementSpeed: 6.5
+  attackClip: {fileID: 7400000, guid: f50a97d304c121743a6c14c339d8b050, type: 2}
   damage: 35
   attackCooldown: 8
   movementCooldown: 3
@@ -1096,12 +1169,24 @@ MonoBehaviour:
   hurtClip: {fileID: 8300000, guid: 3d6762d08c8654443a525ce47c950a85, type: 3}
   deathClip: {fileID: 8300000, guid: a9abf8ad04e8cb64bbe505cc2f9c190b, type: 3}
   deathDestroyDelay: 10
+  destroyOnVictory: 1
   health: 135
   slashingDamageMultiplier: 1.35
   piercingDamageMultiplier: 0.75
   fireDamageMultiplier: 0.6
   magicDamageMultiplier: 1
   bleedingDamageMultiplier: 1
+--- !u!114 &114884130309469572
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1754756628058586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c00316ddc3c531b4b9493df084720577, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136892184696630654
 CapsuleCollider:
   m_ObjectHideFlags: 1

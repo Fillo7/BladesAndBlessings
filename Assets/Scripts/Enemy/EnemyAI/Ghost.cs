@@ -96,6 +96,15 @@ public class Ghost : EnemyAI
         }
     }
 
+    public override void ApplyMovementEffect(MovementEffect effect)
+    {
+        if (effect.GetSpeedMultiplier() < 1.0f)
+        {
+            return;
+        }
+        movementEffects.AddLast(effect);
+    }
+
     private void PrepareAttack()
     {
         if (navigator.enabled)

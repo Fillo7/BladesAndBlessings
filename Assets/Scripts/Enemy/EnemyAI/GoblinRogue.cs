@@ -162,6 +162,15 @@ public class GoblinRogue : EnemyAI
         stunTimer = duration;
     }
 
+    public override void ApplyMovementEffect(MovementEffect effect)
+    {
+        if (effect.GetSpeedMultiplier() < 1.0f)
+        {
+            TurnVisible();
+        }
+        movementEffects.AddLast(effect);
+    }
+
     private void TurnInvisible()
     {
         invisible = true;
@@ -174,6 +183,10 @@ public class GoblinRogue : EnemyAI
         MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
         for (int i = 0; i < renderers.Length; i++)
         {
+            if (renderers[i].gameObject.name.Equals("FrostNovaIce") && flag)
+            {
+                continue;
+            }
             renderers[i].enabled = flag;
         }
 

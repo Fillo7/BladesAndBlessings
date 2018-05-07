@@ -45,11 +45,15 @@ public class OrcShaman : EnemyAI
         if (!isRelocating)
         {
             attackTimer += Time.deltaTime;
-            animator.SetBool("Running", false);
+        }
+
+        if (navigator.enabled && navigator.velocity.magnitude > 0.35f)
+        {
+            animator.SetBool("Running", true);
         }
         else
         {
-            animator.SetBool("Running", true);
+            animator.SetBool("Running", false);
         }
 
         if (isRelocating && GetDistanceToPlayer() > (minimumPlayerDistance + 1.0f) && GetDistanceToPlayer() < (maximumPlayerDistance - 1.0f))
