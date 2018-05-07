@@ -8,6 +8,7 @@ public class Aberration : EnemyAI
 
     private Animator animator;
 
+    private float movementSpeedSnapshot;
     private bool inPlayerRange = false;
     private float tickTimer = 0.0f;
 
@@ -15,6 +16,7 @@ public class Aberration : EnemyAI
     {
         base.Awake();
         animator = GetComponentInChildren<Animator>();
+        movementSpeedSnapshot = movementSpeed;
     }
 
     void Update()
@@ -33,13 +35,13 @@ public class Aberration : EnemyAI
         if (IsPlayerInRange(auraRadius) && !inPlayerRange)
         {
             inPlayerRange = true;
-            navigator.speed = 0.05f;
+            movementSpeed = 0.5f;
         }
         else if (!IsPlayerInRange(auraRadius) && inPlayerRange)
         {
             inPlayerRange = false;
             tickTimer = 0.0f;
-            navigator.speed = movementSpeed;
+            movementSpeed = movementSpeedSnapshot;
         }
 
         if (enemyHealth.IsDead() || playerHealth.IsDead())

@@ -2766,11 +2766,11 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 735323844}
+      objectReference: {fileID: 1603314563}
     - target: {fileID: 114063824934787466, guid: c4187962bb86aa041a1a67d8b70b00fb,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Resume
+      value: GoToVictoryPanel
       objectReference: {fileID: 0}
     - target: {fileID: 114994510636983732, guid: c4187962bb86aa041a1a67d8b70b00fb,
         type: 2}
@@ -2790,7 +2790,7 @@ Prefab:
     - target: {fileID: 114959160673576622, guid: c4187962bb86aa041a1a67d8b70b00fb,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: FinishTutorial
       objectReference: {fileID: 0}
     - target: {fileID: 114845624894200422, guid: c4187962bb86aa041a1a67d8b70b00fb,
         type: 2}
@@ -2885,6 +2885,26 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114518040645057324, guid: c4187962bb86aa041a1a67d8b70b00fb,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 735323844}
+    - target: {fileID: 114518040645057324, guid: c4187962bb86aa041a1a67d8b70b00fb,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Resume
+      objectReference: {fileID: 0}
+    - target: {fileID: 114455984680854824, guid: c4187962bb86aa041a1a67d8b70b00fb,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 735323844}
+    - target: {fileID: 114455984680854824, guid: c4187962bb86aa041a1a67d8b70b00fb,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadLevel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c4187962bb86aa041a1a67d8b70b00fb, type: 2}
   m_IsPrefabParent: 0
@@ -2920,6 +2940,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1932008014232890, guid: c4187962bb86aa041a1a67d8b70b00fb,
     type: 2}
   m_PrefabInternal: {fileID: 1603314556}
+--- !u!114 &1603314563 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114907598455134650, guid: c4187962bb86aa041a1a67d8b70b00fb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1603314556}
+  m_Script: {fileID: 11500000, guid: 930f3be1f09dc0241b97c2fd1591a2ec, type: 3}
 --- !u!1 &1618085589
 GameObject:
   m_ObjectHideFlags: 0
