@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int weaponUnlockIndex = 0;
     [SerializeField] RawImage weaponImage;
     [SerializeField] Texture weaponTexture;
+    [SerializeField] private GameObject saveResetPanel;
 
     private Canvas HUDCanvas;
     private Canvas menuCanvas;
@@ -28,6 +29,11 @@ public class GameManager : MonoBehaviour
         if (HUD != null)
         {
             HUDCanvas = HUD.GetComponent<Canvas>();
+        }
+
+        if (saveResetPanel != null)
+        {
+            saveResetPanel.SetActive(false);
         }
 
         menuCanvas = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<Canvas>();
@@ -57,7 +63,7 @@ public class GameManager : MonoBehaviour
     {
         if (unlockedLevelIndex > 1)
         {
-            menuController.GoToSaveResetPanel();
+            saveResetPanel.SetActive(true);
         }
         else
         {
