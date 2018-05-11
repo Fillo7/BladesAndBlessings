@@ -2789,22 +2789,7 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1165033831}
-    - target: {fileID: 114075651028666138, guid: c4187962bb86aa041a1a67d8b70b00fb,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1165033831}
-    - target: {fileID: 114740564961928574, guid: c4187962bb86aa041a1a67d8b70b00fb,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1165033831}
-    - target: {fileID: 114089305643840134, guid: c4187962bb86aa041a1a67d8b70b00fb,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1165033831}
-    - target: {fileID: 114504892742843420, guid: c4187962bb86aa041a1a67d8b70b00fb,
+    - target: {fileID: 114768590904788714, guid: c4187962bb86aa041a1a67d8b70b00fb,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2814,12 +2799,17 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1165033831}
-    - target: {fileID: 114768590904788714, guid: c4187962bb86aa041a1a67d8b70b00fb,
+    - target: {fileID: 114740564961928574, guid: c4187962bb86aa041a1a67d8b70b00fb,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1165033831}
-    - target: {fileID: 114277420878592680, guid: c4187962bb86aa041a1a67d8b70b00fb,
+    - target: {fileID: 114518040645057324, guid: c4187962bb86aa041a1a67d8b70b00fb,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1165033831}
+    - target: {fileID: 114504892742843420, guid: c4187962bb86aa041a1a67d8b70b00fb,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2829,7 +2819,17 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1165033831}
-    - target: {fileID: 114518040645057324, guid: c4187962bb86aa041a1a67d8b70b00fb,
+    - target: {fileID: 114277420878592680, guid: c4187962bb86aa041a1a67d8b70b00fb,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1165033831}
+    - target: {fileID: 114089305643840134, guid: c4187962bb86aa041a1a67d8b70b00fb,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1165033831}
+    - target: {fileID: 114075651028666138, guid: c4187962bb86aa041a1a67d8b70b00fb,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -8563,7 +8563,7 @@ MonoBehaviour:
   newButton: {fileID: 0}
   continueButton: {fileID: 0}
   levelButtons: []
-  lockedWeaponTexture: {fileID: 2800000, guid: d3123b13f81ff9744bf5b737739c233a, type: 3}
+  lockedWeaponTexture: {fileID: 2800000, guid: 52e4ee5420e346a40a31eec2ea3dbeca, type: 3}
   weaponImages:
   - {fileID: 1813219649}
   - {fileID: 567449372}

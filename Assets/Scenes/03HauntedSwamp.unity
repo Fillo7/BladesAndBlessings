@@ -1373,7 +1373,7 @@ MonoBehaviour:
   newButton: {fileID: 0}
   continueButton: {fileID: 0}
   levelButtons: []
-  lockedWeaponTexture: {fileID: 2800000, guid: d3123b13f81ff9744bf5b737739c233a, type: 3}
+  lockedWeaponTexture: {fileID: 2800000, guid: 52e4ee5420e346a40a31eec2ea3dbeca, type: 3}
   weaponImages:
   - {fileID: 1905715329}
   - {fileID: 1905715328}
@@ -1442,6 +1442,7 @@ MonoBehaviour:
   weaponUnlockIndex: 0
   weaponImage: {fileID: 0}
   weaponTexture: {fileID: 0}
+  saveResetPanel: {fileID: 0}
 --- !u!4 &1981558010
 Transform:
   m_ObjectHideFlags: 0
