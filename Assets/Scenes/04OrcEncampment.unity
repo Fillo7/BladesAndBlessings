@@ -217,6 +217,7 @@ MonoBehaviour:
   weaponImage: {fileID: 0}
   weaponTexture: {fileID: 0}
   saveResetPanel: {fileID: 0}
+  musicClip: {fileID: 373251322}
 --- !u!4 &5072693
 Transform:
   m_ObjectHideFlags: 0
@@ -264,6 +265,8 @@ MonoBehaviour:
   boss: {fileID: 0}
   bossSlider: {fileID: 0}
   bossText: {fileID: 0}
+  bossMusicSource: {fileID: 0}
+  bossFinalPhaseClip: {fileID: 0}
 --- !u!114 &5072696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10482,8 +10485,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c79ebcc8bc9558247870b1b9209c17a5, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: de1a6e075c500a44fb22d55d7ef1ba46, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -10564,7 +10567,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &373773942
 Prefab:
@@ -21034,13 +21037,13 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 3
   m_TerrainData: {fileID: 15600000, guid: 1f22b4df421717f4e92d9f8a2a25e64a, type: 2}
-  m_TreeDistance: 5000
+  m_TreeDistance: 2000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 80
   m_DetailObjectDensity: 1
-  m_HeightmapPixelError: 5
+  m_HeightmapPixelError: 3
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
   m_CastShadows: 1
@@ -40296,7 +40299,7 @@ Transform:
   - {fileID: 1861557627}
   - {fileID: 2132133186}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1509048775 stripped
 Transform:

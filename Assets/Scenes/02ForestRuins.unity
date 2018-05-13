@@ -709,6 +709,8 @@ MonoBehaviour:
   boss: {fileID: 0}
   bossSlider: {fileID: 0}
   bossText: {fileID: 0}
+  bossMusicSource: {fileID: 0}
+  bossFinalPhaseClip: {fileID: 0}
 --- !u!114 &39503947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,6 +726,7 @@ MonoBehaviour:
   weaponImage: {fileID: 1758293404}
   weaponTexture: {fileID: 2800000, guid: 5c786e97496a3e345972ac3e6c93478d, type: 3}
   saveResetPanel: {fileID: 0}
+  musicClip: {fileID: 1647892877}
 --- !u!4 &39503948
 Transform:
   m_ObjectHideFlags: 0
@@ -6156,7 +6159,7 @@ Transform:
   - {fileID: 921856340}
   - {fileID: 431062217}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &711970735
 Prefab:
@@ -14791,13 +14794,13 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 3
   m_TerrainData: {fileID: 15600000, guid: 2a293e72b9ae0304b86b65c5780759b5, type: 2}
-  m_TreeDistance: 2000
+  m_TreeDistance: 150
   m_TreeBillboardDistance: 150
   m_TreeCrossFadeLength: 75
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 120
   m_DetailObjectDensity: 1
-  m_HeightmapPixelError: 5
+  m_HeightmapPixelError: 3
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
   m_CastShadows: 1
@@ -15072,8 +15075,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c79ebcc8bc9558247870b1b9209c17a5, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 45d33271066502e4888671f16f6225d1, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -15154,7 +15157,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1655664707
 GameObject:

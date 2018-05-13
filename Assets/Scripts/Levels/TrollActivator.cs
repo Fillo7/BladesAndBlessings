@@ -5,6 +5,7 @@ public class TrollActivator : MonoBehaviour
 {
     [SerializeField] private Troll troll;
     [SerializeField] private List<CavePlatformController> cavePlatformsToDestroy;
+    [SerializeField] private AudioSource musicClip;
 
     private bool trollActivated = false;
 
@@ -26,6 +27,7 @@ public class TrollActivator : MonoBehaviour
 
     private void ActivateTroll()
     {
+        musicClip.PlayDelayed(2.5f);
         trollActivated = true;
         troll.SetActive();
         Invoke("DestroyPlatforms", 1.5f);

@@ -9,6 +9,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject boss;
     [SerializeField] private Slider bossSlider;
     [SerializeField] private Text bossText;
+    [SerializeField] private AudioSource bossMusicSource;
+    [SerializeField] private AudioClip bossFinalPhaseClip;
+
     private int bossPhase = 0;
     EnemyHealth bossHealth;
 
@@ -88,6 +91,8 @@ public class LevelManager : MonoBehaviour
 
                 if (bossHealth.GetCurrentHealth() <= 500)
                 {
+                    bossMusicSource.clip = bossFinalPhaseClip;
+                    bossMusicSource.Play();
                     bossPhase = 2;
                     bossSlider.maxValue = 500;
                     bossText.text = "Phase 3 / 3";

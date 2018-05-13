@@ -110,7 +110,7 @@ public class PreferencesManager : MonoBehaviour
         // Sound level
         if (!PlayerPrefs.HasKey("SoundLevel"))
         {
-            PlayerPrefs.SetFloat("SoundLevel", 75.0f);
+            PlayerPrefs.SetFloat("SoundLevel", 80.0f);
         }
         AudioListener.volume = PlayerPrefs.GetFloat("SoundLevel");
         if (soundSlider != null)
@@ -121,7 +121,7 @@ public class PreferencesManager : MonoBehaviour
         // Music level
         if (!PlayerPrefs.HasKey("MusicLevel"))
         {
-            PlayerPrefs.SetFloat("MusicLevel", 75.0f);
+            PlayerPrefs.SetFloat("MusicLevel", 30.0f);
         }
         if (musicPlayer != null)
         {

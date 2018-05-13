@@ -14,6 +14,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject loadingPanel;
     [SerializeField] private GameObject tutorialPanel;
     [SerializeField] private GameObject weaponUnlockPanel;
+    [SerializeField] private GameObject creditsPanel;
 
     void Awake()
     {
@@ -99,6 +100,12 @@ public class MenuController : MonoBehaviour
         weaponUnlockPanel.SetActive(true);
     }
 
+    public void GoToCreditsPanel()
+    {
+        ResetPanels();
+        creditsPanel.SetActive(true);
+    }
+
     private void ResetPanels()
     {
         if (menuPanel != null)
@@ -148,6 +155,10 @@ public class MenuController : MonoBehaviour
         if (weaponUnlockPanel != null)
         {
             weaponUnlockPanel.SetActive(false);
+        }
+        if (creditsPanel != null)
+        {
+            creditsPanel.SetActive(false);
         }
     }
 }

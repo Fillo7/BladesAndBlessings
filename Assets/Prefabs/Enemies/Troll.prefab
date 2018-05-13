@@ -974,6 +974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a06185d6e2e254ea1917734a475102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 0
   roarIntroductionClip: {fileID: 7400000, guid: 5dcb323a7df50e843acbfede1c84de48,
     type: 2}
   roarHatchlingsClip: {fileID: 7400000, guid: 443521df86cb6674a97b13d7c961fe96, type: 2}

@@ -8,10 +8,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] int weaponUnlockIndex = 0;
-    [SerializeField] RawImage weaponImage;
-    [SerializeField] Texture weaponTexture;
+    [SerializeField] private int weaponUnlockIndex = 0;
+    [SerializeField] private RawImage weaponImage;
+    [SerializeField] private Texture weaponTexture;
     [SerializeField] private GameObject saveResetPanel;
+    [SerializeField] private AudioSource musicClip;
 
     private Canvas HUDCanvas;
     private Canvas menuCanvas;
@@ -77,6 +78,11 @@ public class GameManager : MonoBehaviour
         HUDCanvas.enabled = true;
         inLoadout = false;
         Resume();
+
+        if (musicClip != null)
+        {
+            musicClip.Play();
+        }
 
         if (!saveManager.GetSaveData().GetTutorialSeen())
         {
