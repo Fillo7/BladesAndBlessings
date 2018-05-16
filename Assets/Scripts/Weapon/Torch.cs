@@ -16,8 +16,8 @@ public class Torch : Weapon
     private PlayerMovement movement;
     private float baseDamage = 10.0f;
 
-    private float fissureTimer = 10.0f;
-    private float fissureCooldown = 10.0f;
+    private float fissureTimer = 12.0f;
+    private float fissureCooldown = 12.0f;
 
     private float cleansingFlameTimer = 35.0f;
     private float cleansingFlameCooldown = 35.0f;
@@ -72,7 +72,7 @@ public class Torch : Weapon
         flameParticles.Play();
         health.ClearDoTEffects();
         health.TakeDamage(75.0f);
-        health.ApplyHoTEffect(new HoTEffect(20.1f, 1.0f, 5.0f));
+        health.ApplyHoTEffect(new HoTEffect(20.1f, 1.0f, 6.0f));
         cleansingFlameTimer = 0.0f;
     }
 

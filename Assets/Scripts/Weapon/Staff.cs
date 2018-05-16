@@ -13,8 +13,8 @@ public class Staff : Weapon
 
     private PlayerMovement movement;
 
-    private float novaTimer = 20.0f;
-    private float novaCooldown = 20.0f;
+    private float novaTimer = 35.0f;
+    private float novaCooldown = 35.0f;
 
     private float swiftnessTimer = 25.0f;
     private float swiftnessCooldown = 25.0f;
@@ -86,8 +86,8 @@ public class Staff : Weapon
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
         result.Add(new AbilityInfo(0.0f, basicAttack.length / 0.75f, 0.75f, 0.35f, true));
-        result.Add(new AbilityInfo(novaCooldown, specialAttack1.length / 0.6f, 0.6f, 0.15f, false));
-        result.Add(new AbilityInfo(swiftnessCooldown, specialAttack2.length / 0.85f, 0.85f, 0.5f, false));
+        result.Add(new AbilityInfo(novaCooldown, specialAttack1.length / 0.6f, 0.6f, 0.1f, false));
+        result.Add(new AbilityInfo(swiftnessCooldown, specialAttack2.length, 1.0f, 0.6f, false));
 
         return result;
     }

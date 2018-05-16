@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: PlayerHammer
+  m_Controller: {fileID: 9100000, guid: 401db9a3ebe67da4aad9a261db53c691, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: d725912b75df74c4488c79839d58c314, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d725912b75df74c4488c79839d58c314, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 089c3d8718d173e43800fc9d95f5eedd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 089c3d8718d173e43800fc9d95f5eedd, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 79626585dc1f2db46a28a8d0ce1d4101, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 79626585dc1f2db46a28a8d0ce1d4101, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e153fd875b5cc444abe1980c6381a60b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2bcfc0d63fde35b42b50b155abf782bf, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2369ea83dda4f8043a79595e67ac3efa, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 604ed48e3ba218247a1722e26f251818, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ea2dcb58d1cdf5f4faa54c9e831b7575, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c087d199a8ced764da58f3ff2aeb1dd2, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a8c50d417c6097943a72de4d9568cfb7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ec84a9178cb97b94d98659539ddbb3ad, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4cdf584e67eaff14c90c7d852a5526a1, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d02a3a746e1ed4e408de2c39fad5b157, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b14454df32db5bc4f8de02d8a8abeee4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c3e58314aa099e94abc1886ef794fd60, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 59a1935a83336c84fb632b39b0acdbb5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ded8820ddc1173e4f8a02f2cbc4c1de3, type: 2}

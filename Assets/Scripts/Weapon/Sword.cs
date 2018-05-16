@@ -20,8 +20,8 @@ public class Sword : Weapon
 
     private List<GameObject> slashedEnemies = new List<GameObject>();
     private bool coneSlashing = false;
-    private float coneSlashTimer = 12.0f;
-    private float coneSlashCooldown = 12.0f;
+    private float coneSlashTimer = 16.0f;
+    private float coneSlashCooldown = 16.0f;
 
     void Update()
     {
