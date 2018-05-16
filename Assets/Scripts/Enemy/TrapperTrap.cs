@@ -4,7 +4,7 @@ public class TrapperTrap : MonoBehaviour
 {
     [SerializeField] private float lengthOfSnare = 3.0f;
     [SerializeField] private float damage = 25.0f;
-    [SerializeField] private float timeToLive = 30.0f;
+    [SerializeField] private float timeToLive = 60.0f;
 
     void Update()
     {
