@@ -1608,7 +1608,7 @@ AnimationClip:
         outSlope: Infinity
         tangentMode: 103
       - serializedVersion: 2
-        time: 1.0833334
+        time: 1.0416666
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -1623,7 +1623,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: Armature/Bone/Bone.001/Bone.002_R.001/Bone.002_R.002/Bone.002_R.003/Bone.002_R.005
+    path: Armature/Bone/Bone.001/Bone.002_R.001/Bone.002_R.002/Bone.002_R.003
     classID: 65
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -1726,7 +1726,7 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2090764872
+      path: 1009039025
       attribute: 3305885265
       script: {fileID: 0}
       typeID: 65
@@ -8244,7 +8244,7 @@ AnimationClip:
         outSlope: Infinity
         tangentMode: 103
       - serializedVersion: 2
-        time: 1.0833334
+        time: 1.0416666
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -8259,7 +8259,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: Armature/Bone/Bone.001/Bone.002_R.001/Bone.002_R.002/Bone.002_R.003/Bone.002_R.005
+    path: Armature/Bone/Bone.001/Bone.002_R.001/Bone.002_R.002/Bone.002_R.003
     classID: 65
     script: {fileID: 0}
   m_EulerEditorCurves:
