@@ -24,11 +24,17 @@ public class Torch : Weapon
 
     private Vector3 cursorPosition;
 
+    private int floorMask;
+    private int mouseTurningMask;
+
     void Awake()
     {
         cursorPosition = new Vector3(0.0f, 0.0f, 0.0f);
         health = GetComponentInParent<PlayerHealth>();
         movement = GetComponentInParent<PlayerMovement>();
+
+        floorMask = LayerMask.GetMask("Floor");
+        mouseTurningMask = LayerMask.GetMask("MouseTurning");
     }
 
     void Update()
@@ -98,8 +104,8 @@ public class Torch : Weapon
     public override List<AbilityInfo> GetAbilityInfo()
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
-        result.Add(new AbilityInfo(0.0f, basicAttack.length / 0.8f, 0.8f, 0.55f, true));
-        result.Add(new AbilityInfo(fissureCooldown, specialAttack1.length / 1.0f, 1.0f, 0.25f, false));
+        result.Add(new AbilityInfo(0.0f, basicAttack.length / 0.8f, 0.8f, 0.55f, true, mouseTurningMask));
+        result.Add(new AbilityInfo(fissureCooldown, specialAttack1.length / 1.0f, 1.0f, 0.25f, false, floorMask));
         result.Add(new AbilityInfo(cleansingFlameCooldown, specialAttack2.length / 1.0f, 1.0f, 0.25f, false));
 
         return result;

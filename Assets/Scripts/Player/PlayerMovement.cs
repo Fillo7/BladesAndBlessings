@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private LinkedList<MovementEffect> movementEffects = new LinkedList<MovementEffect>();
 
-    private int floorMask;
+    private int mouseTurningMask;
     private float cameraRayLength = 100.0f;
 
     void Awake()
@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         currentSpeed = speed;
         speedSnapshot = speed;
-        floorMask = LayerMask.GetMask("Floor");
+        mouseTurningMask = LayerMask.GetMask("MouseTurning");
         InvokeRepeating("SnapshotPositionY", 0.01f, 0.25f);
     }
 
@@ -272,7 +272,7 @@ public class PlayerMovement : MonoBehaviour
         Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit floorHit;
 
-        if (Physics.Raycast(cameraRay, out floorHit, cameraRayLength, floorMask))
+        if (Physics.Raycast(cameraRay, out floorHit, cameraRayLength, mouseTurningMask))
         {
             Vector3 playerToMouse = floorHit.point - transform.position;
             playerToMouse.y = 0.0f;

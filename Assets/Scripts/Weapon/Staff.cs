@@ -19,9 +19,12 @@ public class Staff : Weapon
     private float swiftnessTimer = 25.0f;
     private float swiftnessCooldown = 25.0f;
 
+    private int mouseTurningMask;
+
     void Awake()
     {
         movement = GetComponentInParent<PlayerMovement>();
+        mouseTurningMask = LayerMask.GetMask("MouseTurning");
     }
 
     void Update()
@@ -85,7 +88,7 @@ public class Staff : Weapon
     public override List<AbilityInfo> GetAbilityInfo()
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
-        result.Add(new AbilityInfo(0.0f, basicAttack.length / 0.75f, 0.75f, 0.35f, true));
+        result.Add(new AbilityInfo(0.0f, basicAttack.length / 0.75f, 0.75f, 0.35f, true, mouseTurningMask));
         result.Add(new AbilityInfo(novaCooldown, specialAttack1.length / 0.6f, 0.6f, 0.1f, false));
         result.Add(new AbilityInfo(swiftnessCooldown, specialAttack2.length, 1.0f, 0.6f, false));
 

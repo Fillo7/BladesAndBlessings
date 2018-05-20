@@ -27,7 +27,6 @@ public class PlayerAttack : MonoBehaviour
     private Animator animator;
     private PlayerHealth health;
     private PlayerMovement movement;
-    private int floorMask;
     private float cameraRayLength = 100.0f;
 
     void Awake()
@@ -37,7 +36,6 @@ public class PlayerAttack : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         health = GetComponent<PlayerHealth>();
         movement = GetComponent<PlayerMovement>();
-        floorMask = LayerMask.GetMask("Floor");
 
         InitializeWeapons();
         SetActiveWeapons(0, 2);
@@ -59,7 +57,7 @@ public class PlayerAttack : MonoBehaviour
         {
             movementSpeedMultiplier = currentAbilityInfo[0].GetAnimationMovementMultiplier();
             EnableAttack();
-            currentWeaponScript.SetCursorPosition(GetCursorWorldPosition());
+            currentWeaponScript.SetCursorPosition(GetCursorWorldPosition(currentAbilityInfo[0].GetLayerMask()));
             animator.SetFloat("BasicAbilitySpeedMultiplier", currentAbilityInfo[0].GetAnimationSpeedMultiplier());
             animator.SetTrigger("BasicAbility");
             if (currentAbilityInfo[0].GetMouseTurningFlag())
@@ -80,7 +78,7 @@ public class PlayerAttack : MonoBehaviour
 
             movementSpeedMultiplier = currentAbilityInfo[1].GetAnimationMovementMultiplier();
             EnableAttack();
-            currentWeaponScript.SetCursorPosition(GetCursorWorldPosition());
+            currentWeaponScript.SetCursorPosition(GetCursorWorldPosition(currentAbilityInfo[1].GetLayerMask()));
             animator.SetFloat("SpecialAbility1SpeedMultiplier", currentAbilityInfo[1].GetAnimationSpeedMultiplier());
             animator.SetTrigger("SpecialAbility1");
             if (currentAbilityInfo[1].GetMouseTurningFlag())
@@ -101,7 +99,7 @@ public class PlayerAttack : MonoBehaviour
 
             movementSpeedMultiplier = currentAbilityInfo[2].GetAnimationMovementMultiplier();
             EnableAttack();
-            currentWeaponScript.SetCursorPosition(GetCursorWorldPosition());
+            currentWeaponScript.SetCursorPosition(GetCursorWorldPosition(currentAbilityInfo[2].GetLayerMask()));
             animator.SetFloat("SpecialAbility2SpeedMultiplier", currentAbilityInfo[2].GetAnimationSpeedMultiplier());
             animator.SetTrigger("SpecialAbility2");
             if (currentAbilityInfo[2].GetMouseTurningFlag())
@@ -202,12 +200,12 @@ public class PlayerAttack : MonoBehaviour
         ability2Slider.value = currentWeaponScript.GetSpecialAttack2Timer();
     }
 
-    private Vector3 GetCursorWorldPosition()
+    private Vector3 GetCursorWorldPosition(int layerMask)
     {
         Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit floorHit;
 
-        if (Physics.Raycast(cameraRay, out floorHit, cameraRayLength, floorMask))
+        if (Physics.Raycast(cameraRay, out floorHit, cameraRayLength, layerMask))
         {
             return floorHit.point;
         }
