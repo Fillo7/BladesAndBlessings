@@ -1411,6 +1411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 7
+  attackSound: {fileID: 8300000, guid: ba0c2809ba1be4da2a316740349a4351, type: 3}
   attackClip: {fileID: 7400000, guid: 94f5bf9756d77bd419bea98c28234efc, type: 2}
   damage: 25
   attackCooldown: 0.4
@@ -1426,7 +1427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hurtClip: {fileID: 0}
-  deathClip: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: dff166a8dfa4440658bbe8a12265be57, type: 3}
   deathDestroyDelay: 10
   destroyOnVictory: 1
   health: 125

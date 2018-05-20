@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cac871a43600745bdbb5530ed8de8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activationSound: {fileID: 8300000, guid: a2f4096075b1a25498c4101307d79192, type: 3}
   lengthOfSnare: 3
   damage: 25
   timeToLive: 60
@@ -137,5 +138,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.6
+  m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}

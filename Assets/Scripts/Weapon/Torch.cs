@@ -104,9 +104,9 @@ public class Torch : Weapon
     public override List<AbilityInfo> GetAbilityInfo()
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
-        result.Add(new AbilityInfo(0.0f, basicAttack.length / 0.8f, 0.8f, 0.55f, true, mouseTurningMask));
-        result.Add(new AbilityInfo(fissureCooldown, specialAttack1.length / 1.0f, 1.0f, 0.25f, false, floorMask));
-        result.Add(new AbilityInfo(cleansingFlameCooldown, specialAttack2.length / 1.0f, 1.0f, 0.25f, false));
+        result.Add(new AbilityInfo(0.0f, basicAttack.length / 0.8f, 0.8f, 0.5f, true, mouseTurningMask));
+        result.Add(new AbilityInfo(fissureCooldown, specialAttack1.length / 1.0f, 1.0f, 0.2f, false, floorMask));
+        result.Add(new AbilityInfo(cleansingFlameCooldown, specialAttack2.length / 1.0f, 1.0f, 0.2f, false));
 
         return result;
     }

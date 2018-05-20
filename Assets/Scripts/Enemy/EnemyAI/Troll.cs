@@ -4,6 +4,10 @@ using UnityEngine.AI;
 
 public class Troll : EnemyAI
 {
+    [SerializeField] private AudioClip breathSound;
+    [SerializeField] private AudioClip roarSound;
+    private AudioSource audioPlayer;
+
     [SerializeField] private AnimationClip roarIntroductionClip;
     [SerializeField] private AnimationClip roarHatchlingsClip;
     [SerializeField] private AnimationClip roarBouldersClip;
@@ -61,6 +65,7 @@ public class Troll : EnemyAI
         obstacle = GetComponent<NavMeshObstacle>();
         obstacle.enabled = true;
         GetComponent<EnemyHealth>().SetImmune(true);
+        audioPlayer = gameObject.AddComponent<AudioSource>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -122,6 +127,10 @@ public class Troll : EnemyAI
         attacking = true;
         active = true;
         GetComponent<EnemyHealth>().SetImmune(false);
+
+        audioPlayer.clip = roarSound;
+        audioPlayer.Play();
+
         animator.SetTrigger("RoarIntroduction");
         Invoke("ResetAttack", roarIntroductionClip.length);
     }
@@ -141,6 +150,9 @@ public class Troll : EnemyAI
         smashSpeedMultiplier = 0.7f;
         animator.SetFloat("SmashSpeedMultiplier", smashSpeedMultiplier);
 
+        audioPlayer.clip = roarSound;
+        audioPlayer.Play();
+
         animator.SetTrigger("RoarIntroduction");
         Invoke("ResetAttack", roarIntroductionClip.length);
     }
@@ -153,6 +165,9 @@ public class Troll : EnemyAI
         attacking = true;
 
         phase = 2;
+
+        audioPlayer.clip = roarSound;
+        audioPlayer.Play();
 
         animator.SetTrigger("RoarIntroduction");
         Invoke("ResetAttack", roarIntroductionClip.length);
@@ -169,6 +184,9 @@ public class Troll : EnemyAI
             if (platform != null)
             {
                 attacking = true;
+
+                audioPlayer.clip = breathSound;
+                audioPlayer.PlayDelayed(1.0f);
 
                 if (platform.GetCaveSide() == CaveSide.Left || (platform.GetCaveSide() == CaveSide.Middle && Random.Range(0, 2) == 0))
                 {
@@ -187,6 +205,9 @@ public class Troll : EnemyAI
             roarRocksTimer = Random.Range(0.0f, 2.5f);
             attacking = true;
             animator.SetTrigger("RoarRocks");
+
+            audioPlayer.clip = roarSound;
+            audioPlayer.Play();
 
             Invoke("ResetAttack", roarBouldersClip.length);
         }
@@ -208,6 +229,9 @@ public class Troll : EnemyAI
             attacking = true;
             animator.SetTrigger("RoarHatchlings");
 
+            audioPlayer.clip = roarSound;
+            audioPlayer.Play();
+
             Invoke("ResetAttack", roarHatchlingsClip.length);
         }
         else if (breathTimer > breathCooldown && globalTimer > globalCooldown)
@@ -219,6 +243,9 @@ public class Troll : EnemyAI
             if (platform != null)
             {
                 attacking = true;
+
+                audioPlayer.clip = breathSound;
+                audioPlayer.PlayDelayed(1.0f);
 
                 if (platform.GetCaveSide() == CaveSide.Left || (platform.GetCaveSide() == CaveSide.Middle && Random.Range(0, 2) == 0))
                 {
@@ -238,6 +265,9 @@ public class Troll : EnemyAI
             attacking = true;
             animator.SetTrigger("RoarRocks");
 
+            audioPlayer.clip = roarSound;
+            audioPlayer.Play();
+
             Invoke("ResetAttack", roarBouldersClip.length);
         }
         else if (smashTimer > smashCooldown && globalTimer > globalCooldown)
@@ -255,6 +285,10 @@ public class Troll : EnemyAI
         if (globalTimer > globalCooldown)
         {
             attacking = true;
+
+            audioPlayer.clip = roarSound;
+            audioPlayer.Play();
+
             animator.SetTrigger("RoarRocksPhase3");
             Invoke("ResetAttack", roarBouldersPhase3Clip.length);
         }

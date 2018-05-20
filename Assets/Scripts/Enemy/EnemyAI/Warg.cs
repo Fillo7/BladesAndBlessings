@@ -3,6 +3,9 @@ using UnityEngine.AI;
 
 public class Warg : EnemyAI
 {
+    [SerializeField] private AudioClip attackSound;
+    private AudioSource audioPlayer;
+
     [SerializeField] private AnimationClip attackClip;
     [SerializeField] private float damage = 25.0f;
     [SerializeField] private float attackCooldown = 0.4f;
@@ -25,6 +28,11 @@ public class Warg : EnemyAI
         animator.SetFloat("DeathSpeedMultiplier", 0.6f);
         obstacle = GetComponent<NavMeshObstacle>();
         obstacle.enabled = false;
+    }
+
+    void Start()
+    {
+        audioPlayer = GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -60,6 +68,7 @@ public class Warg : EnemyAI
         if (attacking && !IsPlayerInRange(cancelAttackRange))
         {
             animator.SetTrigger("Blocked");
+            audioPlayer.Stop();
             CancelInvoke();
             ResetAttack();
         }
@@ -104,6 +113,8 @@ public class Warg : EnemyAI
         playerHit = false;
         navigator.enabled = false;
         obstacle.enabled = true;
+        audioPlayer.clip = attackSound;
+        audioPlayer.PlayDelayed(0.5f);
         animator.SetTrigger("Attack");
         Invoke("ResetAttack", attackClip.length / 1.5f);
     }

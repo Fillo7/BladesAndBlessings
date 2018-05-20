@@ -944,7 +944,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.5, y: 10, z: 10}
+  m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 5, z: -0}
 --- !u!95 &95661141648727092
 Animator:
@@ -975,6 +975,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0
+  breathSound: {fileID: 8300000, guid: d4874d03a4753fc4a8ad15aad2653206, type: 3}
+  roarSound: {fileID: 8300000, guid: b336b86b02e2f4f2fac4008cc682cb91, type: 3}
   roarIntroductionClip: {fileID: 7400000, guid: 5dcb323a7df50e843acbfede1c84de48,
     type: 2}
   roarHatchlingsClip: {fileID: 7400000, guid: 443521df86cb6674a97b13d7c961fe96, type: 2}
@@ -4426,7 +4428,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 4.75, y: 5, z: 5}
+  m_Extents: {x: 5, y: 5, z: 5}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1

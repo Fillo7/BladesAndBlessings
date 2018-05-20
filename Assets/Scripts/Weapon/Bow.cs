@@ -87,9 +87,9 @@ public class Bow : Weapon
     public override List<AbilityInfo> GetAbilityInfo()
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
-        result.Add(new AbilityInfo(0.0f, basicAttack.length / 1.1f, 1.1f, 0.4f, true, mouseTurningMask));
-        result.Add(new AbilityInfo(arrowFanCooldown, specialAttack1.length / 1.15f, 1.15f, 0.25f, true, mouseTurningMask));
-        result.Add(new AbilityInfo(chargedArrowCooldown, specialAttack2.length / 1.15f, 1.15f, 0.25f, true, mouseTurningMask));
+        result.Add(new AbilityInfo(0.0f, basicAttack.length / 1.1f, 1.1f, 0.35f, true, mouseTurningMask));
+        result.Add(new AbilityInfo(arrowFanCooldown, specialAttack1.length / 1.15f, 1.15f, 0.2f, true, mouseTurningMask));
+        result.Add(new AbilityInfo(chargedArrowCooldown, specialAttack2.length / 1.15f, 1.15f, 0.2f, true, mouseTurningMask));
 
         return result;
     }
