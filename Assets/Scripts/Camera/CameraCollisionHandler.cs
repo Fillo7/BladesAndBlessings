@@ -9,7 +9,7 @@ public class CameraCollisionHandler : MonoBehaviour
     private float transparencyDuration = 0.15f;
 
     private Renderer[] objectRenderers = null;
-    private List<Color> oldColors = new List<Color>();
+    private List<GameObject> transparentObjects = new List<GameObject>();
 
     void Awake()
     {
@@ -17,12 +17,7 @@ public class CameraCollisionHandler : MonoBehaviour
 
         for (int i = 0; i < objectRenderers.Length; i++)
         {
-            oldColors.Add(objectRenderers[i].material.color);
-        }
-
-        for (int i = 0; i < objectRenderers.Length; i++)
-        {
-            Material material = objectRenderers[i].material;
+            Material material = new Material(objectRenderers[i].material);
             material.SetFloat("_Mode", 3);
             material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
             material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
@@ -35,7 +30,14 @@ public class CameraCollisionHandler : MonoBehaviour
             Color materialColor = material.color;
             materialColor.a = transparencyLevel;
             material.color = materialColor;
-            objectRenderers[i].material = material;
+
+            GameObject transparentObject = Instantiate(objectRenderers[i].gameObject, objectRenderers[i].gameObject.transform.parent);
+            Renderer transparentRenderer = transparentObject.GetComponent<Renderer>();
+            transparentRenderer.material = material;
+            transparentRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            transparentObjects.Add(transparentObject);
+
+            objectRenderers[i].shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
         }
     }
 
@@ -47,18 +49,8 @@ public class CameraCollisionHandler : MonoBehaviour
         {
             for (int i = 0; i < objectRenderers.Length; i++)
             {
-                Material material = objectRenderers[i].material;
-                material.SetFloat("_Mode", 0);
-                material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
-                material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
-                material.SetInt("_ZWrite", 1);
-                material.DisableKeyword("_ALPHATEST_ON");
-                material.DisableKeyword("_ALPHABLEND_ON");
-                material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-                material.renderQueue = -1;
-
-                material.color = oldColors[i];
-                objectRenderers[i].material = material;
+                objectRenderers[i].shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+                Destroy(transparentObjects[i].gameObject);
             }
             Destroy(this);
         }

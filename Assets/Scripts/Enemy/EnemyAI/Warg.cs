@@ -16,14 +16,13 @@ public class Warg : EnemyAI
     private bool attacking = false;
     private bool playerHit = false;
     private float attackRange = 2.5f;
-    private float attackTimer = 0.5f;
-    private float cancelAttackRange = 5.0f;
+    private float attackTimer = 0.4f;
 
     protected override void Awake()
     {
         base.Awake();
         animator = GetComponentInChildren<Animator>();
-        animator.SetFloat("AttackSpeedMultiplier", 1.5f);
+        animator.SetFloat("AttackSpeedMultiplier", 1.8f);
         animator.SetFloat("RunningSpeedMultiplier", 2.25f);
         animator.SetFloat("DeathSpeedMultiplier", 0.6f);
         obstacle = GetComponent<NavMeshObstacle>();
@@ -65,14 +64,6 @@ public class Warg : EnemyAI
             animator.SetBool("Running", false);
         }
 
-        if (attacking && !IsPlayerInRange(cancelAttackRange))
-        {
-            animator.SetTrigger("Blocked");
-            audioPlayer.Stop();
-            CancelInvoke();
-            ResetAttack();
-        }
-
         if (IsPlayerInRange(attackRange))
         {
             navigator.enabled = false;
@@ -82,6 +73,7 @@ public class Warg : EnemyAI
             {
                 Attack();
             }
+
             TurnTowardsPlayer(180.0f);
         }
         else
@@ -116,6 +108,6 @@ public class Warg : EnemyAI
         audioPlayer.clip = attackSound;
         audioPlayer.PlayDelayed(0.5f);
         animator.SetTrigger("Attack");
-        Invoke("ResetAttack", attackClip.length / 1.5f);
+        Invoke("ResetAttack", attackClip.length / 1.8f);
     }
 }
