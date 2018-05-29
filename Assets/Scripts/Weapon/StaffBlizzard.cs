@@ -31,9 +31,9 @@ public class StaffBlizzard : MonoBehaviour
                 if (ice != null)
                 {
                     ice.EnableIce(8.0f);
+                    enemy.ApplyMovementEffect(new MovementEffect(8.0f, 0.0f));
                 }
 
-                enemy.ApplyMovementEffect(new MovementEffect(8.0f, 0.0f));
                 taggedEnemies.Add(enemy);
             }
         }
@@ -51,9 +51,9 @@ public class StaffBlizzard : MonoBehaviour
                 if (ice != null)
                 {
                     ice.EnableIce(8.0f);
+                    enemy.ApplyMovementEffect(new MovementEffect(8.0f, 0.0f));
                 }
-
-                enemy.ApplyMovementEffect(new MovementEffect(8.0f, 0.0f));
+                
                 taggedEnemies.Add(enemy);
             }
         }

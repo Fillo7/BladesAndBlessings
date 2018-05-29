@@ -2,6 +2,8 @@
 
 public class TrapperTrap : MonoBehaviour
 {
+    [SerializeField] Mesh trapClosed;
+
     [SerializeField] private AudioClip activationSound;
     private AudioSource audioPlayer;
 
@@ -33,6 +35,8 @@ public class TrapperTrap : MonoBehaviour
         {
             activated = true;
             audioPlayer.Play();
+            MeshFilter trapMesh = gameObject.GetComponentInChildren<MeshFilter>();
+            trapMesh.mesh = trapClosed;
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             playerHealth.TakeDamage(damage);
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();

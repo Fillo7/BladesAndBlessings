@@ -88,6 +88,14 @@ public class EnemyAI : MonoBehaviour
 
     protected void TurnTowardsTarget(Vector3 target, float turningSpeed)
     {
+        foreach (MovementEffect effect in movementEffects)
+        {
+            if (effect.GetSpeedMultiplier() < 0.001f)
+            {
+                return;
+            }
+        }
+
         Quaternion lookRotation = Quaternion.LookRotation(target - transform.position);
         lookRotation = Quaternion.Euler(0.0f, lookRotation.eulerAngles.y, 0.0f);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, turningSpeed * Time.deltaTime);

@@ -205,7 +205,7 @@ public class GameManager : MonoBehaviour
 
     private int GetIndexForLevelName(string levelName)
     {
-        switch(levelName)
+        switch (levelName)
         {
             case "00MainMenu":
                 return 0;
@@ -226,7 +226,7 @@ public class GameManager : MonoBehaviour
 
     private string GetLevelNameForIndex(int index)
     {
-        switch(index)
+        switch (index)
         {
             case 0:
                 return "00MainMenu";
