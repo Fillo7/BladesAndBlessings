@@ -80,6 +80,11 @@ public class SaveManager : MonoBehaviour
 
     public void Save()
     {
+        if (!active)
+        {
+            return;
+        }
+
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/BaB.save");
 
@@ -89,6 +94,11 @@ public class SaveManager : MonoBehaviour
 
     public void Load()
     {
+        if (!active)
+        {
+            return;
+        }
+
         BinaryFormatter formatter = new BinaryFormatter();
 
         if (!File.Exists(Application.persistentDataPath + "/BaB.save"))
@@ -106,6 +116,11 @@ public class SaveManager : MonoBehaviour
 
     public void ResetSave()
     {
+        if (!active)
+        {
+            return;
+        }
+
         if (File.Exists(Application.persistentDataPath + "/BaB.save"))
         {
             File.Delete(Application.persistentDataPath + "/BaB.save");
