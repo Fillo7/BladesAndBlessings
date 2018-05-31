@@ -6,7 +6,7 @@ public class Snake : EnemyAI
 {
     [SerializeField] private AnimationClip attackClip;
     [SerializeField] private float damage = 10.0f;
-    [SerializeField] private float attackCooldown = 1.2f;
+    [SerializeField] private float attackCooldown = 1.5f;
 
     private Animator animator;
     private NavMeshObstacle obstacle;
@@ -20,14 +20,15 @@ public class Snake : EnemyAI
 
     private bool attacking = false;
     private bool playerHit = false;
-    private float attackRange = 2.5f;
-    private float attackTimer = 1.2f;
+    private float attackRange = 2.6f;
+    private float attackTimer = 1.5f;
 
     protected override void Awake()
     {
         base.Awake();
         animator = GetComponentInChildren<Animator>();
-        animator.SetFloat("RunningSpeedMultiplier", 2.0f);
+        animator.SetFloat("IdleSpeedMultiplier", 0.75f);
+        animator.SetFloat("RunningSpeedMultiplier", 1.5f);
         obstacle = GetComponent<NavMeshObstacle>();
         obstacle.enabled = false;
     }
@@ -39,7 +40,7 @@ public class Snake : EnemyAI
             playerHit = true;
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             playerHealth.TakeDamage(damage);
-            playerHealth.ApplyDoTEffect(new DoTEffect(12.6f, 2.5f, 10.0f));
+            playerHealth.ApplyDoTEffect(new DoTEffect(12.6f, 2.5f, 8.0f));
         }
     }
 
@@ -51,6 +52,8 @@ public class Snake : EnemyAI
             navigator.enabled = false;
             return;
         }
+
+        attackTimer += Time.deltaTime;
 
         if (navigator.enabled && navigator.velocity.magnitude > 0.35f)
         {
