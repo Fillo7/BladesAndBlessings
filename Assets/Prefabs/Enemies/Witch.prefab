@@ -321,6 +321,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4476286393034620}
   - component: {fileID: 95515013255125916}
+  - component: {fileID: 114316338277073468}
   m_Layer: 0
   m_Name: Witch
   m_TagString: Untagged
@@ -336,6 +337,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4090680786602426}
+  - component: {fileID: 114954515818408160}
   m_Layer: 0
   m_Name: mixamorig:RightHand
   m_TagString: Untagged
@@ -411,6 +413,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4898559407873314}
+  - component: {fileID: 114733637907793796}
+  - component: {fileID: 195193539097409458}
+  - component: {fileID: 114025063375235298}
   m_Layer: 0
   m_Name: Witch
   m_TagString: Untagged
@@ -608,7 +613,7 @@ Transform:
   m_GameObject: {fileID: 1717479464537414}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalScale: {x: 6.5, y: 6.5, z: 6.5}
   m_Children:
   - {fileID: 4516470804947762}
   - {fileID: 4219715151648062}
@@ -790,14 +795,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1943866173392436}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.9063079, z: -0, w: -0.42261827}
+  m_LocalPosition: {x: 11, y: 9.25, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4476286393034620}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 230, z: 0}
 --- !u!4 &4963257874843242
 Transform:
   m_ObjectHideFlags: 1
@@ -841,6 +846,64 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114025063375235298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1943866173392436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98055bb2f22f5f642b330c0265d10826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 0
+  laughSound: {fileID: 8300000, guid: 1d5f35951ea3e354f9bc800f5190228d, type: 3}
+  attackClip: {fileID: 7400000, guid: aa0518b10e73cba46ae2d8789a07b463, type: 2}
+--- !u!114 &114316338277073468
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1717479464537414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4cf640d09f1ef4782f62583972ae8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114733637907793796
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1943866173392436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9432573446433b429a7d62bcf4e7934, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtClip: {fileID: 0}
+  deathClip: {fileID: 0}
+  deathDestroyDelay: 10
+  destroyOnVictory: 0
+  health: 1000
+  slashingDamageMultiplier: 1
+  piercingDamageMultiplier: 1
+  fireDamageMultiplier: 1
+  magicDamageMultiplier: 1
+  bleedingDamageMultiplier: 1
+--- !u!114 &114954515818408160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1725213635512502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69401dad60000947a7f0f060285bc3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  redPotion: {fileID: 1003088182000258, guid: ec2cc14c3169ef1419a9e96bad779431, type: 2}
 --- !u!137 &137211392134886446
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -909,3 +972,24 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0036732592, y: 0.061110877, z: 0.05841375}
     m_Extent: {x: 0.120052144, y: 0.21375123, z: 0.12885532}
   m_DirtyAABB: 0
+--- !u!195 &195193539097409458
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1943866173392436}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
