@@ -27,8 +27,8 @@ public class Snake : EnemyAI
     {
         base.Awake();
         animator = GetComponentInChildren<Animator>();
-        animator.SetFloat("IdleSpeedMultiplier", 0.75f);
-        animator.SetFloat("RunningSpeedMultiplier", 1.5f);
+        animator.SetFloat("IdleSpeedMultiplier", 0.65f);
+        animator.SetFloat("RunningSpeedMultiplier", 2.5f);
         obstacle = GetComponent<NavMeshObstacle>();
         obstacle.enabled = false;
     }

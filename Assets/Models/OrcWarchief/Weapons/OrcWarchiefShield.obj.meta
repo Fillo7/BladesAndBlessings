@@ -1,23 +1,23 @@
 fileFormatVersion: 2
-guid: 716f747dfee7f4192998663445cde829
-timeCreated: 1527799078
+guid: 4d693854d95939d4292e23d22b950c77
+timeCreated: 1527927278
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: orcGateWithDoor
+    100000: OrcWarchiefShield
     100002: //RootNode
-    400000: orcGateWithDoor
+    400000: OrcWarchiefShield
     400002: //RootNode
-    2300000: orcGateWithDoor
-    3300000: orcGateWithDoor
-    4300000: orcGateWithDoor
+    2300000: OrcWarchiefShield
+    3300000: OrcWarchiefShield
+    4300000: OrcWarchiefShield
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: palette
-    second: {fileID: 2100000, guid: ce57a86332bf04c2ea9932300c13a5d7, type: 2}
+    second: {fileID: 2100000, guid: 109d363027ef3044b9fd7c6d010d88da, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -47,7 +47,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.2
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
