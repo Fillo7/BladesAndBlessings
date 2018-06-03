@@ -9,106 +9,106 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1003088182000258}
+  m_RootGameObject: {fileID: 1164233183947660}
   m_IsPrefabParent: 1
---- !u!1 &1003088182000258
+--- !u!1 &1164233183947660
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4237082679233138}
-  - component: {fileID: 135423191645495936}
-  - component: {fileID: 114033799501891430}
-  - component: {fileID: 54069493047142298}
+  - component: {fileID: 4424098081415182}
+  - component: {fileID: 135059684227105900}
+  - component: {fileID: 114791903595318042}
+  - component: {fileID: 54493746608499564}
   m_Layer: 0
-  m_Name: RedPotion
+  m_Name: GreenPotion
   m_TagString: EnemyObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1400524062709392
+--- !u!1 &1566333353543160
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4641474701899610}
+  - component: {fileID: 33956098098120734}
+  - component: {fileID: 23317156519777962}
+  m_Layer: 0
+  m_Name: WitchPotionNoMATGreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1642172652499230
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4735486741236238}
-  - component: {fileID: 95337452910829400}
+  - component: {fileID: 4013563960601096}
+  - component: {fileID: 95301608271980988}
   m_Layer: 0
-  m_Name: RedPotion
+  m_Name: GreenPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1872303360811316
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4470353309177154}
-  - component: {fileID: 33329331197123620}
-  - component: {fileID: 23788869873716324}
-  m_Layer: 0
-  m_Name: WitchPotionNoMATRed
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4237082679233138
+--- !u!4 &4013563960601096
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1003088182000258}
+  m_GameObject: {fileID: 1642172652499230}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4735486741236238}
-  m_Father: {fileID: 0}
+  - {fileID: 4641474701899610}
+  m_Father: {fileID: 4424098081415182}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4470353309177154
+--- !u!4 &4424098081415182
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1872303360811316}
+  m_GameObject: {fileID: 1164233183947660}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4013563960601096}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4641474701899610
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1566333353543160}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4735486741236238}
+  m_Father: {fileID: 4013563960601096}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4735486741236238
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1400524062709392}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4470353309177154}
-  m_Father: {fileID: 4237082679233138}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23788869873716324
+--- !u!23 &23317156519777962
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1872303360811316}
+  m_GameObject: {fileID: 1566333353543160}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -117,7 +117,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: fdbc8cb6ce974f148ace91cd5cde0341, type: 2}
+  - {fileID: 2100000, guid: a4594117088f2e44f8dcea37c4f9624f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -137,19 +137,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33329331197123620
+--- !u!33 &33956098098120734
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1872303360811316}
-  m_Mesh: {fileID: 4300000, guid: 6a09cd3a625754629a0dacf60550a906, type: 3}
---- !u!54 &54069493047142298
+  m_GameObject: {fileID: 1566333353543160}
+  m_Mesh: {fileID: 4300000, guid: af066ecf4c05e42f78825413915996b3, type: 3}
+--- !u!54 &54493746608499564
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1003088182000258}
+  m_GameObject: {fileID: 1164233183947660}
   serializedVersion: 2
   m_Mass: 5
   m_Drag: 1
@@ -159,13 +159,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!95 &95337452910829400
+--- !u!95 &95301608271980988
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1400524062709392}
+  m_GameObject: {fileID: 1642172652499230}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: ab49a31c3b3fb134197df3a2d0245ebf, type: 2}
@@ -176,28 +176,27 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114033799501891430
+--- !u!114 &114791903595318042
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1003088182000258}
+  m_GameObject: {fileID: 1164233183947660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 061f7a2bca2299b4bb549b2a87f3d3db, type: 3}
+  m_Script: {fileID: 11500000, guid: d13c23c32b6f06d4683f3cd6d1ea6178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  potionFlame: {fileID: 1153695270380582, guid: 5f12739264ed32f41a9b1773e707499e,
-    type: 2}
---- !u!135 &135423191645495936
+  healAmount: 30
+--- !u!135 &135059684227105900
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1003088182000258}
+  m_GameObject: {fileID: 1164233183947660}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.4
   m_Center: {x: 0, y: 0.35, z: 0}

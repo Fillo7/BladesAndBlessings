@@ -9,8 +9,8 @@ public class Witch : EnemyAI
     private Animator animator;
     private WitchHand weapon;
 
-    private float attackCooldown = 6.0f;
-    private float attackTimer = 6.0f;
+    private float attackCooldown = 8.0f;
+    private float attackTimer = 8.0f;
     private float attackRange = 18.0f;
 
     private bool attacking = false;
@@ -48,7 +48,7 @@ public class Witch : EnemyAI
 
     public void ResetAttack()
     {
-        attackTimer = 0.0f;
+        attackTimer = Random.Range(0.0f, 4.0f);
         attacking = false;
     }
 
