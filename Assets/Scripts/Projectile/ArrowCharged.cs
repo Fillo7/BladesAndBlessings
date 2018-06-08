@@ -21,14 +21,14 @@ public class ArrowCharged : Projectile
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag.Equals("Projectile") || collision.gameObject.tag.Equals("Player"))
+        if (collision.collider.tag.Equals("Projectile") || collision.collider.tag.Equals("Player"))
         {
             Physics.IgnoreCollision(collision.collider, GetComponent<BoxCollider>());
             body.velocity = velocitySnapshot;
             return;
         }
 
-        if (collision.gameObject.tag.Equals("Enemy"))
+        if (collision.collider.tag.Equals("Enemy"))
         {
             Physics.IgnoreCollision(collision.collider, GetComponent<BoxCollider>());
             body.velocity = velocitySnapshot;

@@ -6,7 +6,12 @@ public class HealProjectile : Projectile
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Equals("Projectile") || other.tag.Equals("Weapon") || other.tag.Equals("EnemyObject") || other.tag.Equals("Wall") || (other.isTrigger && !other.tag.Equals("Enemy")))
+        if (other.tag.Equals("Projectile") || other.tag.Equals("Weapon") || other.tag.Equals("EnemyObject") || other.tag.Equals("Wall") || (other.isTrigger && !other.tag.Equals("Enemy") && !other.tag.Equals("EnemyShield")))
+        {
+            return;
+        }
+
+        if (other.tag.Equals("EnemyShield") && owner == ProjectileOwner.Enemy)
         {
             return;
         }

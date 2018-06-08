@@ -137,7 +137,7 @@ public class PlayerAttack : MonoBehaviour
         movement.LimitSpeed(movementSpeed);
     }
 
-    private void ResetAttack()
+    public void ResetAttack()
     {
         movement.ResetSpeed(movementSpeed);
         movement.SetMouseTurning(false);

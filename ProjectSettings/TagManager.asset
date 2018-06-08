@@ -12,6 +12,7 @@ TagManager:
   - EnemyObject
   - Wall
   - GameManager
+  - EnemyShield
   layers:
   - Default
   - TransparentFX

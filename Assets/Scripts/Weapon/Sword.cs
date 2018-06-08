@@ -43,6 +43,11 @@ public class Sword : Weapon
 
         if (!other.tag.Equals("Enemy") || maxHitCount <= 0 || slashedEnemies.Contains(other.gameObject))
         {
+            if (other.tag.Equals("EnemyShield"))
+            {
+                maxHitCount = 0;
+            }
+
             return;
         }
 
