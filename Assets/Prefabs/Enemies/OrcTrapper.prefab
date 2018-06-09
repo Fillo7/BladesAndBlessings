@@ -1171,11 +1171,11 @@ MonoBehaviour:
   deathDestroyDelay: 10
   destroyOnVictory: 1
   health: 135
-  slashingDamageMultiplier: 1.35
+  slashingDamageMultiplier: 1.3
   piercingDamageMultiplier: 0.75
-  fireDamageMultiplier: 0.6
+  fireDamageMultiplier: 0.4
   magicDamageMultiplier: 1
-  bleedingDamageMultiplier: 1
+  bleedingDamageMultiplier: 0.75
 --- !u!114 &114884130309469572
 MonoBehaviour:
   m_ObjectHideFlags: 1

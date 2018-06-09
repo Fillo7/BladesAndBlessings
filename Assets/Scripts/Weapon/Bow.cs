@@ -122,7 +122,7 @@ public class Bow : Weapon
             }
 
             DamageProjectile script = movingArrow.GetComponent<DamageProjectile>();
-            script.SetDamage(baseDamage);
+            script.SetDamage(baseDamage * 1.2f);
             script.SetSpeed(arrowSpeed);
             script.SetDirection(movingArrow.transform.up);
         }
@@ -133,7 +133,6 @@ public class Bow : Weapon
         GameObject movingArrow = Instantiate(chargedArrow, playerMovement.transform.position + playerMovement.transform.forward * 0.7f + playerMovement.transform.up * 1.35f,
             Quaternion.LookRotation(playerMovement.transform.forward, new Vector3(1.0f, 0.0f, 0.0f)) * Quaternion.Euler(90.0f, 0.0f, 0.0f)) as GameObject;
         ArrowCharged script = movingArrow.GetComponent<ArrowCharged>();
-        script.SetDamage(baseDamage * 2.0f);
         script.SetSpeed(arrowSpeed * 2.0f);
         script.SetDirection(playerMovement.transform.forward);
     }

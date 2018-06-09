@@ -16,11 +16,11 @@ public class Torch : Weapon
     private PlayerMovement movement;
     private float baseDamage = 10.0f;
 
-    private float fissureTimer = 12.0f;
-    private float fissureCooldown = 12.0f;
+    private float fissureTimer = 14.0f;
+    private float fissureCooldown = 14.0f;
 
-    private float cleansingFlameTimer = 35.0f;
-    private float cleansingFlameCooldown = 35.0f;
+    private float cleansingFlameTimer = 40.0f;
+    private float cleansingFlameCooldown = 40.0f;
 
     private Vector3 cursorPosition;
 

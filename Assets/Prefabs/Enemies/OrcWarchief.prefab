@@ -1233,11 +1233,11 @@ MonoBehaviour:
   deathDestroyDelay: 10
   destroyOnVictory: 1
   health: 150
-  slashingDamageMultiplier: 0.8
-  piercingDamageMultiplier: 0.8
-  fireDamageMultiplier: 1.2
+  slashingDamageMultiplier: 0.7
+  piercingDamageMultiplier: 0.7
+  fireDamageMultiplier: 1.3
   magicDamageMultiplier: 1.3
-  bleedingDamageMultiplier: 0.6
+  bleedingDamageMultiplier: 0.5
 --- !u!114 &114242041777661796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1297,9 +1297,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f001a53953a19d43aaabbb792421712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  auraRange: 10
+  auraRange: 12
   movementEffectDuration: 2
-  movemenetEffectMultiplier: 1.35
+  movemenetEffectMultiplier: 1.4
 --- !u!114 &114653898385921954
 MonoBehaviour:
   m_ObjectHideFlags: 1

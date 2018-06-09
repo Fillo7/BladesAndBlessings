@@ -1120,7 +1120,7 @@ MonoBehaviour:
   piercingDamageMultiplier: 1
   fireDamageMultiplier: 0.6
   magicDamageMultiplier: 0.6
-  bleedingDamageMultiplier: 1
+  bleedingDamageMultiplier: 1.2
 --- !u!114 &114288140541100262
 MonoBehaviour:
   m_ObjectHideFlags: 1

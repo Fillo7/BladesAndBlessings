@@ -1060,8 +1060,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3186568bbdeea640b2ecd3b100e7a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackClip: {fileID: 7400000, guid: ddc96f01aaec45747b1aa953bb449b27, type: 2}
   movementSpeed: 4
+  attackClip: {fileID: 7400000, guid: ddc96f01aaec45747b1aa953bb449b27, type: 2}
   damage: 30
   attackCooldown: 2.5
 --- !u!114 &114688731053188180
@@ -1078,12 +1078,13 @@ MonoBehaviour:
   hurtClip: {fileID: 0}
   deathClip: {fileID: 0}
   deathDestroyDelay: 2.5
+  destroyOnVictory: 1
   health: 115
-  slashingDamageMultiplier: 0.5
-  piercingDamageMultiplier: 0.5
+  slashingDamageMultiplier: 0.3
+  piercingDamageMultiplier: 0.3
   fireDamageMultiplier: 1.5
   magicDamageMultiplier: 1.75
-  bleedingDamageMultiplier: 0
+  bleedingDamageMultiplier: 0.1
 --- !u!136 &136183854071895706
 CapsuleCollider:
   m_ObjectHideFlags: 1

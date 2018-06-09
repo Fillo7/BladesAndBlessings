@@ -11,6 +11,6 @@ in Unity engine for PC platform.
 
 Team members
 ------------
-* Simona Nemčoková - models, textures, animations and sound
+* Simona Nemčoková - models, textures and animations
 * Filip Petrovič - programming, level design, prefabs and UI
-* Marek Nedbal (prototype) - level design, programming of enemy AI
+* Marek Nedbal - prototype level design and programming

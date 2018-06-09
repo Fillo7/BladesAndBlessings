@@ -16,7 +16,7 @@ public class Snake : EnemyAI
     private bool waypointsInitialized = false;
 
     private bool playerSighted = false;
-    private float playerEngageRange = 5.0f;
+    private float playerEngageRange = 6.0f;
 
     private bool attacking = false;
     private bool playerHit = false;

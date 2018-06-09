@@ -1142,9 +1142,9 @@ MonoBehaviour:
   health: 80
   slashingDamageMultiplier: 1
   piercingDamageMultiplier: 1.2
-  fireDamageMultiplier: 1
+  fireDamageMultiplier: 0.8
   magicDamageMultiplier: 1
-  bleedingDamageMultiplier: 0.6
+  bleedingDamageMultiplier: 0.35
 --- !u!114 &114444971390449138
 MonoBehaviour:
   m_ObjectHideFlags: 1

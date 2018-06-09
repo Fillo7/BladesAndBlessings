@@ -2,9 +2,9 @@
 
 public class WarchiefAura : MonoBehaviour
 {
-    [SerializeField] private float auraRange = 10.0f;
+    [SerializeField] private float auraRange = 12.0f;
     [SerializeField] private float movementEffectDuration = 2.0f;
-    [SerializeField] private float movemenetEffectMultiplier = 1.35f;
+    [SerializeField] private float movemenetEffectMultiplier = 1.4f;
 
     private float pulseTimer = 2.0f;
 

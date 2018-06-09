@@ -318,7 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hurtClip: {fileID: 0}
   deathClip: {fileID: 0}
-  deathDestroyDelay: 60
+  deathDestroyDelay: 180
   destroyOnVictory: 1
   health: 110
   slashingDamageMultiplier: 0.5
