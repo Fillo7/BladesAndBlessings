@@ -2736,6 +2736,21 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114455984680854824, guid: c4187962bb86aa041a1a67d8b70b00fb,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1165033831}
+    - target: {fileID: 114518040645057324, guid: c4187962bb86aa041a1a67d8b70b00fb,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1165033831}
+    - target: {fileID: 114277420878592680, guid: c4187962bb86aa041a1a67d8b70b00fb,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1165033831}
     - target: {fileID: 114075651028666138, guid: c4187962bb86aa041a1a67d8b70b00fb,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2746,22 +2761,7 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1165033831}
-    - target: {fileID: 114277420878592680, guid: c4187962bb86aa041a1a67d8b70b00fb,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1165033831}
-    - target: {fileID: 114455984680854824, guid: c4187962bb86aa041a1a67d8b70b00fb,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1165033831}
     - target: {fileID: 114504892742843420, guid: c4187962bb86aa041a1a67d8b70b00fb,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1165033831}
-    - target: {fileID: 114518040645057324, guid: c4187962bb86aa041a1a67d8b70b00fb,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
