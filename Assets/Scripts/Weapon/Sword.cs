@@ -7,6 +7,8 @@ public class Sword : Weapon
     [SerializeField] private AnimationClip basicAttack;
     [SerializeField] private AnimationClip specialAttack1;
     [SerializeField] private AnimationClip specialAttack2;
+    [SerializeField] private Sprite specialAttack1Image;
+    [SerializeField] private Sprite specialAttack2Image;
 
     private float baseDamage = 25.0f;
 
@@ -136,8 +138,8 @@ public class Sword : Weapon
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
         result.Add(new AbilityInfo(0.0f, basicAttack.length / 1.2f, 1.2f, 0.15f, false));
-        result.Add(new AbilityInfo(blockCooldown, specialAttack1.length / 1.15f, 1.15f, 0.6f, false));
-        result.Add(new AbilityInfo(coneSlashCooldown, specialAttack2.length / 1.15f, 1.15f, 0.15f, false));
+        result.Add(new AbilityInfo(blockCooldown, specialAttack1.length / 1.15f, 1.15f, 0.6f, false, -1, specialAttack1Image));
+        result.Add(new AbilityInfo(coneSlashCooldown, specialAttack2.length / 1.15f, 1.15f, 0.15f, false, -1, specialAttack2Image));
 
         return result;
     }

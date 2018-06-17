@@ -7,6 +7,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private List<GameObject> weapons = new List<GameObject>();
     [SerializeField] private Slider ability1Slider;
     [SerializeField] private Slider ability2Slider;
+    [SerializeField] private Image ability1Image;
+    [SerializeField] private Image ability2Image;
 
     private bool freezeAttack = false;
     private int activeWeaponIndex = 0;
@@ -198,6 +200,8 @@ public class PlayerAttack : MonoBehaviour
         ability2Slider.maxValue = currentAbilityInfo[2].GetCooldown();
         ability1Slider.value = currentWeaponScript.GetSpecialAttack1Timer();
         ability2Slider.value = currentWeaponScript.GetSpecialAttack2Timer();
+        ability1Image.sprite = currentAbilityInfo[1].GetImage();
+        ability2Image.sprite = currentAbilityInfo[2].GetImage();
     }
 
     private Vector3 GetCursorWorldPosition(int layerMask)

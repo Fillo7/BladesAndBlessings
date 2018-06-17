@@ -7,6 +7,8 @@ public class Torch : Weapon
     [SerializeField] private AnimationClip basicAttack;
     [SerializeField] private AnimationClip specialAttack1;
     [SerializeField] private AnimationClip specialAttack2;
+    [SerializeField] private Sprite specialAttack1Image;
+    [SerializeField] private Sprite specialAttack2Image;
 
     [SerializeField] private GameObject flames;
     [SerializeField] private GameObject fissure;
@@ -105,8 +107,8 @@ public class Torch : Weapon
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
         result.Add(new AbilityInfo(0.0f, basicAttack.length / 0.8f, 0.8f, 0.5f, true, mouseTurningMask));
-        result.Add(new AbilityInfo(fissureCooldown, specialAttack1.length / 1.0f, 1.0f, 0.2f, false, floorMask));
-        result.Add(new AbilityInfo(cleansingFlameCooldown, specialAttack2.length / 1.0f, 1.0f, 0.2f, false));
+        result.Add(new AbilityInfo(fissureCooldown, specialAttack1.length / 1.0f, 1.0f, 0.2f, false, floorMask, specialAttack1Image));
+        result.Add(new AbilityInfo(cleansingFlameCooldown, specialAttack2.length / 1.0f, 1.0f, 0.2f, false, -1, specialAttack2Image));
 
         return result;
     }

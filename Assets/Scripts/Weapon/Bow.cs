@@ -7,6 +7,8 @@ public class Bow : Weapon
     [SerializeField] private AnimationClip basicAttack;
     [SerializeField] private AnimationClip specialAttack1;
     [SerializeField] private AnimationClip specialAttack2;
+    [SerializeField] private Sprite specialAttack1Image;
+    [SerializeField] private Sprite specialAttack2Image;
 
     [SerializeField] private GameObject arrow;
     [SerializeField] private GameObject chargedArrow;
@@ -88,8 +90,8 @@ public class Bow : Weapon
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
         result.Add(new AbilityInfo(0.0f, basicAttack.length / 1.1f, 1.1f, 0.35f, true, mouseTurningMask));
-        result.Add(new AbilityInfo(arrowFanCooldown, specialAttack1.length / 1.15f, 1.15f, 0.2f, true, mouseTurningMask));
-        result.Add(new AbilityInfo(chargedArrowCooldown, specialAttack2.length / 1.15f, 1.15f, 0.2f, true, mouseTurningMask));
+        result.Add(new AbilityInfo(arrowFanCooldown, specialAttack1.length / 1.15f, 1.15f, 0.2f, true, mouseTurningMask, specialAttack1Image));
+        result.Add(new AbilityInfo(chargedArrowCooldown, specialAttack2.length / 1.15f, 1.15f, 0.2f, true, mouseTurningMask, specialAttack2Image));
 
         return result;
     }

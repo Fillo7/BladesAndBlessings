@@ -7,6 +7,8 @@ public class Staff : Weapon
     [SerializeField] private AnimationClip basicAttack;
     [SerializeField] private AnimationClip specialAttack1;
     [SerializeField] private AnimationClip specialAttack2;
+    [SerializeField] private Sprite specialAttack1Image;
+    [SerializeField] private Sprite specialAttack2Image;
 
     [SerializeField] private GameObject magicBolt;
     [SerializeField] private GameObject staffBlizzard;
@@ -89,8 +91,8 @@ public class Staff : Weapon
     {
         List<AbilityInfo> result = new List<AbilityInfo>();
         result.Add(new AbilityInfo(0.0f, basicAttack.length / 0.75f, 0.75f, 0.3f, true, mouseTurningMask));
-        result.Add(new AbilityInfo(novaCooldown, specialAttack1.length / 0.6f, 0.6f, 0.1f, false));
-        result.Add(new AbilityInfo(swiftnessCooldown, specialAttack2.length, 1.0f, 0.6f, false));
+        result.Add(new AbilityInfo(novaCooldown, specialAttack1.length / 0.6f, 0.6f, 0.1f, false, -1, specialAttack1Image));
+        result.Add(new AbilityInfo(swiftnessCooldown, specialAttack2.length, 1.0f, 0.6f, false, -1, specialAttack2Image));
 
         return result;
     }

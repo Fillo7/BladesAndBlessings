@@ -1473,6 +1473,10 @@ MonoBehaviour:
   basicAttack: {fileID: 7400000, guid: 4cdf584e67eaff14c90c7d852a5526a1, type: 2}
   specialAttack1: {fileID: 7400000, guid: 59a1935a83336c84fb632b39b0acdbb5, type: 2}
   specialAttack2: {fileID: 7400000, guid: b14454df32db5bc4f8de02d8a8abeee4, type: 2}
+  specialAttack1Image: {fileID: 21300000, guid: 038945f50443f4961baa0f69898739a3,
+    type: 3}
+  specialAttack2Image: {fileID: 21300000, guid: 65da4a41b6a604bc097535b95b41488e,
+    type: 3}
 --- !u!114 &114167132249679048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1500,6 +1504,10 @@ MonoBehaviour:
   basicAttack: {fileID: 7400000, guid: 06ebcd1e38f5d864883a64dd7d10ae93, type: 2}
   specialAttack1: {fileID: 7400000, guid: ee499050b3c233047a72a61acfc86849, type: 2}
   specialAttack2: {fileID: 7400000, guid: cfa2f72587f5fb24c862dcf7b62b3017, type: 2}
+  specialAttack1Image: {fileID: 21300000, guid: 37f3ad7eaa5ba452b9602b6c4f975a9a,
+    type: 3}
+  specialAttack2Image: {fileID: 21300000, guid: 2907c8b6e6b0e4d31b0d6c2d3baefb21,
+    type: 3}
   flames: {fileID: 1435326591756716, guid: a9ec5387c445caf4c98a7dd5db29393d, type: 2}
   fissure: {fileID: 1553145875917404, guid: 692b29ed3c479fd418426bb2a87b3502, type: 2}
   flameParticles: {fileID: 198185176557137550}
@@ -1521,6 +1529,8 @@ MonoBehaviour:
   - {fileID: 1256429739914744}
   ability1Slider: {fileID: 0}
   ability2Slider: {fileID: 0}
+  ability1Image: {fileID: 0}
+  ability2Image: {fileID: 0}
 --- !u!114 &114592785804472714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1536,6 +1546,10 @@ MonoBehaviour:
   basicAttack: {fileID: 7400000, guid: 8e8a6a1ccc08fd64b90d50c98f7f52d3, type: 2}
   specialAttack1: {fileID: 7400000, guid: a1807928472ea4441a36d483986cb525, type: 2}
   specialAttack2: {fileID: 7400000, guid: da5f469a014e75e478910bdc731f938f, type: 2}
+  specialAttack1Image: {fileID: 21300000, guid: 2a6d8cb4b885547ae92f52b7d6328894,
+    type: 3}
+  specialAttack2Image: {fileID: 21300000, guid: 2fb3e6808a84c4cc4877325031e9a2a8,
+    type: 3}
   magicBolt: {fileID: 1381643368318338, guid: 6a1f57426ffd37e47bea79fc9689a4f9, type: 2}
   staffBlizzard: {fileID: 1143124083386202, guid: c0f505fdca2302d4bb878c94382c83f3,
     type: 2}
@@ -1554,6 +1568,10 @@ MonoBehaviour:
   basicAttack: {fileID: 7400000, guid: e65877c41883043489573dc995d96592, type: 2}
   specialAttack1: {fileID: 7400000, guid: 2ddd1522ae5902847a97270896ff330a, type: 2}
   specialAttack2: {fileID: 7400000, guid: 4bef2fd54c741b74c822525a451d1dd9, type: 2}
+  specialAttack1Image: {fileID: 21300000, guid: 3238081dfade7488d9ae2ff696911599,
+    type: 3}
+  specialAttack2Image: {fileID: 21300000, guid: 78e443ff4273442babecd69c43876e5f,
+    type: 3}
   arrow: {fileID: 1337432570872208, guid: 8f1529c899f2cbc4ea679c40176b896d, type: 2}
   chargedArrow: {fileID: 1161871020945066, guid: 8d4b3eb8becf9714eaec58cb9ca52a01,
     type: 2}
