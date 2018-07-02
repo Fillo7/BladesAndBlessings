@@ -1297,6 +1297,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -7696,12 +7697,12 @@ Prefab:
     - target: {fileID: 224721347307848844, guid: dd7cb88496fd03f40af45fffd064ef99,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224721347307848844, guid: dd7cb88496fd03f40af45fffd064ef99,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224198922907720864, guid: dd7cb88496fd03f40af45fffd064ef99,
         type: 2}
@@ -7716,22 +7717,22 @@ Prefab:
     - target: {fileID: 224939654224836222, guid: dd7cb88496fd03f40af45fffd064ef99,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224939654224836222, guid: dd7cb88496fd03f40af45fffd064ef99,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224315183460815216, guid: dd7cb88496fd03f40af45fffd064ef99,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224315183460815216, guid: dd7cb88496fd03f40af45fffd064ef99,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224832850107026706, guid: dd7cb88496fd03f40af45fffd064ef99,
         type: 2}
@@ -7826,12 +7827,12 @@ Prefab:
     - target: {fileID: 224640485013525742, guid: dd7cb88496fd03f40af45fffd064ef99,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224640485013525742, guid: dd7cb88496fd03f40af45fffd064ef99,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd7cb88496fd03f40af45fffd064ef99, type: 2}
@@ -12364,9 +12365,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Convex: 1
-  m_InflateMesh: 0
+  m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1934426312
